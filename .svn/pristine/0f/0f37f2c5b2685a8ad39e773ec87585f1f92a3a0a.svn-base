@@ -1,0 +1,7 @@
+<hws-header  (toggle)="toggleActive($event)"></hws-header>
+<section class="page-wrapper" id="wrappers" [class.active]="userType !== '3' ">
+  <div class="container">
+    <router-outlet></router-outlet>
+    </div>
+</section>
+<hws-footer></hws-footer>

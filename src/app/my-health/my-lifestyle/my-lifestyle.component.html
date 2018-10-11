@@ -1,0 +1,339 @@
+<div class="col-lg-9 col-md-9 col-sm-9 col-9 p-t15 p-b15 pull-right no-padd">
+  <div class="panel-group" id="accordion">
+    <p-growl [(value)]="msgs" life="3000"></p-growl>
+
+    <div class="panel panel-default">
+      <div class="trigger-panel-heading">
+        <h5 class="panel-title">
+          <a data-toggle="collapse" class="accordion-toggle" data-parent="#accordion" href="#Lifestyle">{{
+            'myLifeStyle.myLifeStyle' | translate }}</a>
+        </h5>
+      </div>
+      <div id="Lifestyle" class="panel-collapse collapse in patient_info show">
+        <div class="panel-body">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd form-group">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left">
+              <label class="col-lg-3 col-md-3 col-sm-3 col-4">{{
+                'myLifeStyle.height' | translate }}</label>
+              <input type="text" placeholder="{{
+                'myLifeStyle.height' | translate }}" OnlyNumber="true"
+                max="11" [(ngModel)]="Height" name="" value="" class="col-lg-2 col-md-2 col-sm-2 col-5" /><label class="col-lg-2 col-md-2 col-sm-2 col-2">{{
+                'myLifeStyle.feets' | translate }}</label>
+              <div class="errorMessage" *ngIf="this.validateHeight ==1">{{errorMessageHeight}}</div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left">
+              <label class="col-lg-3 col-md-3 col-sm-3 col-4">{{
+                'myLifeStyle.weight' | translate }}</label>
+              <input type="text" placeholder="{{
+                'myLifeStyle.weight' | translate }}" [max]="1500"
+                OnlyNumber="true" [(ngModel)]="Weight" name="" value="" class="col-lg-2 col-md-2 col-sm-2 col-5" /><label
+                class="col-lg-2 col-md-2 col-sm-2 col-2">{{
+                'myLifeStyle.lbs' | translate }}</label>
+              <div class="errorMessage" *ngIf="this.validateWeight ==1">{{errorMessageWeight}}</div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+            <label class="col-lg-7 col-md-7 col-sm-7 col-12 pull-left">{{
+              'myLifeStyle.question1' | translate }}</label>
+            <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-12 pull-left">
+              <li>
+                <input type="radio" [(ngModel)]="model.IsSevenHoursSleep" [value]=1 id="option22" name="sleep">
+                <label for="option22">{{
+                  'myLifeStyle.yes' | translate }}</label>
+
+                <div class="check"></div>
+              </li>
+
+              <li>
+                <input type="radio" [(ngModel)]="model.IsSevenHoursSleep" [value]=0 id="option23" name="sleep">
+                <label for="option23">{{
+                  'myLifeStyle.no' | translate }}</label>
+
+                <div class="check check-rgt">
+                  <div class="inside"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+            <label class="col-lg-7 col-md-7 col-sm-7 col-12 pull-left">{{
+              'myLifeStyle.question2' | translate }}</label>
+            <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-12 pull-left">
+              <li>
+                <input type="radio" [(ngModel)]="model.IsExcercise" [value]=1 id="option24" name="exercise">
+                <label for="option24">{{
+                  'myLifeStyle.yes' | translate }}</label>
+
+                <div class="check"></div>
+
+              </li>
+
+              <li>
+                <input type="radio" [(ngModel)]="model.IsExcercise" [value]=0 id="option25" name="exercise">
+                <label for="option25">{{
+                  'myLifeStyle.no' | translate }}</label>
+
+                <div class="check check-rgt">
+                  <div class="inside"></div>
+                </div>
+              </li>
+            </ul>
+            <div class="col-sm-12">
+              <textarea class="col-sm-offset-7 col-sm-4" OnlyNumber="true" *ngIf="model.IsExcercise==1" [maxlength]="4"
+                [(ngModel)]="ExceriseHoursperWeek" [ngModelOptions]="{standalone: true}" placeholder="Enter Number" (keypress)="onlyNumber(event)"></textarea>
+
+              <!-- <control-messages [control]="ExceriseHoursperWeek" class="errorMessage"></control-messages> -->
+              <div class="errorMessage" *ngIf="this.validatePerWeek ==1">{{errorMessagePerWeek}}</div>
+
+
+
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+            <label class="col-lg-7 col-md-7 col-sm-7 col-12 pull-left">{{
+              'myLifeStyle.question3' | translate }}</label>
+            <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-12 pull-left">
+              <li>
+                <input type="radio" [(ngModel)]="model.IsYearlyFluShots" [value]=1 id="option26" name="flu shots">
+                <label for="option26">{{
+                  'myLifeStyle.yes' | translate }}</label>
+
+                <div class="check"></div>
+              </li>
+
+              <li>
+                <input type="radio" [(ngModel)]="model.IsYearlyFluShots" [value]=0 id="option27" name="flu shots">
+                <label for="option27">{{
+                  'myLifeStyle.no' | translate }}</label>
+
+                <div class="check check-rgt">
+                  <div class="inside"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+            <label class="col-lg-7 col-md-7 col-sm-7 col-12 pull-left">{{
+              'myLifeStyle.question4' | translate }} {{
+              'myLifeStyle.question5' | translate }}</label>
+            <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-12 pull-left">
+              <li>
+                <input type="radio" [(ngModel)]="model.IsSmoke" [value]=1 id="option28" name="tobacco">
+                <label for="option28">{{
+                  'myLifeStyle.yes' | translate }}</label>
+
+                <div class="check"></div>
+              </li>
+
+              <li>
+                <input type="radio" [(ngModel)]="model.IsSmoke" [value]=0 id="option29" name="tobacco">
+                <label for="option29">{{
+                  'myLifeStyle.no' | translate }}</label>
+
+                <div class="check check-rgt">
+                  <div class="inside"></div>
+                </div>
+              </li>
+            </ul>
+            <div class="col-sm-12">
+              <textarea class="col-sm-offset-7 col-sm-4" OnlyNumber="true" *ngIf="model.IsSmoke==1" [maxlength]="4" (keypress)="onlyNumber(event)"
+                [(ngModel)]="PacksPerDay" [ngModelOptions]="{standalone: true}" placeholder="Enter Number"></textarea>
+
+              <!-- <control-messages [control]="PacksPerDay" class="errorMessage"></control-messages> -->
+              <div class="errorMessage" *ngIf="this.validatePackPerDay ==1">{{errorMessagePackPerDay}}</div>
+
+            </div>
+            <div class="col-sm-12">
+              <textarea class="col-sm-offset-7 col-sm-4" OnlyNumber="true" *ngIf="model.IsSmoke==1" [maxlength]="4" (keypress)="onlyNumber(event)"
+                [(ngModel)]="SmokingYears" [ngModelOptions]="{standalone: true}" placeholder="Enter Number"></textarea>
+
+
+              <!-- <control-messages [control]="SmokingYears" class="errorMessage"></control-messages> -->
+              <div class="errorMessage" *ngIf="this.validateSmokeYear ==1">{{errorMessageSmokeYear}}</div>
+            </div>
+
+
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+            <label class="col-lg-7 col-md-7 col-sm-7 col-12 pull-left">{{
+              'myLifeStyle.question6' | translate }}</label>
+            <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-12 pull-left">
+              <li>
+                <input type="radio" [(ngModel)]="model.IsAlcoholic" [value]=1 id="option30" name="drink alcohol">
+                <label for="option30">{{
+                  'myLifeStyle.yes' | translate }}</label>
+
+                <div class="check"></div>
+              </li>
+
+              <li>
+                <input type="radio" [(ngModel)]="model.IsAlcoholic" [value]=0 id="option31" name="drink alcohol">
+                <label for="option31">{{
+                  'myLifeStyle.no' | translate }}</label>
+
+                <div class="check check-rgt">
+                  <div class="inside"></div>
+                </div>
+              </li>
+            </ul>
+            <div class="col-sm-12">
+              <textarea class="col-sm-offset-7 col-sm-4" *ngIf="model.IsAlcoholic==1" [maxlength]="14" [(ngModel)]="AlcoholType"
+                [ngModelOptions]="{standalone: true}" placeholder="Comments..."></textarea>
+              <!-- <control-messages [control]="AlcoholType" class="errorMessage"></control-messages> -->
+              <div class="errorMessage" *ngIf="this.validateDrinkType ==1">{{errorMessageDrinkType}}</div>
+
+
+            </div>
+            <div class="col-sm-12">
+              <textarea class="col-sm-offset-7 col-sm-4" *ngIf="model.IsAlcoholic==1" OnlyNumber="true" [(ngModel)]="DrinksPerWeek"
+                [maxlength]="4" [ngModelOptions]="{standalone: true}" placeholder="Enter Number" (keypress)="onlyNumber(event)"></textarea>
+
+              <!-- <control-messages [control]="DrinksPerWeek" class="errorMessage"></control-messages> -->
+              <div class="errorMessage" *ngIf="this.validateDrinkPerWeek ==1">{{errorMessageDrinkPerWeek}}</div>
+            </div>
+
+
+
+          </div>
+
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+            <label class="col-lg-7 col-md-7 col-sm-7 col-12 pull-left">{{
+              'myLifeStyle.question7' | translate }}</label>
+            <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-12 pull-left">
+              <li>
+                <input type="radio" [(ngModel)]="model.IsRecreationDrugs" [value]=1 id="option32" name="recreational drugs">
+                <label for="option32">{{
+                  'myLifeStyle.yes' | translate }}</label>
+
+                <div class="check"></div>
+              </li>
+
+              <li>
+                <input type="radio" [(ngModel)]="model.IsRecreationDrugs" [value]=0 id="option33" name="recreational drugs">
+                <label for="option33">{{
+                  'myLifeStyle.no' | translate }}</label>
+
+                <div class="check check-rgt">
+                  <div class="inside"></div>
+                </div>
+              </li>
+
+              <li>
+                <input type="radio" [(ngModel)]="model.IsRecreationDrugs" [value]=null id="option38" name="recreational drugs">
+                <label for="option38">{{
+                  'myLifeStyle.preferNotToAnswer' | translate }}</label>
+
+                <div class="check check-rgt">
+                  <div class="inside"></div>
+                </div>
+              </li>
+
+
+              <li>
+                <!-- <input type="radio" id="option32" name="recreational drugs">
+    <label for="option32">prefer not to answer</label>
+    
+    <div class="check"></div> -->
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+            <label class="col-lg-7 col-md-7 col-sm-7 col-12 pull-left">{{
+              'myLifeStyle.question8' | translate }}</label>
+            <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-12 pull-left">
+              <li>
+                <input type="radio" [(ngModel)]="model.IsWorkHazardous" [value]=1 id="option34" name="toxic chemicals">
+                <label for="option34">{{
+                  'myLifeStyle.yes' | translate }}</label>
+
+                <div class="check"></div>
+              </li>
+
+              <li>
+                <input type="radio" [(ngModel)]="model.IsWorkHazardous" [value]=0 id="option35" name="toxic chemicals">
+                <label for="option35">{{
+                  'myLifeStyle.no' | translate }}</label>
+
+                <div class="check check-rgt">
+                  <div class="inside"></div>
+                </div>
+              </li>
+            </ul>
+            <div class="col-sm-12">
+              <textarea class="col-sm-offset-7 col-sm-4" OnlyNumber="true" *ngIf="model.IsWorkHazardous==1" [(ngModel)]="WorkYear" (keypress)="onlyNumber(event)"
+                [maxlength]="4" [ngModelOptions]="{standalone: true}" placeholder="Enter Number"></textarea>
+
+              <!-- <control-messages [control]="WorkYear" class="errorMessage"></control-messages> -->
+              <div class="errorMessage" *ngIf="this.validateToxicWhen ==1">{{errorMessageToxicWhen}}</div>
+
+            </div>
+            <div class="col-sm-12">
+              <textarea class="col-sm-offset-7 col-sm-4" OnlyNumber="true" *ngIf="model.IsWorkHazardous==1" [(ngModel)]="WorkTotalYears" (keypress)="onlyNumber(event)"
+                [maxlength]="4" [ngModelOptions]="{standalone: true}" placeholder="Enter Number"></textarea>
+
+              <!-- <control-messages [control]="WorkTotalYears" class="errorMessage"></control-messages> -->
+              <div class="errorMessage" *ngIf="this.validateToxicHow ==1">{{errorMessageToxicHow}}</div>
+            </div>
+            <div class="col-sm-12">
+              <textarea class="col-sm-offset-7 col-sm-4" *ngIf="model.IsWorkHazardous==1" [(ngModel)]="WorkType"
+                [maxlength]="4" [ngModelOptions]="{standalone: true}" placeholder="Comments..."></textarea>
+              <!-- <control-messages [control]="WorkType" class="errorMessage"></control-messages> -->
+              <div class="errorMessage" *ngIf="this.validateType ==1">{{errorMessageType}}</div>
+
+            </div>
+
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+            <label class="col-lg-7 col-md-7 col-sm-7 col-12 pull-left">{{
+              'myLifeStyle.question9' | translate }}</label>
+            <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-12 pull-left">
+              <li>
+                <input type="radio" [(ngModel)]="model.IsEverDisabled" [value]=1 id="option36" name="disabled">
+                <label for="option36">{{
+                  'myLifeStyle.yes' | translate }}</label>
+
+                <div class="check"></div>
+              </li>
+
+              <li>
+                <input type="radio" [(ngModel)]="model.IsEverDisabled" [value]=0 id="option37" name="disabled">
+                <label for="option37">{{
+                  'myLifeStyle.no' | translate }}</label>
+
+                <div class="check check-rgt">
+                  <div class="inside"></div>
+                </div>
+              </li>
+
+              <!-- <input type="date" *ngIf="model.IsEverDisabled==1" [(ngModel)]="DisabledDate" class="date"/> -->
+
+              <!-- <p-calendar [(ngModel)]="DisabilityName" *ngIf="model.IsEverDisabled==1" [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" [minDate]="minDate"
+  [ngModelOptions]="{standalone: true}"></p-calendar> -->
+
+              <p-calendar [(ngModel)]="DisabledDate" class="calendar" *ngIf="model.IsEverDisabled==1" [locale]="lang" [maxDate]="maxDateValue"
+                dateFormat="{{fm}}" (onBlur)="focus($event);" (keyup)="cal($event.target.value)" defaultDate
+                [ngModelOptions]="{standalone: true}"></p-calendar>
+
+              <!-- <control-messages [control]="DisabledDate" class="errorMessage"></control-messages> -->
+              <div class="errorMessage" *ngIf="this.validateDate ==1">{{errorMessageDate}}</div>
+
+
+              <input type="text" *ngIf="model.IsEverDisabled==1" [maxlength]="14" [(ngModel)]="DisabilityName" class="value" />
+              <!-- <control-messages [control]="DisabilityName" class="errorMessage"></control-messages> -->
+              <div class="errorMessage" *ngIf="this.validateDisableNameType ==1">{{errorMessageDisableName}}</div>
+            </ul>
+          </div>
+          <div class="col-lg-11 col-md-11 col-sm-11 col-11 physican text-right p-t30 form-group">
+            <input type="button" name="" value="{{
+              'patientInfo.cancel' | translate }}" (click)="cancel()"
+              class="btn u-btn-darkgray g-mr-10" />
+            <input type="button" name="" value="{{
+              'patientInfo.save' | translate }}" (click)="save()"
+              class="btn u-btn-primary g-mr-10" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

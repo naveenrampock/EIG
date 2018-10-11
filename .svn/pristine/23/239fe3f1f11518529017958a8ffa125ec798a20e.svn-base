@@ -1,0 +1,418 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<app-emr-navigation></app-emr-navigation>
+<div class="m-t10p emr-content-list">
+  <!-- Continuity Of Care Documents (CCD's) -->
+  <div class="emr-tabcontent">
+    <div class="emr-details">
+      <div class="m-b10 ebg-white">
+        <div class="head-text panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title p-r15">
+            <p data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsible collapsed">
+              <label style="padding: 5px 0;"> Continuity Of Care Documents (CCD's)</label>
+              <i class="fa fa-angle-down drop"></i>
+            </p>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse in collapse brd-btm0 flow" role="tabpanel" aria-labelledby="headingOne">
+          <!-- Medications -->
+          <div style="margin-top:5px;">
+            <p-table #dt [columns]="tableHeaders" [value]="ccdMedication">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Medications</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable" #MedicationViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th>Medication</th>
+                  <th>Instruction</th>
+                  <th>StartDate</th>
+                  <th>Status</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.Medication}}</td>
+                  <td>{{rowData.Instructions}}</td>
+                  <td>{{rowData.StartDate | date:'MM/dd/yyyy'}}</td>
+                  <td>{{rowData.Status}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- Medical Equipment -->
+          <!-- <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders1" [value]="MedicationEquipment">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Medication Equipment</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable">
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th width="600">Supply/Device</th>
+                  <th>Date Supplied</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.supply}}</td>
+                  <td>{{rowData.date}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div> -->
+          <!-- Immunization -->
+          <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders2" [value]="ccdImmunization">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Immunization</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable" #ImmunizationViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th width="500">Vaccine</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.VaccineCode}}</td>
+                  <td>{{rowData.Date | date:'MM/dd/yyyy'}}</td>
+                  <td>{{rowData.Status}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- Vital Signs -->
+          <!-- <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders3" [value]="VitalSigns">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Vital Signs</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable">
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th>Date/Time</th>
+                  <th>Nov 14,1999</th>
+                  <th>April 7,2000</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.date}}</td>
+                  <td>{{rowData.nov}}</td>
+                  <td>{{rowData.apr}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div> -->
+          <!-- Device -->
+          <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders1" [value]="ccdDevice">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Device</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable" #DeviceViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th width="700">DeviceName</th>
+                  <th>DeviceSuppliedDate</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.DeviceName}}</td>
+                  <td>{{rowData.DeviceSuppliedDate | date:'MM/dd/yyyy'}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- Procedure -->
+          <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders4" [value]="ccdProcedure">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Procedures</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable"  #ProcedureViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th width="300">Performed</th>
+                  <th>Performed Date and Time</th>
+                  <th>ReasonReference</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.Performed.Performed}}</td>
+                  <td>{{rowData.Performed.PerformedDateTime}}</td>
+                  <td>{{rowData.ReasonReference}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- Encounter -->
+          <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders5" class="cap" [value]="ccdEncounters">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Encounters</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable" #EncountersViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th>Location Status</th>
+                  <th>Location Period</th>
+                  <th>Period</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.Location.LocatiionPeriod}}</td>
+                  <td>{{rowData.Location.LocationStatus}}</td>
+                  <td>{{rowData.Period}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- Allergy -->
+          <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders5" class="cap" [value]="ccdAllergy">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Allergy</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable"  #AllergyViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th>Reaction</th>
+                  <th>Substance</th>
+                  <th>VerificationStatus</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.Reaction}}</td>
+                  <td>{{rowData.Substance}}</td>
+                  <td>{{rowData.VerificationStatus}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Continuity Of Care Records (CCR's) -->
+  <div class="emr-tabcontent">
+    <div class="emr-details">
+      <div class="m-b10 ebg-white">
+        <div class="head-text panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title p-r15">
+            <p data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" aria-expanded="true" aria-controls="collapseOne" class="collapsible collapsed">
+              <label style="padding: 5px 0;"> Continuity Of Care Records (CCR's)</label>
+              <i class="fa fa-angle-down drop"></i>
+            </p>
+          </h4>
+        </div>
+        <div id="collapsetwo" class="panel-collapse in collapse brd-btm0 flow" role="tabpanel" aria-labelledby="headingOne">
+          <!-- Medications -->
+          <div style="margin-top:5px;">
+            <p-table #dt [columns]="tableHeaders" [value]="ccrMedication">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Medications</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable" #ccrMedicationViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th>Medication</th>
+                  <th>Instruction</th>
+                  <th>StartDate</th>
+                  <th>Status</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.Medication}}</td>
+                  <td>{{rowData.Instructions}}</td>
+                  <td>{{rowData.StartDate | date:'MM/dd/yyyy'}}</td>
+                  <td>{{rowData.Status}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- Immunization -->
+          <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders2" [value]="ccrImmunization">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Immunization</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable" #ccrImmunizationViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th width="500">Vaccine</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.VaccineCode}}</td>
+                  <td>{{rowData.Date | date:'MM/dd/yyyy'}}</td>
+                  <td>{{rowData.Status}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- Device -->
+          <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders1" [value]="ccrDevice">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Device</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable" #ccrDeviceViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th width="700">DeviceName</th>
+                  <th>DeviceSuppliedDate</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.DeviceName}}</td>
+                  <td>{{rowData.DeviceSuppliedDate | date:'MM/dd/yyyy'}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- Procedure -->
+          <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders4" [value]="ccrProcedure">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Procedures</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable" #ccrProcedureViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th width="300">Performed</th>
+                  <th>Performed Date and Time</th>
+                  <th>ReasonReference</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.Performed.Performed}}</td>
+                  <td>{{rowData.Performed.PerformedDateTime}}</td>
+                  <td>{{rowData.ReasonReference}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <!-- Encounters -->
+          <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders5" class="cap" [value]="ccrEncounters">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Encounters</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable" #ccrEncountersViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th>Location Status</th>
+                  <th>Location Period</th>
+                  <th>Period</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.Location.LocatiionPeriod}}</td>
+                  <td>{{rowData.Location.LocationStatus}}</td>
+                  <td>{{rowData.Period}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+           <!-- Allergy -->
+           <div style="margin-top:5px;">
+            <p-table #dt1 [columns]="tableHeaders5" class="cap" [value]="ccrAllergy">
+              <ng-template pTemplate="caption">
+                <div style="text-align: left;background-color: #d9d9d9;">
+                  <label>
+                    <b>Allergy</b>
+                  </label>
+                  <input type="checkbox" class="check" [attr.checked]="isAvailable" #ccrAllergyViewChild>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="header" let-columns>
+                <tr role="row">
+                  <th>Reaction</th>
+                  <th>Substance</th>
+                  <th>VerificationStatus</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td>{{rowData.Reaction}}</td>
+                  <td>{{rowData.Substance}}</td>
+                  <td>{{rowData.VerificationStatus}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-sm-right col-sm-9 m-b20" style="float:right">
+    <button class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" (click)="saveExportInfo()">Save</button>
+    <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10">Cancel</a>
+  </div>
+</div>

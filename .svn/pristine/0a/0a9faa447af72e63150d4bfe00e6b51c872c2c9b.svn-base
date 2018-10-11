@@ -1,0 +1,20 @@
+<div class="myhealth mt7">
+  <ul class="nav nav-tabs menu">
+    <li>
+      <a class="active-link" routerLink="/my-health/my-health-history" routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact: true}">{{ 'myHealthModule.myHealthHistory' | translate }}
+      </a>
+    </li>
+    <li>
+      <a routerLink="/my-health/my-lifestyle" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">{{
+        'myLifeStyle.myLifeStyle' | translate }}
+      </a>
+    </li>
+    <li>
+      <a routerLink="/my-health/my-family-health-history" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">{{
+        'myFamilyHistory.myFamilyHistory' | translate }}
+      </a>
+    </li>
+  </ul>
+</div>
+<router-outlet></router-outlet>

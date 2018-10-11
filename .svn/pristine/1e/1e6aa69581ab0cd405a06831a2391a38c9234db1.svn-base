@@ -1,0 +1,386 @@
+<!-- <section class="g-my-10 col-lg-12 nopadd light-grey">
+  <div class="container">
+    <ul class="u-list-inline">
+      <li class="list-inline-item g-mr-7">
+        <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">Home</a>
+        <i class="fa fa-angle-right g-ml-7"></i>
+      </li>
+      <li class="list-inline-item g-mr-7">
+        <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">Pages</a>
+        <i class="fa fa-angle-right g-ml-7"></i>
+      </li>
+      <li class="list-inline-item g-color-primary">
+        <span>Admin Management</span>
+      </li>
+    </ul>
+  </div>
+</section> -->
+<p-confirmDialog></p-confirmDialog>
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+
+
+
+<div id="" class="case_manage m-t20">
+  <section class="g-mb-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 lookupmaster nopadd" id="LookupMaster" style="display:block;">
+          <!-- Nav tabs -->
+          <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary col-lg-12 p-r0"
+            role="tablist" data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down"
+            data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20">
+            <li class="nav-item col-lg-3 nopadd">
+              <a class="nav-link g-py-5 active" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--1" role="tab">Admin
+                Management</a>
+            </li>
+            <li class="col-lg-9 pull-right text-right nopadd" style="padding:0">
+              <!-- <input type="search" name="" value="" placeholder="Search..."/> -->
+              <!-- <a id="invite" class="add_lookup text-white" data-toggle="modal" (click)="showUser()"><i class="fa fa-user-plus"></i></a> -->
+              <a id="Add_Lookup" class="add_lookup text-white" data-toggle="modal" (click)="showDialog()">
+                <i class="fa fa-plus"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="page-title pt10 pb10">
+            <div class="container">
+              <div class="col-sm-12">
+                <ol class="breadcrumb float-right">
+
+                </ol>
+                <h4 class="mb0">Welcome {{firstName}} {{lastName}}</h4>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="pull-right g-py-5 search-top">
+              <input autocomplete='off' type="text" #gb pInputText size="25" placeholder="Find..." class="mrgbtm15 b-radius20" [(ngModel)]="searchData" >
+            </div> -->
+          <div class="pull-right g-py-5 search-top">
+            <!-- <input autocomplete='off' type="text" #gb pInputText size="25" placeholder="Find..." class="mrgbtm15 b-radius20" [(ngModel)]="searchData" > -->
+            <input autocomplete='off' [(ngModel)]="userName" (keyup)="searchUser($event)" type="text" pInputText size="25"
+              placeholder="Find..." class="mrgbtm15 b-radius20">
+            <ul class="myUL list-search" *ngIf="list!=null">
+              <div *ngFor="let list of list;let i = index">
+                <li (click)="editProfile(list.UserIdentifier)">
+                  <a>{{list.FirstName}} {{list.LastName}}</a>
+                  <!-- <button [disabled]="list.ContactStatus==1  || list.ContactStatus==2 " class="uadd btn" (click)="inviteRequest(list,i)"  style="display:none;"> -->
+                  <!-- <i class="fa fa-plus pr-1" width="20" title="Invite"></i> -->
+                </li>
+              </div>
+            </ul>
+          </div>
+          <div id="blist_Table" class="clearFix content-section implementation col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadd"
+            *ngIf="userList.length>0">
+            <p-dataTable [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [totalRecords]="totalRecords" [value]="lazyList"
+              [paginator]="true" [rows]="10" [pageLinks]="3" [responsive]="true">
+              <p-column field="AccountID" header="AccountID" [sortable]="true" [editable]="true">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                  <span>
+                    <a>{{user.AccountID}}</a>
+                  </span>
+                </ng-template>
+              </p-column>
+              <p-column field="FirstName" header="Name" [sortable]="true" [editable]="true">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                  <span>
+                    <a>{{user.FirstName}}</a>
+                  </span>
+                </ng-template>
+              </p-column>
+              <p-column field="Position" header="Position" [sortable]="true" [editable]="true">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                  <span>{{user.Position}}</span>
+                </ng-template>
+              </p-column>
+              <!-- <p-column field="emailAddress" header="Email Address" [sortable]="true" [editable]="true">
+                  <ng-template let-col let-user="rowData" pTemplate="body">
+                    <span>{{user.emailAddress}}</span>
+                  </ng-template>
+                </p-column> -->
+              <p-column field="CompanyName" header="CompanyName" [sortable]="true" [editable]="true">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                  <span>{{user.CompanyName}}</span>
+                </ng-template>
+              </p-column>
+              <p-column field="StatusId" header="Status" [sortable]="true" [editable]="true">
+                <ng-template let-col let-user="rowData" pTemplate="body">
+                  <span>{{user.IsLockedOut==1?"Locked":user.StatusId==1?"Active":user.StatusId==2?"Deactivated":user.StatusId==3?"Deleted":user.StatusId==4?"Inactive":false}}</span>
+                </ng-template>
+              </p-column>
+              <!-- <p-column field="linkedAccount" header="Linked Account" [sortable]="true" [editable]="true">
+                  <ng-template let-col let-user="rowData" pTemplate="body" class="popup">
+                     <span>{{user.linkedAccount}}</span>
+                  </ng-template>
+                </p-column> -->
+              <!-- <p-column field="phoneNumber" header="Phone Number" [sortable]="true" [editable]="true">
+                 <ng-template let-col let-user="rowData" pTemplate="body" class="popup">
+                  <span>{{user.phoneNumber}}</span>
+                 </ng-template>
+               </p-column> -->
+              <p-column field="" header="Action" [sortable]="true" [editable]="true" [style]="{'width':'200px'}">
+                <ng-template let-col let-user="rowData" pTemplate="body" class="popup">
+                  <div *ngIf="user.StatusId != 3">
+                    <button class="greenBtn" *ngIf="user.StatusId != 4" (click)="editProfile(user.UserIdentifier)">{{
+                      'AdminManagement.Edit' | translate}}</button>
+                    <button class="redBtn" *ngIf="user.StatusId != 4" (click)="confirmDeleteDeactivate(user.UserIdentifier, '1')">{{
+                      'AdminManagement.Delete' | translate}}</button>
+                    <button class="redBtn" *ngIf="user.StatusId == 1" (click)="confirmDeleteDeactivate(user.UserIdentifier,'2')">{{
+                      'AdminManagement.Deactivate' | translate}}</button>
+                    <button class="redBtn" *ngIf="user.StatusId == 2" (click)="confirmActivate(user.UserIdentifier,'1')">{{
+                      'AdminManagement.Activate' | translate}}</button>
+                    <button class="redBtn m-t5" *ngIf="user.IsLockedOut == 1" (click)="unlockAccount(user.UserIdentifier)">{{
+                      'AdminManagement.UnLock' | translate}}</button>
+                    <!-- <button class="redBtn">Delete</button>    -->
+                  </div>
+                </ng-template>
+              </p-column>
+            </p-dataTable>
+          </div>
+          <!-- End Nav tabs -->
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p-dialog header="User Management" [(visible)]="display" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
+  <!-- *ngIf="car" -->
+  <div class="ui-grid ui-grid-responsive ui-fluid" id="LookUp_popup">
+    <form [formGroup]="profileForm" [class.disbaledInput]="!isEdit" class="userprofile">
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.FirstName' | translate}}
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="90" placeholder="{{
+              'AdminManagement.FirstName' | translate}} "
+              formControlName="FirstName">
+          </div>
+          <control-messages [control]="profileForm.controls.FirstName" class="errorMessage"></control-messages>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.LastName' | translate}}
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" [maxlength]="90" type="text" placeholder="{{
+              'AdminManagement.LastName' | translate}}"
+              formControlName="LastName">
+          </div>
+          <control-messages [control]="profileForm.controls.LastName" class="errorMessage"></control-messages>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.MiddleName' | translate}}
+        </label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-px-15" type="text" [maxlength]="45"
+              placeholder="{{
+                'AdminManagement.MiddleName' | translate}}" formControlName="MiddleName">
+          </div>
+          <control-messages [control]="profileForm.controls.MiddleName" class="errorMessage"></control-messages>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.Password' | translate}}
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-px-15" (keyup)="checkPassword($event)"
+              type="password" placeholder="{{
+                'AdminManagement.Password' | translate}}" [maxlength]="240" formControlName="Password">
+          </div>
+          <control-messages [control]="profileForm.controls.Password" class="errorMessage"></control-messages>
+        </div>
+        <!-- <control-messages [control]="registerForm.controls.Password" class="errorMessage"></control-messages>
+       <div class="errorMessage" *ngIf="validationPassBlank==1">{{errorMessageBlankPass}}</div>
+      <div class='required' *ngIf="validationError == 1">{{errorMessage}}</div> -->
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.YourId' | translate}}
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="140"
+              placeholder="AccountID" formControlName="AccountID">
+          </div>
+          <control-messages [control]="profileForm.controls.AccountID" class="errorMessage"></control-messages>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.Suffix' | translate}}
+        </label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control g-color-black g-bg-white g-bg-white--focus g-px-15" type="text" [maxlength]="20"
+              placeholder="Mr/Mrs" formControlName="Suffix">
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.Gender' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="col-lg-5 pull-left">
+            <input formControlName="Gender" name="Gender" placeholder="Gender" type="radio" value="M">
+            <label class="pos-b10">{{ 'AdminManagement.Male' | translate}}</label>
+          </div>
+          <div class="col-lg-5 pull-left">
+            <input formControlName="Gender" name="Gender" placeholder="Gender" type="radio" value="F">
+            <label class="pos-b10">{{ 'AdminManagement.Female' | translate}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.CompanyName' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="100"
+              placeholder=" {{'AdminManagement.CompanyName' | translate}}" formControlName="CompanyName">
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.Position' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="100"
+              placeholder="{{'AdminManagement.Position' | translate}}" formControlName="Position">
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.Email' | translate}}
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="90" placeholder="{{'AdminManagement.Email' | translate}}"
+              formControlName="PrimaryEmailId">
+          </div>
+          <control-messages [control]="profileForm.controls.PrimaryEmailId" class="errorMessage"></control-messages>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.Website' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="90" placeholder="{{'AdminManagement.Website' | translate}}"
+              formControlName="Website">
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.PhoneNumber' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" [maxlength]="14" (keypress)="numberOnly($event)"
+              type="text" placeholder=" {{'AdminManagement.PhoneNumber' | translate}}" formControlName="PhoneNumber">
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.OfficeNumber' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" [maxlength]="14" (keypress)="numberOnly($event)"
+              type="text" placeholder="{{'AdminManagement.OfficeNumber' | translate}}" formControlName="OfficePhoneNumber">
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.Address' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="130"
+              placeholder="{{'AdminManagement.Address' | translate}}" formControlName="Address1">
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.Address2' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="1300"
+              placeholder="{{'AdminManagement.Address2' | translate}}" formControlName="Address2">
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.City' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="60" placeholder="{{'AdminManagement.City' | translate}}"
+              formControlName="City">
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.State' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" [maxlength]="2" type="text" placeholder="{{'AdminManagement.State' | translate}}"
+              formControlName="State">
+          </div>
+        </div>
+      </div>
+      <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+          'AdminManagement.Zipcode' | translate}}</label>
+        <div class="col-sm-8">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md g-py-13 rounded-0 pr-0" (keypress)="numberOnly($event)"
+              [maxlength]="8" type="text" placeholder="{{'AdminManagement.Zipcode' | translate}}" formControlName="Zipcode" OnlyNumber="true">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+      <button type="button" pButton icon="fa-check" [disabled]="!profileForm.valid" (click)="saveProfileTab()" class="save btn">{{
+        'AdminManagement.Save' | translate}}</button>
+      <button type="button" pButton icon="fa-close" (click)="close()" class="cancel btn">{{ 'AdminManagement.Cancel' |
+        translate}}</button>
+    </div>
+  </p-footer>
+</p-dialog>
+<p-dialog header="User Management" [(visible)]="userDisplay" [responsive]="true" showEffect="fade" [modal]="true"
+  [width]="500">
+  <!-- *ngIf="car" -->
+  <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+    <div class="modal-body row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <label class="col-lg-3 col-md-4 col-sm-6 col-xs-6">{{ 'AdminManagement.Email' | translate}}</label>
+        <input type="email" placeholder="Email" [maxlength]="100" [(ngModel)]="email" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix popup invite-pop">
+      <button type="button" pButton icon="fa-check" label="Send" (click)="sendEmailInvite(email)" [disabled]="!email"
+        class="save btn"></button>
+      <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancel" class="cancel btn"></button>
+    </div>
+  </p-footer>
+</p-dialog>

@@ -1,0 +1,51 @@
+
+
+:host /deep/ .ui-multiselect .ui-multiselect-label-container{    width: 250px;
+    height: 32px;
+    position: relative;
+    top: 3px;
+}
+/* :host /deep/ .ui-multiselect{
+    position: relative;
+    top: 5px;
+} */
+/* #Family_History div label{   
+    position: relative;
+    bottom: 10px;
+} */
+:host /deep/ .ui-multiselect .ui-multiselect-panel{
+    width:250px;
+}
+/* :host /deep/ .ui-multiselect-panel .ui-multiselect-item label{
+    position: relative;
+    top: 4px;
+} */
+:host /deep/ .ui-multiselect .ui-multiselect-trigger .fa{
+    margin-top: 0.7em;
+    margin-left: -0.2em;
+}
+:host /deep/ .ui-multiselect-header .ui-multiselect-filter-container .fa{
+    top: .85em;
+}
+
+input[type="button"]{border-radius:3px;}
+
+@media only screen and (min-width:320px) and (max-width:580px){
+    .ui-multiselect {position: relative;top: 0px;}
+
+    #Family_History div label{position: relative;top: 10px;}   
+}
+
+@media only screen and (min-width:581px) and (max-width:767px){
+    .ui-multiselect {position: relative;top: 0px;}
+
+    #Family_History div label{position: relative;top: -10px;}   
+}
+
+@media only screen and (min-width:768px) and (max-width:1024px){
+    .ui-multiselect {position: relative;top: 0px;}
+
+    #Family_History div label{position: relative;top: -10px;}   
+}
+
+:host /deep/ .ui-corner-all {border-radius: 0px;}

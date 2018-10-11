@@ -1,0 +1,214 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="emr-details">
+  <div class=" m-b10 ebg-white">
+    <div class="head-text inline-block">
+      <p class="col-sm-12 text-center w-85 pull-left m-0">Appointment</p>
+      <a class="pull-right" id="back_Appointment" (click)="backToListing()">
+        <button class="addbutton">
+          <i class="fa fa-arrow-circle-left"></i>
+        </button>
+      </a>
+    </div>
+    <div class="col-sm-12 col-xs-12 emr-labels no-padd inline-block" [formGroup]="emrAppointmentdetailsForm">
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">SourceType
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 pull-left no-padd" [class.disabled]="isReadOnly">
+          <select formControlName="SourceType" class="emr-dropdown">
+            <option value=''>Select SourceType</option>
+            <option *ngFor="let sType of sourceTypes" [value]='sType.Id'>{{sType.Description}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-4  pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">SourceID</label>
+        <div class="col-sm-7 pull-left no-padd">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 pr-0" type="text" OnlyNumber="true" maxlength="3" placeholder="SourceID"
+              formControlName="SourceID">
+          </div>
+        </div>
+      </div>
+      <div class="head-text subhead">
+        <p class="normal pull-left m-0">Schedule Details</p>
+      </div>
+      <div class="col-sm-12 no-padd">
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Start
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" showButtonBar="true" showTime="true" dateFormat="mm-dd-yy"
+              placeholder="mm-dd-yyyy"  [minDate]="yesterday" formControlName="Start" class="pull-left">
+              <button class="ui-datepicker-trigger ui-calendar-button ng-tns-c2-3 ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ng-star-inserted" pbutton="" tabindex="-1" type="button"><span aria-hidden="true" class="ui-button-icon-left ui-clickable pi pi-clock"></span><span class="ui-button-text ui-clickable">ui-btn</span></button>
+            </p-calendar>
+            <i class="fa fa-clock"></i>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">End
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" showButtonBar="true" showTime="true" dateFormat="mm-dd-yy"
+              placeholder="mm-dd-yyyy" formControlName="End" [minDate]="yesterday" class="pull-left"></p-calendar>
+            <i class="fa fa-clock"></i>
+          </div>
+        </div>
+
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 single-line pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Minutes Duration
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="MinutesDuration" OnlyNumber="true" (focus)="calculateTime()" placeholder="Minutes" [(ngModel)]="min">
+          </div>
+        </div>
+        <div class="col-12 required error" *ngIf="error">{{error}}</div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Slot
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Slot" OnlyNumber="true" maxlength="2" placeholder="Slot">
+            <i class="fa fa-caret-down"></i>
+          </div>
+        </div>
+
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 single-line pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Requested Period
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="RequestedPeriod" OnlyNumber="true" maxlength="2" placeholder="Requested Period">
+            <i class="fa fa-caret-down"></i>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Status
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <select formControlName="Status" class="emr-dropdown">
+              <option value=''>Select Status</option>
+              <option *ngFor="let status of appointmentStatus" [value]='status.Id'>{{status.Description}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 required" *ngIf="appError">{{appError}}</div>
+      <!-- Appointment Details -->
+      <div class="head-text subhead">
+        <p class="normal pull-left m-0"> Appointment Details</p>
+      </div>
+      <div class="col-sm-12 no-padd">
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 single-line pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Service Category
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(159, src2.value)" #src2 formControlName="ServiceCategory" [(ngModel)]="selectedServiceCat"
+              minlength="3" placeholder="Please key in (eg:Ac)" />
+            <i class="fa fa-caret-down"></i>
+            <div *ngIf="appointmentServiceCat && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let serviceCat of appointmentServiceCat" (click)="getValue(serviceCat)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{serviceCat.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Service Type
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(173, src12.value)" #src12 formControlName="ServiceType" [(ngModel)]="selectedServiceType"
+              minlength="3" placeholder="Please key in (eg:Ac)" />
+            <i class="fa fa-caret-down"></i>
+            <div *ngIf="appointmentServiceType && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let serviceType of appointmentServiceType" (click)="getValue(serviceType)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{serviceType.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 single-line pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Appointment Type
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <select formControlName="AppointmentType" class="emr-dropdown">
+              <option value=''>Select Appointment Type</option>
+              <option *ngFor="let type of appointmentType" [value]='type.Id'>{{type.Description}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Priority
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Priority" OnlyNumber="true" maxlength="2" placeholder="Priority in number">
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Specialty
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(160, src3.value)" #src3 formControlName="Specialty" [(ngModel)]="selectedSpecialty"
+              minlength="3" placeholder="Please key in (eg:Ac)"/>
+            <div *ngIf="appointmentSpeciality && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let speciality of appointmentSpeciality" (click)="getValue(speciality)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{speciality.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Reason
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(162, src5.value)" #src5 formControlName="Reason" [(ngModel)]="selectedReason"
+              minlength="3" placeholder="Please key in (eg:Ac)"/>
+            <i class="fa fa-caret-down"></i>
+            <div *ngIf="appointmentReason && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let reason of appointmentReason" (click)="getValue(reason)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{reason.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 pull-left m-b10 m-t10">
+          <label class="lbl_note pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Description
+            <span class="required">*</span>
+          </label>
+          <div class="txt_note pull-left">
+            <input type="text" formControlName="Description"  maxlength="25" class="w-100" placeholder="Description">
+          </div>
+        </div>
+      </div>
+      <!-- Comments -->
+      <div class="head-text subhead">
+        <p class="normal pull-left m-0">Comments</p>
+      </div>
+      <div class="col-sm-12 no-padd">
+        <div class="col-sm-12 pull-left m-b10 m-t10">
+          <label class="lbl_note pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Comment
+          </label>
+          <div class="txt_note pull-left">
+            <input type="text" formControlName="Comment" maxlength="100" class="w-100" placeholder="Comment">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 text-right m-b50 m-t10 form-group inline-block" *ngIf="appointmentDetails?.mode !== 'readOnly'">
+        <button class="btn btn-primary clr-white m-b10" (click)="!appointmentDetails ? saveEmrAppointment() : updateEmrAppointment()"
+          [disabled]="!emrAppointmentdetailsForm.valid">{{!appointmentDetails ? 'Save' : 'Update'}}</button>
+      </div>
+    </div>
+  </div>

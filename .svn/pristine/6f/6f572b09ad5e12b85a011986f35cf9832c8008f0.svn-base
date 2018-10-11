@@ -1,0 +1,125 @@
+
+
+.case_manage .vertical-menu a.active {background-color: #32c5d2 ;color: #fff !important;}
+
+.case_manage{height: 100%;overflow-y: hidden; min-height: 650px;}
+
+.go{background-color: #32c5d2;margin-right: 15px;color: #fff;margin-top: 15px;border: 1px solid #32c5d2;
+    border-radius: 3px;float: right;cursor:pointer;}
+
+.admin .h-32 {height: 30px !important;margin: 3px 0px 3px 0px;border:1px solid #d9d9d9;}
+
+.pos-t8{position:relative;top:8px;}
+
+.admin .app_number {width: 201px;position: relative;bottom: 5px;height: 30px !important;}
+
+.pos-t4{position: relative;top:4px;}
+
+
+.caret-4 {
+    left: 385px;
+}
+.caret-1{
+    left: 81px;
+}
+.invitedCase .caret-4{
+    left: 70px;
+}
+.fa-caret-up {
+    position: absolute;
+    top: -18px;
+    font-size: 26px;
+    color: #32c5d2;
+}
+.inner_div > div {
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+}
+.hw-70 {
+    height: 70px;
+    width: 70px;
+}
+.caret-2{
+    left: 175px;
+}
+.inner_div > div .fa-plus{
+    padding: 5px;
+    background-color: #32c5d2;
+    color: #fff;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    cursor: pointer
+}
+
+.inner_div > div >div:nth-child(1){
+    display: block;
+    clear: both;
+}
+.inner_div > div >div:nth-child(1) > a:nth-child(1){
+    display: block;
+    float: left;
+} 
+.inner_div > div >div:nth-child(1) > a:nth-child(3){
+    float: right;
+} 
+.inner_div > div >div:nth-child(2){
+    clear: both;
+}
+
+.uname{position: relative;left: 5px;bottom: 5px;}
+
+.invit {
+    max-width: 30px;
+    border-radius: 50px;
+    max-height: 30px;
+    min-width: 30px;
+    margin-bottom: 10px;
+}
+
+.case-popover .fa-trash {
+    padding: 7px;
+    background-color: #32c5d2;
+    color: #fff;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+:host /deep/ table th{text-align: center;}
+
+:host /deep/ table td{text-align: center;}
+
+.desk a:hover{background-color: #32c5d2;}
+:host /deep/ .ui-autocomplete .ui-autocomplete-panel{
+    top: 2px !important;
+    position: relative;
+  }
+
+  :host /deep/ .bdate .ui-inputtext{width:120px;height:28px;}
+
+:host /deep/ .bdate .ui-calendar > .ui-datepicker{top: 29px !important;left: -98px !important;}
+:host /deep/ .ui-datepicker.ui-widget{width: 240px;}
+
+:host /deep/ .auto .ui-autocomplete{width: 58%;position: relative;top: 3px;}
+
+:host /deep/ .auto .ui-autocomplete .ui-inputtext{width:100%;height:30px;}
+
+:host /deep/ .ui-datepicker-prev{width: auto !important;float: left;}
+
+:host /deep/ .ui-datepicker-next{width: auto !important;float: left;}
+
+
+:host /deep/ .auto .ui-calendar{width: 57%;}
+
+:host /deep/ .auto .ui-calendar .ui-inputtext{width:100%;height:30px;}
+
+:host /deep/ .ui-timepicker{position: relative;right: 90px;}
+
+:host /deep/ .endtime .ui-calendar{position: relative;top: 2px;}
+
+.status{padding-top: 8px;height: 37px;}
+
+.admin .inner_div > div > div:nth-child(1) {border-bottom: 0px solid #eee;margin-bottom: 10px;}
+.more{ height: 35px; overflow: hidden;}
+.morelink b{
+    background-color: #32c5d2 !important;
+}

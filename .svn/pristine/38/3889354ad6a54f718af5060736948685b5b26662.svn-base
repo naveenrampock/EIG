@@ -1,0 +1,231 @@
+<!-- Modal body -->
+
+<div class="modal-body">
+
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-left">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudyPK :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyPk}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudyInstanceUID :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyInstanceUID}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudyID :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyID}}</label>
+      </div>
+    
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">SeriesNumber :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.SeriesNumber}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudyDate :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyDate | date :short}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudyTime :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyTime}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">RequestingPhysician :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.RequestingPhysician}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">RequestedProcedureDescription :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.RequestedProcedureDescription}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PerformedProcedureStepStartDate :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.PerformedProcedureStepStartDate | date :short}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PerformedProcedureStepID :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.PerformedProcedureStepID}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Manufacturer :</label>
+      <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyPk}}/label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StationName :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}/label>
+      </div>  -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">SoftwareVersions :</label>
+      <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}/label>
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Model :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}/label>
+      </div>  -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PatientName :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Name}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-4 col-sm-6 col-xs-6">IssuerOfPatientID :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PatientBirthTime :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_BirthTime }}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">OtherPatientIDs :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> {{moreInfo.StudyPk}}</label>
+      </div>		 	 -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PatientSize :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Size}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PatientAddress :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" {{moreInfo.StudyPk}}/label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Owner :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> {{moreInfo.OwnerName}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">NoOfSeries :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyPk}}>/label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StorageID :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StorageId}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudySizeAfterCompression :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">CreatedBy :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.CreatedBy}}</label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">UpdatedBy :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.UpdatedBy}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Body Parts  :</label>
+        <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.BodyParts}}</label>
+        </div> 
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Modality  :</label>
+        <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.Modality}}</label>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+          <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Series Count  :</label>
+          <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.SeriesCount}}</label>
+          </div>
+         
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-left">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+            <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Image Count :</label>
+            <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.ImageCount}}</label>
+          </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudyDescription :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyDescription}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">ContentDate :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.ContentDate | date :short}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">ContentTime :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.ContentTime}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">AccessionNumber :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.AccessionNumber}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudyStatusID :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyStatusID}}</label>
+      </div> &nbsp;
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">ReasonForStudy  :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div>  -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">RequestingService :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.RequestingService}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">CurrentPatientLocation :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.CurrentPatientLocation}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PerformedProcedureStepStartTime :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.PerformedProcedureStepStartTime}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PerformedProcedureStepDescription :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.PerformedProcedureStepDescription}}</label>
+      </div>
+     
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Implementation Version Name:</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">AE Title:</label>
+      <label type="text" name=""class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PatientID:</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Id}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PatientBirthDate :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_BirthDate | date :short}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PatientSex :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Sex}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PatientAge :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Age}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PatientWeight :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Weight}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">UploadedBy :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.UploadedBy}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">IsDeleted :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.IsDeleted}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">NoOfImages :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.NoOfImages}}</label> 
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudySizeBeforeCompression :</label>
+      <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">LastViewed :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">CreatedDate :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.CreatedDate | date :short}}</label>
+  
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">UpdatedDate :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.UpdatedDate | date :short}}</label>
+      </div>
+    </div>
+  
+  </div>
+  

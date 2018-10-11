@@ -1,0 +1,626 @@
+<!-- <p-growl [value]="msg"></p-growl> -->
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<p-confirmDialog></p-confirmDialog>
+<div class="row m-t20 col-lg-12">
+  
+  <app-sidebar-nav #sideNavComponent (saveCallback)="saveCallback($event)" class="col-lg-3 lookupmaster nopadd"></app-sidebar-nav>
+
+
+
+  
+  <div class="col-lg-9" id="UserSetting" *ngIf="!isShowInvite">
+    <!-- Nav tabs -->
+    <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary g-mb-20" role="tablist"
+      data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20">
+      <li class="nav-item active" aria-expanded="false">
+        <a class="nav-link g-py-5" (click)="profile()" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--1" role="tab" aria-expanded="true">{{'UserProfileModule.EditProfile' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link g-py-5" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--2" role="tab" aria-expanded="false"
+          (click)="securitySettings()">{{'UserSecuritySettingsModule.SecuritySettings' | translate}}</a>
+      </li>
+      <!--  <li class="nav-item">
+                  <a class="nav-link g-py-10" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--3" role="tab">Payment Options</a>
+                </li> -->
+      <li class="nav-item">
+        <a class="nav-link g-py-5" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--4" role="tab" aria-expanded="false"
+          (click)="notificationSettingsTab()">{{'UserNotificationsSettingsModule.NotificationSettings' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link g-py-5" data-toggle="tab" href="#UserConfig" role="tab">{{'UserAuthorizationModule.UserConfiguration' | translate}} </a>
+      </li>
+    </ul>
+    <!-- End Nav tabs -->
+
+    <!-- Tab panes -->
+    <div id="nav-1-1-default-hor-left-underline" class="tab-content">
+      <!-- Edit Profile -->
+      <div class="tab-pane fade active in show" id="nav-1-1-default-hor-left-underline--1" role="tabpanel" aria-expanded="true">
+        <h2 class="h4 g-font-weight-300">{{'UserProfileModule.ManageyourNameIDandEmailAddresses' | translate}}</h2>
+        <p>{{'UserProfileModule.Belowarenameemailaddressecontactsandmoreonfileforyouraccount' | translate}}</p>
+        <form [formGroup]="profileForm" [class.disbaledInput]="!isEdit" class="userprofile">
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.FirstName' | translate}}
+              <span class="required">*</span>
+            </label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="90" placeholder="{{'UserProfileModule.FirstName' | translate}}" formControlName="FirstName">
+              </div>
+              <control-messages [control]="profileForm.controls.FirstName" class="errorMessage"></control-messages>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.LastName' | translate}}
+              <span class="required">*</span>
+            </label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="90" placeholder="{{'UserProfileModule.LastName' | translate}}" formControlName="LastName">
+              </div>
+              <control-messages [control]="profileForm.controls.LastName" class="errorMessage"></control-messages>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.AccountID' | translate}}
+              <span class="required">*</span>
+            </label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="90" [readOnly]="true" placeholder="{{'UserProfileModule.AccountID' | translate}}" formControlName="AccountID">
+              </div>
+              <control-messages [control]="profileForm.controls.AccountID" class="errorMessage"></control-messages>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.Gender' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="col-lg-3 pull-left">
+                <input type="radio" formControlName="Gender" value="M">
+                <label class="gender-lbl">{{'UserProfileModule.male' | translate}}</label>
+              </div>
+              <div class="col-lg-3 pull-left">
+                <input type="radio" formControlName="Gender" value="F">
+                <label class="gender-lbl">{{'UserProfileModule.female' | translate}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.CompanyName' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="100" placeholder="{{'UserProfileModule.CompanyName' | translate}}" formControlName="CompanyName">
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.Position' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="100" placeholder="{{'UserProfileModule.Position' | translate}}" formControlName="Position">
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.Email' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="100" placeholder="{{'UserProfileModule.Email' | translate}}" formControlName="PrimaryEmailId">
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.Website' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="100" placeholder="{{'UserProfileModule.Website' | translate}}" formControlName="Website">
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.PhoneNumber' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <!-- <input class="form-control form-control-md g-py-13 rounded-0 pr-0" [maxlength]="14"  (keypress)="numberOnly($event)" type="text" placeholder="Phone Number" formControlName="PhoneNumber"> -->
+             
+                <p-inputMask mask="+9-999-999-9999" formControlName="PhoneNumber" class="phone_number form-control g-color-black g-bg-white g-bg-white--focus g-px-15" placeholder="+9-999-999-9999"></p-inputMask>
+                
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.OfficeNumber' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" [maxlength]="14"  (keypress)="numberOnly($event)" type="text" placeholder="{{'UserProfileModule.OfficeNumber' | translate}}" formControlName="OfficePhoneNumber">
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left "></label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="130" placeholder="{{'UserProfileModule.Address' | translate}}" formControlName="Address1">
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.Address2' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="130" placeholder="{{'UserProfileModule.Address2' | translate}}" formControlName="Address2">
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.City' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="60" placeholder="{{'UserProfileModule.City' | translate}}" formControlName="City">
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.State' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="2" placeholder="{{'UserProfileModule.State' | translate}}" formControlName="State">
+              </div>
+            </div>
+          </div>
+          <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{'UserProfileModule.Zipcode' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md g-py-13 rounded-0 pr-0" (keypress)="numberOnly($event)" [maxlength]="8" type="text" placeholder="{{'UserProfileModule.Zipcode' | translate}}" formControlName="Zipcode">
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="text-sm-right mt-4 form-group">
+          <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" (click)="cancel()">{{'UserProfileModule.Cancel' | translate}}</a>
+          <button class="btn u-btn-primary rounded-0 g-py-12 g-px-25" (click)="saveProfileTab()" *ngIf="isEdit" [disabled]="!profileForm.valid">{{'UserProfileModule.SaveChanges' | translate}}</button>
+          <a class="btn u-btn-primary rounded-0 g-py-12 g-px-25" (click)="editProfile()" *ngIf="!isEdit">{{'UserProfileModule.EditProfile' | translate}}</a>
+        </div>
+      </div>
+      <!-- End Edit Profile -->
+
+      <!-- Security Settings -->
+
+      <div class="tab-pane fade show" id="nav-1-1-default-hor-left-underline--2" role="tabpanel" aria-expanded="true">
+        <div *ngIf="isSeurityTab">
+          <h2 class="h4 g-font-weight-300">{{'UserSecuritySettingsModule.SecuritySettings' | translate}}</h2>
+          <p class="g-mb-25">{{'UserSecuritySettingsModule.Resetyourpasswordchangeverificationsandsoon' | translate}}</p>
+
+          <form [formGroup]="privacyForm">
+            <!-- Current Password -->
+            <div class="form-group row g-mb-25">
+              <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserSecuritySettingsModule.CurrentPassword' | translate}}
+                <span class="required">*</span>
+              </label>
+              <div class="col-sm-9">
+                <div class="input-group g-brd-primary--focus">
+                  <input class="form-control form-control-md border-right-0 rounded-0 pr-0" type="password" placeholder="{{'UserSecuritySettingsModule.CurrentPassword' | translate}}"
+                    formControlName="CurrentPassword">
+                  <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+                    <i class="icon-lock"></i>
+                  </div>
+                </div>
+                <control-messages [control]="privacyForm.controls.CurrentPassword" class="errorMessage"></control-messages>
+                <div class='required' *ngIf="validationError">{{validationError}}</div>
+              </div>
+            </div>
+            <!-- End Current Password -->
+
+            <!-- New Password -->
+            <div class="form-group row g-mb-25">
+              <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserSecuritySettingsModule.NewPassword' | translate}}
+                <span class="required">*</span>
+              </label>
+              <div class="col-sm-9">
+                <div class="input-group g-brd-primary--focus">
+                  <input class="form-control form-control-md border-right-0 rounded-0 pr-0" type="password" placeholder="{{'UserSecuritySettingsModule.NewPassword' | translate}}" formControlName="NewPassword">
+                  <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+                    <i class="icon-lock"></i>
+                  </div>
+                </div>
+                <control-messages [control]="privacyForm.controls.NewPassword" class="errorMessage row p-l-3"></control-messages>
+              </div>
+            </div>
+            <!-- End New Password -->
+
+            <!-- Verify Password -->
+            <div class="form-group row g-mb-25">
+              <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserSecuritySettingsModule.VerifyPassword' | translate}}
+                <span class="required">*</span>
+              </label>
+              <div class="col-sm-9">
+                <div class="input-group g-brd-primary--focus">
+                  <input class="form-control form-control-md border-right-0 rounded-0 pr-0" type="password" placeholder="{{'UserSecuritySettingsModule.VerifyPassword' | translate}}" formControlName="ConfirmPassword">
+                  <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+                    <i class="icon-lock"></i>
+                  </div>
+                </div>
+                <control-messages [control]="privacyForm.controls.ConfirmPassword" class="errorMessage row"></control-messages>
+              </div>
+            </div>
+            <!-- End Verify Password -->
+
+            <!-- Login Verification -->
+            <!-- <div class="form-group row g-mb-25">
+              <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Login verification</label>
+              <div class="col-sm-9 clear-fix">
+                <label class="form-check-inline u-check g-pl-25">
+                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" formControlName="LoginVerification">
+                  <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0"> -->
+                    <!-- <i class="fa" data-check-icon=""></i>
+                  </div>
+                  Verify login requests
+                </label>
+                <small class="d-block text-muted">You need to add a phone to your profile account to enable this feature.</small>
+                <div class="col-lg-12 row g-mb-10">
+                  <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left g-mb-10 nopadd">Email:</label>
+                  <button (click)="generateEmailOtp()" class="btn ml-2 h-28" *ngIf="!isConfirmEmailOtp">Send OTP via Email</button>
+                  <div *ngIf="isConfirmEmailOtp" class="row">
+                    <input class="form-control col-lg-4" type="text" #emailOTP>
+                    <button (click)="confirmEmailOtp(emailOTP.value)" class="btn ml-2 h-28">Confirm OTP</button>
+                    <span>OTP has been sent to your email, please check</span>
+                  </div>
+                </div>
+                <div class="col-lg-12 row g-mb-10">
+                  <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left g-mb-10 nopadd"> Phone Number:</label> -->
+                  <!-- <input class="form-control col-lg-4" type="text"> -->
+                  <!-- <button class="btn ml-2 h-28" [disabled]="!profileDetails.PhoneNumber" (click)="generateSmsOtp()" *ngIf="!isSmsOtp">Send OTP via SMS</button>
+                  <div *ngIf="isSmsOtp" class="row">
+                    <input class="form-control col-lg-4" type="text" #SmsOTP>
+                    <button (click)="confirmSmsOtp(SmsOTP.value)" class="btn ml-2 h-28">Confirm OTP</button>
+                    <span>OTP has been sent to your Phone number, please check</span>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- End Login Verification -->
+
+            <!-- Password Reset -->
+            <!-- <div class="form-group row g-mb-25">
+              <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Password reset</label>
+              <div class="col-sm-9">
+                <label class="form-check-inline u-check g-pl-25">
+                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" formControlName="ResetPassword">
+                  <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                    <i class="fa" data-check-icon=""></i>
+                  </div>
+                  Require personal information to reset my password
+                </label>
+                <small class="d-block text-muted">When you check this box, you will be required to verify additional information before you can request a password
+                  reset with just your email address.</small>
+              </div>
+            </div> -->
+            <!-- End Password Reset -->
+          </form>
+          <!-- Deactivate account -->
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserSecuritySettingsModule.DeactivateAccount' | translate}}</label>
+            <div class="col-sm-9">
+              <label class="form-check-inline u-check mx-0">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="deactivate" type="checkbox" (change)="deactivateStatus(deactivate)"
+                  [(ngModel)]="deactivate">
+                <div class="u-check-icon-radio-v7">
+                  <i class="d-inline-block"></i>
+                </div>
+              </label>
+              <small class="d-block text-muted">{{'UserSecuritySettingsModule.WhenyoucheckthisboxyouwillbeautomaticallylogedouttoyouraccountAlsoAccountwillbedeactivated' | translate}}</small>
+            </div>
+          </div>
+          <!-- {{privacyForm.value | json}} -->
+          <!-- End Deactivate account -->
+
+          <!-- Delete account -->
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserSecuritySettingsModule.DeleteAccount' | translate}}</label>
+            <div class="col-sm-9">
+              <label class="form-check-inline u-check mx-0">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="deleteaccount" type="checkbox" (change)="DeleteStatus(deleteAccount)"
+                  [(ngModel)]="deleteAccount">
+                <div class="u-check-icon-radio-v7">
+                  <i class="d-inline-block"></i>
+                </div>
+              </label>
+              <small class="d-block text-muted">{{'UserSecuritySettingsModule.WhenyoucheckthisboxyouwillbeautomaticallylogedouttoyouraccountAlsoAccountwillbeDeleted' | translate}}</small>
+            </div>
+          </div>
+          <!-- End Delete account -->
+
+          <hr class="g-brd-gray-light-v4 g-my-25">
+
+          <div class="text-sm-right">
+            <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" href="#">{{'UserSecuritySettingsModule.Cancel' | translate}}</a>
+            <button class="btn u-btn-primary rounded-0 g-py-12 g-px-25" (click)="saveSecuritySettings()" [disabled]="!privacyForm.valid">{{'UserSecuritySettingsModule.SaveChanges' | translate}}</button>
+          </div>
+
+        </div>
+      </div>
+      <!-- End Security Settings -->
+
+      <!-- Payment Options -->
+
+      <!-- Notification Settings -->
+      <div class="tab-pane fade" id="nav-1-1-default-hor-left-underline--4" role="tabpanel" aria-expanded="false">
+        <div *ngIf="isNotifyTab">
+          <h2 class="h4 g-font-weight-300">{{'UserNotificationsSettingsModule.ManageyourNotifications' | translate}}</h2>
+          <p class="g-mb-25">{{'UserNotificationsSettingsModule.BelowAretheNotificationsYouMayManage' | translate}}</p>
+          <form [formGroup]="notificationsForm">
+            <!-- Email Notification -->
+            <div class="form-group">
+              <label class="d-flex align-items-center justify-content-between">
+                <span>{{'UserNotificationsSettingsModule.EmailNotification' | translate}}</span>
+                <div class="u-check">
+                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="NotifyByEmail" type="checkbox" formControlName="NotifyByEmail">
+                  <div class="u-check-icon-radio-v7">
+                    <i class="d-inline-block"></i>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <!-- End Email Notification -->
+
+            <hr class="g-brd-gray-light-v4 g-my-20">
+
+            <!-- Comments Notification -->
+            <div class="form-group">
+              <label class="d-flex align-items-center justify-content-between">
+                <span>{{'UserNotificationsSettingsModule.SendUserEmailNotificationComments' | translate}}</span>
+                <div class="u-check">
+                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="NotifyBlogUpdates" type="checkbox" formControlName="NotifyBlogUpdates">
+                  <div class="u-check-icon-radio-v7">
+                    <i class="d-inline-block"></i>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <!-- End Comments Notification -->
+
+            <hr class="g-brd-gray-light-v4 g-my-20">
+
+            <!-- Update Notification -->
+            <div class="form-group">
+              <label class="d-flex align-items-center justify-content-between">
+                <span>{{'UserNotificationsSettingsModule.SendUserEmailNotificationLatestUpdate' | translate}}</span>
+                <div class="u-check">
+                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="NotifyLatestUpdates" type="checkbox" formControlName="NotifyLatestUpdates">
+                  <div class="u-check-icon-radio-v7">
+                    <i class="d-inline-block"></i>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <!-- End Update Notification -->
+
+            <hr class="g-brd-gray-light-v4 g-my-25">
+
+            <!-- Message Notification -->
+            <div class="form-group">
+              <label class="d-flex align-items-center justify-content-between">
+                <span>{{'UserNotificationsSettingsModule.SendUserEmailNotificationMessage' | translate}}</span>
+                <div class="u-check">
+                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="NotifyUserMessages" type="checkbox" formControlName="NotifyUserMessages">
+                  <div class="u-check-icon-radio-v7">
+                    <i class="d-inline-block"></i>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <!-- End Message Notification -->
+
+            <hr class="g-brd-gray-light-v4 g-my-25">
+
+            <!-- Newsletter Notification -->
+            <div class="form-group">
+              <label class="d-flex align-items-center justify-content-between">
+                <span>{{'UserNotificationsSettingsModule.Receiveourmonthlynewsletter' | translate}}</span>
+                <div class="u-check">
+                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="ReceiveMonthlyNewsletter" type="checkbox" formControlName="ReceiveMonthlyNewsletter">
+                  <div class="u-check-icon-radio-v7">
+                    <i class="d-inline-block"></i>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <!-- End Newsletter Notification -->
+            <!-- {{notificationsForm.value | json}} -->
+            <hr class="g-brd-gray-light-v4 g-my-25">
+
+            <div class="text-sm-right">
+              <a class="btn u-btn-darkgray rounded-0 g-py-12 g-px-25 g-mr-10" href="#">{{'UserNotificationsSettingsModule.Cancel' | translate}}</a>
+              <a class="btn u-btn-primary rounded-0 g-py-12 g-px-25" (click)="saveNotification()">{{'UserNotificationsSettingsModule.SaveChanges' | translate}}</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- End Notification Settings -->
+      <div class="tab-pane fade" id="UserConfig" role="tabpanel">
+        <h2 class="h4 g-font-weight-300">{{'UserAuthorizationModule.ManageyourConfigurations' | translate}}</h2>
+        <form [formGroup]="adminConfigForm">
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.HasImagemanagement' | translate}}</label>
+            <div class="col-sm-9">
+              <label class="form-check-inline u-check mx-0">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasImagemanagement" type="checkbox" formControlName="HasImagemanagement">
+                <div class="u-check-icon-radio-v7">
+                  <i class="d-inline-block"></i>
+                </div>
+              </label>
+              <small class="d-block text-muted">{{'UserAuthorizationModule.WhenyoucheckthisboxyouwillbesavedautomaticallylogintoyourprofileaccountAlsoyouwillbealwaysloggedinallourservices' | translate}}
+                </small>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.HasCasemanagement' | translate}}</label>
+            <div class="col-sm-9">
+              <label class="form-check-inline u-check mx-0">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasCasemanagement" type="checkbox" formControlName="HasCasemanagement">
+                <div class="u-check-icon-radio-v7">
+                  <i class="d-inline-block"></i>
+                </div>
+              </label>
+              <small class="d-block text-muted">{{'UserAuthorizationModule.WhenyoucheckthisboxyouwillbesavedautomaticallylogintoyourprofileaccountAlsoyouwillbealwaysloggedinallourservices' | translate}}
+                </small>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.HasEMR' | translate}}</label>
+            <div class="col-sm-9">
+              <label class="form-check-inline u-check mx-0">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasEMR" type="checkbox" formControlName="HasEMR">
+                <div class="u-check-icon-radio-v7">
+                  <i class="d-inline-block"></i>
+                </div>
+              </label>
+              <small class="d-block text-muted">{{'UserAuthorizationModule.WhenyoucheckthisboxyouwillbesavedautomaticallylogintoyourprofileaccountAlsoyouwillbealwaysloggedinallourservices' | translate}}
+                </small>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.HasVideoconference' | translate}}</label>
+            <div class="col-sm-9">
+              <label class="form-check-inline u-check mx-0">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasVideoconference" type="checkbox" formControlName="HasVideoconference">
+                <div class="u-check-icon-radio-v7">
+                  <i class="d-inline-block"></i>
+                </div>
+              </label>
+              <small class="d-block text-muted">{{'UserAuthorizationModule.WhenyoucheckthisboxyouwillbesavedautomaticallylogintoyourprofileaccountAlsoyouwillbealwaysloggedinallourservices' | translate}}
+                </small>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.HasGenomicFilesManagement' | translate}}</label>
+            <div class="col-sm-9">
+              <label class="form-check-inline u-check mx-0">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasGenomicFilesManagement" type="checkbox" formControlName="HasGenomicFilesManagement">
+                <div class="u-check-icon-radio-v7">
+                  <i class="d-inline-block"></i>
+                </div>
+              </label>
+              <small class="d-block text-muted">{{'UserAuthorizationModule.WhenyoucheckthisboxyouwillbesavedautomaticallylogintoyourprofileaccountAlsoyouwillbealwaysloggedinallourservices' | translate}}
+                </small>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxDICOMstudiesnumber' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxDICOMstudiesnumber' | translate}}" formControlName="MaxDICOMstudiesnumber"
+                  [OnlyNumber]='true' maxlength="3">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxDICOMstudiestotalsizes' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxDICOMstudiestotalsizes' | translate}}" formControlName="MaxDICOMstudiestotalsizes"
+                  [OnlyNumber]='true' maxlength="3">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxEMRrecordsnumber' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxEMRrecordsnumber' | translate}}" formControlName="MaxEMRrecordsnumber"
+                  [OnlyNumber]='true' maxlength="3">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxTotalstoragesize' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxTotalstoragesize' | translate}}" formControlName="Maxtotalstoragesize"
+                  [OnlyNumber]='true' maxlength="3">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxCasesweek' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxCasesweek' | translate}}" formControlName="Maxcasesperweek"
+                  [OnlyNumber]='true' maxlength="3">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxCasesday' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxCasesday' | translate}}" formControlName="Maxcasesperday"
+                  [OnlyNumber]='true' maxlength="3">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxInviteesallowed' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxInviteesallowed' | translate}}" formControlName="Maxinviteesallowed"
+                  [OnlyNumber]='true' maxlength="3">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxConferencelength' | translate}} </label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxConferencelength' | translate}}" formControlName="Maxconferencelength"
+                  [OnlyNumber]='true' maxlength="3">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.Maxtotalnumberofcasesallowed' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.Maxtotalnumberofcasesallowed' | translate}}"
+                  formControlName="Maxtotalnumberofcasesallowed" [OnlyNumber]='true' maxlength="3">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.Maximageviewingtimesday' | translate}}</label>
+            <div class="col-sm-9">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.Maxtotalnumberofcasesallowed' | translate}}"
+                  formControlName="Maximageviewingtimesperday" [OnlyNumber]='true' maxlength="3">
+              </div>
+            </div>
+          </div>
+          <div class="text-sm-right">
+            <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" (click)="resetConfig()">{{'UserAuthorizationModule.Cancel' | translate}}</a>
+            <a class="btn u-btn-primary g-py-6 g-px-15" (click)="saveUserConfigTab()">{{'UserAuthorizationModule.SaveChanges' | translate}}</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- End Tab panes -->
+  </div>
+
+  <p-dialog header="Invite a user" [(visible)]="isShowInvite" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+    <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+      <div class="modal-body row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <label class="col-lg-3 col-md-4 col-sm-6 col-xs-6">Email</label>
+          <input type="text" placeholder="Email" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" />
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+        <button type="button" pButton icon="fa-check" label="Save" class="save btn btn-primarty">Save</button>
+        <button type="button" pButton icon="fa-close" label="Cancel" class="cancel btn" (click)="settings()">Cancel</button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</div>

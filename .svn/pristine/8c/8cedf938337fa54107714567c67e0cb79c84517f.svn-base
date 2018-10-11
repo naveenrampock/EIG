@@ -1,0 +1,45 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<app-emr-navigation></app-emr-navigation>
+<section>
+  <div class="m-t10p emr-content-list">
+    <div class="emr-tabcontent">
+      <div class="tabcontent hide emr_records" id="EMR_Records" style="display: block;" *ngIf="!isShowImportDetails">
+        <a class="login" id="PartLogin" (click)="openlogin()">Login in 3rd Party EMR Records </a>
+      </div>
+          <!-- Import details -->
+    <div *ngIf="isShowImportDetails">
+      <app-import-details (goListingPage)="showImportDetails()" [importDetails]="selectedimport" ></app-import-details>
+    </div>
+    <!-- import details ends here-->
+    </div>
+  </div>
+  <p-dialog header="Login" [(visible)]="isLogin" [responsive]="true" showEffect="fade" [modal]="true" [width]="550">
+    <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+      <div class="modal-body row" [formGroup]="emrImportDetailsForm">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-b10">
+          <label class="col-sm-3">User Name:
+            <span class="required">*</span>
+          </label>
+          <input class="col-sm-8" type="text" formControlName="UserName">
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-b10">
+          <label class="col-sm-3">Password:
+            <span class="required">*</span>
+          </label>
+          <input class="col-sm-8" type="password" formControlName="Password">
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-b10">
+          <label class="col-sm-3">URL:
+            <span class="required">*</span>
+          </label>
+          <input class="col-sm-8" type="text" formControlName="URL">
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+        <button class="btn pull-right share" type="button" #userButton [disabled]="!emrImportDetailsForm.valid" (click)="importLogin()">Login</button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</section>

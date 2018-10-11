@@ -1,0 +1,51 @@
+
+input[type="text"],input[type="date"]{height:30px;}
+
+.surgery-label{position: relative;bottom:20px;}
+
+.pos-r5{position: relative;right:5px;}
+
+input[type="button"]{border-radius:3px;}
+
+.max{max-height: 250px;overflow: auto;}
+
+:host /deep/ .ui-inputtext{width:120px;}
+
+:host /deep/ .errorMessage{position: relative;bottom: 3px;}
+
+.surg-scroll{ max-height: 165px;overflow-y: auto;}
+
+.pos-b20{    position: relative;
+  bottom: 20px;}
+
+@media only screen and (min-width : 320px) and (max-width: 481px){
+  textarea{padding:0px 15px;}
+
+  .surgery-label{bottom:0px;}
+
+  .comments{padding-left:15px;}
+  }
+
+
+@media only screen and (min-width : 481px) and (max-width:767px){
+textarea{
+  padding:0px 15px;
+}
+.surgery-label{bottom:20px;}
+.comments{padding-left:15px;}
+}
+
+
+@media only screen and (min-width : 768px) and (max-width: 1024px){
+  textarea{
+    padding:0px 15px;
+  }
+  .surgery-label{bottom:20px;}
+  .comments{padding-left:15px;}
+  }
+
+  :host /deep/ .ui-widget.ui-button, .ui-button {border: 1px solid #084FA1;background: #084FA1;}
+
+  :host /deep/ .ui-button:hover{border: 1px solid #042f60 !important;background-color: #042f60 !important;}
+  
+  :host /deep/ .ui-corner-all {border-radius: 0px;}

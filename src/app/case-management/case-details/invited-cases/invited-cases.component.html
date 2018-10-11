@@ -1,0 +1,421 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div id="" class="case_manage">
+  <div class="row">
+    <div class="main-container contain ace-save-state active col-md-12 col-sm-12 col-12 " id="wrapper">
+
+      <!-- Sidebar -->
+
+      <app-case-management-sidebar></app-case-management-sidebar>
+      <div id="sidebar-mobile">
+        <a data-toggle="modal" data-target="#Filter">
+          <i class="fa fa-sliders pull-left text-black f-20"></i>
+        </a>
+      </div>
+
+      <div id="page-content-wrapper" class="col-md-12 col-sm-12 col-12 mob-overflow">
+        <!-- <div class="navbar-brand w-4p col-lg-1 pull-left"> <a id="menu-toggle" href="#" class="glyphicon btn-menu toggle"> <i class="fa fa-bars"></i> </a> </div> -->
+
+        <div id="slmenu" class="navbar-brand w-4p col-lg-1 pull-left">
+          <a id="menu-toggle" (click)="toggleMenu()">
+            <i class="fa fa-caret-right f-30"></i>
+          </a>
+          <a id="menu-toggle-after" class="hide" (click)="toggleMenu()">
+            <i class="fa fa-caret-left f-30"></i>
+          </a>
+        </div>
+        <div id="slmenu1" class="navbar-brand w-4p col-lg-1 pull-left">
+          <a id="menu-toggle1">
+            <i class="fa fa-caret-right f-30"></i>
+          </a>
+          <a id="menu-toggle-after1" class="hide">
+            <i class="fa fa-caret-left f-30"></i>
+          </a>
+        </div>
+        <div class="col-lg-11 col-md-12 col-sm-12 col-12 pull-left no-padd w-94" id="">
+          <!-- Invited case details div starts here-->
+          <div id="ViewCase" class="viewcase" scrollable (scrollPosition)="scrollDown($event)">
+            <div class="row">
+              <div class="col-lg-6">
+                <h6 class="pt-2 pl-3">
+                  <b class="view-case">Invited Case details</b>
+                </h6>
+              </div>
+            </div>
+            <div class="col-lg-12 mt-1 m-b15" *ngIf="invitedCaseDetails && invitedCaseDetails.length == 0">
+              <div class="v-case col-lg-12 ">No records found</div>
+            </div>
+            <div class="col-lg-12 mt-1 m-b15" *ngFor="let invitedCase of invitedCaseDetails">
+              <div class="v-case col-lg-12" *ngIf="invitedCase.CaseCreatedByName">
+                <div class="row">
+                  <div class="col-lg-9 col-md-9 col-sm-9 col-9">
+                    <div class="pull-left">
+                      <img [src]="configUrl+invitedCase.CaseCreatedByProfile" class="u-pht" [title]="invitedCase.CaseCreatedByName" />
+                      <!-- <img src="assets/images/1.jpg" class="u-pht" title="Shane" /> -->
+                    </div>
+                    <div class="p-l10 pull-left">
+                      <label class="c-name">{{invitedCase.CaseCreatedByName}} </label>
+                      <p class="date">{{invitedCase.CaseCreatedDate | date:medium}}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div id="testID" class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="col-12">{{invitedCase.CaseName}}
+                    </h6>
+                    <div class="comment col-12 pull-left break-free" [class.more]="!invitedCase.isCaseDesc">
+                      {{invitedCase.CaseDescription}}
+                    </div>
+                    <a (click)="toggleDesc(invitedCase)" class="morelink" *ngIf="invitedCase && invitedCase.CaseDescription.length>50">
+                      <b>{{!invitedCase.isCaseDesc ? 'more':'less'}}</b>
+                    </a>
+                  </div>
+                </div>
+                <!-- <div class="p-t10" id="comment" *ngIf="invitedCase.InviteeStatus !== 1">
+                                    <button (click)="updateInviteeCaseStatus(invitedCase, 1)" class="blueBtn col-sm-2">Accept</button>
+                                    <button (click)="updateInviteeCaseStatus(invitedCase, 2)" class="redBtn col-sm-2">Reject</button>
+                                </div> -->
+                <div class="row p-t10">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-10 desk">
+                    <!-- data-toggle="modal" data-target="#Attach-Popup" -->
+                    <a class="att" (click)="getDocumentsBy(invitedCase, 'Attachments')">Attachments
+                      <span class="badge">{{invitedCase.CaseDocuments ? invitedCase.CaseDocuments:0}}</span>
+                    </a>
+                    <a class="att" (click)="getDicomsBy(invitedCase, 'Attachments')">DICOM Images
+                      <span class="badge">{{invitedCase.CaseDICOMDocuments ? invitedCase.CaseDICOMDocuments.length:0}}</span>
+                    </a>
+                    <a class="att" (click)="getAppointmentsBy(invitedCase)">Appointment
+                      <span class="badge">{{invitedCase.Appointmentcount ? invitedCase.Appointmentcount:0}}</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="main_div col-lg-12 invitedCase">
+                    <div class="inner_div">
+                      <div id="Div2" *ngIf="invitedCase.isDicomShow && invitedCase.Id == DicomCaseId">
+                        <div>
+                          <a data-toggle="modal" data-target="#Attach-Popup" (click)="openDicom(invitedCase)">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                          </a>
+                          <a>
+                            <i class="fa fa-caret-up caret-2"></i>
+                          </a>
+
+                          <a (click)="hideDicomAttach(invitedCase)">
+                            <i class="fa fa-times f-20 pull-right"></i>
+                          </a>
+                        </div>
+                        <table border="1" style="width:100%" class="case-popover">
+                          <tbody>
+                            <tr>
+                              <!-- <th width="20%">Attachment</th>
+                                                              <th width="20%">Linked BY</th> -->
+
+                              <th width="10%">StudyID</th>
+                              <th width="10%">Modality</th>
+                              <th width="10%">Body Part</th>
+                              <th width="20%">Pateint Name</th>
+                              <th width="20%">Study Date</th>
+                              <th width="20%">Action</th>
+                            </tr>
+                            <tr *ngFor="let dicom of caseDicomLists">
+                              <td>
+                                <a>{{dicom.StudyPk}}</a>
+                              </td>
+                              <td>
+                                <a>{{dicom.Modality}}</a>
+                              </td>
+                              <td>
+                                <a>{{dicom.BodyParts}}</a>
+                              </td>
+                              <td>
+                                <a>{{dicom.Patient_Name}}</a>
+                              </td>
+                              <td>
+                                <a>{{dicom.StudyDate | date: short}}</a>
+                              </td>
+                              <td>
+                                <!-- <a>
+                                        <i class="fa fa-plus"></i>
+                                      </a> -->
+                                <a (click)="viewDicom(caseList)" title="View Image">
+                                  <i class="fa fa-eye"></i>
+                                </a>
+                                <a (click)="dicomDetails(dicom)" title="View Image Detail">
+                                  <i class="fa fa-info-circle"></i>
+                                </a>
+
+                                <a (click)="deleteDicom(invitedCase, dicom)" *ngIf="dicom.CreatedBy == userId">
+                                  <i class="fa fa-trash"></i>
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div id="Div3" *ngIf="invitedCase.isDoc && invitedCase.Id == docCaseId">
+                        <div>
+                          <!-- <div class="case-popover">
+                              <a>
+                                <i class="fa fa-plus"></i>
+                              </a>
+                            </div> -->
+                          <div class="commentImg">
+                            <label for="file-input">
+                              <a (click)="getMyCaseList(invitedCase)">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                              </a>
+                            </label>
+                            <!-- <input type="file" (change)="onUploadFile($event, invitedCase)" name="file" multiple> -->
+                          </div>
+
+                          <a>
+                            <i class="fa fa-caret-up caret-4"></i>
+                          </a>
+                        </div>
+                        <a (click)="hideAttachments(invitedCase)">
+                          <i class="fa fa-times f-20 pull-right p-t10"></i>
+                        </a>
+                        <table border="1" style="width:100%" class="case-popover">
+                          <tbody>
+                            <tr>
+                              <th width="20%">Attachment</th>
+                              <th width="20%">Comments</th>
+                              <th width="20%">Linked BY</th>
+                              <th width="20%">Date</th>
+                              <th width="20%">Action</th>
+                            </tr>
+                            <tr *ngFor="let doc of caseDocs">
+                              <td>
+
+                                <a *ngIf="(doc.Doctype == 'image/jpeg') || (doc.Doctype == 'image/png')" (click)="showAttachmentPopup(configUrl+doc.DocumentPath, 'image')">
+                                  <img [src]="doc.DocumentPath ? configUrl+doc.DocumentPath : defaultImg" class="hw-70" />
+                                </a>
+                                <a *ngIf="(doc.Doctype != 'image/jpeg') && (doc.Doctype != 'image/png')" (click)="showAttachmentPopup(configUrl+doc.DocumentPath, 'other')"
+                                  class="hw-70">
+                                  {{doc.FileName}}
+                                </a>
+                              </td>
+                              <td>
+                                <p>{{doc.Comments}}</p>
+                              </td>
+                              <td>
+                                <a>{{doc.CreatedBy == userId ? (firstName | titlecase) : doc.InviteeName}}</a>
+                              </td>
+                              <td>
+                                <p>{{doc.CreatedDate | date:short}}</p>
+                              </td>
+                              <td>
+                                <!-- <a>
+                                    <i class="fa fa-plus"></i>
+                                  </a> -->
+                                <a (click)="deleteDocBy(invitedCase, doc)" *ngIf="doc.CreatedBy == userId">
+                                  <i class="fa fa-trash"></i>
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <app-invited-appointments *ngIf="invitedCase.isAppointment && invitedCase.Id == inviAppCaseId" [invitedCaseDetails]="invitedAptCase"
+                        (closeInApptView)="closeInAppointment($event)"></app-invited-appointments>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-10 mobile">
+                    <a class="cmt col-4" title="comment">
+                      <i class="fa fa-comment"></i>
+                    </a>
+                    <a class="att col-4" data-toggle="modal" data-target="#Attach-Popup">
+                      <i class="fa fa-paperclip"></i>
+                    </a>
+                    <a class="vid col-4" data-toggle="modal" data-target="#VideoC-Popup">
+                      <i class="fa fa-file-video-o"></i>
+                    </a>
+                  </div>
+
+
+                </div>
+                <!-- <app-new-case></app-new-case> -->
+                <div class="row p-t10 moreComments" [class.moreComments]="invitedCase.isMore" id="comment" (appScrollEnd)="scrollDownComments(invitedCase)">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd">
+                    <div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12" *ngFor="let comment of invitedCase.Comments">
+                        <div *ngIf="comment.CommentId" [class.commentedby]="comment.CommentCreatedBy == userId">
+
+                          <div class="col-lg-1 col-md-2 col-sm-2 col-3 pull-left mt-2">
+                            <img [src]="comment.CommentCreatedBy == userId ? profilePic : configUrl+comment.CommentCreatedByProfile" class="nav-user-photo brd-grey cmt-pht"
+                            />
+                          </div>
+                          <div class="col-lg-11 col-md-10 col-sm-10 col-9 pull-left m-b10">
+                            <div class="cmts">
+                              <a class="a-lnk">{{comment.CommentCreatedBy == userId ? firstName : comment.CommentCreatedByName}}</a>
+                              <p class="p-l5">
+                                <span [class.edit-comment]="comment.isEdit">{{comment.Comment}}
+                                </span>
+                                <span *ngIf="(comment.CommentCreatedBy == userId) && comment.Comment">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit comment" (click)="editComment(comment)"></i>
+                                  <i class="fa fa-trash" aria-hidden="true" title="Delete comment" (click)="deleteComment(comment, invitedCase)"></i>
+                                </span>
+                              </p>
+                            </div>
+                            <p>{{comment.CommentCreatedDate | date: medium}}{{comment.CreatedDate | date: medium}}</p>
+
+                            <p *ngIf="comment.isEdit">
+                              <input type="text" placeholder="Update comment..." class="col-lg-12 col-md-12 col-sm-12 col-12 h-32" [(ngModel)]="comment.Comment"
+                                (keyup.enter)="sendEditedComment(comment, invitedCase.Id)" />
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12 pull-left m-t6 text-right txt-blu cursor-p">
+                        <a id="more_comts" (click)="getComments(invitedCase)" *ngIf="(!invitedCase.isMore) && (invitedCase.Comments && invitedCase.Comments.length >= 5)">
+
+                          <b>more...</b>
+                        </a>
+                        <a id="more_comts" (click)="hideComments(invitedCase)" *ngIf="invitedCase.isMore  && invitedCase.Id == caseHideId">
+                          <b>hide...</b>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-lg-1 col-md-2 col-sm-2 col-3 pull-left m-t12">
+                      <img [src]="profilePic" class="nav-user-photo brd-grey cmt-pht" />
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-9 pull-left m-t12 hgt50">
+                      <input type="text" placeholder="Add a comment..." class="col-lg-12 col-md-12 col-sm-12 col-12 h-32" [(ngModel)]="invitedCase.comment"
+                        (keyup.enter)="addComment(invitedCase)" />
+                      <div *ngIf="commentsError" class="required">{{commentsError}}</div>
+                      <!-- <img src="assets/images/upload.png" class="upload" /> -->
+                      <!-- <div class="commentImg">
+                                                <label for="file-input">
+                                                    <i class="fa fa-cloud-upload fa-2x" aria-hidden="true"></i>
+                                                </label>
+                                                <input type="file" (change)="commentFileUploadValidate($event, invitedCase)" name="file" multiple>
+                                            </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Posted Popup Start -->
+
+  <!-- Dicom Image Start -->
+  <div class="modal fade dicom-image" id="DicomImage-Popup" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <div class="row" *ngIf="attachmentObj">
+              <img [src]="attachmentObj.attachmentPath" *ngIf="attachmentObj?.type == 'image'" />
+              <iframe [src]="attachmentObj.attachmentPath" *ngIf="attachmentObj?.type == 'other'"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Dicom Image End -->
+
+</div>
+
+<!-- Attachment files -->
+<div class="modal fade filter" id="invitedAttachmentList">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Attachment List</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="grid">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="attach-hostory-tab" data-toggle="tab" href="#attach-hostory" role="tab" aria-controls="attach-hostory"
+                aria-selected="true">Attachment History</a>
+
+              <a class="nav-item nav-link" id="new-upload-tab" data-toggle="tab" href="#new-upload" role="tab" aria-controls="new-upload"
+                aria-selected="false">Upload new attachment</a>
+            </div>
+          </nav>
+          <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="attach-hostory" role="tabpanel" aria-labelledby="attach-hostory-tab">
+
+              <p-dataTable [value]="attachmentList" [rows]="10" [paginator]="true">
+                <p-column field="" header="">
+                  <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+                    <!-- <span>{{list.fileName}}</span> -->
+                    <input type="checkbox" (change)="insertCase($event.target.checked,list.Id)" [checked]="list.isChecked" [disabled]="list.isDisabled">
+                  </ng-template>
+                </p-column>
+                <p-column field="FileName" header="File Name">
+                  <!-- <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+                      <span>{{list.FileName}}</span>
+                    </ng-template> -->
+                </p-column>
+                <p-column field="Comments" header="Comments">
+                  <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+                    <span>{{list.Comments=='undefined'?'':list.Comments}}</span>
+                  </ng-template>
+                </p-column>
+                <p-column field="linkedBy" header="LinkedBy">
+                  <!-- <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+                      <span>{{list.linkedBy}}</span>
+                    </ng-template> -->
+                </p-column>
+                <p-column field="CreatedDate" header="Date">
+                  <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+                    <span>{{list.CreatedDate | date: 'short'}}</span>
+                  </ng-template>
+                </p-column>
+
+              </p-dataTable>
+              <div class="physican text-right mt-2">
+                <input type="button" name="" value="Submit" (click)="insertaddList()" data-dismiss="modal" class="btn u-btn-primary g-mr-10"
+                />
+                <input type="button" name="" value="Cancel" data-dismiss="modal" class="btn u-btn-darkgray"/>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="new-upload" role="tabpanel" aria-labelledby="new-upload-tab">
+              <div class="di-img">
+                  <div id="form1" method="post">
+                    <input #folderInput type="file" (change)="onUploadFile(folderInput.files)" name="photo[]" id="files">
+                    <!-- <button id="FileChoose" class="pull-left btn-fileup">
+                                <i class="fa fa-plus"></i>
+                                <label class="pl-1 text-white m-b0">File Upload</label>
+                              </button> -->
+                    <textarea type="text" [(ngModel)]="comments" rows="4" cols="50" class="comments col-sm-12 m-t10" placeholder="Enter Comments"></textarea>
+                    <div id="r" class="col-lg-12 pull-left nopadd"></div>
+                  </div>
+              </div>
+              <div class="physican text-right mt-2">
+                <input type="button" name="" value="Submit" (click)="callFileUpload()" data-dismiss="modal" class="btn u-btn-primary g-mr-10"
+                />
+                <input type="button" name="" value="Cancel" data-dismiss="modal" class="btn u-btn-darkgray"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="isAddDicom">
+  <app-add-dicom (closeDicom)="getDicomIds($event)" [caseType]="caseType" [caseDicom]='caseToAddDciom'></app-add-dicom>
+</div>
+<p-dialog header="More Information" *ngIf="isDicomMore" [(visible)]="isDicomMore" [modal]="true" class="moreinfo" [responsive]="true"
+  [height]="auto" [minWidth]="200">
+  <app-dicom-more-info [moreInfo]="dicomMoreInfo"></app-dicom-more-info>
+</p-dialog>

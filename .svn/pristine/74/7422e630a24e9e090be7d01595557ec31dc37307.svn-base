@@ -1,0 +1,78 @@
+<app-emr-navigation></app-emr-navigation>
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="m-t10p emr-content-list">
+  <div class="emr-tabcontent">
+    <h4>Continuity of Care Records (CCD's)</h4>
+    <!-- List Page -->
+    <div *ngIf="!isShowCcdDetails && !isShowaddCcdDetails && !isViewAllDetails">
+      <a id="lnk_Condition" (click)="showConditionDetails()">Add
+      </a>
+      <a id="lnk_Condition" (click)="deleteConditionDetails()" style="padding-left: 15px">Delete
+      </a>
+      <p-table #dt [columns]="tableHeaders" [value]="ccdList" [lazy]="true" [paginator]="true" (onLazyLoad)="loadLazy($event)" [totalRecords]="totalcount" [rows]="10" >
+        <!-- <ng-template pTemplate="caption">
+          <div style="text-align: right">
+            <label>Search:</label>
+            <input type="text" pInputText size="25" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          </div>
+        </ng-template> -->
+        <ng-template pTemplate="header" let-columns>
+          <tr role="row">
+            <th width="30">
+          <input type="checkbox" [(ngModel)]="selectedAll" (change)="selectAll()" #ccdListViewChild>
+            </th>
+            <th width="90">Date Added
+              </th>
+            <th width="300">Description
+            </th>
+            <th width="200">From
+            </th>
+            <th width="100">Items added to HealthVault?
+            </th>
+            <th>Notes
+              </th>
+            <th width="30"></th>
+          </tr>
+          
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td><input type="checkbox" [(ngModel)]="rowData.selected" (change)="checkIfAllSelected();"></td>
+            <td>{{rowData.DateAdded}}</td>
+            <td>{{rowData.Description}}</td>
+            <td>{{rowData.Fromp}}</td>
+            <td><a class="addItem" id="lnk_Condition" (click)="addConditionDetails()">Add Items
+            </a></td>
+            <td>{{rowData.Notes}}</td>
+            <td>
+               <a (click)="editCondition(rowData)">
+                <i class = "fa fa-ellipsis-h" style="color:#0847a1"></i>
+              </a>
+              <div class="switch-list" id="switch-list" *ngIf="rowData.isViewDetails">
+                <a id="ccd_viewdetails" (click)="gotoViewDetails()">View Details</a>
+                <a>Download</a>
+                </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <!-- List Page ends here-->
+
+    <!-- Page details -->
+    <div *ngIf="isShowCcdDetails">
+      <app-ccd-details (goListingPage)="showListingPage()" [ccdDetails]="selectedCcd"></app-ccd-details>
+    </div>
+    <!-- Page details ends here-->
+
+     <!-- Add Items details -->
+     <div *ngIf="isShowaddCcdDetails">
+      <app-addccd-details (goListingPage)="showAddListingPage()" [addccdDetails]="selectedAddCcd"></app-addccd-details>
+    </div>
+    <!-- Add Items details ends here-->
+    <!-- View All Details -->
+    <div *ngIf="isViewAllDetails">
+        <app-view-details (goViewListingPage)="showDetailsListingPage()" [viewDetails]="selectedViewDetails"></app-view-details>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,340 @@
+<section class="g-bg-gray-light-v5">
+  <div class="container g-py-45">
+    <div class="row justify-content-center">
+      <p-growl [(value)]="msgs" life="3000"></p-growl>
+      <div class="col-sm-8 col-lg-5">
+        <div class="u-shadow-v21 g-bg-white g-py-40 g-px-30">
+          <header class="text-center mb-4">
+            <h2 class="h2 g-color-black g-font-weight-600">Login</h2>
+          </header>
+          <div class="text-center">
+            <button class="loginBtn loginBtn--facebook" (click)="signIn('facebook')">
+              <i class="fa fa-facebook"></i>
+              <b>Login with Facebook</b>
+            </button>
+          </div>
+          <div class="text-center">
+            <button class="loginBtn loginBtn--google" (click)="signIn('google')">
+              <i class="fa fa-google"></i>
+              <b>Login with Google</b>
+            </button>
+          </div>
+          <div class="text-center or m-t10 m-b30">
+            <hr class="pull-left w-40">
+            <span class="pull-left w-20">OR</span>
+            <hr class="pull-left w-40">
+          </div>
+          <!-- Form -->
+          <form class="login-form g-py-15" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value,saveUserName.value)">
+            <div class="mb-1">
+              <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Account ID:</label>
+              <div class="control-group" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['email'].touched}">
+                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-primary--hover rounded g-px-15 w-85" type="email"
+                  placeholder="Account Id" formControlName="email" autocomplete='off'>
+                <a class="g-font-size-12 forgot pointer" (click)="openForgotUsername()">Forgot ?</a>
+                <label class="login-field-icon fui-user display_block" for="login-name"></label>
+                <div *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched" class="alert alert-danger">Account
+                  ID required</div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Password:</label>
+
+              <div class="control-group" [ngClass]="{'has-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
+                <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-primary--hover rounded g-px-15 mb-3 w-85" type="password"
+                  placeholder="Password" formControlName="password" autocomplete='off'>
+                <a class="g-font-size-12 forgot pointer" (click)="openForgotPwd()" style="margin-top:-38px">Forgot ?</a>
+                <label class="login-field-icon fui-lock display_block" for="login-pass"></label>
+                <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="alert alert-danger">Password
+                  required
+                </div>
+              </div>
+              <!-- <re-captcha (resolved)="resolved($event)" [siteKey]="recaptchaKey"></re-captcha> -->
+              <div class="row justify-content-between">
+                <div class="col align-self-center">
+                  <!-- <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-12 g-pl-25 mb-0">
+                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                    <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
+                      <i class="fa"></i>
+                    </div>
+                    Keep signed in
+                  </label> -->
+
+                </div>
+                <div class="col-xs-12 text-left checkbox">
+                  <label class="form-check-inline u-check g-pl-25 g-font-size-12"> Keep signed in
+                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" formControlName="saveUserName">
+                    <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0 box">
+                      <i class="fa" data-check-icon=""></i>
+                    </div>
+                  </label>
+                </div>
+
+
+                <div class="col align-self-center text-right">
+                  <!-- <a class="g-font-size-12" (click)="openForgotPwd()">Forgot password?</a> -->
+                </div>
+              </div>
+
+            </div>
+            <p *ngIf="isValid">
+              <span class="required">{{inValidvalue}}</span>
+            </p>
+            <div class="mb-4">
+              <button class="btn btn-md btn-block u-btn-primary g-py-13 login" type="submit" [disabled]="!((loginForm.valid) && (isCaptcha))">Login</button>
+            </div>
+            <!-- <div>
+              <a (click)="signIn('google')" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <i class="fa fa-google"></i>
+              </a>
+              <a (click)="signIn('facebook')" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </div> -->
+          </form>
+
+          <!-- End Form -->
+
+          <footer class="text-center">
+            <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">Don't have an account?
+              <a class="g-font-weight-600" routerLink="/register">signup</a>
+            </p>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <p-dialog header="Forgot password?" [(visible)]="isForgotPwd" [responsive]="true" showEffect="fade" [modal]="true" [width]="400">
+    <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+      <div class="modal-body row">
+        <form [formGroup]="forgotPasswordForm">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+            <label class="col-lg-5 col-md-4 col-sm-6 col-xs-6">Email
+              <span class="required">*</span>
+            </label>
+            <input type="text" placeholder="Email" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="emailId" />
+            <control-messages [control]="forgotPasswordForm.controls.emailId" class="errorMessage col-lg-6 pull-right"></control-messages>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+            <label class="col-lg-5 col-md-4 col-sm-6 col-xs-6">Account ID
+              <span class="required">*</span>
+            </label>
+            <input type="text" placeholder="Account ID" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="accountId" />
+            <control-messages [control]="forgotPasswordForm.controls.accountId" class="errorMessage col-lg-6 pull-right"></control-messages>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+            <label class="col-lg-5 col-md-4 col-sm-6 col-xs-6">New Password
+              <span class="required">*</span>
+            </label>
+            <input type="password" placeholder="Password" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="password" />
+            <control-messages [control]="forgotPasswordForm.controls.password" class="errorMessage col-lg-6 pull-right"></control-messages>
+          </div>
+        </form>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+        <button type="button" pButton icon="fa-check" label="Save" class="save btn btn-primarty" (click)="resetPassword()">Reset Password</button>
+       
+      </div>
+    </p-footer>
+  </p-dialog> -->
+  <!-- User Device Popup -->
+  <p-dialog header="New Device Verification" [(visible)]="isUserDevice" [responsive]="true" showEffect="fade" [modal]="true"
+    [width]="400">
+    <div class="form-group row g-mb-25">
+      <div class="col-sm-12 clear-fix pull-left no-padd">
+        <label class="col-sm-12 col-form-label g-color-gray-dark-v2 g-font-weight-700 g-mb-10">Choose OTP type
+        </label>
+        <div class="col-sm-12">
+          <div class="col-sm-4 pull-left" *ngFor="let oType of otpTypes;">
+            <label class="form-check-inline u-check">
+              <input class='with-gap' name='oType.type' [checked]="oType.type === 'Email'" [disabled]="oType.disabled==='y'" type='radio'
+                [id]='oType.type' [value]='oType.type' (click)="selectDeviceOtpType(oType)" /> {{oType.type}}
+            </label>
+          </div>
+        </div>
+        <div>
+          <div *ngIf="isEmail" class="col-sm-12">
+            <input class="form-control email col-lg-12" type="email" [(ngModel)]="enterEmail" [disabled]="enterEmail!=''" name="myEmail"
+              #myEmail="ngModel" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" (input)="submitButton &&submitButton.disabled = false"
+              #emailOTP>
+            <button (click)="generateDeviceOtp(enterSms,enterEmail); submitButton.disabled = true;" class="btn pull-right otp" #submitButton
+              [disabled]="enterEmail === ''">Send OTP</button>
+            <div *ngIf="myEmail.errors && (myEmail.dirty || myEmail.touched)">
+              <div [hidden]="!myEmail.errors" class="error">
+                Invalid Email.
+              </div>
+            </div>
+          </div>
+          <div *ngIf="isSms" class="col-sm-12">
+            <input class="form-control sms" type="text" OnlyNumber="true" [(ngModel)]="enterSms" [disabled]="enterSms!=''" #smsOTP (input)="submitButton && submitButton.disabled = false">
+            <button (click)="generateDeviceOtp(enterSms,enterEmail); submitButton.disabled = true;" class="btn pull-right otp" #submitButton
+              [disabled]="enterSms === ''">Send OTP</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 row g-mb-10" *ngIf="isConfirmOtp">
+        <label class="col-sm-12 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left g-mb-10">Verify OTP:
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-12">
+          <div class="input-group g-brd-primary--focus">
+            <input class="verifyPin" type="text" placeholder="Enter OTP" [(ngModel)]="otp" class="txt_otp" OnlyNumber="true">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Login Verification -->
+    <p-footer>
+      <div class="col-sm-9 clear-fix saveDevice">
+        <label class="form-check-inline u-check g-pl-25">
+          <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" [(ngModel)]="isDeviceSave">
+          <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+            <i class="fa" data-check-icon=""></i>
+          </div>
+          Save this device
+        </label>
+      </div>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+        <button type="button" pButton icon="fa-check" label="Save" class="btn u-btn-darkgray g-py-12 g-px-25 g-mr-10" (click)="clearUserDevice(true)">Cancel</button>
+        <button type="button" pButton icon="fa-check" label="Save" class="btn u-btn-primary g-py-12 g-px-25" (click)="saveDeviceInfo(enterEmail, enterSms, otp,isDeviceSave,provider)"
+          [disabled]="!otp">Ok</button>
+      </div>
+    </p-footer>
+  </p-dialog>
+  <!-- Forgot Username Popup -->
+  <p-dialog header="Forgot Account ID?" [(visible)]="isForgotUserName" [responsive]="true" showEffect="fade" [modal]="true"
+    [width]="400">
+    <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+      <div class="modal-body row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix no-padd">
+          <label class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Email
+            <span class="required">*</span>
+          </label>
+          <input class="email col-sm-7" type="email" [(ngModel)]="userNameEmail" name="useEmail" #useEmail="ngModel"
+            email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" (input)="userButton &&userButton.disabled = false"
+            #emailOTP>
+          <div *ngIf="useEmail.errors && useEmail.dirty">
+            <div [hidden]="!useEmail.errors" class="error">
+              Invalid Email.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+        <button class="btn pull-right pButton" type="button" #userButton [disabled]="!userNameEmail || useEmail.errors" (click)="resetPassword() ; userButton.disabled = true;">Ok</button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</section>
+<!-- Forgot Password popup -->
+<p-dialog header="Forgot Password?" [(visible)]="isForgotPwd" [responsive]="true" showEffect="fade" [modal]="true" [width]="400">
+  <div class="form-group row g-mb-25">
+    <div class="col-sm-12 clear-fix pull-left no-padd">
+      <label class="col-sm-12 col-form-label g-color-gray-dark-v2 g-font-weight-700 g-mb-10">OTP type
+      </label>
+      <div class="col-sm-12">
+        <div class="col-sm-4 pull-left no-padd" *ngFor="let oType of pwdOtpTypes;">
+          <label class="form-check-inline u-check">
+            <input class='with-gap' name='oType.otpType' [checked]="oType.otpType === 'Email'" [value]="oType.otpType" [id]="oType.otpType"
+              type='radio' (click)="selectPwdOtpType(oType)" /> {{oType.otpType}}
+          </label>
+        </div>
+      </div>
+      <div class="col-lg-12 row g-mb-10">
+        <label class="col-sm-12 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left g-mb-10">Account ID:
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-12">
+          <div class="input-group g-brd-primary--focus">
+            <input class="verifyPin" type="text" placeholder="Account Id" [(ngModel)]="userPwdId" class="txt_otp col-sm-12">
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div class="col-sm-12">
+          <button (click)="generateForgotPasswordOtp()" class="btn pButton" [disabled]="!userPwdId">Send OTP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+<!-- Confirm Password Field -->
+<p-dialog header="Confirm Password" [(visible)]="isShowPwdDetails" [responsive]="true" showEffect="fade" [modal]="true" [width]="400"
+  class="confirm">
+  <form [formGroup]="pwdForm">
+    <div class="form-group row">
+      <!-- New Password -->
+      <div class="row g-mb-25 col-sm-12">
+        <label class="col-sm-5 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left g-mb-10 p-l10p">Verify
+          OTP:
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 no-padd">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 pr-0" type="text" placeholder="Pin" formControlName="NewForgotPasswordOtp" OnlyNumber="true">
+            <!-- <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="row g-mb-25 col-sm-12">
+        <label class="col-sm-5 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left g-mb-10 p-l10p">New Password:
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 no-padd">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 pr-0 no-padd" type="password" placeholder="New password" formControlName="NewPassword">
+            <!-- <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+            </div> -->
+          </div>
+          <control-messages [control]="pwdForm.controls.NewPassword" class="errorMessage row p-l15"></control-messages>
+        </div>
+      </div>
+      <!-- End New Password -->
+
+      <!-- Verify Password -->
+      <div class="form-group row g-mb-25 col-sm-12">
+        <label class="col-sm-5 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left g-mb-10 p-l10p">Confirm
+          Password:
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 no-padd">
+          <div class="input-group">
+            <input class="form-control form-control-md rounded-0 pr-0 no-padd" type="password" placeholder="Verify password" formControlName="ConfirmPassword">
+            <!-- <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+            </div> -->
+          </div>
+          <control-messages [control]="pwdForm.controls.ConfirmPassword" class="errorMessage row p-l15"></control-messages>
+        </div>
+      </div>
+      <!-- End Verify Password -->
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix popup p-r25">
+        <button type="button" pButton icon="fa-check" label="Save" class="btn u-btn-primary g-py-12 g-px-25" (click)="savePwdConfirmInfo()"
+          [disabled]="!pwdForm.valid">Ok</button>
+      </div>
+    </p-footer>
+  </form>
+</p-dialog>
+<!-- End Login -->
+<!-- Success Message -->
+<p-dialog header="Success" [(visible)]="showSuccess" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+  <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+    <div class="modal-body row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <p>You have successfully changed password, please login with new password</p>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+      <button type="button" pButton icon="fa-close" label="Cancel" class="cancel" (click)="sucessPopup()">Okay</button>
+    </div>
+  </p-footer>
+</p-dialog>

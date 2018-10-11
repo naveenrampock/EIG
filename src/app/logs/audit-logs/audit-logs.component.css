@@ -1,0 +1,12 @@
+:host /deep/ .ui-datatable .ui-datatable-data>tr>td.ui-editable-column{word-wrap: break-word;}
+
+:host /deep/ .ui-tooltip .ui-tooltip-text {display:inline-block;}
+
+:host /deep/ .ui-tooltip{max-width: 50.5em !important;}
+
+.ui-tooltip{max-width: 50.5em !important;}
+
+:host /deep/ .fb_reset{border:2px;}
+
+:host  >>> .ui-tooltip{max-width: 50.5em !important;}
+

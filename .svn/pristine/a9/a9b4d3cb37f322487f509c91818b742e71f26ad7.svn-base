@@ -1,0 +1,39 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="emr-details">
+  <div class="brd m-b10">
+    <div class="head-text">
+      <p class="col-sm-12 text-left w-85 pull-left m-0">Continuity of Care Records (CCR)</p>
+      <a class="pull-right" id="back_condition" (click)="backToListing()">
+        <button class="addbutton">
+          <i class="fa fa-arrow-circle-left"></i>
+        </button>
+      </a>
+    </div>
+    <div class="m-t20 m-l20">
+      <p>
+        <b>File Path</b>
+      </p>
+      <input type="file">
+      <p>Maximum file size:10.0MB</p>
+    </div>
+    <div class="m-t20 m-l20">
+      <p>
+        <b>Description</b>
+      </p>
+      <textarea rows="4" columns="50" style="width:40%"></textarea>
+    </div>
+    <div class="text-sm-left col-sm-9 m-t20 m-b20">
+      <button class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" (click)="saveInfo()">Save</button>
+      <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10">Cancel</a>
+    </div>
+    <!-- <p-fileUpload #form name="doc" type="file"  customUpload="true"  (uploadHandler)="fileChangeEvent($event,form)"  ></p-fileUpload>
+<input type="text" [(ngModel)]="description">
+<input type="text" [(ngModel)]="notes"> -->
+    <!-- {{conditionForm.value | json}} -->
+
+    <!-- <div class="col-sm-11 text-right m-b10">
+        <button class="btn btn-primary clr-white m-b10" [disabled]=""
+         (click)=" insertCcd(conditionForm.value)"> Save</button>
+      </div> -->
+  </div>
+</div>

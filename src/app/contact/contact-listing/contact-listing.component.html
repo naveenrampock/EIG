@@ -1,0 +1,547 @@
+<!-- My Contacts End -->
+
+<!-- All Contacts Panel -->
+<div class="row mt-140" scrollable (scrollPosition)="scrollable($event)">
+  <div class="container">
+    <p-growl [(value)]="msgs" life="3000"></p-growl>
+    <div class="row card border-0 rounded-0 g-mb-50">
+      <!-- Panel Header -->
+      <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 no-padd">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-12 dropdown g-mb-10 g-mb-0--md">
+          <h3 *ngIf="this.contactContent==3" id="hdr_cont" class="h6 mb-0 nopadd">
+            <i class="icon-notebook g-pos-rel g-top-1 g-mr-5"></i> {{ 'CONTACTModule.MyRequest' | translate }}
+            <b id="value">({{(allContactList$ | async)?.length}}) </b>
+          </h3>
+          <h3 *ngIf="this.contactContent==1" id="my_cont" class="h6 mb-0">
+            <i class="icon-notebook g-pos-rel g-top-1 g-mr-5"></i>{{ 'CONTACTModule.MyContact' | translate }}
+            <b id="value">({{(allContactList$ | async)?.length}}) </b>
+
+            <!-- <i class="icon-notebook g-pos-rel g-top-1 g-mr-5"></i> My Contacts <b id="value">(6)</b> -->
+          </h3>
+          <h3 *ngIf="this.contactContent==2" id="req_cont" class="h6 mb-0">
+            <i class="icon-notebook g-pos-rel g-top-1 g-mr-5"></i>{{ 'CONTACTModule.RequestReceived' | translate }}
+            <b id="value">({{(allContactList$ | async)?.length}}) </b>
+
+            <!-- <i class="icon-notebook g-pos-rel g-top-1 g-mr-5"></i> Request Contacts <b id="value">(3)</b> -->
+          </h3>
+        </div>
+
+        <div class="col-lg-1 col-md-1 col-sm-1 col-1 dropdown g-mb-10 g-mb-0--md text-right no-padd">
+          <a class="searchadd" title="{{'CONTACTModule.SearchNewContacts'| translate}}" (click)="makeNull()"
+            data-toggle="modal" data-target="#SearchContactPopup"><i class="fa fa-plus"></i></a>
+        </div>
+
+        <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-1 dropdown g-mb-10 g-mb-0--md text-right no-padd">
+            <a class="searchadd" (click)="alert()" data-toggle="modal" data-target="#SearchContactPopup1"><i class="fa fa-plus"></i></a>				  
+            
+             </div> -->
+
+        <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-12 dropdown g-mb-10 g-mb-0--md text-right"> -->
+        <!-- <input type="search" name="" placeholder="Search" class="txt-search"/><a id="search"><img src="../assets/images/search.png" class="search"/></a> -->
+
+
+
+
+
+        <!-- </div> -->
+
+
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 dropdown g-mb-10 g-mb-0--md text-right">
+          <input type="search" [(ngModel)]='contactSearchList' name="" placeholder="{{ 'CONTACTModule.Search' | translate }} "
+            class="txt-search">
+          <img src="../assets/images/search.png" class="search">
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 dropdown g-mb-10 g-mb-0--md">
+          <select id="contactsel" (change)="selectContact(contact.value)" #contact>
+            <!-- <option value="0">All Contacts</option> -->
+            <option value="1"> {{ 'CONTACTModule.MyContact' | translate }} </option>
+            <option value="3"> {{ 'CONTACTModule.MyRequest' | translate }} </option>
+            <option value="2">{{ 'CONTACTModule.RequestReceived' | translate }}</option>
+          </select>
+        </div>
+      </div>
+      <!-- End Panel Header -->
+
+      <!-- Panel Body -->
+      <div id="AllContacts">
+        <!-- User Contacts -->
+        <div class="row">
+
+          <!-- ADD LOOP -->
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 g-mb-30 g-mb-0--md acc" *ngFor="let allContact of allContactList$ | async | contactFilter : contactSearchList;let i = index">
+            <!-- Figure -->
+            <figure class="g-bg-white g-brd-around g-brd-gray-light-v4 g-brd-cyan--hover g-transition-0_2 text-center">
+              <div class="g-py-40 g-px-20">
+                <!-- Figure Image -->
+                <img class="g-width-100 g-height-100 rounded-circle g-mb-20" [src]="allContact.imagepath ? configUrl+allContact.imagepath : defaultImg"
+                  [alt]="allContact.FirstName" [title]="allContact.FirstName">
+                <!-- Figure Image -->
+
+                <!-- Figure Info -->
+                <h4 class="h5 g-mb-5 cont_username">{{allContact.FirstName}} {{allContact.LastName}} </h4>
+              </div>
+
+              <hr class="g-brd-gray-light-v4 g-my-0">
+
+              <!-- Figure List -->
+              <!-- <ul *ngIf="this.contactContent == 0" class="row list-inline g-py-10 g-ma-0">
+                  <li class="g-brd-right g-brd-gray-light-v4 col">
+                    <button (click)="inviteRequest(allContact,i)" [disabled]="allContact.ContactStatus==1  || allContact.ContactStatus==2 " class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-cyan--hover invite">
+                      <i class="fa fa-user-plus pr-1" width="20" title="Invite"></i>
+                    </button>
+                  </li>
+
+                  <li class="g-brd-right g-brd-gray-light-v4 col">
+                    <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-red--hover" data-toggle="modal" data-target="#Viewpopup">
+                      <i class="fa fa-eye pr-1" width="20" title="View"></i>
+                    </a>
+                  </li>
+            
+                  <li class="col g-brd-right g-brd-gray-light-v4">
+                    <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-purple--hover" data-toggle="modal" data-target="#ParientInfopopup">
+                      <i class="fa fa-share-square pr-1" width="20" title="Shared Info" (click)="showDialog(allContact)"></i>
+                    </a>
+                  </li>
+                  <li class="col g-brd-right">
+                    <a routerLink="/message" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                      true}" class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-purple--hover">
+                      <i class="fa fa-envelope pr-1" width="20" title="Message"></i>
+                    </a>
+                  </li>
+                </ul> -->
+
+              <ul *ngIf="this.contactContent == 1 || this.contactContent == 0" class="row list-inline g-py-10 g-ma-0">
+                <li class="g-brd-right g-brd-gray-light-v4 col">
+                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-red--hover" (click)="getUserProfile(allContact.UserIdentifier)"
+                    data-toggle="modal" data-target="#ViewUserProfilePopup">
+                    <i class="fa fa-eye pr-1" width="20" title="View"></i>
+                  </a>
+                </li>
+
+                <li class="col g-brd-right g-brd-gray-light-v4">
+                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-purple--hover"
+                    routerLink="/message" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                  true}">
+                    <i class="fa fa-comment pr-1" width="16" title="Chat"></i>
+                  </a>
+                </li>
+
+                <li class="g-brd-right g-brd-gray-light-v4 col">
+                  <a (click)="delete(allContact,i)" class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-red--hover">
+                    <i class="fa fa-trash pr-1" width="20" title="Disconnect / Delete"></i>
+                  </a>
+                </li>
+                <li class="g-brd-right g-brd-gray-light-v4 col">
+                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-cyan--hover">
+                    <img src="../assets/images/EMR.png" width="20px" title="EMR" />
+                  </a>
+                </li>
+                <li class="g-brd-right g-brd-gray-light-v4 col">
+                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-red--hover"
+                    routerLink="/dicomUser" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                    <img src="../assets/images/dicom.png" width="20px" title="DICOM" />
+                  </a>
+                </li>
+              </ul>
+
+              <ul *ngIf="this.contactContent == 3  " class="row list-inline g-py-20 g-ma-0">
+                <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6 g-brd-right g-brd-gray-light-v4">
+                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-red--hover" (click)="getUserProfile(allContact.UserIdentifier)"
+                    data-toggle="modal" data-target="#ViewUserProfilePopup">
+                    <i class="fa fa-eye pr-1" width="16" title="View"></i>
+                  </a>
+                </li>
+                <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6 g-brd-gray-light-v4">
+                  <a (click)="rejectRequest(allContact,i)" class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-red--hover">
+                    <i class="fa fa-ban" width="16" title="Cancel"></i>
+                  </a>
+                </li>
+              </ul>
+
+              <ul *ngIf="this.contactContent == 2 " class="row list-inline g-py-10 g-ma-0">
+                <li class="g-brd-right g-brd-gray-light-v4 col">
+                  <a (click)="acceptRequest(allContact,i)" class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-cyan--hover">
+                    <i class="fa fa-check-circle pr-1" width="20" title="Accept"></i>
+                  </a>
+                </li>
+                <li class="g-brd-right g-brd-gray-light-v4 col">
+                  <a class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-red--hover" (click)="getUserProfile(allContact.UserIdentifier)"
+                    data-toggle="modal" data-target="#ViewUserProfilePopup">
+                    <i class="fa fa-eye pr-1" width="20" title="View"></i>
+                  </a>
+                </li>
+                <li class="g-brd-right g-brd-gray-light-v4 col">
+                  <a (click)="rejectRequest(allContact,i)" class="u-icon-v1 u-icon-size--sm g-color-gray-dark-v5 g-bg-transparent g-color-purple--hover">
+                    <i class="fa fa-minus-circle pr-1" width="20" title="Reject"></i>
+                  </a>
+                </li>
+              </ul>
+              <!-- End Figure List -->
+            </figure>
+            <!-- End Figure -->
+          </div>
+        </div>
+        <!-- End Panel Body -->
+      </div>
+      <p-dialog [(visible)]="display" [contentStyle]="{'min-width':'900px', 'min-height':'500px'}">
+        <app-shared-info [selUserId]="sharedId" *ngIf="display"></app-shared-info>
+      </p-dialog>
+    </div>
+    <!-- End All Contacts Panel -->
+  </div>
+</div>
+
+<div class="modal fade" id="SearchContactPopup" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title clr-white">{{ 'CONTACTModule.SearchNewContacts' | translate }}</h5>
+        <button type="button" (click)="test(false)" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" [(ngModel)]='country' (keyup)="filterCountrySingle($event)" id="myInput" class="form-control h-30"
+          placeholder="{{ 'CONTACTModule.Searchfornames' | translate }}" title="Type in a name">
+        <ul class="myUL" *ngIf="filteredCountriesSingle != null">
+          <div *ngFor="let list of filteredCountriesSingle;let i = index">
+            <li><img [src]="list.imagepath ? configUrl+list.imagepath : defaultImg" class="u-pht" title="Nathan" />
+              <a>{{list.FirstName}} {{list.LastName}}</a>
+              <button [disabled]="list.ContactStatus==1  || list.ContactStatus==2 " class="uadd btn" (click)="inviteRequest(list,i)"
+                style="display:none;">
+                <i class="fa fa-plus pr-1" width="20" title="Invite"></i>
+              </button>
+            </li>
+          </div>
+          <li id="tester_li" style="opacity: 0">Tester</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ViewUserProfilePopup" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title clr-white"> {{ 'CONTACTModule.Profile' | translate }} </h5>
+        <button type="button" (click)="test(false)" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" *ngIf="userProfile!=null">
+
+        <!-- Your ID -->
+        <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-10">
+          <div class="g-pr-10">
+            <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">{{
+              'CONTACTModule.UserName' | translate }} </strong>
+            <span class="align-top">{{userProfile.AccountID}}</span>
+          </div>
+          <span>
+            <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+          </span>
+        </li>
+        <!-- End Your ID -->
+
+        <!-- Company Name -->
+        <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-10">
+          <div class="g-pr-10">
+            <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">{{
+              'UserProfileModule.FirstName' | translate }} </strong>
+            <span class="align-top">{{userProfile.FirstName}}</span>
+          </div>
+          <span>
+            <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+          </span>
+        </li>
+        <!-- End Company Name -->
+
+        <!-- Position -->
+        <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-10">
+          <div class="g-pr-10">
+            <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">{{
+              'UserProfileModule.LastName' | translate }} </strong>
+            <span class="align-top">{{userProfile.LastName}}</span>
+          </div>
+          <span>
+            <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+          </span>
+        </li>
+        <!-- End Position -->
+
+        <!-- Primary Email Address -->
+        <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-10">
+          <div class="g-pr-10">
+            <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">{{
+              'UserProfileModule.Middlename' | translate }} </strong>
+            <span class="align-top">{{userProfile.MiddleName}}</span>
+          </div>
+          <span>
+            <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+          </span>
+        </li>
+        <!-- End Primary Email Address -->
+
+        <!-- Linked Account -->
+        <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-10">
+          <div class="g-pr-10">
+            <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">{{
+              'UserProfileModule.City' | translate }} </strong>
+            <span class="align-top">{{userProfile.City}}</span>
+          </div>
+          <span>
+            <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+          </span>
+        </li>
+        <!-- End Linked Account -->
+
+        <!-- Website -->
+        <li class="d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-10">
+          <div class="g-pr-10">
+            <strong class="d-block d-md-inline-block g-color-gray-dark-v2 g-width-200 g-pr-10">{{
+              'UserProfileModule.State' | translate }} </strong>
+            <span class="align-top">{{userProfile.State}}</span>
+          </div>
+          <span>
+            <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+          </span>
+        </li>
+        <!-- End Website -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade patientinfo" id="ParientInfopopup" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div id="PatientInfo">
+        <ul class="nav nav-tabs menu">
+          <li class="active" aria-expanded="false"><a data-toggle="tab" href="#Patient">Patient Information</a></li>
+          <li><a data-toggle="tab" (click)="getGuaranterInfo()" data-target="#Guarantor">Guarantor Information</a></li>
+          <li><a data-toggle="tab" (click)="getInsuranceInfo()" href="#Insurance">Insurance Information</a></li>
+          <li><a data-toggle="tab" (click)="getEmergencyContactInfo()" href="#Emergency">Emergency Contact</a></li>
+        </ul>
+        <div class="tab-content col-sm-12">
+
+          <div id="Patient" class="tab-pane in active">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd pt-4">
+              <div class="form-group">
+                <label class="col-lg-4 col-md-3 col-sm-3 col-xs-6">Patient's Name</label>
+                <input type="text" name="" value="" placeholder="First Name" class="col-lg-4 col-md-4 col-sm-4 col-xs-6" />
+                <input type="text" name="" value="" placeholder="Last Name" class="ln col-lg-3" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Gender</label>
+                <input type="radio" name="" value="" /> Male
+                <input type="radio" name="" value="" /> FeMale
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Birthdate</label>
+                <input type="date" name="" value="" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Place Of Birth</label>
+                <input type="text" name="" value="" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Age</label>
+                <input type="text" name="" value="" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Martial Status</label>
+                <input type="text" name="" value="" placeholder="Martial Status" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Street Address</label>
+                <input type="text" name="" value="" placeholder="Street" class="col-lg-2 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="City" class="col-lg-2 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="State" class="col-lg-1 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="Zip Code" class="zip col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Phone</label>
+                <input type="text" name="" value="" placeholder="Phone" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Employer</label>
+                <input type="text" name="" value="" placeholder="Employer" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Occupation</label>
+                <input type="text" name="" value="" placeholder="Occupation" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Work Address</label>
+                <input type="text" name="" value="" placeholder="Street" class="col-lg-2 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="City" class="col-lg-2 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="State" class="col-lg-1 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="Zip Code" class="zip col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Preferred Language</label>
+                <select class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+                  <option>English</option>
+                  <option>Spanish</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Ethnic Origin</label>
+                <select class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+                  <option>Hispanic/Latino</option>
+                  <option>Not Hispanic/Latino</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Race</label>
+                <select class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+                  <option>American Indian or Alaska Native</option>
+                  <option>Asian</option>
+                  <option>Black or African American</option>
+                  <option>Hispanic Origin</option>
+                  <option> Native Hawaiian or Pacific Islander</option>
+                  <option> White</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Social Security Number</label>
+                <input type="text" name="" value="" placeholder="Social Security Number" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Email Address</label>
+                <input type="text" name="" value="" placeholder="Email Address" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="text-sm-right mr-15 mt-3 form-group">
+                <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" href="#" data-dismiss="modal">Cancel</a>
+                <a class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" href="#">Save Changes</a>
+              </div>
+            </div>
+          </div>
+
+          <div id="Guarantor" class="tab-pane fade">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd pt-4">
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Guarantor's Name </label>
+                <input type="text" name="" value="" placeholder="First Name" class="col-lg-4 col-md-4 col-sm-4 col-xs-6" />
+                <input type="text" name="" value="" placeholder="Last Name" class="ln col-lg-3" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Relationship</label>
+                <input type="text" name="" value="" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Gender</label>
+                <input type="radio" name="" value="" /> Male
+                <input type="radio" name="" value="" /> FeMale
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Birthdate</label>
+                <input type="date" name="" value="" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Age</label>
+                <input type="text" name="" value="" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Martial Status</label>
+                <input type="text" name="" value="" placeholder="Martial Status" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Street Address</label>
+                <input type="text" name="" value="" placeholder="Street" class="col-lg-2 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="City" class="col-lg-2 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="State" class="col-lg-1 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="Zip Code" class="zip col-xs-6" />
+              </div>
+              <div class="text-sm-right mr-15 mt-3 form-group">
+                <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" href="#" data-dismiss="modal">Cancel</a>
+                <a class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" href="#">Save Changes</a>
+              </div>
+            </div>
+          </div>
+
+          <div id="Insurance" class="tab-pane fade">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd pt-4">
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Subscriber's Name </label>
+                <input type="text" name="" value="" placeholder="First Name" class="col-lg-4 col-md-4 col-sm-4 col-xs-6" />
+                <input type="text" name="" value="" placeholder="Last Name" class="ln col-lg-3" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Relationship</label>
+                <input type="text" name="" value="" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Birthdate</label>
+                <input type="date" name="" value="" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Gender</label>
+                <input type="radio" name="" value="" /> Male
+                <input type="radio" name="" value="" /> FeMale
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Social Security Number</label>
+                <input type="text" name="" value="" placeholder="Social Security Number" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Street Address</label>
+                <input type="text" name="" value="" placeholder="Street" class="col-lg-2 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="City" class="col-lg-2 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="State" class="col-lg-1 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="Zip Code" class="zip col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Employer</label>
+                <input type="text" name="" value="" placeholder="Employer" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Work Phone</label>
+                <input type="text" name="" value="" placeholder="Work Phone" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Work Address</label>
+                <input type="text" name="" value="" placeholder="Street" class="col-lg-2 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="City" class="col-lg-2 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="State" class="col-lg-1 col-md-2 col-sm-2 col-xs-6" />
+                <input type="text" name="" value="" placeholder="Zip Code" class="zip col-xs-6" />
+              </div>
+              <div class="text-sm-right mr-15 mt-3 form-group">
+                <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" href="#" data-dismiss="modal">Cancel</a>
+                <a class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" href="#">Save Changes</a>
+              </div>
+            </div>
+          </div>
+
+          <div id="Emergency" class="tab-pane fade">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd pt-4">
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Contact's Name</label>
+                <input type="text" name="" value="" placeholder="Contact's Name" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Phone</label>
+                <input type="text" name="" value="" placeholder="Phone" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Relationship</label>
+                <input type="text" name="" value="" placeholder="Relationship" class="col-lg-7 col-md-7 col-sm-7 col-xs-6" />
+              </div>
+            </div>
+            <div class="text-sm-right mr-15 mt-3 form-group">
+              <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" href="#" data-dismiss="modal">Cancel</a>
+              <a class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" href="#">Save Changes</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,288 @@
+
+  <p-growl [(value)]="msgs" life="3000"></p-growl>
+
+
+
+
+
+  <div class="main-container contain ace-save-state active col-md-12 col-sm-12 col-12 no-padd dicom_img" id="wrapper">
+    <div id="sidebar" class="sidebar responsive ace-save-state col-md-12 col-sm-12 col-12">
+      <!-- /.sidebar-shortcuts -->
+      <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse" style="display:none;">
+        <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left"
+          data-icon2="ace-icon fa fa-angle-double-right">
+        </i>
+      </div>
+  
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper" class="col-lg-12 col-md-12 col-sm-12 col-12 nopadd navbar-collapse">
+        <div id="menu-container">
+  
+          <div class="vertical-menu">
+  
+            <a class="active"> Quick Links</a>
+  
+            <nav class="navbar navbar-default sidebar no-padd" role="navigation">
+              <div class="navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                <div class="nav navbar-nav">
+                  <!-- <li ><a class="dropdown" data-toggle="dropdown">1. My images <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
+      </li>		 -->
+                  <div>
+                    <a>1. My images</a>
+                  </div>
+  
+                  <div>
+                    <a routerLink="sharedToMe">2. Shared to me</a>
+                  </div>
+                  <div>
+                    <a routerLink="share">3. My Sharing</a>
+                  </div>
+  
+                  <!-- <li ><a  class="dropdown" data-toggle="dropdown">3. My Sharing <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"> -->
+  
+                  <!-- </span></a>
+        </li>	 -->
+                  <div class="sidenav">
+                    <button class="dropdown-btn" data-toggle="collapse" data-target="#MyUploads"> 4. My Uploads
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div id="MyUploads" class="collapse show">
+                      <a>
+                        <input type="checkbox">Assigned</a>
+                      <a>
+                        <input type="checkbox">Not Assigned</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nav>
+  
+          </div>
+    
+          <form  [formGroup]="advanceSearch">
+          <div class="vertical-menu">
+            <nav class="navbar navbar-default sidebar no-padd" role="navigation">
+              <a class="active w-100"> Advanced Search</a>
+              <div class="navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                <ul id="dicom-list" class="nav navbar-nav dicom-list">
+                  <div class="sidenav">
+                    <button class="dropdown-btn" data-toggle="collapse" data-target="#ownership"> Ownership
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div id="ownership" class="collapse">
+                      <a>
+                        <input type="radio"  [value]='id' formControlName='myImage'>My images</a>
+                      <a>
+                        <input type="radio"  [value]='id'  formControlName='shareByothers'>Shared by others</a>
+                      <a>
+                        <input type="radio"  [value]='id'  formControlName='myUpload'>My uploads</a>
+                    </div>
+                  </div>
+  
+  
+                  <li class="">
+                    <a class="col-5 pull-left" data-toggle="dropdown">Study ID </a>
+                    <input type="text" class="col-7" formControlName='studyId'/>
+                  </li>
+                  <li class="dropdown">
+                    <a class="col-5 pull-left" data-toggle="dropdown" >Patient ID </a>
+                    <input type="text" class="col-7" formControlName='patientId'/>
+                  </li>
+  
+                  <li class="dropdown">
+                    <a class="col-5 pull-left line-height12" data-toggle="dropdown" >Patient Name</a>
+                    <input type="text" class="col-7" formControlName='patientName'/>
+                  </li>
+                  <li class="dropdown p-b10">
+                    <a class="col-12 text-center" data-toggle="dropdown" >Examine Date </a>
+                    <label class="col-5 pull-left before_date pos-t5 line-height12">Before Date </label>
+                    <p-calendar formControlName='cStartDate' class="col-7 no-padd pull-left bdate m-b10" [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" 
+                     ></p-calendar>
+                    <!-- <input type="date" class="col-7 p-r0" formControlName='cStartDate'/> -->
+                    <label class="col-5 pull-left pos-t5 line-height12" data-toggle="dropdown" >End Date </label>
+                    <p-calendar formControlName='cEndDate' class="col-7 no-padd pull-left bdate" [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" [minDate]="minDate"
+                    ></p-calendar>
+                    <!-- <input type="date" class="col-7 p-r0" formControlName='cEndDate'/> -->
+                  </li>
+                  <li class="dropdown p-b10">
+                    <label class="col-12 text-center line-height12">Upload Date </label>
+                    <label class="col-5 pull-left before_date pos-t5 line-height12" >Before Date </label>
+                    <p-calendar formControlName='uStartDate' class="col-7 no-padd pull-left bdate m-b10" [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" [minDate]="minDate"
+                    ></p-calendar>
+                    <!-- <input type="date" class="col-7 p-r0" formControlName='uStartDate'/> -->
+                    <label class="col-5 pull-left pos-t5 line-height12" data-toggle="dropdown" >End Date </label>
+                    <p-calendar formControlName='uEndDate' class="col-7 no-padd pull-left bdate m-b10" [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" [minDate]="minDate"
+                    ></p-calendar>
+                    <!-- <input type="date" class="col-7 p-r0" formControlName='uEndDate' /> -->
+                  </li>
+                  <li class="dropdown">
+                    <a class="col-12 pull-left" data-toggle="dropdown">Image modalities</a>
+  
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left" *ngFor="let mod of modality">
+                      <input type="checkbox" name="" value="" id="dr" (click)="modalityValue($event.target.checked,mod.name)">{{mod.name}}
+                    </div>
+                   
+                  </li>
+                 
+                </ul>
+                <button class="pull-right btn go" (click)="getDicomList()">Go</button>
+              </div>
+            </nav>
+          </div>
+        </form>
+  
+          <!-- End Profile Sidebar -->
+        </div>
+      </div>
+      <div id="sidebar-mobile">
+        <a data-toggle="modal" data-target="#Filter">
+          <i class="fa fa-sliders pull-left text-black f-20"></i>
+        </a>
+      </div>
+    </div>
+    <div id="page-content-wrapper" class="col-md-12 col-sm-12 col-12 no-padd">
+      <div id="slmenu" class="navbar-brand w-4p col-lg-1 pull-left">
+        <a id="menu-toggle">
+          <i class="fa fa-caret-right f-30"></i>
+        </a>
+        <a id="menu-toggle-after" class="hide">
+          <i class="fa fa-caret-left f-30"></i>
+        </a>
+      </div>
+      <div id="slmenu1" class="navbar-brand w-4p col-lg-1 pull-left">
+        <a id="menu-toggle1">
+          <i class="fa fa-caret-left f-30"></i>
+        </a>
+        <a id="menu-toggle-after1" class="hide">
+          <i class="fa fa-caret-right f-30"></i>
+        </a>
+      </div>
+    </div>
+    <label for="upload-photo" class="p-l15 img-upload">
+      <b>Dicom Upload</b>
+    </label>
+    <!-- <input type="file" name="photo" id="upload-photo" (change)="validateUpload($event)" />
+  <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/> -->
+    <!-- <input type="file" id="ctrl" webkitdirectory directory multiple/> -->
+    <div class="p-t10 p-b10 pos-l15">
+      <input type="radio" name="fileupload" (click)="radioFile(1)" checked>File Upload
+      <input type="radio" name="fileupload" (click)="radioFile(2)" class="m-l20">Folder Upload
+    </div>
+  
+    <div *ngIf="hideFolder" class="flex p-l20 folder-upload">
+      <input #folderInput type="file" (change)="filesPicked(folderInput.files)" class="p-l20" multiple webkitDirectory  />
+      <button (click)='saveFolder()' class="upload-file">Upload</button>
+    </div>
+    <div *ngIf="true">
+      <p-fileUpload #form name="photo" type="file" customUpload="true" (uploadHandler)="fileChangeEvent($event,form)" multiple="multiple"></p-fileUpload>
+    </div>
+    <!-- <a routerLink="share" class="share-btn">share</a>
+  <a routerLink="sharedToMe" class="share-btn">shared to me</a> -->
+    <p-dataTable [value]="dicomList" [rows]="10" [paginator]="true" [lazy]="true" [totalRecords]="100" (onLazyLoad)="loadLazy($event)"
+      class="dicom-table">
+      <p-column field="" header="File ID">
+        <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+          <span>{{list.StudyPk}}</span>
+        </ng-template>
+      </p-column>
+  
+      <p-column field="" header="File Name">
+        <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+          <span>{{list.Patient_Name}}</span>
+        </ng-template>
+      </p-column>
+      <p-column field="" header="Comments">
+        <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+          <span>{{list.StudyDescription}}</span>
+        </ng-template>
+      </p-column>
+     
+      <p-column header="Action">
+        <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body" class="actions">
+            <a class="" (click)="moreData(list)">
+                <i title="Download" class=" fa fa-download"></i>
+              </a>
+            <a class="" data-toggle="modal" (click)="getStudyId(list.StudyPk,'cUploader')" data-target="#dicomUser">
+            <i title="Modify" class=" fa fa-edit"></i>
+          </a>
+         
+        <a (click)="deleteDicom(list.StudyPk)">
+            <i title="Delete" class="fa fa-trash"></i>
+          </a>
+        </ng-template>
+  
+      </p-column>
+  
+    <!-- </p-dataTable>
+  
+    <p-dialog header="Confirm Upload" [(visible)]="display" class="conf-upload">
+  
+      <ul>
+        <li>
+          <div>
+            <label>StudyId :</label>{{studyId}}</div>
+          <ul>
+  
+            <li>
+              <div>
+                <label>Series :</label>{{series}}</div>
+              <ul>
+                <li>
+                  <div>
+                    <label>Image :</label>{{image}}</div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p-footer>
+  
+  
+        <div class="ui-dialog-buttonpane ui-helper-clearfix popup invite-pop">
+          <button type="button" pButton icon="fa-check" label="Yes" (click)="moveToS3()" class="save btn"></button>
+          <button type="button" pButton icon="fa-close" label="No" (click)="removeDicon()"class="cancel btn"></button>
+        </div>
+  
+      </p-footer>
+    </p-dialog>
+  
+  
+  
+    <div class="modal fade postedpopup" id="dicomUser" role="dialog">
+      <div class="modal-dialog">
+       
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title"></h4>
+            <h4 class="modal-title">All Contacts</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+  
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div *ngFor="let contact of userList">
+  
+                <input *ngIf="radio" type="radio" name="radio" (click)="selectInvitee(contact.Id)" [checked]="contact.isChecked" [disabled]="contact.isDisabled"
+                />
+                <input *ngIf="checkbox" type="checkbox" name="radio" (click)="selectCheckboxInvitee($event.target.checked, contact.Id)" [checked]="contact.isChecked"
+                  [disabled]="contact.isDisabled" />
+               
+                <a>{{contact.AccountID}}</a>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right">
+                <button *ngIf="radio " type="button" class="btn u-btn-primary g-mr-10" (click)="radio ? assignDicom() : shareDicom()">Submit</button>
+                <button *ngIf="!radio" type="button" class="btn u-btn-primary g-mr-10" (click)="shareDicom()">Submit1</button>
+                <input type="button" name="" value="Cancel" data-dismiss="modal" class="btn u-btn-darkgray g-mr-10" />
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+    <p-dialog header="More Information" *ngIf="more" [(visible)]="more" [modal]="true" class="moreinfo" [responsive]="true" [height]="auto" [minWidth]="200" >
+      <app-more-information [moreInfo]="moreInfo"></app-more-information>
+     </p-dialog> -->
+    {{advanceSearch.value | json}}

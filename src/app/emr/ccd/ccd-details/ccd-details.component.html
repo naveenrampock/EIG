@@ -1,0 +1,22 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="emr-details">
+    <div class="brd m-b10 ebg-white">
+      <div class="head-text">
+        <p class="col-sm-12 text-center w-85 pull-left m-0">Close Continuity of Care Document (CCD)</p>
+        <a class="pull-right" id="back_condition" (click)="backToListing()">
+          <button class="addbutton">
+            <i class="fa fa-arrow-circle-left"></i>
+          </button>
+        </a>
+      </div>
+      <p-fileUpload #form name="doc" type="file"  customUpload="true"  (uploadHandler)="fileChangeEvent($event,form)"  ></p-fileUpload>
+<input type="text" [(ngModel)]="description">
+<input type="text" [(ngModel)]="notes">
+      <!-- {{conditionForm.value | json}} -->
+  
+      <!-- <div class="col-sm-11 text-right m-b10">
+        <button class="btn btn-primary clr-white m-b10" [disabled]=""
+         (click)=" insertCcd(conditionForm.value)"> Save</button>
+      </div> -->
+    </div>
+  </div>

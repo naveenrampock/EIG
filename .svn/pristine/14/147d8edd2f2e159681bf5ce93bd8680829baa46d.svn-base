@@ -1,0 +1,18 @@
+{
+    "HOME": {
+      "TITLE": "Bonjour Angular avec ngx-translate !",
+      "SELECT": "Changer la langue"
+    },
+    "MENU":{
+      "Dashboard":"Casa",
+      "Profile": "Perfil",
+      "MyHealth":"Mi salud",
+      "PatientInformation": "Información del paciente",
+      "ContactManagement":"Gestión de contactos",
+      "Messages": "Mensajes",
+      "CaseManagement":"Gestión de casos",
+      "Dicom":"DICOM",
+      "Settings": "Configuraciones",
+      "EMR":"EMR"
+    }
+  }

@@ -1,0 +1,183 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="emr-details">
+  <div class="m-b10" style="border-top: 1px solid #084FA1;">
+    <div class="head-text">
+      <p class="col-sm-12 text-center w-85 pull-left m-0">Add Information from Baseline West Medical Center</p>
+      <a class="pull-right" id="back_condition" (click)="backToListing()">
+        <button class="addbutton">
+          <i class="fa fa-arrow-circle-left"></i>
+        </button>
+      </a>
+    </div>
+    <!-- Medication -->
+    <div style="margin-top:34px;">
+      <p-table #dt [columns]="tableHeaders" [value]="Medication">
+        <ng-template pTemplate="caption">
+          <div style="text-align: left;">
+            <label>
+              <b>Medications</b>
+            </label>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr role="row">
+            <th width="60">Name</th>
+            <th width="100">Reason for Taking</th>
+            <th width="200">Date Started</th>
+            <th width="70">Date Stopped</th>
+            <th width="60">Dose</th>
+            <th width="80">Strength</th>
+            <th width="60">Details</th>
+            <th>Add to record?</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td>{{rowData.name}}</td>
+            <td>{{rowData.Reason}}</td>
+            <td>{{rowData.Date}}</td>
+            <td>{{rowData.DateStopped}}</td>
+            <td>{{rowData.Dose}}</td>
+            <td>{{rowData.Strength}}</td>
+            <td>
+              <a class="details" id="details1" (click)="detailsList(rowData)">
+                <i class="fa fa-angle-down"></i>
+              </a>
+            </td>
+            <td>
+              <select>
+                <option [value]="">Select</option>
+                <option [value]="1" [selected]="defaultValue">Add this</option>
+                <option [value]="2">Don't Add this</option>
+                <option [value]="3">Replace an existing item</option>
+              </select>
+            </td>
+          </tr>
+          <tr *ngIf="rowData.showDetailsList">
+            <td class="nes_table" colspan="8">
+              <div *ngFor="let data of details">
+                <table class="w-100 table table-bordered">
+                  <tbody>
+                    <tr>
+                      <td width="150">Name</td>
+                      <td>{{data.name}}</td>
+                    </tr>
+                    <tr>
+                      <td width="150">Generic Name</td>
+                      <td>{{data.Generic}}</td>
+                    </tr>
+                    <tr>
+                      <td width="150">Dosage</td>
+                      <td>{{data.Dosage}}</td>
+                    </tr>
+                    <tr>
+                      <td width="150">Date Started</td>
+                      <td>{{data.date}}</td>
+                    </tr>
+                    <tr>
+                      <td width="150">Prescribed by</td>
+                      <td>{{data.prescribedby}}</td>
+                    </tr>
+                    <tr>
+                      <td width="150">Address</td>
+                      <td>{{data.address}}</td>
+                    </tr>
+                    <tr>
+                      <td width="150">Date prescribed</td>
+                      <td>{{data.prescribed}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <!-- Condition -->
+    <div style="margin-top:24px;">
+      <p-table #dt [columns]="tableHeaders" [value]="Condition">
+        <ng-template pTemplate="caption">
+          <div style="text-align: left;">
+            <label>
+              <b>Condition</b>
+            </label>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr role="row">
+            <th width="200">Name</th>
+            <th width="200">Status</th>
+            <th width="80">Onset Date</th>
+            <th width="70">Stop Date</th>
+            <th width="60">Details</th>
+            <th width="260">Add to record?</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td>{{rowData.name}}</td>
+            <td>{{rowData.Status}}</td>
+            <td>{{rowData.date}}</td>
+            <td>{{rowData.Stop}}</td>
+            <td>
+              <a class="details" id="details1" (click)="detailsList(rowData)">
+                <i class="fa fa-angle-down"></i>
+              </a>
+            </td>
+            <td>
+              <select>
+                <option [value]="">Select</option>
+                <option [value]="1" [selected]="defaultValue">Add this</option>
+                <option [value]="2">Don't Add this</option>
+                <option [value]="3">Replace an existing item</option>
+              </select>
+            </td>
+          </tr>
+          <tr *ngIf="rowData.showDetailsList">
+            <td class="nes_table" colspan="8">
+              <div *ngFor="let data of details">
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <td>Name</td>
+                      <td>{{data.name}}</td>
+                    </tr>
+                    <tr>
+                      <td>Generic Name</td>
+                      <td>{{data.Generic}}</td>
+                    </tr>
+                    <tr>
+                      <td>Dosage</td>
+                      <td>{{data.Dosage}}</td>
+                    </tr>
+                    <tr>
+                      <td>Date Started</td>
+                      <td>{{data.date}}</td>
+                    </tr>
+                    <tr>
+                      <td>Prescribed by</td>
+                      <td>{{data.prescribedby}}</td>
+                    </tr>
+                    <tr>
+                      <td>Address</td>
+                      <td>{{data.address}}</td>
+                    </tr>
+                    <tr>
+                      <td>Date prescribed</td>
+                      <td>{{data.prescribed}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div class="text-sm-right col-sm-9 m-b30">
+    <button class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" (click)="saveExportInfo()">Save Changes to Record</button>
+    <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" style="float:left">Cancel</a>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+.nav li{width:25%;}
+
+.active-link{padding: 4px 10%;width: 35%;text-align: center;color:#333 !important;}
+
+.active{padding: 2px 5%;width: 35%;text-align: center;background-color: #2060aa;color: #fff !important;}

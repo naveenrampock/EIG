@@ -1,0 +1,205 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="emr-details">
+  <div class="m-b10 ebg-white">
+    <div class="head-text">
+      <p class="col-sm-12 text-center w-85 pull-left m-0">Basic Entities Device</p>
+      <a class="pull-right" id="back_Device" (click)="backToListing()">
+        <button class="addbutton">
+          <i class="fa fa-arrow-circle-left"></i>
+        </button>
+      </a>
+    </div>
+    <div class="col-sm-12 col-xs-12 no-padd emr-labels" [formGroup]="emrDevicedetailsForm">
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Source Type
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 pull-left no-padd" [class.disabled]="isReadOnly">
+          <select formControlName="SourceType" class="emr-dropdown">
+            <option value=''>Select Source Type</option>
+            <option *ngFor="let sType of deviceDropdown?.sourceTypes" [value]='sType.Id'>{{sType.Description}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Source ID</label>
+        <div class="col-sm-7 pull-left no-padd">
+          <input type="text" formControlName="SourceId" OnlyNumber="true" maxlength="3" placeholder="Source Id">
+        </div>
+      </div>
+      <!--Basic Information  -->
+      <div class="head-text subhead inline-block">
+        <p class="normal pull-left m-0">Basic Information</p>
+      </div>
+      <div class="col-sm-12 no-padd">
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Owner
+              <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Owner" maxlength="25" placeholder="Owner">
+          </div>
+        </div>
+        <div formGroupName="Udi">
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Device Name
+                <span class="required">*</span>
+            </label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="Name" maxlength="25" placeholder="Device Name">
+            </div>
+          </div>
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd f-12">Device Identifier
+              <span class="required">*</span>
+            </label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="DeviceIdentifier" maxlength="25" placeholder="Device Identifier">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Contact</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Contact" maxlength="10" OnlyNumber="true" placeholder="Contact">
+          </div>
+        </div>
+        <div formGroupName="Udi">
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Jurisdiction
+              <span class="required">*</span>
+            </label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="Jurisdiction" maxlength="25" placeholder="Jurisdiction">
+            </div>
+          </div>
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">CarrierHRF
+              <span class="required">*</span>
+            </label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="CarrierHRF" maxlength="25" placeholder="Carrier">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Status
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <select formControlName="Status" class="emr-dropdown">
+              <option value=''>Select Status</option>
+              <option *ngFor="let statusType of deviceDropdown.status" [value]='statusType.Id'>{{statusType.Description}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!--Device Details -->
+      <div class="head-text subhead inline-block">
+        <p class="normal pull-left m-0">Device Details</p>
+      </div>
+      <div class="col-sm-12 no-padd">
+        <div formGroupName="Udi">
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Carrier AIDC</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="CarrierAIDC" maxlength="25" placeholder="CarrierAIDC">
+            </div>
+          </div>
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Entry Type</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <select formControlName="EntryType" class="emr-dropdown">
+                <option value=''>Select Entry Type</option>
+                <option *ngFor="let entry of deviceDropdown.entryType" [value]='entry.Id'>{{entry.Description}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Type
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(143, src4.value)" #src4 formControlName="Type" [(ngModel)]="selectedtype" minlength="3"
+              placeholder="Please key in(eg:ad)" />
+            <i class="fa fa-caret-down"></i>
+            <div *ngIf="deviceSelectDropdown && deviceSelectDropdown?.type && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let tType of deviceSelectDropdown.type" (click)="getValue(tType)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{tType.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Lot Number</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="LotNumber" maxlength="5" OnlyNumber="true" placeholder="Number">
+          </div>
+        </div>
+
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Model</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Model" maxlength="7" placeholder="Model">
+          </div>
+        </div>
+
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Version</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Version" maxlength="5" placeholder="Version">
+          </div>
+        </div>
+
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Manufacturer</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Manufacturer" maxlength="25" placeholder="Manufacturer">
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 single-line pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Manufacturer Date</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <div class="input-group g-brd-primary--focus" style="width: 122px;">
+              <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" showButtonBar="true" dateFormat="mm-dd-yy"
+                placeholder="mm-dd-yyyy" formControlName="ManufactureDate" [showIcon]="true" [maxDate]="dateTime" class="w-100"></p-calendar>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label style="z-index:1" class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Expiration Date</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <div class="input-group g-brd-primary--focus" style="width: 122px;">
+              <p-calendar [monthNavigator]="true" [minDate]="minSDate" [yearNavigator]="true" yearRange="1910:2020" showButtonBar="true"
+                dateFormat="mm-dd-yy" placeholder="mm-dd-yyyy" id="date1" formControlName="ExpirationDate" [showIcon]="true"
+                class="w-100"></p-calendar>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Url</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Url" maxlength="50" placeholder="Url">
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Note</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Note" maxlength="25" placeholder="Note">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-12 text-right m-b10 inline-block" *ngIf="deviceDetails?.mode !== 'readOnly'">
+      <button class="btn btn-primary clr-white m-b10" [disabled]="!emrDevicedetailsForm.valid" (click)="!deviceDetails ? saveEmrDevice() : updateEmrDevice()">{{!deviceDetails ? 'Save' : 'Update'}}</button>
+    </div>
+  </div>
+</div>

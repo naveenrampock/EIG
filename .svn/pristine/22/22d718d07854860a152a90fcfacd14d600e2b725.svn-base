@@ -1,0 +1,25 @@
+.add_lookup{background-color: #32c5d2;padding: 10px 9px;position: relative;top: 11px;}
+
+.add_lookup img{height:21px;}
+
+.popup button{background-color: #32c5d2;color: #fff !important;border: 1px solid #32c5d2;cursor: pointer;}
+
+.elipses{ white-space: nowrap; overflow: hidden;text-overflow: ellipsis;display: block;}
+
+:host /deep/ .ui-datatable .ui-datatable-thead>tr>th{padding: .5em .5em;}
+
+.u-nav-v1-1.u-nav-primary .nav-link.active {color: #fff;background-color: #32c5d2;}
+
+.g-brd-primary {border-color: #32c5d2 !important;}
+
+:host /deep/ .ui-paginator .ui-paginator-page.ui-state-active {background: #32c5d2;color: #ffffff;border-color: #32c5d2;}
+
+.g-color-primary {color: #32c5d2 !important;}
+
+select, input[type="text"], input[type="date"] {height: 30px; border-radius: 0px;}
+
+:host /deep/ .ui-tooltip .ui-tooltip-text {display:inline-block;}
+
+:host /deep/ .ui-tooltip{max-width: 50.5em !important;}
+
+.ui-tooltip{max-width: 50.5em !important;}

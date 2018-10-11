@@ -1,0 +1,104 @@
+<div class="tab m-t10p">
+  <ul class="emrSideBar">
+    <li>
+      <a routerLink="/emr" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+          true}">Patient basic information
+      </a>
+    </li>
+    <li class="sidenav tablinks" data-toggle="collapse" href="#health" role="button" aria-expanded="false" aria-controls="ccrs">
+      <a class="dropdown-btn">
+        <b>Health History</b> 
+        <i class="fa fa-caret-down iconDrop"></i>
+      </a>
+      <ul class="dropdown-container collapse" id="health">  
+        <li>
+          <a routerLink="/emr/allergy" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Allergy
+            <span>{{allergyCount}}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/appointment" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Appointment
+            <span>{{appointmentCount}}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/care-plan" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Care Plan
+            <span>{{careplanCount}}</span>         
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/condition" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Condition
+            <span>{{conditionCount}}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/device" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Device
+            <span>{{deviceCount}}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/diagnostic-report" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Diagnostic Report
+            <span>{{diagnosticreportCount}}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/encounter" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Encounter
+            <span>{{encounterCount}}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/immunization" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Immunization
+            <span>{{immunizationCount}}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/medication-statement" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Medication Statement
+            <span>{{medicationstatementCount}}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/observation" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Observation
+            <span>{{observationCount}}</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/procedure" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Procedure
+            <span>{{procedureCount}}</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="sidenav tablinks" data-toggle="collapse" href="#ccrs" role="button" aria-expanded="false" aria-controls="ccrs">
+      <a class="dropdown-btn">
+          <b> Documents </b>
+        <i class="fa fa-caret-down iconDrop"></i>
+      </a>
+      <ul class="dropdown-container collapse" id="ccrs">
+        <li>
+          <a routerLink="/emr/ccd" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Continuity of Care Documents (CCDs)
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/ccr" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Continuity of Care Records (CCRs)
+          </a>
+        </li>
+        <li>
+          <a routerLink="/emr/import" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Import 3rd Party EMR Records
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="/emr/records" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+          true}">
+          <b>Sharing Records</b>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/emr/export" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+          true}">
+          <b> Export </b>
+      </a>
+    </li>
+  </ul>
+</div>

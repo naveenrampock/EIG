@@ -1,0 +1,237 @@
+<!-- Modal body -->
+
+<div class="modal-body">
+
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-left">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.StudyPK' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyPk}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.StudyInstanceUID' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyInstanceUID}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.StudyID' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyID}}</label>
+      </div>
+    
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.SeriesNumber' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.SeriesNumber}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.StudyDate' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyDate | date :short}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.StudyTime' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyTime}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.RequestingPhysician' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.RequestingPhysician}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.RequestedProcedureDescription' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.RequestedProcedureDescription}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PerformedProcedureStepStartDate' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.PerformedProcedureStepStartDate | date :short}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PerformedProcedureStepID' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.PerformedProcedureStepID}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Manufacturer :</label>
+      <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyPk}}/label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StationName :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}/label>
+      </div>  -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">SoftwareVersions :</label>
+      <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}/label>
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Model :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}/label>
+      </div>  -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PatientName' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Name}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-4 col-sm-6 col-xs-6">IssuerOfPatientID :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PatientBirthTime' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_BirthTime }}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">OtherPatientIDs :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> {{moreInfo.StudyPk}}</label>
+      </div>		 	 -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PatientSize' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Size}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">PatientAddress :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" {{moreInfo.StudyPk}}/label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.Owner' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> {{moreInfo.OwnerName}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">NoOfSeries :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyPk}}>/label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.StorageID' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StorageId}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudySizeAfterCompression :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">CreatedBy :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.CreatedBy}}</label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.UpdatedBy' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.UpdatedBy}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.BodyParts' | translate}} :</label>
+        <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.BodyParts}}</label>
+        </div> 
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.Modality' | translate}}  :</label>
+        <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.Modality}}</label>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+            <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Series Count  :</label>
+            <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.SeriesCount}}</label>
+            </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-left">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+            <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Image Count :</label>
+            <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.ImageCount}}</label>
+          </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.StudyDescription' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyDescription}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.ContentDate' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.ContentDate | date :short}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.ContentTime' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.ContentTime}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.AccessionNumber' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.AccessionNumber}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.StudyStatusID' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyStatusID}}</label>
+      </div> &nbsp;
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">ReasonForStudy  :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div>  -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.RequestingService' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.RequestingService}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.CurrentPatientLocation' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.CurrentPatientLocation}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PerformedProcedureStepStartTime' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.PerformedProcedureStepStartTime}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PerformedProcedureStepDescription' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.PerformedProcedureStepDescription}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StationName  :</label>
+      <label type="text" name="" value="CT CHEST WO CON" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >SIEMENS</label>
+      </div>  -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">InstitutionName  :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">Implementation Version Name:</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">AE Title:</label>
+      <label type="text" name=""class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PatientID' | translate}}:</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Id}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PatientBirthDate' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_BirthDate | date :short}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PatientSex' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Sex}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PatientAge' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Age}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.PatientWeight' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.Patient_Weight}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.UploadedBy' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.UploadedBy}}</label>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.IsDeleted' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.IsDeleted}}</label>
+      </div>
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">NoOfImages :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.NoOfImages}}</label> 
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">StudySizeBeforeCompression :</label>
+      <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" >{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd">
+      <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">LastViewed :</label>
+      <label type="text" name=""  class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.StudyPk}}</label>
+      </div> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.CreatedDate' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.CreatedDate | date :short}}</label>
+  
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 no-padd">{{'DICOMModule.UpdatedDate' | translate}} :</label>
+        <label type="text" name="" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{moreInfo.UpdatedDate | date :short}}</label>
+      </div>
+    </div>
+  
+  </div>
+  

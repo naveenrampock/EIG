@@ -1,0 +1,71 @@
+
+input[type="checkbox"]{position: relative;top: 2px;right: 3px;}
+
+input[type="radio"]{right:3px;}
+
+input[type="date"]{height:30px;}
+
+.dropdown-btn + div a:last-child{border-bottom: 1px solid #ccc;}
+
+.dropdown-btn{ background-color: #ccc;outline: none;color: #000;}
+
+.sidenav {
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;background-color: #eee;    max-height: 400px;
+    display: initial;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+    padding: 5px 8px 5px 16px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+    background-color: #ccc !important;
+ }
+ 
+ .dropdown-btn{
+    border-bottom: 1px solid #ccc;
+}
+
+ .dropdown-btn.active{
+    background-color:#ccc;outline:none;color: #000;
+   }
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+:host /deep/ .bdate .ui-inputtext{width:120px;height:28px;}
+
+:host /deep/ .bdate .ui-calendar > .ui-datepicker{top: 29px !important;left: -98px !important;}
+
+.brd-top{border-top:1px solid #ccc;}
+
+:host /deep/ .ui-datepicker.ui-widget{width: 240px !important;}
+
+.sidenav .dropdown-btn.collapsed{background-color: #eee;}
+
+.sidenav .dropdown-btn{background-color: #ccc;color:#000;}
+
+:host /deep/ .ui-widget.ui-button, .ui-button {border: 1px solid #084FA1;background: #084FA1;}
+
+:host /deep/ .ui-button:hover{border: 1px solid #042f60 !important;background-color: #042f60 !important;}
+
+:host /deep/ .ui-corner-all {border-radius: 0px;}
+
+:host /deep/ .ui-datepicker-buttonbar span{color:#fff;}

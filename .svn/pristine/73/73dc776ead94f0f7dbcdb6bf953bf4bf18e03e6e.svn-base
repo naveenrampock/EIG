@@ -1,0 +1,29 @@
+<div class="col-lg-9 pull-right no-padd" id="UserSetting">
+  <ul class="nav nav-tabs menu">
+    <li id="lnk_security"><a data-toggle="tab" href="#Security" class="active-link active" routerLink="/userSettings/user-security"
+        routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Security Settings</a></li>
+    <li id="lnk_Notification"><a data-toggle="tab" routerLink="/userSettings/user-notification" routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact: true}" href="#Notify">Notification Settings</a></li>
+    <li id="authorize"><a data-toggle="tab" routerLink="/userSettings/user-configuration" routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact: true}">Authorization</a></li>
+    <li id="lnk_DeviceList"><a data-toggle="tab" routerLink="/userSettings/user-device-list" routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact: true}" href="#DeviceList">Device List</a></li>
+  </ul>
+</div>
+<!-- <div class="myhealth">
+            <ul class="nav nav-tabs menu">
+              <li >
+                <a class="active-link"  routerLink="/my-health/my-health-history" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">My Health History
+                </a>
+              </li>
+              <li>
+                <a routerLink="/my-health/my-lifestyle"  routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">My Lifestyle
+                </a>
+              </li>
+              <li>
+                <a routerLink="/my-health/my-family-health-history" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Family health History
+                </a>
+              </li>
+            </ul>
+          </div> -->
+<router-outlet></router-outlet>

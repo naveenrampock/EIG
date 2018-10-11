@@ -1,0 +1,17 @@
+.nav-item.active a{color: #fff; background-color: #084FA1;border-top-left-radius: 3px;border-top-right-radius: 3px;}
+
+.disbaledInput input{
+    border: none;
+    background: no-repeat;
+    box-shadow: none;
+    outline: 0;
+    pointer-events:none;
+}
+
+.u-nav-v1-1.u-nav-primary .nav-link.active {
+    color: #fff;
+    background-color: #084FA1;
+    border-top-left-radius: 3px;border-top-right-radius: 3px;
+}
+
+.nav-link{position: relative;top: 0px;}

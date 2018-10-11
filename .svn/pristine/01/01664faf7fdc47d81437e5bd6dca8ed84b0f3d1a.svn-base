@@ -1,0 +1,18 @@
+{
+  "HOME": {
+    "TITLE": "ABCD!",
+    "SELECT": "Changer la langue"
+  },
+  "MENU":{
+    "Dashboard":"Главная",
+    "Profile": "Профиль",
+    "MyHealth":"Мое здоровье",
+    "ContactManagement":"Управление контактами",
+    "Messages": "Сообщения",
+    "PatientInformation": "Информация о пациенте",
+    "CaseManagement":"Управление делом",
+    "Dicom":"DICOM",
+    "Settings": "настройки",
+    "EMR":"ЭМИ"
+  }
+}

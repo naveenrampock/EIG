@@ -1,0 +1,86 @@
+<section class="g-my-10 col-lg-12 nopadd">
+  <div class="container">
+    <ul class="u-list-inline">
+      <li class="list-inline-item g-mr-7">
+        <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">{{'Logs.Home' | translate}}</a>
+        <i class="fa fa-angle-right g-ml-7"></i>
+      </li>
+      <!-- <li class="list-inline-item g-mr-7">
+        <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">Pages</a>
+        <i class="fa fa-angle-right g-ml-7"></i>
+      </li> -->
+      <li class="list-inline-item g-color-primary">
+        <span>{{'Logs.Logs' | translate}}</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="row col-lg-12 nopadd">
+  <app-sidebar-nav class="col-lg-3 lookupmaster"></app-sidebar-nav>
+
+  <div class="col-lg-9 nopadd lookupmaster" id="LookupMaster">
+    <!-- Nav tabs -->
+    <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary col-lg-12 p-r0" role="tablist"
+      data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20"
+      style="padding:0">
+      <li class="nav-item col-lg-2 nopadd" style="padding:0">
+        <a class="nav-link g-py-5 active" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--1" role="tab">{{'Logs.AuditLog' | translate}}</a>
+      </li>
+      <li class="col-lg-10 pull-right text-right nopadd" style="padding:0">
+        <!-- <input type="search" name="" value="" placeholder="Search..."/> -->
+        <!-- <a id="Add_Lookup" class="add_lookup" data-toggle="modal" (click)="showDialogToAdd()">
+            <img src="../../../assets/images/Plus.png">
+          </a> -->
+      </li>
+
+    </ul>
+    <div class="pull-right g-py-10">
+      <label>{{'Logs.Search' | translate}}:</label>
+      <input autocomplete='off' type="text" #gb pInputText size="25" placeholder="" class="mrgbtm15">
+    </div>
+    <div id="blist_Table" class="content-section implementation col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding" style="clear:both; padding:0">
+      <p-dataTable [value]="List" [paginator]="true" [rows]="10" [pageLinks]="3" [globalFilter]="gb" [responsive]="true">
+
+        <p-column field="LogId" header="{{'Logs.LogId' | translate}}" [sortable]="true">
+          <ng-template let-col let-logList="rowData" pTemplate="body">
+            <span>
+              {{logList.ActionType}}
+            </span>
+          </ng-template>
+        </p-column>
+
+        <p-column field="ModuleName" header="{{'Logs.ModuleName' | translate}}" [sortable]="true" [editable]="true">
+          <ng-template let-col let-logList="rowData" pTemplate="body">
+            <span>
+              {{logList.ModuleName}}
+            </span>
+          </ng-template>
+        </p-column>
+
+        <p-column field="OldValue" header="{{'Logs.OldValue' | translate}}" [sortable]="true" [editable]="true">
+          <ng-template let-col let-logList="rowData" pTemplate="body">
+            <span pTooltip="{{logList.OldValue}}" class="elipses">{{logList.OldValue}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="NewValue" header="{{'Logs.NewValue' | translate}}" [sortable]="true" [editable]="true">
+          <ng-template let-col let-logList="rowData" pTemplate="body">
+            <span pTooltip="{{logList.NewValue}}" class="elipses">{{logList.NewValue}}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column field="CreatedDate" header="{{'Logs.CreatedDate' | translate}}" [sortable]="true" [editable]="true">
+          <ng-template let-col let-logList="rowData" pTemplate="body">
+            <span>{{logList.CreatedDate ? (logList.CreatedDate | date) : 'No date' }}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column field="CreatedBy" header="{{'Logs.CreatedBy' | translate}}" [sortable]="true" [editable]="true">
+          <ng-template let-col let-logList="rowData" pTemplate="body">
+            <span>{{logList.CreatedBy}}</span>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

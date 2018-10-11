@@ -1,0 +1,161 @@
+
+
+.search {
+    height: 15px;
+    position: absolute;
+    right: 8%;
+    top: 4px;
+}
+h3 {
+    padding-left: 0px;
+}
+
+.invite{border: 0px;position: relative;top: 10px;}
+
+a.u-icon-size--sm{position:relative;top:0px;}
+
+.cont_username{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+
+figure {margin:15px 0 15px;border: 1px solid #c6c6c6 !important;min-height: 276px;}
+
+figure div{height: 223px;}
+
+.card-header{background-color:#084FA1 !important;border-radius:0px;}
+
+.card-header h3{color:#fff !important;}
+
+.card-block{background-color: #fff; padding-left: 0px; padding-right: 0px;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {
+    padding: 0.5em 1.5em;
+}
+
+.searchlbl > div label:nth-child(1){color:#2060aa;}
+
+.myUL{margin-top:10px;padding-left: 4px;max-height:200px;overflow-y: auto;}
+
+.myUL li{margin-bottom:10px;}
+
+.myUL li img{position: relative;left: 5px;}
+
+.myUL li a{position: relative;left: 10px;}
+
+.uadd{float: right;position: relative;left: -5px !important;top:10px;}
+
+.userinvite{position: absolute;right: 3%;top: 15px;background-color: #2060aa;color: #fff !important;padding: 4px 20px;border-radius: 3px;cursor:pointer;}
+
+.socialinvite{margin: 0px 0px 10px;background-color: #d9d9d9;padding: 13px 5px;width: 100%;}
+
+.mail{padding: 5px 8px;background-color: red;border-radius: 100%;cursor:pointer;margin-left:5px;}
+
+.facebook{padding: 5px 10px;background-color: #2060aa;border-radius: 100%;margin-left:5px;cursor:pointer;}
+
+.google{padding: 5px 9px;background-color: #4285f4;border-radius: 100%;margin-left:5px;cursor:pointer;}
+
+.mail i,.facebook i,.google i{color:#fff !important;}
+
+.mail:active {border:2px solid #000;}
+
+.searchadd{background-color: #fff;color: #206aaa !important;padding: 3px 8px;border-radius: 0px;cursor:pointer;}
+
+.myUL .fa-plus{padding: 5px;background-color: #084FA1;color: #fff;border-radius: 0px;cursor: pointer;}
+
+input[type="checkbox"]{right:0px;}
+
+.myUL li:hover button.uadd{display:block !important; background-color: #fff;}
+
+.u-icon-v1.u-icon-size--sm{width: 1.28571rem;}
+
+.h5, h5 {font-size: 1rem;}
+
+.h-30{height:30px;}
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+
+.d-flex{display:block !important;}
+
+.g-pos-rel > .navbar-toggler > .hamburger{display:none;}
+
+.hs-menu-initialized {z-index: 10;position: absolute;top: -15px;right: -10px;}
+
+.nav-user-photo{top:2px;}
+
+.search{right: 20px;bottom: 24px;}
+
+}
+@media only screen and (min-device-width : 481px) and (max-device-width : 767px){
+
+.d-flex{display:block !important;}
+
+.g-pos-rel > .navbar-toggler > .hamburger{display:none;}
+
+.hs-menu-initialized {z-index: 10;position: absolute;top: -15px;right: -10px;}
+
+.nav-user-photo{top:2px;}
+
+.search{right: 0px;bottom: 24px;}
+
+}
+@media only screen and (width : 320px) and (width : 480px){
+
+.d-flex{display:block !important;}
+
+.g-pos-rel > .navbar-toggler > .hamburger{display:none;}
+
+.hs-menu-initialized {z-index: 10;position: absolute;top: -15px;right: -10px;}
+
+.nav-user-photo{top:2px;}
+
+.search{right: 0px;bottom: 24px;}
+
+}
+@media only screen and (width : 481px) and (width : 767px){
+
+.d-flex{display:block !important;}
+
+.g-pos-rel > .navbar-toggler > .hamburger{display:none;}
+
+.hs-menu-initialized {z-index: 10;position: absolute;top: -15px;right: -10px;}
+
+.nav-user-photo{top:2px;}
+
+.search{right: 0px;bottom: 24px;}
+
+}
+
+@media only screen and (width : 768px) and (width : 1024px){
+
+.d-flex{display:block !important;}
+
+.g-pos-rel > .navbar-toggler > .hamburger{display:none;}
+
+.hs-menu-initialized {z-index: 10;position: absolute;top: -15px;right: -10px;}
+
+.nav-user-photo{top:2px;}
+
+.search{right: 0px;bottom: 24px;}
+
+}
+
+:host /deep/ .btn.disabled > .fa-plus{background-color: #d9d9d9 !important;}
+
+:host /deep/ .ui-autocomplete{ display: inline;}
+
+:host /deep/ .ui-autocomplete-panel{position:relative;top:0px !important;}
+
+:host /deep/ .ui-autocomplete .ui-autocomplete-input{width:100%;}
+
+button.close {
+    opacity: 1;
+}
+
+.modal-header{ background-color: #084FA1; color: #fff;}
+
+.patientinfo .modal-dialog{max-width:900px;}
+
+.patientinfo .menu li > a.active{padding: 6px 10px;background-color: #084FA1;color: #fff;}
+
+.zip{width:15.5%;}
+
+#PatientInfo ul li {padding: 5px 2%;}

@@ -1,0 +1,7 @@
+
+
+.searchs{position: absolute;text-align: right;width: 100%;}   
+
+.implement{    position: relative;top: 55px;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {padding: 0.5em 1.5em;}

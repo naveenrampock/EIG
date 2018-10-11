@@ -1,0 +1,122 @@
+<p-dialog header="Title" [(visible)]="display">
+  Content
+</p-dialog>
+<!-- Loading overlay section starts -->
+<div [class.overlay-display]="overlayDisplay" class="overlay">
+  <h1>Loading</h1>
+</div>
+<!-- Loading overlay section starts -->
+
+<div class="col-sm-9 pull-left no-padd">
+
+  <!-- header section starts -->
+  <!-- <div class="header">
+    <div class="welcome-user">
+      <span>Hello {{username}}</span>
+      <div class="home-navigation">
+     
+      </div>
+    </div>
+  </div> -->
+  <!-- header section ends -->
+
+  <div class="chat-body pull-left col-sm-12">
+
+    <!-- User chat list section starts -->
+    <div class="col-md-4 pull-left nopadd">
+      <div class="user-list-wrapper">
+        <!-- <button type="text" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show">test</button> -->
+        <div class="contact-search">
+          <input type="text" name="" placeholder="Search..." [(ngModel)]="inputVal" (keyup)="alphaFilterSerach(inputVal)" />
+          <i class="fa fa-search"></i>
+        </div>
+        <!-- <div class="notifications" (click)="hide()">
+            <a>Notifications</a>
+          </div> -->
+        <div class="contacts" (click)="show()">
+          <label>Contacts</label>
+          <div class="chat-contact"> <i class="fa fa-users"></i>
+          </div>
+        </div>
+        <ul class="user-list">
+
+          <!-- click event to handle the selection : selectedUser() -->
+          <!-- adding a class to indicate the selection -->
+          <li *ngFor="let user of chatListUsers | search :sLetter" (click)="selectedUser(user)" [class.selected-user]="isUserSelected(user.UserIdentifier)">
+            <!-- <span [class.online]="user.online=='Y'"  [class.offline]="user.online=='N'"></span> -->
+            <b>{{user.FirstName + ' ' + user.LastName}}</b><br>
+            <!-- last message => {{user.Message}}<br> -->
+            <!-- Unread message => {{user.UnreadCount}} -->
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- User chat list section ends -->
+
+    <!-- Messages section starts -->
+    <div class="col-md-8 no-padd pull-left">
+      <div [hidden]="!hideElement" class="massege-wrapper">
+        <div class="massege-container">
+
+          <div *ngIf="selectedUserName" class="opposite-user">
+            Chatting with {{selectedUserName}}
+            <div class="chat-del" (click)="del(messages,'all')"> <i class="fa fa-trash-o "></i>
+
+            </div>
+          </div>
+          <ul class="message-thread">
+
+            <li *ngFor="let message of messages | chatOrder" [class.align-right]="alignMessage(message.toUserId)">
+              <i class="fa fa-times" (click)="del(message,'1')"></i>
+              <p>{{ message.Message}}</p>
+              <div class="msg_datetime">
+                <span>{{message.CreatedDate | date}}</span>
+                <span>{{message.CreatedDate | date : 'shortTime'}}</span> </div>
+
+
+            </li>
+          </ul>
+
+        </div>
+        <div class="message-typer">
+          <textarea class="message form-control" placeholder="Type and hit Enter" [(ngModel)]="message" (keyup)="sendMessage($event)"></textarea>
+          <!-- <button  (click)="sendMessage($event)">Send</button> -->
+        </div>
+      </div>
+      <div [hidden]="hideElement" id="Notifications" class="col-lg-12 con_li not_li">
+        <h4 class="txt-w p-b5 p-l0">Notifications</h4>
+        <p-dataList [value]="notificationList" [paginator]="false">
+          <!-- <p-dataScroller [value]="notificationList"  [rows]="5" (onLazyLoad)="loadData($event)" [lazy]="true"  > -->
+          <ng-template let-notify pTemplate="item">
+            <a><img src="../assets/images/5.jpg" class="hw40"></a>
+            <p> {{notify.Comments}}</p>
+            <label class="pull-right pos-b10">{{notify.NotificationDate | date:'shortDate'}}</label>
+          </ng-template>
+        </p-dataList>
+        <!-- </p-dataScroller> -->
+
+
+
+
+        <!-- <div class="row">
+           <div (click)="showDialog()" class="col-lg-12 col-md-12 col-sm-12 col-12 row">
+              <div class="col-lg-1 col-md-1 col-sm-2 col-2 bg-w p-t15 p-b15 m-b10"> <a>
+                  <img src="../assets/images/5.jpg" class="hw40"></a></div>
+                  <div class="col-lg-11 col-md-11 col-sm-10 col-10 bg-w p-b15 p-t15 m-b10">
+                  <a>
+                  <label><b>Shane</b> Viewed Your Profile</label>
+                  <label class="pull-right">16/11/17</label>
+                  </a>
+                  </div>
+           </div>
+          
+             
+               
+        </div> -->
+      </div>
+    </div>
+    <!-- Messages section ends -->
+
+  </div>
+
+</div>

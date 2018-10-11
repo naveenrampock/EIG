@@ -1,0 +1,27 @@
+.emr_records{background-color: #fff}
+.tabcontent{
+    float:left;
+    padding:0 10px;
+    width:100%;
+    border-left:none;
+    min-height:400px;
+}
+.login {
+    background-color:#0847a1;
+    padding:5px 20px;
+    border-radius:3px;
+    color:#fff !important;
+    position:relative;
+    top:100px;
+    left:5%;
+}
+.modal-body {
+    position:relative;
+    flex:1 1 auto;
+    padding:15px   
+}
+
+.share {
+    background-color: #0847a1;
+    color:#fff;
+}

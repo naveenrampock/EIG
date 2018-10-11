@@ -1,0 +1,23 @@
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar { padding: 0.5em 1.5em;background: #084FA1;color: #fff;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon {color: #fff;padding-top: 5px;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon:hover{color:#000;}
+
+.list-group-item.active{background-color: #084FA1 !important;border-color: #084FA1 !important;}
+
+/* :host /deep/ .ng-star-inserted{padding-left:15px;} */
+
+:host /deep/ .ui-widget-content .ui-button, .ui-widget.ui-button, .ui-button {border: 1px solid #084FA1;
+    color: #FFFFFF;background: #084FA1; font-weight: normal;}
+
+:host /deep/ .ui-button-text-icon-left .ui-button-text {
+    padding: .07em 0.2em .10em 1.1em;
+}
+
+:host /deep/ .ui-dialog-footer{padding:0.5em;}
+
+:host /deep/ .ui-button-text {position: relative;top:1px;}
+
+:host /deep/ .ui-dialog-footer.ui-widget-content{border:0px;border-top: 1px solid #D5D5D5;}

@@ -1,0 +1,9 @@
+.table-disply-ui{    
+    display: table!important;
+}
+
+:host /deep/ .ui-datatable-tablewrapper thead th:nth-child(2){width: 150px;}
+
+:host /deep/ .ui-datatable-tablewrapper thead th:nth-child(3){width: 100px;}
+
+:host /deep/ .ui-datatable-tablewrapper thead th:nth-child(4){width: 150px;}

@@ -1,0 +1,42 @@
+/* .emr-tabcontent p-dropdown{
+    position: absolute;
+    top: 8px;
+    left: 90px;
+}
+
+:host /deep/.emr-details select.ui-datepicker-month{height:28px !important;padding:2px 8px 0px 8px}
+
+:host /deep/.emr-details select.ui-datepicker-year{height:28px !important;padding:2px 8px 0px 8px}
+
+.ebg-white > div:nth-child(2){height:400px;}
+
+:host /deep/ .legend-like-labels{height:400px !important;display:block;}
+
+:host /deep/ .legend-like-labels > div{height:57px;float:left;}
+
+:host /deep/ .ui-datepicker select.ui-datepicker-year {width: 40%;}
+
+:host /deep/.ui-datepicker.ui-widget .ui-datepicker-calendar td a{padding: 4px 8px;}
+
+:host /deep/ .ui-datepicker.ui-widget .ui-datepicker-calendar thead th{padding: 4px 8px;}
+
+:host /deep/ .ui-timepicker { text-align: center; padding: .0em 0;}
+
+:host /deep/ .ui-datepicker .ui-datepicker-prev{top: 0.5em;}
+
+
+:host /deep/ .ui-datepicker .ui-datepicker-next{top: 0.5em;} */
+:host /deep/ .ui-datepicker .ui-datepicker-next{top: 0.5em;}
+
+:host /deep/ .ui-widget-header{border:0px;}
+
+:host /deep/ .ui-table-caption{padding: .25em .0em;}
+
+:host /deep/ .ui-table .ui-table-thead>tr>th, .ui-table .ui-table-tbody>tr>td, .ui-table .ui-table-tfoot>tr>td{padding: .4em .5em;}
+
+:host /deep/ .ui-paginator .ui-paginator-page.ui-state-active {background: #0847a1;color: #ffffff;border-color: #0847a1;}
+
+:host /deep/ .ui-corner-all {border-radius: 0px;}
+
+
+

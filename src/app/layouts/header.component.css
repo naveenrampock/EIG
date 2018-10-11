@@ -1,0 +1,44 @@
+
+.modal-header{padding: 3px 6px 0px 0px; border-bottom: none;}
+
+.modal-body{position: relative; padding: 0px 15px;}
+
+::ng-deep hws-header{background-color: #000 !important;}
+
+.h-28{height:28px;}
+
+.icon-menu{font-size: 30px;color: #32c5d2;}
+
+.list-group .active-link {color: #fff !important;outline: none;z-index: 2;background-color: #084FA1;border-color: #084FA1;}
+
+.hs-has-sub-menu .active-link {color: #084FA1 !important;outline: none;z-index: 2;background-color: #fff;font-weight:bold;}
+
+.navbar .u-main-nav-v5 .nav-item.hs-has-sub-menu > a{font-weight:bold;}
+
+.border0{border:0px solid #d9d9d9;padding:0px;}
+
+.metismenu .has-arrow:hover {position: relative;}
+
+.metismenu .has-arrow:hover .metis-secondary{display:block;}
+
+.metismenu .has-arrow.collapsed {position: relative;color: #333 !important;}
+
+.metismenu .has-arrow{color: #32c5d2 !important;padding-left:0px;}
+
+.has-arrow .collapse{display:block !important;}
+
+.has-arrow .panel-collapse{padding:0px;}
+
+.show .collapse{display:block !important;}
+
+.responsive-profile-image {vertical-align: middle;width: 40px;height: 40px;border-radius: 50%;position: absolute;top: 0px;}
+
+#User table thead th {background-color: #32c5d2;color: #fff;}
+
+ul li a.dropdown-toggle{  border-left: 0px solid #32c5d2 !important; background-color: #fff !important;}
+
+.collapse.show {
+    display: block !important;
+}
+
+.metismenu .has-arrow:before{display:none;}

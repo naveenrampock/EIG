@@ -1,0 +1,52 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<!-- Edit Popup Start -->
+<div class="modal fade editcase" id="EditCase" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Case</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngIf="editedCase">
+          <div class="col-lg-1 col-md-2 col-sm-2 col-2 pull-left">
+            <a>
+              <img [src]="editedCase.profilePic" class="u-pht" [title]="editedCase.CaseCreatedByName" />
+            </a>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-7 col-8 pull-left p-l20">
+            <p>
+              <label id="Username1" class="c-name">{{editedCase.CaseCreatedByName}}</label>
+            </p>
+            <p class="date">{{editedCase.CaseCreatedDate | date: shortDate}}</p>
+          </div>
+          <div class="col-lg-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <h6 id="case-hdr1" class="p-t10">
+                <span *ngIf="!editedCase.isEdited">
+                  {{editedCase.CaseName}}
+                </span>
+                <input [(ngModel)]="editedCase.CaseName" *ngIf="editedCase.isEdited" class="col-lg-12 col-md-12 col-sm-12 col-12 h-32" />
+              </h6>
+            </div>
+            <div id="name_row1" class="col-lg-12">
+              <span *ngIf="!editedCase.isEdited">
+                {{editedCase.CaseDescription}}
+              </span>
+              <textarea rows="4" cols="50" class="col-lg-12 col-md-12 col-sm-12 col-12" [(ngModel)]="editedCase.CaseDescription" *ngIf="editedCase.isEdited">{{editedCase.CaseDescription}}</textarea>
+            </div>
+          </div>
+          <div *ngIf="editedCase.errorMsg">{{editedCase.errorMsg}}</div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right">
+            <button id="edit_button1" class="btn u-btn-primary g-mr-10 edit_button" (click)="editedCase.isEdited ? savEditedCase(editedCase) : showCasebutton(editedCase)">{{editedCase.isEdited ? 'Save' : 'Edit'}}</button>
+            <button id="edit_button1" class="btn u-btn-darkgray g-mr-10" (click)="cancelEdit(editedCase)">Cancel</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Posted Popup End -->

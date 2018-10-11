@@ -1,0 +1,29 @@
+.myhealth > ul > li > a{padding: 5px 20px;color: #084FA1;position: relative;bottom: 4px;}
+
+.myhealth > ul > li.active{background-color:#084FA1;}
+
+.myhealth > ul > li.active > a{color:#fff;}
+
+
+.active-link{padding: 9px 10px;
+    background-color: #084FA1;
+    color: #fff !important;
+}
+input[type="button"]{
+ border-top-left-radius:3px;
+ border-top-right-radius:3px;
+}
+/* .active-link{color:#fff !important;} */
+
+@media only screen and (min-width:320px) and (max-width:580px){
+    .myhealth > ul > li > a{padding: 5px 6px;color: #084FA1;position: relative;bottom: 1px;font-size:12px;}
+   
+}
+
+@media only screen and (min-width:581px) and (max-width:767px){
+    .myhealth > ul > li > a{padding: 5px 8px;color: #084FA1;position: relative;bottom: 1px;font-size:12px;}
+}
+
+@media only screen and (min-width:768px) and (max-width:1024px){
+    .myhealth > ul > li > a{padding: 5px 8px;color: #084FA1;position: relative;bottom: 1px;font-size:12px;}
+}

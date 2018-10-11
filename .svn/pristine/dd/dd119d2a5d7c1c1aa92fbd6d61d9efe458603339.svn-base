@@ -1,0 +1,84 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="container">
+  <div class="modal fade mymodal toast-container" id="progressBar" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:5px 10px;">
+          <h4 class="modal-title">Progress Bar</h4>
+          <a title="Minimize">
+            <button class="close modalMinimize" (click)="minimize()">
+              <i class='fa fa-minus'></i>
+            </button>
+          </a>
+
+          <a title="Close">
+            <button type="button" class="close pos-b10 vidyoclose" (click)="disable()">
+              <i class='fa fa-times'></i>
+            </button>
+          </a>
+        </div>
+        <div class="modal-body">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [style.width]="uploadProgress + '%'">
+             <label class="p-t5">{{uploadProgress}}%</label> 
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="minmaxCon"></div>
+
+  <div id="minimize" class="minimize" [hidden]="isMinimized">
+    <div class="floating">
+      <a title="Video Conference">
+        <i class="fa fa-dot-circle red"></i>
+      </a>
+      <a title="Close">
+        <button type="button" class="close pos-b10 dismissminimize" (click)="disable()">
+          <i class='fa fa-times'></i>
+        </button>
+      </a>
+      <a title="Maximize" (click)="maximize()">
+        <button class="close maximize">
+          <i class='fa fa-window-maximize'></i>
+        </button>
+      </a>
+    </div>
+  </div>
+
+
+
+</div>
+
+<p-dialog header="Confirm Upload" [(visible)]="display" class="conf-upload" [style]="{'z-index':'9999999'}">
+
+  <ul>
+    <li>
+      <div>
+        <label>StudyId :</label>{{studyId}}</div>
+      <ul>
+
+        <li>
+          <div>
+            <label>Series :</label>{{series}}</div>
+          <ul>
+            <li>
+              <div>
+                <label>Image :</label>{{image}}</div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p-footer>
+
+
+    <div class="ui-dialog-buttonpane ui-helper-clearfix popup invite-pop">
+      <button type="button" pButton icon="fa-check" label="Yes" (click)="moveToS3()" class="btn-save btn">Save</button>
+      <button type="button" pButton icon="fa-close" label="No" (click)="removeDicon()"class="btn-cancel btn">Reject</button>
+    </div>
+
+  </p-footer>
+</p-dialog>

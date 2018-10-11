@@ -1,0 +1,387 @@
+<p-growl [(value)]="msgs" life="1000"></p-growl>
+<div class="emr-details">
+  <div class="m-b10 ebg-white">
+    <div class="head-text">
+      <p class="col-sm-12 text-center w-85 pull-left m-0">CarePlan</p>
+      <a class="pull-right" id="back_Appointment" (click)="backToListing()">
+        <button class="addbutton">
+          <i class="fa fa-arrow-circle-left"></i>
+        </button>
+      </a>
+    </div>
+    <div class="legend-like-labels" [formGroup]="emrCarePlanDetailsForm">
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">SourceType
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 pull-left no-padd">
+          <input type='text' (keyup)="searchDropDown(11, src.value)" #src formControlName="SourceType" [(ngModel)]="selectedText" minlength="3"
+          />
+          <div *ngIf="sourceType && IsHidden" class="emr-dropdown">
+            <ul *ngFor="let sType of sourceType" (click)="getValue(sType)" class="p-l10 m-b0 brd-b">
+              <li>
+                {{sType.Description}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">SourceId</label>
+        <div class="col-sm-7 pull-left no-padd">
+          <input type="text" formControlName="SourceId" OnlyNumber="true" maxlength="19">
+        </div>
+      </div>
+      <!--General  -->
+      <div class="head-text subhead inline-block">
+        <p class="normal pull-left m-0">General</p>
+      </div>
+      <div class="col-sm-12 no-padd">
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Context</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <!-- <input type="text" formControlName="Context" maxlength="25"> -->
+            <a>Link to encounter</a>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Intent</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(122, src2.value)" #src2 formControlName="Intent" [(ngModel)]="selectedIntent"
+              minlength="3" />
+            <div *ngIf="intentType && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let intType of intentType" (click)="getValue(intType)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{intType.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Category</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(123, src3.value)" #src3 formControlName="Category" [(ngModel)]="selectedCategory"
+              minlength="3" />
+            <div *ngIf="categoryType && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let catType of categoryType" (click)="getValue(catType)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{catType.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Status
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(56, src1.value)" #src1 formControlName="Status" [(ngModel)]="selectedStatus" minlength="3"
+            />
+            <div *ngIf="statusType && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let statusType of statusType" (click)="getValue(statusType)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{statusType.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div formGroupName="Period" class="col-sm-8 no-padd">
+          <div class="col-sm-6 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Period From
+            </label>
+            <div class="col-sm-7 pull-left no-padd">
+              <p-calendar [timeOnly]="true" formControlName="PeriodFrom">
+                <i class="fa fa-clock"></i>
+              </p-calendar>
+            </div>
+          </div>
+          <div class="col-sm-6 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">PeriodTo
+            </label>
+            <div class="col-sm-7 pull-left no-padd">
+              <p-calendar [timeOnly]="true" formControlName="PeriodTo">
+                <i class="fa fa-clock"></i>
+              </p-calendar>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Goal</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Goal" maxlength="100">
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Title</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Title" maxlength="100">
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Description</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Description" maxlength="100">
+          </div>
+        </div>
+      </div>
+      <!-- Activity Details -->
+      <div class="head-text subhead inline-block">
+        <p class="normal pull-left m-0">Activity Details</p>
+
+      </div>
+      <div class="col-sm-12 no-padd">
+      <div class="head-text subhead m-t10 inline-block col-sm-12">
+        <p class="normal pull-left m-0">Activity</p>
+        <a class="addlist" id="lnk_Appointment" (click)="showActivityDetails()">
+          <i class="fa fa-plus"></i>
+        </a>
+      </div>
+    </div>
+      <div class="col-sm-12 no-padd" formGroupName="ActivityParent">
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd" style="font-size: 11px">Outcome Code</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(58, src4.value)" #src4 formControlName="OutcomeCodeableConcept" [(ngModel)]="selectedOutcomeCodeableConcept"
+              minlength="3" />
+            <div *ngIf="outcomeType && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let oType of outcomeType" (click)="getValue(oType)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{oType.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd h-30">outcome Reference</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="outcomeReference" maxlength="100">
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Activity</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Activity" maxlength="100">
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Progress</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Progress" maxlength="100">
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Reference</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Reference" maxlength="100">
+          </div>
+        </div>
+        <div formGroupName="DetailParent" class="col-sm-12 no-padd">
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Detail</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="Detail" maxlength="100">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p-dialog header="Activity Details" [(visible)]="isActivities" [responsive]="true" showEffect="fade" [modal]="true" [width]="800">
+        <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+          <div class="head-text subhead inline-block">
+            <p class="normal pull-left m-0">Activity Details</p>
+          </div>
+          <div class="col-sm-12 no-padd">
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Category</label>
+              <div class="col-sm-7 pull-left no-padd">
+                <input type='text' (keyup)="searchDropDown(123, src3.value)" #src3 formControlName="Category" [(ngModel)]="selectedCategory"
+                  minlength="3" />
+                <div *ngIf="categoryType && IsHidden" class="emr-dropdown">
+                  <ul *ngFor="let catType of categoryType" (click)="getValue(catType)" class="p-l10 m-b0 brd-b">
+                    <li>
+                      {{catType.Description}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div formGroupName="ActivityParent">
+              <div formGroupName="DetailParent">
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Definition
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="Definition">
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Code</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type='text' (keyup)="searchDropDown(61, src5.value)" #src5 formControlName="Code" [(ngModel)]="selectedCodeDrp" minlength="3"
+                    />
+                    <div *ngIf="codeType && IsHidden" class="emr-dropdown">
+                      <ul *ngFor="let coType of codeType" (click)="getValue(coType)" class="p-l10 m-b0 brd-b">
+                        <li>
+                          {{coType.Description}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Prohibited</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <select formControlName="Prohibited">
+                      <option [value]="1">Do</option>
+                      <option [value]="2">Don't DO </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Location</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="Location" maxlength="100">
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Performer</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="Performer" maxlength="100">
+                  </div>
+                </div>
+
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">DailyAmount</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="DailyAmount" maxlength="100">
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Quantity</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="Quantity" maxlength="100">
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">ReasonCode</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type='text' (keyup)="searchDropDown(128, src7.value)" #src7 formControlName="ReasonCode" [(ngModel)]="selectedReasonCode"
+                      minlength="3" />
+                    <div *ngIf="reasonCodeType && IsHidden" class="emr-dropdown">
+                      <ul *ngFor="let rcType of reasonCodeType" (click)="getValue(rcType)" class="p-l10 m-b0 brd-b">
+                        <li>
+                          {{rcType.Description}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd h-30">Reason Reference</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="ReasonReference" maxlength="100">
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Status
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type='text' (keyup)="searchDropDown(56, src1.value)" #src1 formControlName="Status" [(ngModel)]="selectedStatus" minlength="3"
+                    />
+                    <div *ngIf="statusType && IsHidden" class="emr-dropdown">
+                      <ul *ngFor="let statusType of statusType" (click)="getValue(statusType)" class="p-l10 m-b0 brd-b">
+                        <li>
+                          {{statusType.Description}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Status Reason</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="StatusReason" maxlength="100">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Goal</label>
+              <div class="col-sm-7 pull-left no-padd">
+                <input type="text" formControlName="Goal" maxlength="100">
+              </div>
+            </div>
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Description</label>
+              <div class="col-sm-7 pull-left no-padd">
+                <input type="text" formControlName="Description" maxlength="100">
+              </div>
+            </div>
+          </div>
+<!-- Outcome Details - Schedule -->
+          <div class="head-text subhead inline-block">
+            <p class="normal pull-left m-0">Outcome Details - Schedule</p>
+          </div>
+          <div formGroupName="ActivityParent">
+            <div formGroupName="DetailParent">
+              <div formGroupName="ScheduledParent">
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">String</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="ScheduledString" maxlength="100">
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Timing</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="ScheduledTiming" maxlength="100">
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Period</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="ScheduledPeriod" maxlength="100">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- Outcome Product Details -->
+          <div class="head-text subhead inline-block">
+            <p class="normal pull-left m-0">Outcome Product Details</p>
+          </div>
+          <div formGroupName="ActivityParent">
+            <div formGroupName="DetailParent">
+              <div formGroupName="ProductParent">
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Codeable Concept</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="ProductCodeableConcept" maxlength="100">
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Reference</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type="text" formControlName="ProductReference" maxlength="100">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </p-dialog>
+    </div>
+
+    <div class="col-sm-12 inline-block text-right m-b10" *ngIf="CarePlanDetails?.mode !== 'readOnly'">
+      <button class="btn btn-primary clr-white m-b10" (click)="!CarePlanDetails ? saveEmrCarePlan() : updateEmrCarePlan()" [disabled]="!emrCarePlanDetailsForm.valid">{{!CarePlanDetails ? 'Save' : 'Update'}}</button>
+    </div>
+    <!-- {{emrCarePlanDetailsForm.value | json}} -->
+  </div>
+</div>

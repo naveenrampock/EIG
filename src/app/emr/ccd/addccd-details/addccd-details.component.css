@@ -1,0 +1,23 @@
+a#details1 {
+    text-align: center;
+    background-color: #0847a1;
+    color: #fff;
+    border-radius: 50px;
+    padding: 1px 5px;
+}
+:host /deep/ .ui-table .ui-table-tbody > tr > td {
+    background:white;
+}
+
+.u-btn-primary {
+    float: left;
+}
+
+:host /deep/ .ui-widget-header {
+    background: white;
+    border: 0px;
+}
+
+.table-bordered tbody {background-color:#fff}
+
+.nes_table {padding: 10px !important;background-color: #d9d9d9 !important;}

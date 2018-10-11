@@ -1,0 +1,667 @@
+<!-- Header -->
+<header *ngIf="header==3" id="js-header" class="u-header u-header--static u-header--show-hide u-header--change-appearance u-header--has-hidden-element"
+  data-header-fix-moment="500" data-header-fix-effect="slide">
+  <div class="u-header__section u-header__section--light g-bg-white-opacity-0_7 g-transition-0_3 g-pt-10"
+    data-header-fix-moment-exclude="g-py-15" data-header-fix-moment-classes="u-shadow-v18 g-py-7">
+    <div class="container">
+      <div class="d-lg-flex flex-md-row align-items-center g-pos-rel">
+        <!-- Responsive Toggle Button -->
+        <button class="navbar-toggler navbar-toggler-right btn g-hidden-lg-up g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-3 g-right-0"
+          type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse"
+          data-target="#navBar">
+          <span class="hamburger hamburger--slider">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </span>
+        </button>
+        <!-- End Responsive Toggle Button -->
+        <!-- Logo -->
+        <a href="index.html" class="navbar-brand">
+          <img src="assets/images/Medicamind_logo-01.png" alt="Image Description">
+        </a>
+        <!-- End Logo -->
+
+        <div class="col g-mt-10 g-mt-0--lg g-px-0">
+          <ul class="list-inline text-uppercase text-lg-right u-header--hidden-element g-line-height-1 g-font-size-12 g-mt-minus-10 g-mx-minus-4 g-mb-10">
+            <li class="list-inline-item g-pos-rel g-mx-4 g-mt-10">
+              <i class="fa fa-globe g-font-size-14 g-mr-3"></i>
+
+
+              <label>
+
+                <select #langSelect [(ngModel)]="selctedLang" (change)="switchLanguage(langSelect.value)">
+                  <option *ngFor="let lang of translate.getLangs()" [selected]="lang === translate.currentLang">{{
+                    lang }}</option>
+                </select>
+              </label>
+
+              <!-- <select #lId class="h-28" (change)="switchLanguage(lId.value)">
+
+                <option value="">English</option>
+                <option *ngFor="let language of languageDrp" [value]="language.Id">{{language.Description}}</option>
+              </select> -->
+              <!-- <a  id="languages-dropdown-invoker-2" class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover"
+              (click)="switchLanguage('')">EN
+              </a>
+              <a  id="languages-dropdown-invoker-2" class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover"
+              (click)="switchLanguage('82')">ESP
+              </a> -->
+
+              <!-- <ul id="languages-dropdown-2" class="list-unstyled text-left u-shadow-v23 g-pos-abs g-left-0 g-bg-white g-width-160 g-py-20 g-pb-15 g-mt-13 g-z-index-2 u-dropdown--css-animation u-dropdown--hidden"
+                style="z-index: 99; animation-duration: 300ms; left: 0px;display:none;" aria-labelledby="languages-dropdown-invoker-2">
+                <li>
+                  <a class="d-block g-color-main g-color-primary--hover g-text-underline--none--hover g-py-8 g-px-20" href="#">English</a>
+                </li>
+                <li>
+                  <a class="d-block g-color-main g-color-primary--hover g-text-underline--none--hover g-py-8 g-px-20" href="#">Spanish</a>
+                </li>
+                <li>
+                  <a class="d-block g-color-main g-color-primary--hover g-text-underline--none--hover g-py-8 g-px-20" href="#">Russian</a>
+                </li>
+                <li>
+                  <a class="d-block g-color-main g-color-primary--hover g-text-underline--none--hover g-py-8 g-px-20" href="#">German</a>
+                </li>
+              </ul> -->
+            </li>
+            <!-- <li class="list-inline-item g-mx-4 g-mt-10">|</li> -->
+            <!-- <li class="list-inline-item g-mx-4 g-mt-10" translate>
+              <a routerLink="/message" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                true}" class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover" translate>MESSAGE</a>
+            </li> -->
+
+            <li class="list-inline-item g-mx-4 g-mt-10">
+              <a routerLink="/message" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                true}"
+                class="black">
+                <i class="fa fa-wechat fa-lg g-color-primary--hover" style="padding-right:10px; cursor:pointer;"></i>
+              </a>
+            </li>
+
+            <li class="list-inline-item g-mx-4 g-mt-10">
+              <a routerLink="/userSettings" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                          true}"
+                class="black">
+                <i class="fa fa-cogs fa-lg g-color-primary--hover" style="cursor:pointer;"></i>
+              </a>
+            </li>
+
+
+            <!-- <li class="list-inline-item g-mx-4 g-mt-10">|</li> -->
+            <!-- <li class="list-inline-item g-mx-4 g-mt-10">
+              <a class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover" (click)="navigateAdmin()" translate
+                routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                true}">SETTING</a>
+            </li> -->
+            <!-- <li class="list-inline-item g-mx-4 g-mt-10">|</li> -->
+            <li class="list-inline-item g-mx-4 g-mt-10">
+              <ul class="nav ace-nav pull-right">
+                <li class="light-blue dropdown-modal">
+                  <a class="" data-toggle="modal" data-target="#userpopup">
+                    <img class="responsive-profile-image" [src]="profilePic" />
+                    <!-- <img *ngIf="checkImage == 1" class="nav-user-photo" src="assets/images/user.jpg" /> -->
+
+                    <!-- <i class="ace-icon fa fa-caret-down"></i> -->
+                  </a>
+                </li>
+              </ul>
+              <!--  <a href="../login.html" class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover">Welcome, Bill</a> -->
+            </li>
+          </ul>
+
+          <nav class="js-mega-menu navbar navbar-expand-lg">
+            <div class="container">
+              <!-- Responsive Toggle Button -->
+              <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-3 g-right-0"
+                type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse"
+                data-target="#navBar">
+                <span class="hamburger hamburger--slider">
+                  <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                  </span>
+                </span>
+              </button>
+              <!-- End Responsive Toggle Button -->
+
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse align-items-center flex-sm-row" id="navBar">
+                <ul class="navbar-nav ml-auto text-uppercase u-main-nav-v5 u-sub-menu-v1">
+                  <!-- <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg">
+                    <a class="" routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                      true}">{{ 'MENU.Home' | translate }}</a>
+                  </li> -->
+
+                  <!-- Research -->
+                  <!-- <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg">
+                    <a routerLink="/my-health/my-health-history" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class=""
+                      id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
+                      {{ 'MENU.MyHealth' | translate }}</a> -->
+                  <!-- Submenu -->
+                  <!-- <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
+                      <li>
+                        <a href="MyHealth/MyHealthHistory.html" translate>My Health History</a>
+                      </li>
+                      <li>
+                        <a href="MyHealth/MyLifeStyle.html" translate>My Lifestyle</a>
+                      </li>
+                      <li>
+                        <a href="MyHealth/FamilyHealthHistory.html" translate>Family Health History</a>
+                      </li>
+                    </ul> -->
+                  <!-- End Submenu -->
+                  <!-- </li> -->
+                  <!-- Mega Menu Item -->
+                  <!-- <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg">
+                    <a routerLink="/contact" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                      true}" class="" id="nav-link-2" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">{{ 'MENU.ContactManagement' | translate }}</a>
+                  </li> -->
+
+                  <!-- End Mega Menu Item -->
+                  <!-- Education -->
+
+
+                  <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg">
+                    <a routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                    true}"
+                      class="" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">{{
+                      'DashboardModule.HOME' | translate }}</a>
+                  </li>
+
+                  <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg">
+                    <a routerLink="/case-management" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                      true}"
+                      class="" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">{{
+                      'DashboardModule.CASE' | translate }}</a>
+                  </li>
+                  <!-- End Education -->
+                  <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg">
+                    <a routerLink="/dicomUser" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                      true}"
+                      class="" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">{{
+                      'DashboardModule.IMAGES' | translate }}</a>
+                  </li>
+                  <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg">
+                    <a routerLink="/emr" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                      true}"
+                      class="" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">{{
+                      'DashboardModule.EMR' | translate }}</a>
+                  </li>
+                  <!-- End Workstation -->
+                </ul>
+              </div>
+              <!-- End Navigation -->
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<div *ngIf="!hideMenu" class="container">
+  <div class="pull-left col-lg-3 no-padd z-index99">
+    <div id="includedleftnavigation" class="col-lg-12 no-padd">
+      <!-- Profile Sidebar -->
+      <div class="container-fluid g-mb-50 g-mb-0--lg" *ngIf="userType==3">
+        <!-- Sidebar Navigation -->
+        <div class="list-group list-group-border-0 g-mb-40">
+          <!-- Dashboard -->
+          <a routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                  true}"
+            class="list-group-item justify-content-between">
+            <span><i class="icon-home g-pos-rel g-top-1 g-mr-8"></i>{{ 'DashboardModule.DASHBOARD' | translate }}
+            </span>
+            <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-10"></span>
+          </a>
+
+          <!-- <a class="" routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                  true}">{{ 'MENU.Home' | translate }}</a> -->
+
+          <!-- End dashboard -->
+
+          <!-- Profile -->
+          <a routerLink="/userProfile" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                  true}"
+            class="list-group-item list-group-item-action justify-content-between">
+            <span><i class="icon-profile g-pos-rel g-top-1 g-mr-8"></i>{{ 'DashboardModule.PROFILE' | translate }}</span>
+          </a>
+          <!-- End Profile -->
+
+          <!-- Users Contacts -->
+          <!-- <a href="../contact/allcontacts.html" class="list-group-item list-group-item-action justify-content-between active">
+                   <span><i class="icon-notebook g-pos-rel g-top-1 g-mr-8"></i>Users Contacts</span>
+                 </a> -->
+
+          <a routerLink="/contact" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                      true}"
+            class="list-group-item list-group-item-action justify-content-between" id="nav-link-2" aria-haspopup="true"
+            aria-expanded="false" aria-controls="nav-submenu-1"><i class="icon-contacts g-pos-rel g-top-1 g-mr-8"></i>{{
+            'DashboardModule.CONTACT' | translate }}</a>
+
+          <!-- End Users Contacts -->
+
+          <!-- My Projects -->
+          <!-- <a href="page-profile-projects-1.html" class="list-group-item list-group-item-action justify-content-between"> -->
+          <!-- <span><i class="icon-layers g-pos-rel g-top-1 g-mr-8"></i>Notifications</span> -->
+          <!-- <span class="u-label g-font-size-11 g-bg-primary g-rounded-20 g-px-10">9</span> -->
+          <!-- </a> -->
+          <!-- End My Projects -->
+
+          <!-- Comments -->
+          <a routerLink="/message" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                  true}"
+            class="list-group-item list-group-item-action justify-content-between">
+            <span><i class="icon-bubbles g-pos-rel g-top-1 g-mr-8"></i>{{ 'DashboardModule.MESSAGES' | translate }}</span>
+            <span class="u-label g-font-size-11 g-bg-pink g-rounded-20 g-px-8"></span>
+          </a>
+
+          <!-- <a routerLink="/message" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                  true}" class="list-group-item list-group-item-action justify-content-between" translate>MESSAGE</a> -->
+
+          <!-- End Comments -->
+
+          <!-- Reviews -->
+          <!-- <a href="page-profile-reviews-1.html" class="list-group-item list-group-item-action justify-content-between"> -->
+          <!-- <span><i class="icon-list g-pos-rel g-top-1 g-mr-8"></i>Activites</span> -->
+          <!-- </a> -->
+          <!-- End Reviews -->
+
+          <!-- History -->
+          <!-- <a href="../myhealth/familyhealthhistory.html" class="list-group-item list-group-item-action justify-content-between">
+                   <span><i class="icon-heart g-pos-rel g-top-1 g-mr-8"></i>My Health</span>
+                 </a> -->
+          <a routerLink="/my-health/my-health-history" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
+            class="list-group-item list-group-item-action justify-content-between" id="nav-link-1" aria-haspopup="true"
+            aria-expanded="false" aria-controls="nav-submenu-1">
+            <span><i class="icon-heart g-pos-rel g-top-1 g-mr-8"></i>{{ 'DashboardModule.MYHEALTH' | translate }}
+            </span>
+          </a>
+
+          <a routerLink="/auditLogs" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="list-group-item list-group-item-action justify-content-between"
+            id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
+            <span><i class="icon-history g-pos-rel g-top-1 g-mr-8"></i> {{ 'DashboardModule.AUDITLOGS' | translate }}
+            </span>
+          </a>
+
+          <!-- <a routerLink="/patient" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="list-group-item list-group-item-action justify-content-between"
+               id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
+               <span><i class="icon-heart g-pos-rel g-top-1 g-mr-8"></i> Patient Info</span>
+              </a> -->
+
+          <!-- End History -->
+
+          <!-- <a href="../account/patientinfo.html" class="list-group-item list-group-item-action justify-content-between">
+                   <span><i class="icon-people g-pos-rel g-top-1 g-mr-8"></i>{{ 'MENU.PatientInformation' | translate }}</span>
+                 </a> -->
+
+          <!-- <a class="list-group-item list-group-item-action justify-content-between"
+                 id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1" (click)="savePatientId()" routerLinkActive="active">
+                  <span>
+                    PATIENT INFO</span>
+                </a> -->
+
+          <a routerLink="/user/patient-info/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                  true}"
+            class="list-group-item list-group-item-action justify-content-between" id="nav-link-1" aria-haspopup="true"
+            aria-expanded="false" aria-controls="nav-submenu-1" routerLinkActive="active">
+            <span>
+              <i class="icon-users2 g-pos-rel g-top-1 g-mr-8"></i> {{ 'DashboardModule.PATIENTINFO' | translate }}</span>
+          </a>
+
+          <!-- Settings -->
+          <!-- <a (click)="navigateAdmin()" translate
+                 routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                 true}" class="list-group-item list-group-item-action justify-content-between">
+                   <span><i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i>{{ 'MENU.Settings' | translate }}</span>
+                   <span class="u-label g-font-size-11 g-bg-cyan g-rounded-20 g-px-8">3</span>
+                 </a> -->
+
+          <a routerLink="/userSettings" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                  true}"
+            class="list-group-item list-group-item-action justify-content-between">
+            <span><i class="icon-chart-settings g-pos-rel g-top-1 g-mr-8"></i>{{ 'DashboardModule.SETTINGS' | translate
+              }}</span>
+          </a>
+
+          <a routerLink="/invitation" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                  true}"
+            class="list-group-item list-group-item-action justify-content-between">
+            <span><i class="icon-chart-settings g-pos-rel g-top-1 g-mr-8"></i>{{ 'DashboardModule.INVITATION' |
+              translate }}</span>
+          </a>
+          <!-- End Settings -->
+        </div>
+
+        <!-- End Sidebar Navigation -->
+
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-9">
+
+  </div>
+</div>
+<!-- End Header -->
+<div class="modal fade" id="userpopup" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Welcome,</p>
+        <p>{{this.firstName}} {{this.lastName}}</p>
+        <p class="text-center mrgbtm0">
+          <a class="padrgt10">
+            <i class="glyphicon glyphicon-off"></i>
+          </a>
+          <a (click)="logout()" class="p-l5">Logout</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="header==1||header==2" id="wrapper" class="page-wrapper active admin">
+
+  <nav id="sidebar-wrapper" class="sidebar-nav light-sidebar">
+    <div class="sidebar-inner content-scroll">
+
+      <div class="logo-header">
+        <a>
+          <img src="assets/images/Medicamind_logo-01.png" altalt="">
+        </a>
+      </div>
+      <!--logo-->
+      <div id="accordion" class="panel-group">
+        <ul class="metismenu" id="menu">
+          <li class="">
+
+            <a class="nav-link" routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                    true}">
+              <i class="icon-home"></i>
+              <span class="nav-text" translate>{{ 'DashboardModule.DASHBOARD' | translate }} </span>
+            </a>
+          </li>
+          <li>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <a class="has-arrow collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                  <i class="icon-home"></i>
+                  <span class="nav-text p-l10">{{ 'DashboardModule.UserManagement' | translate }} </span>
+                </a>
+              </div>
+              <div id="collapse1" class="panel-collapse collapse border0">
+                <ul aria-expanded="false" class="metis-secondary collapse">
+                  <li>
+                    <a routerLink="/admin/userManagement" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                      true}">
+                      {{ 'DashboardModule.basicUser' | translate }} </a>
+                  </li>
+                  <li>
+                    <a *ngIf="userType==1" routerLink="/admin/adminManagement" routerLinkActive="active-link"
+                      [routerLinkActiveOptions]="{exact:
+                                      true}">{{
+                      'DashboardModule.adminUser' | translate }} </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+
+
+
+          </li>
+          <li>
+            <a routerLink="/dicom" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+            true}">
+              <i class="icon-home"></i>
+              <span class="nav-text">{{ 'DashboardModule.DICOM' | translate }} </span>
+            </a>
+            <!-- <ul aria-expanded="false" class="metis-secondary collapse">
+            <li>
+              <a routerLink="/dicom/cacheServer" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                        true}">Cache Server</a>
+            </li>
+            <li>
+              <a routerLink="/dicom/dataStorage" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                        true}">Data Storage</a>
+            </li>
+
+
+            <li>
+              <a routerLink="/dicom/viewers" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                        true}">Viewers</a>
+            </li>
+
+          </ul> -->
+          </li>
+          <!-- 
+        <li>
+          <a routerLink="/attachments" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+            true}">
+            <i class="icon-home"></i>
+            <span class="nav-text">Genomic Report</span>
+          </a>
+        </li> -->
+          <li>
+            <a>
+              <i class="icon-home"></i>
+              <span class="nav-text">{{ 'DashboardModule.EMR' | translate }} </span>
+            </a>
+          </li>
+          <li>
+            <a aria-expanded="false" routerLink="/admin-case-management" routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{exact:
+            true}">
+              <i class="icon-home"></i>
+              <span class="nav-text">{{ 'DashboardModule.CASEMANAGEMENT' | translate }} </span>
+            </a>
+          </li>
+          <li>
+            <div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <a class="has-arrow collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                    <i class="icon-home"></i>
+                    <span class="nav-text p-l10">{{ 'DashboardModule.SYSTEMSETTINGS' | translate }} </span>
+                  </a>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse border0">
+                  <ul aria-expanded="false" class="metis-secondary collapse">
+                    <li>
+                      <a routerLink="/admin/lookup-master" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                        true}">{{
+                        'DashboardModule.LOOKUPMASTER' | translate }}</a>
+                    </li>
+                    <li>
+                      <a routerLink="/admin/admin-multilingual" routerLinkActive="active-link"
+                        [routerLinkActiveOptions]="{exact:
+                        true}">{{
+                        'DashboardModule.MULTILINGUALMASTER' | translate }} </a>
+                    </li>
+                    <li>
+                      <a routerLink="/admin/userDefault" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                          true}">{{
+                        'DashboardModule.USERAUTHORIZATION' | translate }} </a>
+                    </li>
+                    <li>
+                      <a *ngIf="userType==1" routerLink="/admin/adminDefault" routerLinkActive="active-link"
+                        [routerLinkActiveOptions]="{exact:
+                          true}">{{
+                        'DashboardModule.ADMINAUTHORIZATION' | translate }} </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a [href]="deplomentFile">
+              <i class="icon-home"></i>
+              <span class="nav-text">{{ 'DashboardModule.DEPLOYMENT' | translate }} </span>
+            </a>
+          </li>
+          <li>
+
+
+            <div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <a class="has-arrow collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                    <i class="icon-home"></i>
+                    <span class="nav-text p-l10">{{ 'DashboardModule.ENVIRONMENT' | translate }} </span>
+                  </a>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse border0">
+                  <ul aria-expanded="false" class="metis-secondary collapse">
+                    <li>
+                      <a>PHI providers (access points)</a>
+                    </li>
+                    <li>
+                      <a>Storage locations</a>
+                    </li>
+                    <li>
+                      <a>Monitor</a>
+                    </li>
+
+                    <li>
+                      <a routerLink="/environment/cacheServer" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                          true}">{{
+                        'DashboardModule.CACHESERVER' | translate }} </a>
+                    </li>
+                    <li>
+                      <a routerLink="/environment/dataStorage" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                          true}">{{
+                        'DashboardModule.DATASTORAGE' | translate }} </a>
+                    </li>
+
+
+                    <li>
+                      <a routerLink="/environment/viewers" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                          true}">{{
+                        'DashboardModule.VIWERES' | translate }} </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </li>
+
+
+
+
+          <li>
+            <a>
+              <i class="icon-home"></i>
+              <span class="nav-text">{{ 'DashboardModule.REPORTS' | translate }} </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--sidebar nav-->
+  <main class="main-content" id="page-content-wrapper">
+    <!--/////////////////////////////// End navbar////////////////////////////-->
+    <header class="header">
+      <div class="container">
+        <div class="navbar navbar-expand-lg">
+          <ul class="navbar-nav col-sm-8">
+            <li class="nav-item">
+              <a id="menu-toggle" class=" btn-circle-round sidebar-toggler" (click)="toggleMenu()">
+                <i class="icon-menu"></i>
+              </a>
+            </li>
+
+            <!-- <li class="nav-item ml-3 hidden-md-down">
+                          <form class="form-inline my-2 my-lg-0">
+                              <input class="form-control mr-sm-2" type="text" placeholder="Find...">
+                              <button class="icon-search" type="submit"><i class="ion-ios-search-strong"></i></button>
+                          </form>
+                      </li> -->
+          </ul>
+          <ul class="navbar-nav ml-auto col-sm-4">
+            <li class="nav-item pos-t5 col-sm-6 text-right no-padd">
+              <i class="fa fa-globe g-font-size-14 g-mr-3"></i>
+              <!-- <select #lId class="h-28" (change)="switchLanguage(lId.value)">
+                <option value="">English</option>
+                <option *ngFor="let language of languageDrp" [value]="language.Id">{{language.Description}}</option>
+              </select> -->
+
+              <select #langSelect [(ngModel)]="selctedLang" (change)="switchLanguage(langSelect.value)">
+                <option *ngFor="let lang of translate.getLangs()" [selected]="lang === translate.currentLang">{{
+                  lang }}</option>
+              </select>
+
+
+            </li>
+            <li class="nav-item dropdown user-item col-sm-6">
+              <a data-toggle="dropdown" href="javascript:void(0)" class=" dropdown-toggle">
+                <!-- <img *ngIf="checkImage == 0" class="nav-user-photo relative" [src]="profilePic" />
+                <img *ngIf="checkImage == 1" class="nav-user-photo relative" src="assets/images/user.jpg" /> -->
+
+                <img class="responsive-profile-image" [src]="profilePic" />
+
+                <span class="hidden-md-down m-l50 pos-t5"> {{firstName}} {{lastName}}</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right profile-dropdown">
+                <!-- <li class="dropdown-item">
+                        <a href="message.html"><i class="icon-envelope"></i> Message</a>
+                    </li> -->
+
+                <li *ngIf="userType==3" class="dropdown-item">
+                  <a routerLink="/message" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                          true}"
+                    translate>
+                    <i class="icon-envelope"></i> {{ 'DashboardModule.MESSAGES' | translate }} </a>
+                </li>
+
+                <li class="dropdown-item">
+                  <a (click)="navigateAdmin()" translate routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                      true}">
+                    <i class="icon-cog"></i>{{ 'DashboardModule.SETTINGS' | translate }} </a>
+                </li>
+                <!--item-->
+                <li class="dropdown-item" (click)="logout()">
+                  <a><i class="icon-power-switch"></i>{{ 'DashboardModule.LOGOUT' | translate }} </a>
+                </li>
+                <!--item-->
+              </ul>
+            </li>
+            <!-- <li class="nav-item dropdown user-item">
+              <a data-toggle="dropdown" href="javascript:void(0)" class=" dropdown-toggle">
+                  <img class="nav-user-photo" [src]="profilePic" />
+               
+                <span class="hidden-md-down">{{accountId}}</span>
+              </a>
+              
+              <ul class="dropdown-menu dropdown-menu-right profile-dropdown">
+                <li *ngIf="userType==3" class="dropdown-item">
+                  <a routerLink="/message" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                    true}" translate>
+                    <i class="icon-envelope"></i> Message</a>
+                </li>
+               
+                <li class="dropdown-item">
+                  <a (click)="navigateAdmin()" translate routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                      true}">
+                    <i class="icon-cog"></i> Settings</a>
+                </li>
+               
+                <li class="dropdown-item" (click)="logout()">
+                  <a>
+                    <i class="icon-power-switch"></i> Logout</a>
+                </li>
+                
+              </ul>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!--header-->
+    <!--/////////////////////////////// End Header////////////////////////////-->
+  </main>
+</div>

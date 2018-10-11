@@ -1,0 +1,14 @@
+:host /deep/ .ui-datatable .ui-datatable-thead>tr>th{padding: .5em .5em;}
+
+.u-nav-v1-1.u-nav-primary .nav-link.active {color: #fff;background-color: #32c5d2;}
+
+.g-brd-primary {border-color: #32c5d2 !important;}
+
+:host /deep/ .ui-paginator .ui-paginator-page.ui-state-active {background: #32c5d2;color: #ffffff;border-color: #32c5d2;}
+
+.g-color-primary {color: #32c5d2 !important;}
+
+select, input[type="text"], input[type="date"] {
+    height: 30px;
+    border-radius: 0px;
+}

@@ -1,0 +1,107 @@
+<!-- <p-growl [(value)]="msgs" life="3000"></p-growl> -->
+<div id="Div5">
+  <div>
+    <label class="f12 col-12 col-sm-3 col-md-3 col-lg-3">
+      <b>Appointment</b>
+    </label>
+    <a>
+      <i class="fa fa-caret-up caret-5"></i>
+    </a>
+    <a (click)="closeAppoint()">
+      <i class="fa fa-times pull-right"></i>
+    </a>
+  </div>
+  <div class="row col-12">
+    <a id="Create" class="createnew" (click)="createNewAppointment()">Create New</a>
+  </div>
+  <div id="Create_List" class="m-t15 col-12 create_list" *ngIf="isCreateApp">
+    <div class="col-12">
+      <label class="col-3">Discussion Name</label>
+      <input class="col-5" type="text" [(ngModel)]="newAppointment.discussionName" maxlength="40" />
+    </div>
+    <div class="col-12">
+      <label class="col-3">Discussion Date</label>
+      <p-calendar [(ngModel)]="newAppointment.appStartDate" class="col-12 no-padd calendar" hourFormat="12" (onSelect)="selectStartDate()"
+        [minDate]="minSDate" [showIcon]="true"></p-calendar>
+    </div>
+    <div class="col-12">
+      <label class="col-3">Start Time</label>
+
+      <p-calendar [(ngModel)]="newAppointment.startTime" [timeOnly]="true" class="col-12 no-padd" hourFormat="12" [attr.hideOnDateTimeSelect]="true"></p-calendar>
+    </div>
+    <div class="col-12">
+      <label class="col-3">End Time</label>
+      <p-calendar [(ngModel)]="newAppointment.endTime" [timeOnly]="true" class="col-12 no-padd" hourFormat="12" [disabled]="!newAppointment.startTime"></p-calendar>
+    </div>
+    <div class="col-12 required" *ngIf="newAppointment.appError">{{newAppointment.appError}}</div>
+    <div class="col-8 text-right m-t10">
+      <a id="btn-create" class="btn-create" (click)="createAppointment()">Create</a>
+      <a id="app_cancel" class="btn-cancel" (click)="cancelApp()">Cancel</a>
+    </div>
+  </div>
+  <div id="Appointment_table">
+    <table class="table table-bordered m-t20 app_table">
+      <thead>
+        <th>ID</th>
+        <th>Appointment Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Duration</th>
+        <th>Status</th>
+        <th class="app_action">Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appointment of iAppointments; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{appointment.AppointmentTitle}}</td>
+          <td>{{appointment.AppointmentStartTime}}</td>
+          <td>{{appointment.AppointmentEndTime}}</td>
+          <td>{{appointment.AppointmentDuration| slice: 0:5}} mins</td>
+          <td [ngSwitch]="appointment.AppointmentStatus">
+            <span *ngSwitchCase="0">To be started</span>
+            <span *ngSwitchCase="1">In Progress</span>
+            <span *ngSwitchCase="2">Completed</span>
+          </td>
+          <td>
+            <div [ngSwitch]="appointment.InviteeConfirmationstatus">
+              <span *ngIf="(appointment.AppointmentCreatedBy != userId)">
+                <!-- <a id="lnk_view" class="lnk_view" title="View Details">
+                    <i class="fa fa-eye"></i>
+                  </a>
+                  <a title="Details">
+                    <i class="fa fa-info"></i>
+                  </a>-->
+                <span *ngSwitchCase="1">
+                  <a title="Join" *ngIf="appointment.AppointmentStatus === 1" (click)="joinVidyoCall(appointment)">
+                    <i class="fa fa-sign-in"></i>
+                  </a>
+                </span>
+
+                <a title="Accept" (click)="acceptAppointment(appointment)" *ngSwitchCase="0">
+                  <i class="fa fa-check"></i>
+                </a>
+                <a title="Reject" (click)="rejectAppointment(appointment)" *ngSwitchCase="0">
+                  <i class="fa fa-ban"></i>
+                </a>
+              </span>
+            </div>
+            <div *ngIf="(appointment.AppointmentCreatedBy == userId) && appointment.status !== 2">
+              <a title="Start" (click)="joinVidyoCall(appointment)">
+                <i class="fa fa-play-circle"></i>
+              </a>
+              <a title="Delete Appointment" (click)="deleteAppointment(appointment)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="isInvVidyoOpen">
+  <!-- <app-invitee-vidyo-container [vidyoiAppointment]="invitedAppointmentDetails" (closeiVidyoCont)="closeVidyo()"></app-invitee-vidyo-container> -->
+
+  <app-videorenderer [vidyoAppoint]="invitedAppointmentDetails" (closeVidyoCont)="closeVidyo()"></app-videorenderer>
+</div>

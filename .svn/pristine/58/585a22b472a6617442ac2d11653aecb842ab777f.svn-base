@@ -1,0 +1,267 @@
+
+.vidyoconference .modal-dialog {max-width: 1180px;}
+
+.vidyoconference p label{text-align:left !important;}
+
+.vidyoconference .modal-body{height:550px;padding:0px;}
+.vidyoconference .modal-header{padding: 10px;background-color: #2060aa;}
+
+.vidyoconference .modal-title{color:#fff;}
+
+.vidyoconference button > .fa{color:#fff !important;}
+
+.vidyoconference button > .fa-minus{color:#fff !important;position:relative;top:-7px;font-size:13px;}
+.connect-btn {
+    padding: 5px 15px;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 0px;
+    margin: 10px 0px 10px 10px;
+}
+.connect {
+    background-color: #2060aa;
+}
+.disconnect {
+    background-color: red;
+}
+.vidyoconference button > .fa-minus {
+    color: #fff !important;
+    position: relative;
+    top: -7px;
+    font-size: 13px;
+}
+.modalMinimize {
+    position: absolute;
+    right: 40px;
+}
+.floating {
+    position: fixed;
+    padding: 5px 15px;
+    background-color: #2060aa;
+    border-radius: 3px;
+}
+.minimize {
+    width: 10%;
+    position: absolute;
+    top: 0%;
+    right: -13%;
+}
+.minmaxCon {
+    height: 35px;
+    bottom: 1px;
+    left: 1px;
+    position: fixed;
+    right: 1px;
+    z-index: 9999;
+}
+.red {
+    color: red;
+}
+.minimize button > .fa-window-maximize {
+    color: #fff !important;
+    position: relative;
+    top: 3px;
+    font-size: 13px;
+}
+button .fa {
+    font-size: 16px;
+    margin-left: 10px;
+}
+.close {
+    font-size: 1rem;
+    text-shadow: 0px 0px 0px;
+    color: #fff;
+}
+
+#clientVersion {
+    color: white;
+    line-height: 10px;
+    margin: 0px 10px;
+    position: absolute;
+    right: 0px;
+    bottom: 3px;
+    font-size: 75%;
+}
+.connectionStatus {
+    color: white;
+    line-height: 50px;
+    margin: 0px 10px;
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    z-index: 999;   
+}
+#toolbarRight {
+    text-align: right;
+}
+
+#options {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    bottom: 60px;
+    width: 350px;
+    text-align: center;
+    z-index: 99;
+}
+#optionsVisibilityButton {
+    position: absolute;
+    z-index: 100;
+}
+.optionsVisibiliyButtonElements {
+    cursor: pointer;
+}
+.hideOptions {
+    background-image: url(../../../../assets/images/hideOptions.png);
+    background-size: 15px auto;
+    left: 315px;
+}
+.showOptions {
+    background-image: url(../../../../assets/images/showOptions.png);
+    background-size: 30px auto;
+    left: 0px;
+}
+.optionsVisibiliyButtonElements {
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(255, 255, 255);
+    border: 0;
+}
+.token-scroll {
+    max-height: 350px;
+    overflow: auto;
+}
+.options p {
+    text-align: center;
+    display: flex;
+}.parameters p label {
+    width: 105px;
+}
+.vidyoconference p label {
+    text-align: left !important;
+}
+.options label {
+    display: inline-block;
+    margin: 0px 5px;
+    padding: 4px;
+    text-align: right;
+}
+label {
+    font-size: 13.5px;
+    font-weight: normal;
+    margin-bottom: 0px;
+}
+.options input {
+    display: inline-block;
+    width: 210px;
+    border-radius: 0px;
+}
+#renderer {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 60px;
+    z-index: 99;
+    display: block;
+    clear: both;
+}
+.rendererWithOptions {
+    left: 350px;
+}
+.rendererFullScreen {
+    left: 0px;
+}
+.toolbar {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    height: 60px;
+}
+.cameraOn {
+    background-image: url(../../../../assets/images/cameraOn.png);
+}
+.callStart {
+    background-image: url(../../../../assets/images/callStart.png);
+}
+.callEnd {
+    background-image: url(../../../../assets/images/callEnd.png);
+}
+.microphoneOn {
+    background-image: url(../../../../assets/images/microphoneOn.png);
+}
+.toolbarButton {
+    width: 60px;
+    height: 60px;
+    background-size: 32px auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #2060aa;
+    border: 0;
+}#toolbarCenter {
+    background-color: #2060aa;
+}
+#toolbarCenter {
+    text-align: center;
+}
+.parameters select{width:210px;}
+#participantStatus {
+    color: white;
+    line-height: 60px;
+    margin: 0px 10px;
+    position: absolute;
+    left: 0px;
+    z-index: 999999;
+}
+
+
+
+#toolbarCenter{background-color:#2060aa;}
+
+.pointer{cursor:pointer;}
+
+.chatbrd{border: 1px solid #d9d9d9;padding: 5px 5px 5px 10px;background-color: #f5f5f5;}
+
+.chattime{ position: absolute;right: 28px;text-align: right !important;}
+
+.txt-msg{    height: 35px;border-radius: 0px;border-left: 0px;border-right: 0px;}
+
+#txt-msg{padding-left: 0px !important;border-radius:0px;margin: 0px;height:40px !important; border-left: 0px;border-right: 0px;text-indent: 10px;width:100%;}
+	
+.send{background-color: #0847a1;color: #fff;padding: 1px 10px;border: 1px solid #0847a1;height:26px;cursor:pointer;border-radius: 0px;}
+
+.send:hover{background-color: #042a60;}
+
+.pos-t3{position:relative;top:3px;}
+
+.panel-collapse {border: 1px solid #d9d9d9;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;}
+
+.chat_scroll{max-height:185px;overflow:auto;padding-top:10px;width:100%;}
+
+.chat_scroll > div{width: auto;display: flex;}
+
+.panel-heading{background-color: #0847a1;}
+
+.parameters p label{width: 105px;}
+
+.txt-blu{color:#0847a1 !important;}
+
+.panel-heading a:before{display:none;}
+
+.txt-white{color:#fff !important;}
+
+#chat{color:#fff !important;padding-top:0px;}
+
+.p-r0 {padding-right: 0px !important;}
+
+.f-10{font-size:10px;}
+
+.optionsVisibiliyButtonElements{cursor:pointer;}
+
+.token-scroll{max-height: 130px;overflow: auto;}
+
+#options .panel-collapse{border-bottom: 0px;}
+
+.w-230{width:230px;}

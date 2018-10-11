@@ -1,0 +1,221 @@
+<section class="g-my-10 col-lg-12 nopadd">
+  <div class="container">
+    <ul class="u-list-inline">
+      <li class="list-inline-item g-mr-7">
+        <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">{{'UserAuthorizationModule.Home' | translate}}</a>
+        <i class="fa fa-angle-right g-ml-7"></i>
+      </li>
+      <!-- <li class="list-inline-item g-mr-7">
+        <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">Pages</a>
+        <i class="fa fa-angle-right g-ml-7"></i>
+      </li> -->
+      <li class="list-inline-item g-color-primary">
+        <span>{{'UserAuthorizationModule.UserDefaultAuthorizationSetting' | translate}}
+
+        </span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="page-title pt10 pb10">
+  <div class="container">
+      <div class="col-sm-12">
+          <ol class="breadcrumb float-right">
+        
+          </ol>
+          <h4 class="mb0">Welcome {{firstName}} {{lastName}}</h4>
+      </div>                             
+  </div>
+</div>
+
+
+<div class="row col-lg-12 nopadd">
+  <app-sidebar-nav class="col-lg-3 lookupmaster"></app-sidebar-nav>
+  <div class="col-lg-9 nopadd lookupmaster" id="LookupMaster">
+    <!-- Nav tabs -->
+    <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary col-lg-12 p-r0" role="tablist"
+      data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20"
+      style="padding:0">
+      <li class="nav-item col-lg-5 nopadd" style="padding:0">
+        <a class="nav-link g-py-5 active" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--1" role="tab">{{'UserAuthorizationModule.UserDefaultAuthorizationSetting' | translate}}</a>
+      </li>
+    </ul>
+    <div class="tab-pane m-t20" id="UserConfig" role="tabpanel">
+      <h2 class="h4 g-font-weight-300">{{'UserAuthorizationModule.ManageyourConfigurations' | translate}}</h2>
+      <form [formGroup]="userConfigForm">
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.HasImagemanagement' | translate}}</label>
+          <div class="col-sm-9">
+            <label class="form-check-inline u-check mx-0">
+              <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasImagemanagement" type="checkbox" formControlName="HasImagemanagement">
+              <div class="u-check-icon-radio-v7">
+                <i class="d-inline-block"></i>
+              </div>
+            </label>
+            <small class="d-block text-muted">{{'UserAuthorizationModule.WhenyoucheckthisboxyouwillbesavedautomaticallylogintoyourprofileaccountAlsoyouwillbealwaysloggedinallourservices' | translate}}
+              </small>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.HasCasemanagement' | translate}}</label>
+          <div class="col-sm-9">
+            <label class="form-check-inline u-check mx-0">
+              <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasCasemanagement" type="checkbox" formControlName="HasCasemanagement">
+              <div class="u-check-icon-radio-v7">
+                <i class="d-inline-block"></i>
+              </div>
+            </label>
+            <small class="d-block text-muted">
+              {{'UserAuthorizationModule.WhenyoucheckthisboxyouwillbesavedautomaticallylogintoyourprofileaccountAlsoyouwillbealwaysloggedinallourservices' | translate}}</small>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.HasEMR' | translate}}</label>
+          <div class="col-sm-9">
+            <label class="form-check-inline u-check mx-0">
+              <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasEMR" type="checkbox" formControlName="HasEMR">
+              <div class="u-check-icon-radio-v7">
+                <i class="d-inline-block"></i>
+              </div>
+            </label>
+            <small class="d-block text-muted">{{'UserAuthorizationModule.WhenyoucheckthisboxyouwillbesavedautomaticallylogintoyourprofileaccountAlsoyouwillbealwaysloggedinallourservices' | translate}}
+              </small>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.HasVideoconference' | translate}}</label>
+          <div class="col-sm-9">
+            <label class="form-check-inline u-check mx-0">
+              <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasVideoconference" type="checkbox" formControlName="HasVideoconference">
+              <div class="u-check-icon-radio-v7">
+                <i class="d-inline-block"></i>
+              </div>
+            </label>
+            <small class="d-block text-muted">
+              {{'UserAuthorizationModule.WhenyoucheckthisboxyouwillbesavedautomaticallylogintoyourprofileaccountAlsoyouwillbealwaysloggedinallourservices' | translate}}</small>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.HasGenomicFilesManagement' | translate}}</label>
+          <div class="col-sm-9">
+            <label class="form-check-inline u-check mx-0">
+              <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasGenomicFilesManagement" type="checkbox" formControlName="HasGenomicFilesManagement">
+              <div class="u-check-icon-radio-v7">
+                <i class="d-inline-block"></i>
+              </div>
+            </label>
+            <small class="d-block text-muted">{{'UserAuthorizationModule.WhenyoucheckthisboxyouwillbesavedautomaticallylogintoyourprofileaccountAlsoyouwillbealwaysloggedinallourservices' | translate}}
+              </small>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxDICOMstudiesnumber' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxDICOMstudiesnumber' | translate}}" formControlName="MaxDICOMstudiesnumber"
+                [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxDICOMstudiestotalsizes' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxDICOMstudiestotalsizes' | translate}}" formControlName="MaxDICOMstudiestotalsizes"
+                [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxEMRrecordsnumber' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxEMRrecordsnumber' | translate}}" formControlName="MaxEMRrecordsnumber"
+                [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxTotalstoragesize' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxTotalstoragesize' | translate}}" formControlName="Maxtotalstoragesize"
+                [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxCasesweek' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxCasesweek' | translate}}" formControlName="Maxcasesperweek"
+                [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxCasesday' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxCasesday' | translate}}" formControlName="Maxcasesperday"
+                [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxInviteesallowed' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxInviteesallowed' | translate}}" formControlName="Maxinviteesallowed"
+                [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.MaxConferencelength' | translate}} </label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.MaxConferencelength' | translate}}" formControlName="Maxconferencelength"
+                [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.Maxtotalnumberofcasesallowed' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.Maxtotalnumberofcasesallowed' | translate}}"
+                formControlName="Maxtotalnumberofcasesallowed" [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.Maximageviewingtimesday' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.Maxtotalnumberofcasesallowed' | translate}}"
+                formControlName="Maximageviewingtimesperday" [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row g-mb-25">
+          <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{'UserAuthorizationModule.DataStoredId' | translate}}</label>
+          <div class="col-sm-9">
+            <div class="input-group g-brd-primary--focus">
+              <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" placeholder="{{'UserAuthorizationModule.DataStoredId' | translate}}"
+                formControlName="DataStoredId" [OnlyNumber]='true' maxlength="3">
+            </div>
+          </div>
+        </div>
+        <div class="text-sm-right">
+          <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" (click)="resetConfig()">{{'UserAuthorizationModule.Cancel' | translate}}</a>
+          <a class="btn u-btn-primary g-py-6 g-px-15" (click)="saveUserConfigTab()">{{'UserAuthorizationModule.SaveChanges' | translate}}</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

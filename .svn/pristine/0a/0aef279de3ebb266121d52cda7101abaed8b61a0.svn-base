@@ -1,0 +1,129 @@
+
+
+.caret-4 {
+    left: 408px;
+}
+.caret-1{
+    left: 92px;
+}
+.invitedCase .caret-4{
+    left: 70px;
+}
+.fa-caret-up {
+    position: absolute;
+    top: -18px;
+    font-size: 26px;
+    color: #084FA1;
+}
+.inner_div > div {
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    display:grid;
+}
+.hw-70 {
+    height: 70px;
+    width: 70px;
+}
+.caret-2{
+    left: 190px;
+}
+.inner_div > div .fa-plus{
+    padding: 5px 7px;
+    background-color: #084FA1;
+    color: #fff;
+    border-radius: 0px;
+    cursor: pointer
+}
+
+.inner_div > div >div:nth-child(1){
+    display: block;
+    clear: both;
+}
+.inner_div > div >div:nth-child(1) > a:nth-child(1){
+    display: block;
+    float: left;
+} 
+.inner_div > div >div:nth-child(1) > a:nth-child(3){
+    float: right;
+} 
+.inner_div > div >div:nth-child(2){
+    clear: both;
+}
+
+.uname{position: relative;left: 5px;bottom: 5px;}
+
+.invit {
+    max-width: 30px;
+    border-radius: 50px;
+    max-height: 30px;
+    min-width: 30px;
+    margin-bottom: 10px;
+}
+
+.case-popover .fa-plus, .case-popover .fa-trash, .case-popover .fa-eye, .case-popover .fa-info-circle{padding:7px;background-color:#084FA1;color:#fff;margin-left: 10px;border-radius: 5px;} 
+
+:host /deep/ table th{text-align: center;background-color: #0847a1;color: #fff;}
+
+:host /deep/ table td{text-align: center;}
+.more {
+    height: 40px;
+    overflow: hidden;
+}
+.dicom-image .modal-body{margin: 0 auto;display: table;}
+
+:host /deep/ table th{background-color: #0847a1;color: #fff;padding: 5px;font-weight: normal;}
+
+.fa-trash{color: red !important;font-size: 14px;}
+
+.fa-pencil-square-o{color:#0847A1;font-size: 14px;}
+.caseLazy::-webkit-scrollbar {
+    width: 4px;
+}
+
+.caseLazy::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 30px;
+}
+ 
+.caseLazy::-webkit-scrollbar-thumb {
+    background: #084FA1; 
+    border-radius: 20px;
+}
+
+.caseLazy::-webkit-scrollbar-thumb:hover {
+    background: #084FA1; 
+}
+.caseLazy{
+    overflow-y: auto;height: 510px;overflow-x: hidden;
+}
+.moreComments{
+    overflow-y: auto;height: 300px;overflow-x: hidden;
+}
+
+
+.nav-tabs .active{ padding: 4px 20px; background-color: #084FA1; color: #fff !important;}
+
+.nav-tabs .active a{ color: #fff !important;}
+
+:host /deep/ table td{text-align: center;}
+
+:host /deep/ table thead th{color:#000 !important;}
+
+#AttachmentList .modal-dialog{max-width:800px;}
+
+:host /deep/ #home table thead th{color:#fff !important;}
+
+.nav-link{padding: .0rem 1rem;}
+
+:host /deep/ .ui-corner-all{border-radius:0px;}
+
+:host /deep/ .ui-paginator .ui-paginator-page.ui-state-active{background: #084FA1;border-color: #084FA1;}
+
+
+
+@media only screen and (min-width:1349px){
+
+    .modal-dialog{max-width:800px;}
+    
+    }
+    

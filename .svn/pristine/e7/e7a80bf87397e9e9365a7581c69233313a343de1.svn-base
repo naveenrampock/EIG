@@ -1,0 +1,270 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="main-container contain ace-save-state active col-md-12 col-sm-12 col-12 no-padd dicom_img" id="wrapper">
+    <div id="sidebar" class="sidebar responsive ace-save-state col-md-12 col-sm-12 col-12"> 
+      <!-- /.sidebar-shortcuts -->
+      <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse" style="display:none;">
+                      <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right">
+      </i> </div>
+    
+    <!-- Sidebar -->
+  <div id="sidebar-wrapper" class="col-lg-12 col-md-12 col-sm-12 col-12 nopadd navbar-collapse">                   		
+  <div id="menu-container">
+  
+  <div class="vertical-menu">
+   
+    <a class="active"> Quick Links</a>
+   
+   <nav class="navbar navbar-default sidebar no-padd" role="navigation">
+      <div class="navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+        <div class="nav navbar-nav">
+        <!-- <div class="dropdown"><a class="dropdown" data-toggle="dropdown">1. My images <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
+        </div>		
+          <div><a routerLink="sharedToMe">2. Shared to me<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></div>        
+          <div class="dropdown"><a class="dropdown" data-toggle="dropdown">3. My Sharing <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
+          </div>	 -->
+          <div><a routerLink="../">1. My images</a></div>  
+
+          <div><a routerLink="../sharedToMe">2. Shared to me</a></div>
+          <div><a >3. My Sharing</a></div>
+      <div class="sidenav">
+        <button class="dropdown-btn" data-toggle="collapse" data-target="#MyUploads"> 4. My Uploads
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div id="MyUploads" class="collapse show">
+          <a>
+            <input type="checkbox">Assigned</a>
+          <a>
+            <input type="checkbox">Not Assigned</a>
+        </div>
+      </div>
+    </div>
+      </div>
+  </nav>
+  
+  </div>
+  <div class="vertical-menu">
+  <nav class="navbar navbar-default sidebar no-padd" role="navigation">
+                 <a class="active w-100"> Advanced Search</a> 
+                  <div class="navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+        <ul id="dicom-list" class="nav navbar-nav dicom-list">        
+          <div class="sidenav">
+            <button class="dropdown-btn" data-toggle="collapse" data-target="#ownership"> Ownership
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div id="ownership" class="collapse">
+              <a>
+                <input type="radio">My images</a>
+              <a>
+                <input type="radio">Shared by others</a>
+                <a>
+                  <input type="radio">My uploads</a>
+            </div>
+          </div>
+          
+  
+          <li class="">
+            <a class="col-5 pull-left" data-toggle="dropdown">Study ID </a>          
+            <input type="text" class="col-7"/>
+          </li>   
+          <li class="dropdown">
+           <a class="col-5 pull-left" data-toggle="dropdown">Patient ID </a>          
+           <input type="text" class="col-7"/>
+          </li>  
+             
+          <li class="dropdown">
+           <a class="col-5 pull-left" data-toggle="dropdown">Patient Name</a>          
+           <input type="text" class="col-7"/>
+          </li>  
+          <li class="dropdown p-b10">
+          <a class="col-12 text-center" data-toggle="dropdown">Examine Date </a>          
+          <label class="col-5 pull-left before_date pos-t5">Before Date </label>          
+          <input type="date" class="col-7 p-r0"/>
+          <label class="col-5 pull-left pos-t5" data-toggle="dropdown">End Date </label>          
+          <input type="date" class="col-7 p-r0"/>
+          </li> 
+          <li class="dropdown p-b10">
+          <label class="col-12 text-center">Upload Date </label>          
+          <label class="col-5 pull-left before_date pos-t5">Before Date </label>          
+          <input type="date" class="col-7 p-r0"/>
+          <label class="col-5 pull-left pos-t5" data-toggle="dropdown">End Date </label>          
+          <input type="date" class="col-7 p-r0"/>
+          </li> 
+          <li class="dropdown">
+           <a class="col-12 pull-left" data-toggle="dropdown">Image modalities</a> 
+           
+          <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+               <input type="checkbox" name="" value="" id="dr">DR/CR/DX 
+               </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+               <input type="checkbox" name="" value="" id="us">US
+               </div> 
+               <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left"> 
+               <input type="checkbox" name="" value="" id="nm">NM 
+              </div> 
+               <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left"> 
+          <input type="checkbox" name="" value="" id="rf">RF
+              </div> 
+               <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left"> 
+              <input type="checkbox" name="" value="">SC
+               </div> 
+               <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left"> 
+               <input type="checkbox" name="" value="">MR
+               </div>
+               <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+              <input type="checkbox" name="" value="">PT
+               </div>
+               <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+               <input type="checkbox" name="" value="">SR 
+               </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left"> 
+               <input type="checkbox" name="" value="">CT
+               </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left"> 
+              <input type="checkbox" name="" value="">MG 
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left"> 
+              <input type="checkbox" name="" value="">XA
+               </div>
+               <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left"> 
+               <input type="checkbox" name="" value="">OT 
+          </div>
+          </li>
+          <!-- <li> -->
+           <!-- <a class="col-5 pull-left" data-toggle="dropdown">Share </a>           -->
+          <!-- <input type="checkbox" class="col-7 share"/> -->
+          <!-- </li> -->
+        </ul>
+        <button class="pull-right btn go">Go</button>
+      </div>
+          </nav>
+  </div>
+     
+   <!-- End Profile Sidebar -->   
+  </div>   
+  </div>
+  <div id="sidebar-mobile"><a data-toggle="modal" data-target="#Filter"><i class="fa fa-sliders pull-left text-black f-20"></i></a></div>
+  </div>
+  <div id="page-content-wrapper" class="col-md-12 col-sm-12 col-12 no-padd">
+  <div id="slmenu" class="navbar-brand w-4p col-lg-1 pull-left">
+        <a id="menu-toggle"><i class="fa fa-caret-right f-30"></i></a>
+        <a id="menu-toggle-after" class="hide"><i class="fa fa-caret-left f-30"></i></a>
+      </div>
+  <div id="slmenu1" class="navbar-brand w-4p col-lg-1 pull-left">
+        <a id="menu-toggle1"><i class="fa fa-caret-left f-30"></i></a>
+        <a id="menu-toggle-after1" class="hide"><i class="fa fa-caret-right f-30"></i></a>
+      </div>
+    </div>
+
+
+
+<p-dataTable [value]="dicomList" [rows]="10" [paginator]="true" scrollable="true" scrollHeight="600px" [rows]="20" virtualScroll="virtualScroll" [style]="{'margin-top':'0px'}" 
+[lazy]="true" [totalRecords]="100"   >
+    <p-column field="StudyPk" header="StudyId">
+        <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <span>{{list.StudyPk}}</span>
+        </ng-template>
+    </p-column>
+    
+    <p-column field="Patient_Name" header="Patient Name">
+      <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+        <span>{{list.Patient_Name}}</span>
+    </ng-template>
+    </p-column>
+    <p-column field="StudyDescription" header="Description">
+      <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+        <span>{{list.StudyDescription}}</span>
+    </ng-template>
+    </p-column>
+    <p-column field="CreatedDate" header="Image Date">
+       <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+      <span>{{list.CreatedDate}}</span>
+  </ng-template></p-column>
+  <!-- <p-column field="AccountID" header="Name">
+      <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+     <span>{{list.AccountID}}</span>
+ </ng-template></p-column> -->
+    <p-column header="Action">
+        <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <a (click)="deleteDicom(list.StudyPk)"><i title="Delete" class="fa fa-trash f-20"></i></a>
+            <a (click)="getUserList(list.Invitees,list.StudyPk)" data-toggle="modal" data-target="#dicomUser" ><i title="UnShare" class="fa fa-retweet f-20"></i>   </a>  
+            <a class="" data-toggle="modal" (click)="getStudyId(list.StudyPk,list.Invitees)" data-target="#dicomallUser"><i title="Share" class="fa fa-share-square f-20"></i>   
+            </a>    
+        </ng-template>
+     
+    </p-column>
+
+</p-dataTable>
+
+
+<div class="modal fade postedpopup" id="dicomUser" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+         <div> <h4 class="modal-title">Unshare</h4></div>
+       
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body caseLazy" >
+          <div class="row">
+            <div *ngFor="let contact of userList">
+              
+           
+              <input  type="checkbox" name="checkbox" (click)="unShareCheckboxInvitee($event.target.checked, contact.UserId)" [checked]="true" [disabled]="contact.isDisabled"
+              />
+             
+              <!-- <img [src]="contact.imagepath ? configUrl+contact.imagepath : defaultImg" [alt]="contact.FirstName" [title]="contact.FirstName"
+                class="u-pht" /> -->
+              <a>{{contact.AccountId}}</a>
+            </div>
+           
+
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right p-b20">
+            <button  type="button" class="btn u-btn-primary g-mr-10" (click)="unshareDicom()">Submit</button>
+           
+            <input type="button" name="" value="Cancel" data-dismiss="modal" class="btn u-btn-darkgray g-mr-10" />
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade postedpopup" id="dicomallUser" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title"></h4>
+           <div> <h4 class="modal-title">share</h4></div>
+         
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+  
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div *ngFor="let contact of userList">
+                
+             
+                <input type="checkbox" name="checkbox" (click)="selectCheckboxInvitee($event.target.checked, contact.UserId)"  [disabled]="contact.isDisabled"
+                />
+               
+                <!-- <img [src]="contact.imagepath ? configUrl+contact.imagepath : defaultImg" [alt]="contact.FirstName" [title]="contact.FirstName"
+                  class="u-pht" /> -->
+                <a>{{contact.AccountID}}</a>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right">
+                <button  type="button" class="btn u-btn-primary g-mr-10" (click)="shareDicom()">Submit</button>
+               
+                <input type="button" name="" value="Cancel" data-dismiss="modal" class="btn u-btn-darkgray g-mr-10" />
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>

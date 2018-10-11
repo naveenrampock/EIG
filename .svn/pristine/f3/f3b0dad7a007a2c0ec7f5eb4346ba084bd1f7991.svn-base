@@ -1,0 +1,11 @@
+
+
+.u-btn-primary {color: #fff !important;background-color: #32c5d2 !important;}
+
+.admin-image-upload{background-color: #32c5d2 !important;position: absolute;top: 80%;color: #fff;left: 15px;width: 50%;}
+
+.active-link {color: #32c5d2 !important;outline: none;}
+
+.list-group{
+    width: 100%;
+}

@@ -1,0 +1,254 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<app-emr-navigation></app-emr-navigation>
+<div class="m-t10p emr-content-list">
+  <div class="emr-tabcontent">
+    <div class="emr-details">
+      <div class=" m-b10 ebg-white">
+        <div class="head-text">
+          <p class="col-sm-12 text-center w-85 pull-left m-0">Patient</p>
+        </div>
+        <div class="col-sm-12 col-xs-12 emr-labels no-padd" [formGroup]="emrPatientdetailsForm">
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">ID
+            </label>
+            <div class="col-sm-7 pull-left no-padd">
+              <div class="input-group g-brd-primary--focus">
+                <input class="form-control form-control-md rounded-0 pr-0" [readOnly]="true" type="text" maxlength="50" placeholder="ID" formControlName="Id">
+              </div>
+            </div>
+          </div>
+          <div class="head-text subhead inline-block">
+            <p class="pull-left m-0 normal">Basic Information</p>
+          </div>
+          <div class="col-sm-12 no-padd">
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">First Name
+                <span class="required">*</span>
+              </label>
+              <div class="col-sm-7 pull-left no-padd">
+                <div class="input-group g-brd-primary--focus">
+                  <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="50" placeholder="First Name" formControlName="FirstName">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4  pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Middle Name</label>
+              <div class="col-sm-7 pull-left no-padd">
+                <div class="input-group g-brd-primary--focus">
+                  <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="50" placeholder="Middle Name" formControlName="MiddleName">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">
+                Last Name
+                <span class="required">*</span>
+              </label>
+              <div class="col-sm-7 pull-left no-padd">
+                <div class="input-group g-brd-primary--focus">
+                  <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="50" placeholder="Last Name" formControlName="LastName">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Birth Date
+                <span class="required">*</span>
+              </label>
+              <p-calendar [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true" yearRange="1910:2020" showButtonBar="true" dateFormat="mm-dd-yy"
+                [maxDate]="dateTime" class="col-sm-7 pull-left pat-calendar no-padd" placeholder="mm-dd-yyyy" formControlName="BirthDate">
+                <i class="fa fa-calendar"></i>
+              </p-calendar>
+            </div>
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Marital Status
+                <span class="required">*</span>
+              </label>
+              <div class="col-sm-7 pull-left no-padd">
+                <select formControlName="MaritalStatus" class="emr-dropdown">
+                  <option value=''>Select MaritalStatus</option>
+                  <option *ngFor="let maritalType of patientSelectDropdown?.marital" [value]='maritalType.Id'>{{maritalType.Description}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Gender
+                <span class="required">*</span>
+              </label>
+              <div class="col-sm-7 pull-left no-padd">
+                <select formControlName="Gender" class="emr-dropdown">
+                  <option value=''>Select Gender</option>
+                  <option *ngFor="let genderType of patientSelectDropdown?.gender" [value]='genderType.Id'>{{genderType.Description}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="head-text subhead inline-block">
+              <p class="pull-left m-0 normal">Contact Details</p>
+              <div class="col-sm-6 no-padd pull-left" [class.disabled]="emrPatientdetailsForm.get('Communicationx').controls.length > 4">
+                <a class="text-right pull-right add_effective" (click)="addCommunicationDetails()" style="margin-right: -73%;">
+                  <i id="add" class="fa fa-plus"></i>
+                   <!-- <i id="ban" class="fa fa-ban" *ngIf = "emrPatientdetailsForm.get('Communicationx').controls.length > 4" ></i> -->
+                </a>
+              </div>
+            </div>
+            <!-- <div formGroupName="Communicationx"> -->
+
+            <div formArrayName="Communicationx" *ngFor="let item of emrPatientdetailsForm.get('Communicationx').controls; let i = index;">
+              <div [formGroupName]="i">
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Preferred</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <select formControlName="Preferred" class="emr-dropdown">
+                      <option value=''>Select Preferred</option>
+                      <option *ngFor="let preferredType of patientSelectDropdown?.preferred" [value]='preferredType.Id'>{{preferredType.Description}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10">
+                  <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Language</label>
+                  <div class="col-sm-7 pull-left no-padd">
+                    <input type='text' (keyup)="searchDropDown(176, src7.value ,i)" #src7 formControlName="Language" minlength="3" placeholder="Please Key in (eg:Ar)"
+                    />
+                    <i class="fa fa-caret-down"></i>
+                    <div *ngIf="patientDropdown && patientDropdown?.language && IsHidden && contactIndex == i" class="emr-dropdown">
+                      <ul *ngFor="let languageType of patientDropdown?.language" (click)="getValue(languageType, i)" class="p-l10 m-b0 brd-b">
+                        <li>
+                          {{languageType.Description}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4 pull-left m-b10 m-t10"></div>
+                <a class="col-sm-2 pull-left m-b10 m-t10 delbtn" *ngIf="emrPatientdetailsForm.get('Communicationx').controls.length >1" (click)="deleteCommunicationDetails(i)">
+                  <i class="fa fa-trash trash"></i>
+                </a>
+              </div>
+            </div>
+            <div class="col-12 required error" *ngIf="errorsave">{{errorsave}}</div>
+            <div class="col-12 required error" *ngIf="error">{{error}}</div>
+            <div class="col-12 required error" *ngIf="errorPop">{{errorPop}}</div>
+          </div>
+          <div formGroupName="Address">
+            <div class="head-text subhead inline-block">
+              <p class="col-sm-12 no-padd w-85 pull-left m-0 normal">Address</p>
+            </div>
+            <div class="col-sm-12 no-padd">
+              <div class="col-sm-4 pull-left m-b10 m-t10">
+                <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Line 1
+                </label>
+                <div class="col-sm-7 pull-left no-padd">
+                  <div class="input-group g-brd-primary--focus">
+                    <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="50" placeholder="Line 1" formControlName="Line1">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 pull-left m-b10 m-t10">
+                <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Line 2</label>
+                <div class="col-sm-7 pull-left no-padd">
+                  <div class="input-group g-brd-primary--focus">
+                    <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="50" placeholder="Line 2" formControlName="Line2">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 pull-left m-b10 m-t10">
+                <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">
+                  City</label>
+                <div class="col-sm-7 pull-left no-padd">
+                  <div class="input-group g-brd-primary--focus">
+                    <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="50" placeholder="City" formControlName="City">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 pull-left m-b10 m-t10">
+                <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">
+                  State</label>
+                <div class="col-sm-7 pull-left no-padd">
+                  <div class="input-group g-brd-primary--focus">
+                    <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="50" placeholder="State" formControlName="State">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 pull-left m-b10 m-t10">
+                <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">
+                  Country</label>
+                <div class="col-sm-7 pull-left no-padd">
+                  <input type='text' (keyup)="searchDropDown(177, src7.value)" #src7 formControlName="Country" [(ngModel)]="selectedCountry"
+                    minlength="3" placeholder="Please Key in (eg:Ar)" />
+                  <i class="fa fa-caret-down"></i>
+                  <div *ngIf="patientDropdown && patientDropdown?.country && IsHidden" class="emr-dropdown">
+                    <ul *ngFor="let countryType of patientDropdown?.country" (click)="getValue(countryType,i)" class="p-l10 m-b0 brd-b">
+                      <li>
+                        {{countryType.Description}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div formGroupName="Telecom">
+            <div class="head-text subhead inline-block">
+              <p class="pull-left m-0 normal">Telecom Details</p>
+            </div>
+            <div class="col-sm-12 no-padd">
+              <div class="col-sm-4 pull-left m-b10 m-t10">
+                <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Home
+                </label>
+                <div class="col-sm-7 pull-left no-padd">
+                  <div class="input-group g-brd-primary--focus">
+                    <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="15" placeholder="Home" formControlName="Home" OnlyNumber="true">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 pull-left m-b10 m-t10">
+                <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">Cell</label>
+                <div class="col-sm-7 pull-left no-padd">
+                  <div class="input-group g-brd-primary--focus">
+                    <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="10" placeholder="Cell" formControlName="Cell"
+                      OnlyNumber="true">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 pull-left m-b10 m-t10">
+                <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">
+                  Work</label>
+                <div class="col-sm-7 pull-left no-padd">
+                  <div class="input-group g-brd-primary--focus">
+                    <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="10" placeholder="Work" formControlName="Work" OnlyNumber="true">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="head-text subhead inline-block">
+            <p class="normal pull-left m-0">Practiotiner Details</p>
+          </div>
+          <div class="">
+            <div class="col-sm-6 pull-left m-b10 m-t10">
+              <label class="lbl_note pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">
+                General Practitioner</label>
+              <div class="col-sm-8 pull-left no-padd">
+                <div class="input-group g-brd-primary--focus">
+                  <input class="form-control form-control-md rounded-0 pr-0" type="text" maxlength="50" placeholder="GeneralPractitioner" formControlName="GeneralPractitioner">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 pull-left m-b10 m-t10">
+              <label class="lbl_note pull-left col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left no-padd">
+                Managing Organization</label>
+              <div class="w-73 pull-left no-padd">
+                <div class="input-group g-brd-primary--focus">
+                  <input class="form-control form-control-md rounded-0 pr-0 manage" type="text" maxlength="50" placeholder="ManagingOrganization"
+                    formControlName="ManagingOrganization">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 text-right m-b10 inline-block">
+            <button class="btn btn-primary clr-white m-b10" [disabled]="!emrPatientdetailsForm.valid" (click)="!patientId ? saveEmrPatient() : updateEmrPatient()">{{!patientId ? 'Save' : 'Update'}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>

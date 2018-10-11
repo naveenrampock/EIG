@@ -1,0 +1,50 @@
+.tabcontent {
+    float:left;
+    padding:0 10px;
+    width:100%;
+    border-left:none;
+    min-height:400px;
+}
+
+.emr_header {
+    background-color:#0847a1;
+    margin-bottom:0px;
+    padding:5px 15px;
+    color:#fff;
+    display:inline-block;
+}
+
+.emr_records > div > .row > div {
+    margin-bottom:10px;
+}
+
+.brd-blu {
+    border:1px solid #0847A1;
+}
+
+.share:hover {
+    background-color:#042f60;
+}
+
+.share {
+    padding: 5px 15px;
+    background-color: #0847a1;
+    color:#fff !important;
+    border-radius:3px;
+    position:relative;
+    top:5px !important;
+    right:10px !important;
+}
+
+.reset {
+    padding: 5px 15px;
+    background-color: grey;
+    color:#fff !important;
+    border-radius:3px;
+    position:relative;
+    top:5px !important;
+}
+
+.reset:hover {
+    background-color:#4c4c4c;
+}

@@ -1,0 +1,146 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div id="Div5">
+  <div>
+    <label class="f12 col-12 col-sm-3 col-md-3 col-lg-3 no-padd">
+      <b>Appointment</b>
+    </label>
+    <a>
+      <i class="fa fa-caret-up caret-5"></i>
+    </a>
+    <a (click)="closeAppoint()">
+      <i class="fa fa-times pull-right"></i>
+    </a>
+  </div>
+
+  <div class="row col-12" *ngIf="caseDetails.CaseStatus != 2">
+    <a id="Create" class="createnew" (click)="createNewAppointment()">Create New</a>
+  </div>
+  <div id="Create_List" class="row col-12 create_list m-t10" *ngIf="isCreateApp && caseDetails.CaseStatus != 2">
+    <div class="col-12">
+      <label class="col-3">Discussion Name</label>
+      <input class="col-5" type="text" [(ngModel)]="newAppointment.discussionName" maxlength="40" />
+    </div>
+    <div class="col-12">
+      <label class="col-3">Discussion Date</label>
+      <p-calendar [(ngModel)]="newAppointment.appStartDate" class="col-12 no-padd calendar" hourFormat="12" (onSelect)="selectStartDate()"
+        [minDate]="minSDate" [showIcon]="true"></p-calendar>
+    </div>
+    <div class="col-12">
+      <label class="col-3">Start Time</label>
+
+      <p-calendar [(ngModel)]="newAppointment.startTime" [timeOnly]="true" class="col-12 no-padd" hourFormat="12" [attr.hideOnDateTimeSelect]="true"></p-calendar>
+    </div>
+    <div class="col-12">
+      <label class="col-3">End Time</label>
+      <p-calendar [(ngModel)]="newAppointment.endTime" [timeOnly]="true" class="col-12 no-padd" hourFormat="12" [disabled]="!newAppointment.startTime"></p-calendar>
+    </div>
+    <div class="col-12 required" *ngIf="newAppointment.appError">{{newAppointment.appError}}</div>
+    <div class="col-7 text-right m-t10">
+      <a id="btn-create" class="btn-create" (click)="createAppointment()">Create</a>
+      <a id="app_cancel" class="btn-cancel" (click)="cancelApp()">Cancel</a>
+    </div>
+  </div>
+  <div id="Appointment_table">
+    <table class="table table-bordered m-t10 app_table">
+      <thead>
+        <th>ID</th>
+        <th>Appointment Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Duration</th>
+        <th>Created By</th>
+        <th>Status</th>
+        <th class="app_action">Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appointment of appointments; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{appointment.AppointmentTitle}}</td>
+          <td>{{appointment.AppointmentDate | date:short}}<br/> {{appointment.StartTime}}
+          </td>
+          <td>{{appointment.AppointmentDate | date:short}} <br/>{{appointment.EndTime}}
+          </td>
+          <td>{{appointment.AppointmentDuration}} mins</td>
+          <td>{{(appointment.AppointmentCreatedBy == caseDetails.CaseCreatedBy) ? 'Self' : 'Others'}}</td>
+          <td [ngSwitch]="appointment.status">
+            <span *ngSwitchCase="0">To be started</span>
+            <span *ngSwitchCase="1">In Progress</span>
+            <span *ngSwitchCase="2">Completed</span>
+          </td>
+          <td>
+            <a id="lnk_view" class="lnk_view" title="View Details" (click)="viewApptDetails(appointment.Id)" *ngIf="appointment.AppointmentCreatedBy == caseDetails.CaseCreatedBy">
+              <i class="fa fa-eye"></i>
+            </a>
+            <!-- <a title="Details">
+              <i class="fa fa-info"></i>
+            </a> -->
+            <a title="Start" class="lnk_view" (click)="startVidyoCall(appointment)" *ngIf="(appointment.AppointmentCreatedBy == caseDetails.CaseCreatedBy) && appointment.status !== 2 && caseDetails.CaseStatus != 2">
+              <i class="fa fa-play-circle"></i>
+            </a>
+            <!-- appointment.AppointmentStatus === 1 && -->
+            <a title="Join" class="lnk_view" *ngIf="appointment.InviteeConfirmationstatus == 1 && appointment.AppointmentCreatedBy != caseDetails.CaseCreatedBy && appointment.status != 2 && caseDetails.CaseStatus != 2"
+              (click)="startVidyoCall(appointment)">
+              <i class="fa fa-sign-in"></i>
+            </a>
+
+            <a title="Accept" class="lnk_view" *ngIf="!appointment.InviteeConfirmationstatus && appointment.AppointmentCreatedBy != caseDetails.CaseCreatedBy"
+              (click)="acceptAppointment(appointment)">
+              <i class="fa fa-check"></i>
+            </a>
+            <a title="Reject" class="lnk_view" *ngIf="!appointment.InviteeConfirmationstatus && appointment.AppointmentCreatedBy != caseDetails.CaseCreatedBy"
+              (click)="rejectAppointment(appointment)">
+              <i class="fa fa-ban"></i>
+            </a>
+            <a title="Delete Appointment" class="lnk_view" (click)="deleteAppointment(appointment)" *ngIf="appointment.AppointmentCreatedBy == caseDetails.CaseCreatedBy && caseDetails.CaseStatus != 2">
+              <i class="fa fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="ViewDetais" *ngIf="isShowApptDetails" class="w-50">
+    <a class="viewdet_close pull-right" (click)="closeViewApptDetails()">
+      <i class="fa fa-times"></i>
+    </a>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="">View Details</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Appoint Name</td>
+          <td>{{appointmentDetails.AppointmentTitle}}</td>
+        </tr>
+        <tr>
+          <td>Duration</td>
+          <td>{{appointmentDetails.AppointmentDuration}} mins</td>
+        </tr>
+        <tr>
+          <td>
+            <b>Invitees</b>
+          </td>
+          <td>
+            <b>Status</b>
+          </td>
+        </tr>
+        <tr *ngFor="let inviteeDetail of appointmentDetails.AppointmentInvitees">
+          <td *ngIf="inviteeDetail.InviteeName">{{inviteeDetail.InviteeName | titlecase}}</td>
+          <td [ngSwitch]="inviteeDetail.ConfirmStatus" *ngIf="inviteeDetail.InviteeName">
+            <span *ngSwitchCase="0">Pending</span>
+            <span *ngSwitchCase="1">Accepted</span>
+            <span *ngSwitchCase="2">Rejected</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="isVidyoOpen">
+    <!-- <app-vidyo-container [vidyoAppoint]="vidyoAppoint" (closeVidyoCont)="closeVidyo()"></app-vidyo-container> -->
+    <app-videorenderer [vidyoAppoint]="vidyoAppoint" (closeVidyoCont)="closeVidyo()"></app-videorenderer>
+  </div>
+</div>

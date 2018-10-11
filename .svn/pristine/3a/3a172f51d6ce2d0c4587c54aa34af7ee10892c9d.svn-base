@@ -1,0 +1,95 @@
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {padding: 0.5em 1.5em;}
+
+:host /deep/ .ui-widget-content{border:0px;border-top:1px solid #D5D5D5;}
+
+:host /deep/ .ui-dialog-footer {padding: 0.5em 1em;}
+
+.cancel{background-color: grey;color: #fff;border: 1px solid grey;width:15%;}
+
+.dialogWidth{width: 100%}
+
+.g-color-primary {color: #32c5d2 !important;}
+
+.fa-plus{color:#fff;position: relative;top: 2px;}
+
+:host /deep/ .ui-paginator .ui-paginator-page.ui-state-active {background: #32c5d2;color: #ffffff;border-color: #32c5d2;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar{padding: 0.5em 1.5em;background: linear-gradient(to bottom, #32c5d2 0%, #32c5d2 100%);}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar .ui-dialog-title{color:#fff;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon {color: #fff;position: relative;left: 10px;top: 5px;}
+
+.add_lookup{background-color: #32c5d2;padding: 7px 9px 8px 9px;position: relative;top: 5px;left:0px;cursor:pointer;}
+
+.btn-primary {background-color: #32c5d2; border-color: #32c5d2;}
+
+.table{margin-bottom:0px;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon:hover{color:#000;}
+
+.u-nav-v1-1.u-nav-primary .nav-link.active {color: #fff; background-color: #32c5d2;}
+
+.g-brd-primary{border-color: #32c5d2 !important;}
+
+.save{background-color: #32c5d2;color: #fff;border: 1px solid #32c5d2;width:85px !important;}
+
+input[type=radio]:checked ~ label {color: #32c5d2;}
+
+input[type=radio]{top:0px;}
+
+.pos-b10{position: relative;bottom: 10px;}
+
+.ui-button-icon-only .fa{display:none;}
+
+.greenBtn{background-color: #32c5d2;color: #fff !important;border: 1px solid #32c5d2;cursor: pointer;}
+.redBtn{
+    background-color: red !important;  border: 1px solid red !important; color: #fff
+}
+
+:host /deep/ .ui-dialog-buttonpane button {width:100px;height: 30px;}
+
+:host /deep/ .ui-dialog-buttonpane button span:last-child(){display:none;}
+
+:host /deep/ .ui-dialog-buttonpane button:nth-child(2){background-color: #979797;border: 1px solid #979797;}
+
+:host /deep/ .ui-clickable{position: absolute;top: 14px;left: 10px;}
+
+:host /deep/ .ui-dialog-footer{padding: 0.5em 1em;}
+
+:host /deep/ .ui-dialog-footer.ui-widget-content{border: 0px solid #D5D5D5; border-top: 1px solid #D5D5D5;}
+
+.g-brd-gray-light-v4 {border-color: #f5f5f5 !important;}
+
+:host /deep/ .invite-pop button:nth-child(2) span:nth-child(2){top: 3px;left: 0px;}
+
+:host /deep/ .invite-pop button:nth-child(1) span:nth-child(2){top: 3px;left: 0px;}
+
+
+:host /deep/ .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-family: "Poppins", sans-serif !important;
+    font-size: 1em;
+}
+
+:host /deep/ button.undefined{
+    width: 70px;
+    height: 30px;
+    background-color: #32c5d2 !important;
+    color: #fff !important;
+    border: 1px solid #32c5d2 !important;
+    cursor: pointer;
+}
+
+:host /deep/ .undefined span:nth-child(2){position: relative; top: 1px;left: 2px;}
+
+select.form-control.rounded, .form-control.rounded {
+    border-radius: 0px !important;
+}
+
+.userprofile input{height:28px;}
+
+:host /deep/ .ui-datatable .ui-datatable-data>tr>td.ui-editable-column{word-wrap: break-word;}
+
+/* .search-top {
+    top: -17% !important;
+} */

@@ -1,0 +1,3 @@
+:host /deep/ .ui-paginator .ui-paginator-page.ui-state-active {background: #0847a1;color: #ffffff;border-color: #0847a1;}
+
+:host /deep/ .ui-corner-all {border-radius: 0px;}

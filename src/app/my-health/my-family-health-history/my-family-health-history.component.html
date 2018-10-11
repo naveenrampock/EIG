@@ -1,0 +1,207 @@
+<div class="col-lg-9 col-md-9 col-sm-9 col-9 p-t15 p-b15 pull-right no-padd">
+    <div class="panel-group" id="accordion">
+        <p-growl [(value)]="msgs" life="3000"></p-growl>
+
+        <div class="panel panel-default">
+            <div class="trigger-panel-heading">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" class="accordion-toggle" data-parent="#accordion" href="#Family_History">{{
+                        'myFamilyHistory.myFamilyHistory' | translate }}</a>
+                </h5>
+            </div>
+            <div id="Family_History" class="panel-collapse collapse in show">
+                <div class="panel-body">
+                    <p class="col-lg-12">{{
+                        'myFamilyHistory.question1' | translate }}</p>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.asthma' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+      </select>
+           -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeData($event)" defaultLabel="Select"
+                            [(ngModel)]="asthma" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.cysticFibrosis' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataCysticFibrosis($event)"
+                            defaultLabel="Select" [(ngModel)]="cysticFibrosis" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.earlyUnexplainedDeath' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataUnexplainedDeath($event)"
+                            defaultLabel="Select" [(ngModel)]="unexplainedDeath" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.heartDisease' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataHeartDisease($event)"
+                            defaultLabel="Select" [(ngModel)]="heartDisease" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.metabolicDisease' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataMetabolicDisease($event)"
+                            defaultLabel="Select" [(ngModel)]="metabolicDisease" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.sickleCellAnemia' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataSickleCellAnemia($event)"
+                            defaultLabel="Select" [(ngModel)]="sickleCellAnemia" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.thyroidDisease' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataThyroidDisease($event)"
+                            defaultLabel="Select" [(ngModel)]="thyroidDisease" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.cancer' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataCancer($event)"
+                            defaultLabel="Select" [(ngModel)]="cancer" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.diabetes' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataDiabetes($event)"
+                            defaultLabel="Select" [(ngModel)]="diabetes" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.elevatedCholesterol' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataElevatedCholesterol($event)"
+                            defaultLabel="Select" [(ngModel)]="elevatedCholesterol" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.highBloodPressure' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataHighBloodPressure($event)"
+                            defaultLabel="Select" [(ngModel)]="highBloodPressure" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.seasonalAllergies' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataSeasonalAllergies($event)"
+                            defaultLabel="Select" [(ngModel)]="seasonalAllergies" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.stroke' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">
+              <option value="Parent">Parent</option>
+              <option value="Grandparent">Grandparent</option>
+              <option value="Siblings">Siblings</option>
+              <option value="Child">Child</option>
+              <option value="Other">Other</option>
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataStroke($event)"
+                            defaultLabel="Select" [(ngModel)]="stroke" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 pull-left form-group">
+                        <label class="col-lg-10 col-md-10 col-sm-10 col-12 no-padd">{{
+                            'myFamilyHistory.other' | translate }}</label>
+                        <!-- <select class="test col-lg-6 col-md-6 col-sm-6 col-6" multiple="multiple">          
+          </select> -->
+                        <p-multiSelect [options]="this.familyMemberData" (onChange)="changeDataOther($event)"
+                            defaultLabel="Select" [(ngModel)]="other" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 physican text-right m-t20 form-group">
+                        <input type="button" name="" value="{{
+                            'patientInfo.cancel' | translate }}"
+                            (click)="cancel()" class="btn u-btn-darkgray g-mr-10" />
+                        <input type="button" name="" value="{{
+                            'patientInfo.save' | translate }}"
+                            (click)="save()" class="btn u-btn-primary g-mr-10" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

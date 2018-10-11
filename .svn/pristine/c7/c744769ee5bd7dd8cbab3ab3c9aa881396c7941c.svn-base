@@ -1,0 +1,352 @@
+
+
+.conf-upload ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    position: relative;
+  }
+  .conf-upload li {
+    list-style-type: none;
+    border-left: 2px solid #000;
+    margin-left: 1em;
+  }
+  .conf-upload li div {
+    padding-left: 1em;
+    position: relative;
+  }
+  .conf-upload li div::before {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: -2px;
+    bottom: 50%;
+    width: 0.75em;
+    border: 2px solid #000;
+    border-top: 0 none transparent;
+    border-right: 0 none transparent;
+  }
+  .conf-upload ul > li:last-child {
+    border-left: 2px solid transparent;
+  } 
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {
+    padding: 0.5em 1.5em;
+}
+
+:host /deep/ .ui-dialog-footer {
+    padding: 0.5em 1em;}
+
+:host /deep/ .ui-datatable-scrollable-body{min-height:100px;max-height:300px !important;overflow:auto;}
+
+:host /deep/ .ui-datatable-scrollable-table-wrapper{height:auto !important;}
+
+.sidenav {
+  width: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;background-color: #eee;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 5px 8px 5px 12px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #444;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.dropdown-btn{
+border-bottom: 1px solid #ccc;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+ background-color: #ccc !important;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; 
+  font-size: 20px; 
+  padding: 0px 10px;
+}
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;border-bottom: 1px solid #ccc;
+}
+.dropdown-btn.active{
+background-color:#ccc;outline:none;color: #000;
+}
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+#sidebar-wrapper {margin-left: -180px;}
+
+#wrapper.active #sidebar-wrapper {
+  left: 175px;
+}
+.vertical-menu li {
+  border-bottom: 1px solid #d9d9d9;
+  width: 100%;
+  background-color: #eee;
+}
+.dicom_img #sidebar-wrapper {
+  margin-left: -400px;
+  background-color: #f5f5f5;
+  left: 0px;
+  top: 0px;
+  width: 250px;
+  position: absolute;
+  overflow-y: auto;
+  z-index: 10;
+  transition: all 0.4s ease 0s;
+  border-right: 0px solid #B5B5B5;
+  padding-right: 0px;
+  height: 997px !important;
+  border: 1px solid #d9d9d9;
+  overflow-x: hidden;
+  margin-top: 11px;
+  padding-left: 0px;
+}
+.dicom_img #page-content-wrapper {
+  width: 100%;
+  padding-top: 10px;
+  transition: all 0.4s ease 0s;
+  padding-left: 15px;
+}
+.dicom_img #slmenu {
+  height: 997px;
+  border: 1px solid #d9d9d9;
+  left: 10px;
+  margin-right: 10px;
+}
+.w-94 {
+  width: 93%;
+}
+
+select, input[type="text"], input[type="date"]{height:28px;position: relative;top: 3px;}
+
+.dropdown label{margin-bottom:0px;}
+
+.pos-t5{position: relative;top:5px;}
+
+input[type="checkbox"]{position: relative;right: 3px;top: 2px;}
+
+:host /deep/ .ui-fileupload{padding-left:0%;}
+
+:host /deep/ .ui-widget-header .ui-button, .ui-widget-content .ui-button, .ui-widget.ui-button, .ui-button {
+  border: 1px solid #084FA1;background: #084FA1;}
+
+:host /deep/ .ui-widget-header .ui-button, .ui-widget-content .ui-button, .ui-widget.ui-button, .ui-button {
+  border: 1px solid #084FA1; background: #084FA1;}
+
+.share-btn{border: 1px solid #084FA1;background: #084FA1;padding: 2px 10px;color: #fff;
+  border-radius: 3px;margin-left: 10px;position: relative; top: 5px;}
+
+.img-upload{margin-bottom: 0px;padding: 5px;position: relative;right: 40px;}
+
+#menu-toggle{text-decoration: none;float: left;color: #046E9D !important;padding-right: 15px;
+  font-size: 22px;top: 30%;position: relative;padding: 40px 5px;background-color: #d9d9d9;cursor: pointer;}
+
+:host /deep/ .actions > a{    padding: 2px 6px;
+  color: #32c5d2 !important;
+  font-size: 20px;}
+
+:host /deep/ .dicom-table table{width:100%;}
+
+:host /deep/ .dicom-table table td a{    font-size: 18px;
+  color: #084FA1;
+  padding: 2px 0px;}
+
+.pos-l15{position:relative;left:15px;}
+
+input[type="radio"]{right:4px}
+
+.m-l20{margin-left:20px !important;}
+
+.upload-file{background-color: #084FA1;border-color: #084FA1;border-radius: 3px;color: #fff;font-size: 13px;padding: 1px 15px}
+
+.folder-upload{    background: linear-gradient(to bottom, #f6f7f9 0%, #ebedf0 100%);border-top-left-radius: 3px;
+  border-top-right-radius: 3px;    color: #1b1d1f;    border: 1px solid #d9d9d9;padding:.5em;
+  font-weight: normal;}
+
+.flex{display:flex;}
+
+:host /deep/ .bdate .ui-inputtext{width:110px;height:28px;}
+
+:host /deep/ .bdate .ui-calendar > .ui-datepicker{top: 29px !important;left: -98px !important;}
+
+:host /deep/ .moreinfo > .ui-dialog{left:20px !important;width:96% !important;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-content {padding: 1em 0em;}
+
+.dicom-rgt{width: 94%;display: inline-block;border: 1px solid #d9d9d9;}
+
+.dicom-upload{ display: inline-block;width: 94%;}
+
+.dicom-uptable{width: 94%;display: inline-block;}
+
+.caseLazy{
+  overflow-y: auto;height: 400px;overflow-x: hidden;
+}
+
+.postedpopup .modal-body .row div:last-child{border-bottom: 1px solid #efefef;padding-bottom: 15px;}
+
+.collapsible{color: #444 !important;right: 10px; z-index: 9;width: 94%;position: relative;left:5.1%;top:0px;background-color: #d9d9d9;}
+
+#headingOne + .panel-collapse{border:0px solid #d9d9d9;padding-top:0px;}
+
+.collapsible:after {
+  content: "\2212";
+  color: #333;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;    position: absolute;
+  right: 20px;
+  top: 10px;
+}
+.collapsible.collapsed:after {
+  content: '\002B';
+  color: #333;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;    position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-thead th:nth-child(1){width:67px;}
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-thead th:nth-child(2){width:130px;}
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-thead th:nth-child(4){width:115px;}
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-thead th:nth-child(5){width:85px;}
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-thead th:nth-child(6){width:95px;}
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-data td{text-align: center;}
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-data td:nth-child(1){width:67px;}
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-data td:nth-child(2){width:130px;}
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-data td:nth-child(4){width:115px;}
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-data td:nth-child(5){width:85px;}
+
+:host /deep/ .ui-datatable-tablewrapper .ui-datatable-data td:nth-child(6){width:95px;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {padding: 0.5em 1.5em;}
+
+.progress{
+  height: 40px;
+  background: none;    width: 35%;
+  float: left;
+  }
+  
+  .progress-bar{
+      min-height:30px !important;
+  }
+
+  .progressWidth{
+    width:100%;
+  }
+
+  .disabled {
+    cursor: not-allowed;
+}
+
+:host /deep/ .ui-widget.ui-button, .ui-button {border: 1px solid #084FA1;background: #084FA1;}
+
+:host /deep/ .ui-button:hover{border: 1px solid #042f60 !important;background-color: #042f60 !important;}
+
+:host /deep/ .ui-corner-all {border-radius: 0px;}
+
+:host /deep/ .ui-corner-bottom{border-radius:0px;}
+
+:host /deep/ .ui-corner-top{border-radius:0px;}
+
+.fa {
+  cursor: pointer;
+  font-size: 16px !important;
+}
+
+.preview .modal-dialog{max-width: 70%;}
+
+.absolute{position: absolute;}
+
+.cls-blk{color:#000;}
+
+.modalMinimize {
+  position: absolute;
+  right: 100px;
+}
+.floating {
+  position: fixed;
+  padding: 5px 15px 7px 15px;
+  background-color: #2060aa;
+  border-radius: 0px;    width: 135px;
+  right: 0px;top:17%;
+}
+.floatviewer{
+  top: 21.3% !important;
+  padding: 0px;
+  overflow-x: auto;
+}
+.minimize {
+  width: 10%;
+  position: absolute;
+  top: 0%;
+  right: -13%;
+}
+.minmaxCon {
+  height: 35px;
+  bottom: 1px;
+  left: 1px;
+  position: fixed;
+  right: 1px;
+  z-index: 9999;
+}
+.red {
+  color: red;
+}
+.minimize button > .fa-window-maximize {
+  color: #fff !important;
+  position: relative;
+  top: 2px;
+  font-size: 13px;
+}
+button .fa {
+  font-size: 16px;
+  margin-left: 10px;
+}
+.close {
+  font-size: 1rem;
+  text-shadow: 0px 0px 0px;
+}
+.newtab{position: absolute; right: 4%;}
+
+.pos-r5{position: relative;right:5px;}
+
+.pos-t2{position: relative;top:2px;}
+
+.pos-t1{top:1px;}
+
+.r30{right:30px;}
+
+.r40{right:40px;}
+
+.floatframe{width:400px; height:240px;position:relative;right:0px;top:10%;}

@@ -1,0 +1,388 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+
+<div class="main-container contain admin ace-save-state active col-md-12 col-sm-12 col-12 no-padd dicom_img" id="wrapper">
+  <div id="sidebar" class="sidebar responsive ace-save-state col-md-12 col-sm-12 col-12">
+    <!-- /.sidebar-shortcuts -->
+    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse" style="display:none;">
+      <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left"
+        data-icon2="ace-icon fa fa-angle-double-right">
+      </i>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" class="col-lg-12 col-md-12 col-sm-12 col-12 nopadd navbar-collapse">
+      <div id="menu-container">
+
+        <div class="vertical-menu">
+
+          <a class="active">{{'DICOMModule.QuickLinks' | translate}} </a>
+
+          <nav class="navbar navbar-default sidebar no-padd" role="navigation">
+            <div class="navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+              <div class="nav navbar-nav">
+
+
+
+                <div class="sidenav">
+                  <button class="dropdown-btn" data-toggle="collapse" data-target="#MyUploads">{{'DICOMModule.AbnormalStatus' | translate}} 
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div id="MyUploads" class="collapse show">
+                    <a (click)="abnormalStatus(0)">
+                      1. {{'DICOMModule.NoUploader' | translate}} </a>
+                    <a (click)="abnormalStatus(1)">
+                      2. {{'DICOMModule.NoOwner' | translate}}</a>
+                    <a (click)="abnormalStatus(2)">
+                      3. {{'DICOMModule.IsDeleted' | translate}}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+        </div>
+
+        <form [formGroup]="advanceSearch">
+          <div class="vertical-menu">
+            <nav class="navbar navbar-default sidebar no-padd" role="navigation">
+              <a class="active w-100"> {{'DICOMModule.CustomizeFilters' | translate}}</a>
+              <div class="navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                <ul id="dicom-list" class="nav navbar-nav dicom-list">
+                  <!-- <div class="sidenav">
+                  <button class="dropdown-btn" data-toggle="collapse" data-target="#ownership"> Ownership
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div id="ownership" class="collapse">
+                    <a>
+                      <input type="radio"  [value]='id' formControlName='myImage'>My images</a>
+                    <a>
+                      <input type="radio"  [value]='id'  formControlName='shareByothers'>Shared by others</a>
+                    <a>
+                      <input type="radio"  [value]='id'  formControlName='myUpload'>My uploads</a>
+                  </div>
+                </div> -->
+
+                  <li class="">
+                    <a class="col-5 pull-left" data-toggle="dropdown">{{'DICOMModule.StudyPK' | translate}} </a>
+                    <input OnlyNumber="true" type="number" class="col-7 top-2" formControlName='studyPK' />
+                  </li>
+                  <li class="">
+                    <a class="col-5 pull-left" data-toggle="dropdown">{{'DICOMModule.StudyUID' | translate}} </a>
+                    <input type="text" class="col-7 top-2" formControlName='studyUId' />
+                  </li>
+                  <li class="">
+                    <a class="col-5 pull-left" data-toggle="dropdown">{{'DICOMModule.UploadedBy' | translate}}</a>
+
+                    <!-- <input type="text" class="col-7" formControlName='uploadedBy'/> -->
+                    <p-autoComplete [(ngModel)]="uploaded" class="col-7 nopadd auto top-12" [suggestions]="uploadedBy" (completeMethod)="filter($event,1)"
+                      (onSelect)="handleDropdown($event,1)" field="FirstName" placeholder="{{'DICOMModule.EnterName' | translate}}" [ngModelOptions]="{standalone: true}">
+
+                      <ng-template let-value pTemplate="item">
+
+                        <span>{{value.FirstName}}&nbsp;{{value.LastName}}&nbsp;({{value.AccountID}})</span>
+                      </ng-template>
+                    </p-autoComplete>
+                  </li>
+
+                  <!-- <span style="margin-left:50px">Brand: {{results||'none'}}</span> -->
+                  <li class="">
+                    <a class="col-5 pull-left" data-toggle="dropdown">{{'DICOMModule.OwnedBy' | translate}} </a>
+                    <!-- <input type="text" class="col-7" formControlName='ownedBy'/> -->
+                    <p-autoComplete [(ngModel)]="owner" class="col-7 nopadd auto top-4" [suggestions]="ownedBy" (completeMethod)="filter($event,2)"
+                      (onSelect)="handleDropdown($event,2)" field="FirstName" placeholder="{{'DICOMModule.EnterName' | translate}}" [ngModelOptions]="{standalone: true}">
+                      <ng-template let-value pTemplate="item">
+
+                        <span>{{value.FirstName}}&nbsp;{{value.LastName}}&nbsp;({{value.AccountID}})</span>
+                      </ng-template>
+                    </p-autoComplete>
+                  </li>
+                  <li class="">
+                    <a class="col-5 pull-left" data-toggle="dropdown">{{'DICOMModule.Sharedto' | translate}} </a>
+                    <p-autoComplete [(ngModel)]="shared" class="col-7 nopadd auto top-4" [suggestions]="sharedTo" (completeMethod)="filter($event,3)"
+                      (onSelect)="handleDropdown($event,3)" field="FirstName" placeholder="{{'DICOMModule.EnterName' | translate}}" [ngModelOptions]="{standalone: true}">
+                      <ng-template let-value pTemplate="item">
+
+                        <span>{{value.FirstName}}&nbsp;{{value.LastName}}&nbsp;({{value.AccountID}})</span>
+                      </ng-template>
+                    </p-autoComplete>
+                    <!-- <input type="text" class="col-7" formControlName='sharedTo'/> -->
+                  </li>
+                  <li class="">
+                    <a class="col-5 pull-left" data-toggle="dropdown">{{'DICOMModule.PatientID' | translate}} </a>
+                    <input type="text" class="col-7 top-2" formControlName='patientId' />
+                  </li>
+                  <li class="">
+                    <a class="col-5 pull-left" data-toggle="dropdown">{{'DICOMModule.PatientName' | translate}}</a>
+                    <input type="text" class="col-7 top-12" formControlName='patientName' />
+                  </li>
+                  <li class="">
+                    <a class="col-5 pull-left" data-toggle="dropdown">{{'DICOMModule.HospitalName' | translate}}</a>
+                    <input type="text" class="col-7 top-12" formControlName='hospitalName' />
+                  </li>
+                  <li class="">
+                    <a class="col-5 pull-left" data-toggle="dropdown">{{'DICOMModule.StudyID' | translate}}</a>
+                    <input type="text" class="col-7" OnlyNumber="true" formControlName='studyId' />
+                  </li>
+                  <li class="dropdown p-b10">
+                    <a class="col-12 text-center" data-toggle="dropdown">{{'DICOMModule.ExamineDate' | translate}} </a>
+                    <label class="col-5 pull-left before_date pos-t5">{{'DICOMModule.StartDate' | translate}} </label>
+                    <p-calendar [readonlyInput]="true" formControlName='cStartDate' [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
+                      [locale]="lang" class="col-7 no-padd pull-left bdate m-b10" dateFormat="{{fm}}" (onBlur)="focus($event);"
+                      (keyup)="cal($event.target.value)" defaultDate [showIcon]="true"></p-calendar>
+                    <!-- <input type="date" class="col-7 p-r0" formControlName='cStartDate'/> -->
+                    <label class="col-5 pull-left pos-t5 before_date" data-toggle="dropdown">{{'DICOMModule.EndDate' | translate}}  </label>
+                    <p-calendar [readonlyInput]="true" formControlName='cEndDate' [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
+                      [locale]="lang" class="col-7 no-padd pull-left bdate m-b10" dateFormat="{{fm}}" (onBlur)="focus($event);"
+                      (keyup)="cal($event.target.value)" defaultDate [showIcon]="true" [minDate]="EminDate"></p-calendar>
+                    <!-- <input type="date" class="col-7 p-r0" formControlName='cEndDate'/> -->
+                  </li>
+                  <li class="dropdown p-b10">
+                    <label class="col-12 text-center">{{'DICOMModule.UploadDate' | translate}} </label>
+                    <label class="col-5 pull-left before_date pos-t5">{{'DICOMModule.StartDate' | translate}} </label>
+                    <p-calendar [readonlyInput]="true" formControlName='uStartDate' [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
+                      class="col-7 no-padd pull-left bdate m-b10" [locale]="lang" dateFormat="{{fm}}" (onBlur)="focus($event);"
+                      (keyup)="cal($event.target.value)" defaultDate [showIcon]="true" [minDate]="minDate"></p-calendar>
+
+                    <label class="col-5 pull-left pos-t5" data-toggle="dropdown">{{'DICOMModule.EndDate' | translate}} </label>
+                    <p-calendar [readonlyInput]="true" formControlName='uEndDate' [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
+                      class="col-7 no-padd pull-left bdate m-b10" [locale]="lang" dateFormat="{{fm}}" (onBlur)="focus($event);"
+                      (keyup)="cal($event.target.value)" defaultDate [showIcon]="true" [minDate]="UminDate"></p-calendar>
+
+                  </li>
+                  <li class="dropdown">
+                    <a class="col-5 pull-left pos-t15" data-toggle="dropdown">{{'DICOMModule.Age' | translate}}</a>
+                    <div class="col-3 pull-left no-padd">
+                      <label>{{'DICOMModule.From' | translate}}:</label>
+                      <br>
+                      <input type="number" OnlyNumber="true" name="quantity" min="1" max="90" class="col-12 no-padd">
+                    </div>
+                    <div class="col-3 pull-left no-padd">
+                      <label>{{'DICOMModule.To' | translate}}:</label>
+                      <input type="number" OnlyNumber="true" name="quantity" min="1" max="90" class="col-12 no-padd">
+                    </div>
+                  </li>
+                  <li class="dropdown">
+                    <a class="col-12 pull-left" data-toggle="dropdown">{{'DICOMModule.Imagemodalities' | translate}}</a>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left" *ngFor="let mod of modality">
+                      <input type="checkbox" name="" value="" id="dr" (click)="modalityValue($event.target.checked,mod.name)" [checked]="mod.isChecked">{{mod.name}}
+                    </div>
+
+                  </li>
+
+                  <li class="dropdown">
+                    <a href="#" class="col-12 pull-left" data-toggle="dropdown">{{'DICOMModule.BodyParts' | translate}}</a>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left" *ngFor="let body of bodyParts">
+                      <!-- <input type="checkbox" name="" value="" id="dr">SKULL  -->
+                      <input type="checkbox" name="" value="" id="dr1" (click)="bodyValue($event.target.checked,body.name)" [checked]="body.isChecked">{{body.name}}
+                    </div>
+
+                  </li>
+                </ul>
+                <button class="pull-right btn go" (click)="reset()">{{'DICOMModule.Reset' | translate}}</button>
+                <button class="pull-right btn go" (click)="getDicomList()">{{'DICOMModule.GO' | translate}}</button>
+              </div>
+            </nav>
+          </div>
+        </form>
+
+        <!-- End Profile Sidebar -->
+      </div>
+    </div>
+    <div id="sidebar-mobile">
+      <a data-toggle="modal" data-target="#Filter">
+        <i class="fa fa-sliders pull-left text-black f-20"></i>
+      </a>
+    </div>
+  </div>
+  <div id="page-content-wrapper" class="col-md-12 col-sm-12 col-12 no-padd">
+    <div class="col-sm-12">
+      <!-- <div class="brd">
+    <label for="upload-photo" class="p-l15 img-upload">
+      <b>Dicom Upload</b>
+    </label>
+  
+    <div class="p-t10 p-b10 pos-l15">
+      <input type="radio" name="fileupload" (click)="radioFile(1)" checked>File Upload
+      <input type="radio" name="fileupload" (click)="radioFile(2)" class="m-l20">Folder Upload
+    </div>
+  </div> -->
+      <!-- <div *ngIf="hideFolder" class="flex p-l20 folder-upload">
+      <input #folderInput type="file" (change)="filesPicked(folderInput.files)" class="p-l20" multiple webkitDirectory  />
+      <button (click)='saveFolder()' class="upload-file">Upload</button>
+    </div>
+    <div *ngIf="hideFile">
+      <p-fileUpload #form name="photo" type="file" customUpload="true" (uploadHandler)="fileChangeEvent($event,form)" multiple="multiple"></p-fileUpload>
+    </div> -->
+      <!-- <a routerLink="share" class="share-btn">share</a>
+  <a routerLink="sharedToMe" class="share-btn">shared to me</a> -->
+      <input autocomplete='off' #gb type="text" pInputText size="50" (keypress)="press=true" [ngModel]="alpha" (ngModelChange)="searchCheck($event)"
+        placeholder="Global Search" class="col-sm-3 m-b10 m-l10 pull-right">
+      <p-dataTable [value]="dicomList" [rows]="10" sortMode="multiple" [paginator]="true" [lazy]="!press" [totalRecords]="totalCount"
+        (onLazyLoad)="loadLazy($event)" class="dicom-table" [globalFilter]="gb">{{gb}}
+
+        <p-column field="StudyPk" header="{{'DICOMModule.StudyPK' | translate}}">
+          <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <span>{{list.StudyPk}}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column field="Patient_Name" header="{{'DICOMModule.PatientName' | translate}}">
+          <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <span>{{list.Patient_Name}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="StudyDescription" header="{{'DICOMModule.Description' | translate}}">
+          <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <span>{{list.StudyDescription}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="OwnerName" header="{{'DICOMModule.OwnerName' | translate}}">
+          <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <span>{{list.OwnerName}}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column field="BodyParts" header="{{'DICOMModule.BodyParts' | translate}}">
+          <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <span>{{list.BodyParts}}</span>
+          </ng-template>
+        </p-column>
+
+        <p-column field="Modality" header="{{'DICOMModule.Modality' | translate}}">
+          <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <span>{{list.Modality}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="CreatedDate" header="{{'DICOMModule.ImageDate' | translate}}">
+          <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <span>{{list.CreatedDate | date :short}}</span>
+          </ng-template>
+        </p-column>
+        <p-column header="{{'DICOMModule.Action' | translate}}">
+          <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body" class="actions">
+            <a (click)="deleteDicom(list.StudyPk)" [class.disabled]="true">
+              <i title="Delete" class="fa fa-trash "></i>
+            </a>
+            <a class="" data-toggle="modal" (click)="getStudyId(list.StudyPk,'assign',list.Owner)" data-target="#dicomUser">
+              <i title="Assign Owner" class="fa fa-check-circle"></i>
+            </a>
+            <a class="">
+              <!--data-toggle="modal" (click)="getStudyId(list.StudyPk,'share')" data-target="#dicomUser" -->
+              <i title="Share" class="fa fa-share-square disabled"></i>
+            </a>
+            <a class="" data-toggle="modal" (click)="getStudyId(list.StudyPk,'cUploader',list.CreatedBy)" data-target="#dicomUser">
+              <i title="Change Uploader" class=" fa fa-upload"></i>
+            </a>
+            <a (click)="dicomViewer(list.StudyInstanceUID,list.CacheServerId)" data-toggle="modal" data-target="#resetpopup1">
+              <i title="View Dicom" class="fa fa-eye"></i>
+            </a>
+            <a class="" (click)="moreData(list)">
+              <i title="More Information" class=" fa fa-info-circle"></i>
+            </a>
+            <!-- <button (click)="assignDicom(list.StudyPk)">Assign</button> -->
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+
+      <p-dialog header="Confirm Upload" [(visible)]="display" class="conf-upload">
+        <ul>
+          <li>
+            <div>
+              <label>{{'DICOMModule.StudyId' | translate}} :</label>{{studyId}}</div>
+            <ul>
+              <li>
+                <div>
+                  <label>{{'DICOMModule.Series' | translate}} :</label>{{series}}</div>
+                <ul>
+                  <li>
+                    <div>
+                      <label>{{'DICOMModule.Image' | translate}} :</label>{{image}}</div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p-footer>
+          <div class="ui-dialog-buttonpane ui-helper-clearfix popup invite-pop">
+            <button type="button" pButton icon="fa-check" label="Yes" (click)="moveToS3()" class="save btn"></button>
+            <button type="button" pButton icon="fa-close" label="No" (click)="removeDicon()" class="cancel btn"></button>
+          </div>
+
+        </p-footer>
+      </p-dialog>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade postedpopup" id="dicomUser" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{contactsLabel}}</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body caseLazy" (appScrollEnd)="scrollDown()">
+          <div class="row">
+            <div *ngFor="let contact of userList">
+
+              <input *ngIf="radio" type="radio" name="radio1" [value]="contact.Id" (change)="selectInvitee(contact)" [(ngModel)]="selectedRadio"
+              />
+              <input *ngIf="checkbox" type="checkbox" name="radio" (click)="selectCheckboxInvitee($event.target.checked, contact)" [(ngModel)]="contact.isChecked"
+                [disabled]="contact.isDisabled" />
+
+                
+
+              <!-- <img [src]="contact.imagepath ? configUrl+contact.imagepath : defaultImg" [alt]="contact.FirstName" [title]="contact.FirstName"
+                class="u-pht" /> -->
+              <a>{{contact.AccountID}}</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right p-b20 p-t20">
+          <button *ngIf="radio " type="button" class="btn u-btn-primary g-mr-10" (click)="contactsLabel=='Assign Owner' ? assignDicom() : changeUPloader()">{{'DICOMModule.Submit' | translate}}</button>
+          <button *ngIf="!radio" type="button" class="btn u-btn-primary g-mr-10" (click)="shareDicom()">{{'DICOMModule.Submit' | translate}}</button>
+          <input type="button" name="" value="{{'DICOMModule.Cancel' | translate}}" data-dismiss="modal" class="btn u-btn-darkgray g-mr-10" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-dialog header="More Information" *ngIf="more" class="moreinfo" [(visible)]="more" [modal]="true" [responsive]="true" [height]="auto"
+    [minWidth]="200">
+    <app-more-information [moreInfo]="moreInfo"></app-more-information>
+  </p-dialog>
+
+  <div class="modal fade" style="z-index:9999999" id="resetpopup1" role="dialog">
+
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="close1();" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{'DICOMModule.PreviewDocument' | translate}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="not-found" *ngIf="error">
+            <span>{{'DICOMModule.FileNotFound' | translate}}</span>
+          </div>
+          <div *ngIf="success">
+            <iframe id="iframeId" [src]="srcUrl" style="width:100%; height:500px;" frameborder="0"></iframe>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<!-- {{advanceSearch.value | json}} -->

@@ -1,0 +1,36 @@
+.nav-item.active a{color: #fff; background-color: #32c5d2;}
+
+.disbaledInput input{border: none;background: no-repeat;box-shadow: none;outline: 0;pointer-events:none;}
+
+.g-brd-primary {border-color: #32c5d2 !important;}
+
+.u-btn-primary {color: #fff !important;background-color: #32c5d2 !important;border:1px solid #32c5d2;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar { padding: 0.5em 1.5em;background: #32c5d2 !important;color: #fff;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon {color: #fff;padding-top: 5px;position: relative;left: 10px;top: 2px;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon:hover{color:#000;}
+
+input[type=radio]:checked ~ label {color: #32c5d2;}
+
+form button {background-color: #32c5d2;}
+
+.u-check input[type="checkbox"]:checked + .u-check-icon-checkbox-v4{color: #32c5d2;border-color: #32c5d2;}
+
+.u-check input[type="checkbox"]:checked + .u-check-icon-checkbox-v7, .u-check input[type="checkbox"]:checked + .u-check-icon-radio-v7{color: #fff;background-color: #32c5d2;border-color: #32c5d2;}
+
+.icon-lock{display:none;}
+
+.ml-10{margin-left:11%;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-content{padding: 2.5em 1.5em;}
+
+.nav-item a.active{background-color: #32c5d2 !important;}
+
+:host /deep/ .phone_number{border-radius: 0px;height: 28px;padding-left: 5px !important;padding: 0px;background-color: #fff !important;}
+
+:host /deep/ .phone_number input[type="text"]{border-color: #fff;box-shadow: 0px 0px 0px;background-color: #fff;
+  border-radius: 0px;padding: 0px !important;height: 26px !important;}
+
+:host /deep/ .disbaledInput .phone_number{border:0px !important;}

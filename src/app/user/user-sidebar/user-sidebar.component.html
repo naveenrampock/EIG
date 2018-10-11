@@ -1,0 +1,82 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="lookupmaster">
+  <div class="g-mb-50 g-mb-0--lg">
+    <!-- User Image -->
+    <div class="u-block-hover g-pos-rel">
+      <!-- <img src="../../../assets/images/user.jpg" height="400px" width="272px"> -->
+      <img src="{{profilePic}}" height="400px" width="272px" />
+
+      <!-- End Figure Caption -->
+
+      <!-- User Info -->
+      <span class="g-pos-abs g-top-20 g-left-0" *ngIf="profileDetails">
+        <a class="btn btn-sm u-btn-primary rounded-0">{{profileDetails.FirstName}} {{profileDetails.LastName}}</a>
+        <small class="d-block g-bg-black g-color-white g-pa-5">{{profileDetails.POSITION}}</small>
+      </span>
+      <div class="image-upload">
+        <!-- <label for="file-input">
+            Image Upload
+          </label> -->
+        <label for="upload-photo">Image Upload</label>
+        <input type="file" name="photo" id="upload-photo" (change)="validateUpload($event)" accept=".png,.jpg,.jpeg" />
+        <!-- <input type="file" (change)="ValidateSingleInput($event)" placeholder="Image Upload"> -->
+      </div>
+      <!-- End User Info -->
+    </div>
+    <!-- User Image -->
+
+    <!-- Sidebar Navigation -->
+    <div class="list-group list-group-border-0 g-mb-40">
+      <a id="setting" routerLink="/user/settings" class="list-group-item justify-content-between clr-blk" (click)="settings()"
+        routerLinkActive="active">
+        <span>
+          <!-- <i class="icon-settings g-pos-rel g-top-1 g-mr-8"></i> -->
+          Settings</span>
+        <!-- <span class="u-label g-font-size-11 g-bg-white g-color-main g-rounded-20 g-px-8">3</span> -->
+      </a>
+      <!-- <a class="list-group-item justify-content-between clr-blk" routerLink="/user/patient-list" routerLinkActive="active">
+        <span>
+          Patient List</span>
+      </a> -->
+      <a class="list-group-item justify-content-between clr-blk" (click)="savePatientId()" routerLinkActive="active">
+        <span>
+          Patient Info</span>
+      </a>
+      <a class="list-group-item justify-content-between clr-blk" routerLink="/user/audit-logs" routerLinkActive="active">
+        <span>
+          Audit Logs</span>
+      </a>
+      <a class="list-group-item justify-content-between clr-blk" routerLink="/user/user-device" routerLinkActive="active">
+        <span>
+          User Devices</span>
+      </a>
+
+      <a (click)="inviteScreen()" class="list-group-item justify-content-between clr-blk">
+        <span>
+          <i class="fa fa-user-plus g-pos-rel g-top-1 g-mr-8"></i> Invite a Friend</span>
+      </a>
+    </div>
+    <!-- End Sidebar Navigation -->
+
+  </div>
+  <p-dialog header="Invite a user" [(visible)]="isShowInvite" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+    <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+      <div class="modal-body row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <label class="col-lg-3 col-md-4 col-sm-6 col-xs-6">Email
+            <span class="required">*</span>
+          </label>
+          <input type="text" placeholder="Email" class="col-lg-8 col-md-8 col-sm-6 col-xs-6" [(ngModel)]="inviteEmail.emailId" />
+          <div *ngIf="inviteEmail.errorMsg" class="col-lg-8 col-md-8 col-sm-6 col-xs-6 required pull-right">{{inviteEmail.errorMsg}}</div>
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+        <button type="button" pButton icon="fa-check" label="Invite" class="save btn btn-primarty" (click)="sendInvitation(inviteEmail.emailId)"
+          [disabled]="!inviteEmail.emailId"></button>
+        <button type="button" pButton icon="fa-close" label="Cancel" class="cancel btn" (click)="settings()"></button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</div>

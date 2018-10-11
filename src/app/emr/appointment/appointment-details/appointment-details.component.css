@@ -1,0 +1,73 @@
+.legend-like-labels label {
+    width: 100%;
+    margin-left: 16px;
+    margin-bottom: 0px;
+    padding: 4px 15px;
+    font-size: 11px;
+    color: #084FA1;
+}
+/* 
+.ebg-white > div {
+    overflow: auto;
+} */
+
+.legend-like-labels> div, .legend-like-labels> div > div, .legend-like-labels> div > div> div {
+    margin-bottom: 6px;
+}
+
+.emr-labels label{font-size:13px;font-weight:normal;}
+
+.pat-calendar{width:58%;}
+
+:host /deep/ .pat-calendar .ui-inputtext{width:100%;}
+
+.m-t10per{margin-top:10%;}
+
+.pos-b0{position:absolute;bottom:0px;}
+
+.single-line{line-height: 11px;padding-top: 0px;}
+
+:host /deep/ .ui-inputtext{width:151.5px;}
+
+.lbl_note{width:108px;}
+
+.txt_note{width:87%;}
+
+.error {color: red;font-size: 12px;position: relative;top: 124px;}
+
+:host /deep/ .ui-datepicker{width:18.7em;}
+
+:host /deep/ .ui-corner-all {border-radius: 0px;}
+
+:host /deep/ .ui-widget.ui-button, .ui-button {border: 1px solid #084FA1;color: #FFFFFF;background: #084FA1;}
+
+:host /deep/ .ui-datepicker .ui-datepicker-prev{top: 0.5em;}
+
+.emr-details .fa-caret-down {position: absolute;top: 9px;right: 8px;}
+
+.emr-details input[type=text]{padding: 0px 20px 0px 8px;}
+
+input[type="text" i]:disabled,select:disabled{background-color:#f5f5f5;}
+
+:host /deep/ .ui-widget:disabled{opacity:1;background-color: #f5f5f5;}
+
+:host /deep/ .ui-datepicker-trigger.ui-widget:disabled{background: #0847a1;}
+
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {padding: 0.5em 1.5em;background: #0847a1;color: #fff;}
+
+:host /deep/ .ui-corner-top {border-top-left-radius: 0px;border-top-right-radius: 0px;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon {color: #fff; padding-top: 2px;position: relative;top: 5px;}
+
+:host /deep/ .ui-dialog-footer{ padding: 0.5em 1em;}
+
+:host /deep/ .ui-dialog-footer.ui-widget-content {border:0px;border-top: 1px solid #D5D5D5;}
+
+:host /deep/ .ui-widget.ui-button, .ui-button {border: 1px solid #0847a1;color: #FFFFFF;background: #0847a1;}
+
+:host /deep/ .ui-datepicker-trigger.ui-widget:disabled{background: #0847a1;}
+
+:host /deep/ .ui-widget-content {border: 0px solid #D5D5D5;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon:hover{color:#000;}

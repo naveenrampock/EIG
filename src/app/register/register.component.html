@@ -1,0 +1,125 @@
+<!-- Login -->
+<section class="g-bg-gray-light-v5" *ngIf="!showSuccess">
+  <div class="container g-py-100">
+    <div class="row justify-content-center">
+      <p-growl [(value)]="msgs" life="3000"></p-growl>
+      <div class="col-sm-8 col-lg-10">
+        <div class="u-shadow-v21 g-bg-white g-py-40 g-px-30">
+          <header class="text-center mb-4">
+            <h2 class="h2 g-color-black g-font-weight-600">Sign Up</h2>
+            <p>Already have an account ?
+              <a routerLink="/login" class="logHighlight">Log in</a>
+            </p>
+          </header>
+          <!-- Login with facebook button -->
+          <div class="text-center">
+            <button class="loginBtn loginBtn--facebook" (click)="SingleSignOn('facebook')">
+              <i class="fa fa-facebook"></i>
+              <b>Sign Up with Facebook</b>
+            </button>
+            <!-- Login with Google button -->
+            <button class="loginBtn loginBtn--google mb-2" (click)="SingleSignOn('google')">
+              <i class="fa fa-google"></i>
+              <b>Sign Up with Google</b>
+            </button>
+          </div>
+          <!-- Form -->
+          <form class="row g-py-15" [formGroup]="registerForm">
+            <div class="mb-4  col-lg-6">
+              <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">First Name
+                <span class="required">*</span>
+              </label>
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-primary--hover"
+                type="text" placeholder="First Name" [maxlength]="90" formControlName="FirstName">
+              <control-messages [control]="registerForm.controls.FirstName" class="errorMessage"></control-messages>
+            </div>
+            <div class="mb-4  col-lg-6">
+              <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Last Name
+                <span class="required">*</span>
+              </label>
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-primary--hover g-px-15" type="text" placeholder="Last Name"
+              [maxlength]="90" formControlName="LastName">
+              <control-messages [control]="registerForm.controls.LastName" class="errorMessage"></control-messages>
+            </div>
+
+
+            <div class="mb-4  col-lg-6">
+              <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Password
+                <span class="required">*</span>
+              </label>
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-primary--hover g-px-15" type="password"
+                placeholder="Password" [maxlength]="100" formControlName="Password" [readonly]="isReadOnly">
+              <control-messages [control]="registerForm.controls.Password" class="errorMessage"></control-messages>
+              <div class="errorMessage" *ngIf="validationPassBlank==1">{{errorMessageBlankPass}}</div>
+              <div class='required' *ngIf="validationError == 1">{{errorMessage}}</div>
+            </div>
+
+            <div class="mb-4  col-lg-6">
+              <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Confirm Password
+                <span class="required">*</span>
+              </label>
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-primary--hover g-px-15" type="password"
+                placeholder="Password" [maxlength]="100" (blur)="checkConfirmPass()" formControlName="ConfirmPassword" [readonly]="isReadOnly">
+                <div class="errorMessage" *ngIf="confirmPass==1">{{confirmPassError}}</div>
+             
+            </div>
+
+
+            <div class="mb-1 col-lg-6">
+              <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Phone number</label>
+              <!-- <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-primary--hover g-px-15" type="text" placeholder="Phone number"
+                formControlName="PhoneNumber" [maxlength]="13" OnlyNumber="true" maxlength="15" /> -->
+
+                <p-inputMask mask="+9-999-999-9999" formControlName="PhoneNumber" class="phone_number form-control g-color-black g-bg-white g-bg-white--focus g-brd-primary--hover g-px-15" placeholder="+9-999-999-9999"></p-inputMask>
+            </div>
+
+
+            <div class="mb-1 col-lg-6">
+              <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">AccountID
+                <span class="required">*</span>
+              </label>
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-primary--hover g-px-15 mb-3" type="text"
+                placeholder="AccountID" [maxlength]="140" (keyup)="check($event,accountId)" formControlName="AccountID">
+              <control-messages [control]="registerForm.controls.AccountID" class="errorMessage"></control-messages>
+              <div class="errorMessage" *ngIf="validationErrorAccountId==1">{{errorMessageAccId}}</div>
+              <div class="errorMessage" *ngIf="validationAccError==1">{{errorMessageAccountId}}</div>
+            </div>
+            <div class="mb-4 col-lg-6">
+              <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Primary email address
+                <span class="required">*</span>
+              </label>
+              <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-primary--hover g-px-15" type="email"
+                placeholder="Primary email address" [maxlength]="140" formControlName="PrimaryEmailId" [readonly]="isReadOnly">
+              <control-messages [control]="registerForm.controls.PrimaryEmailId" class="errorMessage"></control-messages>
+            </div>
+            <div class="col-lg-12 mb-5 pl-0">
+              <input type="checkbox" class="col-lg-1 pl-0" />
+              <p class="terms col-lg-11 pl-0">By clicking Create Account, you agree to our
+                <a data-toggle="modal" data-target="#TermsPopup">Terms</a> and confirm that you have read our Data Policy, including our Cookie Use Policy. </p>
+            </div>
+            <div class="mb-4 col-lg-12">
+              
+              <button class="btn btn-md btn-block u-btn-primary rounded g-py-13 register" (click)="signup()" [disabled]="!registerForm.valid">SignUp</button>
+            </div>
+          </form>
+          <!-- End Form -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<p-dialog header="Success" [(visible)]="showSuccess" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+  <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+    <div class="modal-body row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3>{{successMessage}}</h3>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+      <button type="button" pButton icon="fa-close" label="Cancel" class="cancel" (click)="okay()">Okay</button>
+    </div>
+  </p-footer>
+</p-dialog>
+<!-- End Login -->

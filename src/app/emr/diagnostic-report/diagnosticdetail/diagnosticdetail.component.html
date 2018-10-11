@@ -1,0 +1,217 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="emr-details">
+  <div class="m-b10 ebg-white">
+    <div class="head-text inline-block">
+      <p class="col-sm-12 text-center w-85 pull-left m-0">Diagnostic Report</p>
+      <a class="pull-right" id="back_condition" (click)="backToListing()">
+        <button class="addbutton">
+          <i class="fa fa-arrow-circle-left"></i>
+        </button>
+      </a>
+    </div>
+
+    <form [formGroup]="diagnosticForm">
+      <div class="col-sm-12 col-xs-12 emr-labels no-padd">
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">SourceType
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(11, src.value)" #src formControlName="sourceType" [(ngModel)]="selectedText" minlength="3"
+            />
+            <i class="fa fa-caret-down"></i>
+            <div *ngIf="sourceDrp && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let sType of sourceDrp" (click)="getValue(sType)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{sType.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">SourceID</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <div class="input-group g-brd-primary--focus">
+              <input type="text" formControlName="sourceId" OnlyNumber="true" maxlength="3">
+            </div>
+          </div>
+        </div>
+        <!-- Basic Information -->
+        <div class="head-text subhead inline-block">
+          <p class="normal pull-left m-0">Basic Information</p>
+        </div>
+        <div class="col-sm-12 no-padd">
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Context
+            </label>
+            <div class="col-sm-7 pull-left no-padd">
+              <a class="emr_link">Link to encounter</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Code
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(103, src3.value)" #src3 formControlName="code" [(ngModel)]="selectedCode" minlength="3"
+            />
+            <i class="fa fa-caret-down"></i>
+            <div *ngIf="codeDrp && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let code of codeDrp" (click)="getValue(code)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{code.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>        
+        
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Status
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(100, src1.value)" #src1 formControlName="status" [(ngModel)]="selectedStatus"
+              minlength="3" />
+              <i class="fa fa-caret-down"></i>
+            <div *ngIf="statusDrp && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let statusType of statusDrp" (click)="getValue(statusType)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{statusType.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd zIndex">Issued</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <p-calendar formControlName="issued" [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" showButtonBar="true"
+              dateFormat="mm-dd-yy" placeholder="mm-dd-yyyy"></p-calendar>
+              <i class="fa fa-calendar"></i>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Category
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type='text' (keyup)="searchDropDown(84, src2.value)" #src2 formControlName="category" [(ngModel)]="selectedCategory"
+              minlength="3" />
+              <i class="fa fa-caret-down"></i>
+            <div *ngIf="categoryDrp && IsHidden" class="emr-dropdown">
+              <ul *ngFor="let category of categoryDrp" (click)="getValue(category)" class="p-l10 m-b0 brd-b">
+                <li>
+                  {{category.Description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          </div>
+        <!--Effective Details -->
+        <div class="head-text subhead inline-block">
+          <p class="normal pull-left m-0 col-sm-6 no-padd pull-left">Effective Details</p>
+          <div class="col-sm-6 no-padd pull-left">
+            <a class="text-right pull-right add_effective"><i class="fa fa-plus"></i></a>
+          </div>
+        </div>
+        <div class="col-sm-12 no-padd" formGroupName="effective">
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd zIndex">Date Time</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <p-calendar formControlName="effectiveDateTime" [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" showButtonBar="true"
+                dateFormat="mm-dd-yy" placeholder="mm-dd-yyyy"></p-calendar>
+                <i class="fa fa-calendar"></i>
+            </div>
+          </div>
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd ">Period</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="effectivePeriod">
+            </div>
+          </div>
+        </div>
+
+        <!--Imaging Details -->
+        <div class="head-text subhead inline-block">
+          <p class="normal pull-left m-0">Imaging Details</p>
+        </div>
+        <div class="col-sm-12 no-padd">
+          <div class="col-sm-4 pull-left m-b10 m-t10" formGroupName="image">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd "> Imaging Study</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <!-- <input type="text" formControlName="imagex"> -->
+              <a class="emr_link">Link to DICOM</a><a><img src="../assets/images/dicom.png" class="p-l5 h-18"></a>
+            </div>
+          </div>
+          <!-- <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd "> Imaging Study</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="imageStudy">
+              <a>Link to Dicom</a>
+            </div>
+          </div> -->
+        </div>
+
+        <!--Performer Details -->
+        <div class="head-text subhead inline-block">
+          <p class="normal pull-left m-0">Performer Details</p>
+        </div>
+        <div class="col-sm-12 no-padd" formGroupName="PerformerData">
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd ">Performer</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="performer">
+            </div>
+          </div>
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd ">Role
+              <span class="required">*</span>
+            </label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type='text' (keyup)="searchDropDown(104, src4.value)" #src4 formControlName="role" [(ngModel)]="selectedRole" minlength="3"
+              />
+              <div *ngIf="roleDrp && IsHidden" class="emr-dropdown">
+                <ul *ngFor="let role of roleDrp" (click)="getValue(role)" class="p-l10 m-b0 brd-b">
+                  <li>
+                    {{role.Description}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd ">Actor</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="actor">
+            </div>
+          </div>
+        </div>
+        <!-- Summary -->
+        <div class="head-text subhead inline-block">
+          <p class="normal pull-left m-0">Summary</p>
+        </div>
+        <div class="col-sm-12 inline-block m-t10 m-b10">
+            <label class="lbl_note pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd ">Result</label>
+            <div class="txt_note pull-left no-padd">
+              <input type="text" formControlName="result" class="w-100">
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <label class="lbl_note pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd ">Conclusion</label>
+            <div class="txt_note pull-left no-padd">
+              <input type="text" formControlName="conclusion" class="w-100">
+            </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- {{diagnosticForm.value | json}} -->
+
+    <div  class="col-sm-12 text-right m-b10 m-t10 inline-block" *ngIf="diagnosticDetails?.mode !== 'readOnly'">
+      <button class="btn btn-primary clr-white m-b10" [disabled]="!diagnosticForm.valid" (click)="!diagnosticDetails ? insertDiagnostic(diagnosticForm.value) : updateDiagnostic(diagnosticForm.value)">{{!diagnosticDetails ? 'Save' : 'Update'}}</button>
+    </div>
+  </div>
+</div>

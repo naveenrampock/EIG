@@ -1,0 +1,14 @@
+.clear{ clear: both;}
+
+.add_lookup{left:0px;border-radius: 0px; 
+    padding: 7px 9px 6px 9px !important;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;}
+
+input[type="text"]{height:25px;}
+
+.fa-plus{margin-right:0px;}
+
+:host /deep/ .ui-datatable-tablewrapper table tbody tr td span{word-wrap: break-word;}

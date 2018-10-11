@@ -1,0 +1,11 @@
+.d-grid{display: grid;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {
+    padding: 0.5em 1.5em;
+}
+
+:host /deep/ .ui-dialog-footer{padding: 0.5em 1.5em;}
+
+:host /deep/ .ui-button-text-icon-left .ui-button-text{ padding: .15em 0.5em .15em 1.1em;}
+
+:host /deep/ .ui-widget-content{border:0px; border-top:1px solid #d9d9d9;}

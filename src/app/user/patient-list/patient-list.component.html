@@ -1,0 +1,61 @@
+<p-confirmDialog></p-confirmDialog>
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="row mt-140">
+  <app-user-sidebar class="col-lg-3"></app-user-sidebar>
+  <div class="col-lg-9 lookupmaster" id="LookupMaster">
+    <!-- Nav tabs -->
+    <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary col-lg-12 p-r0" role="tablist"
+      data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20"
+      style="padding:0">
+      <li class="nav-item col-lg-2 nopadd" style="padding:0">
+        <a class="nav-link g-py-2 active" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--1" role="tab">Patient Listing</a>
+      </li>
+      <li class="col-lg-10 pull-right text-right nopadd" style="padding:0">
+        <a class="btn btn-primary add_lookup text-white" routerLink="/user/patient-info">
+          <i class="fa fa-plus"></i>
+        </a>
+      </li>
+
+    </ul>
+    <div class="pull-right mt-2 clearfix">
+      <label>Search:</label>
+      <input autocomplete='off' type="text" #gb pInputText size="25" placeholder="" class="mrgbtm15">
+    </div>
+    <div id="blist_Table" class="content-section implementation clear nopadding">
+      <p-dataTable [value]="patientLists" [paginator]="true" [rows]="10" [pageLinks]="3" [globalFilter]="gb" [responsive]="true">
+        <p-column field="FirstName" header="First Name" [sortable]="true" [editable]="true">
+          <ng-template let-col let-patientList="rowData" pTemplate="body" class="elipses">
+            <span>
+              <a>{{patientList.FirstName}}</a>
+            </span>
+          </ng-template>
+        </p-column>
+        <p-column field="LastName" header="LastName" [sortable]="true" [editable]="true">
+          <ng-template let-col let-patientList="rowData" pTemplate="body" class="elipses">
+            <span>{{patientList.LastName}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="EmailAddress" header="EmailAddress" [sortable]="true" [editable]="true">
+          <ng-template let-col let-patientList="rowData" pTemplate="body" class="elipses">
+            <span>{{patientList.EmailAddress}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="Birthdate" header="Birthdate" [sortable]="true" [editable]="true">
+          <ng-template let-col let-patientList="rowData" pTemplate="body" class="elipses">
+            <span>{{patientList.Birthdate | date: 'mediumDate'}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="Actions" header="Actions" [sortable]="true" [editable]="true">
+          <ng-template let-col let-patientList="rowData" pTemplate="body" class="popup">
+            <button (click)="editPatientInfo(patientList)" class="greenBtn">Edit</button>
+            <!-- <button (click)="delete(patientList)" class="redBtn">Delete</button> -->
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+
+
+    </div>
+
+  </div>
+
+</div>

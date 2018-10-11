@@ -1,0 +1,923 @@
+<div id="User" *ngIf="permission==3" class="col-lg-9 pull-right">
+
+  <div class="row g-mb-40">
+    <div class="col-lg-6 g-mb-40 g-mb-0--lg">
+      <!-- Latest Projects Panel -->
+      <div class="card border-0">
+        <!-- Panel Header -->
+        <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0">
+          <h3 class="h6 mb-0 text-white">
+            <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i> {{ 'DashboardModule.Notifications' | translate }}
+          </h3>
+          <div class="dropdown g-mb-10 g-mb-0--md hide">
+            <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <i class="icon-options-vertical g-pos-rel g-top-1"></i>
+            </span>
+            <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- End Panel Header -->
+
+        <!-- Panel Body -->
+        <div class="js-scrollbar card-block u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0 mCustomScrollbar _mCS_1 mCS-autoHide"
+          style="overflow: visible;">
+          <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0">
+            <div id="mCSB_1_container" class="mCSB_container" style="position: relative; left: 0px;" dir="ltr">
+              <ul class="list-unstyled">
+                <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left g-pa-20 g-mb-10" *ngFor="let notification of notifications">
+                  <div class="d-flex g-mt-2 g-mr-15">
+                  </div>
+                  <div class="media-body">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="h6 g-font-weight-600 g-color-black">{{notification.Subject}}</h5>
+                      <span class="small text-nowrap g-color-blue">{{notification.CreatedDt | date:short}}</span>
+                    </div>
+                    <p>{{notification.Subject}}</p>
+
+                  </div>
+                </li>
+                <div id="lnkmore" class="text-center text-center media g-brd-around rounded gg-mb-10" style="display:block;">
+                  <a class="more btn btn-primary text-white">More</a>
+                </div>
+                <div id="more" style="display:none;" class="text-center text-center media g-brd-around  gg-mb-10 col-lg-12 no-padd">
+                  <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10 col-lg-12">
+                    <div class="d-flex g-mt-2 g-mr-15">
+
+                    </div>
+                    <div class="media-body">
+                      <div class="d-flex justify-content-between">
+                        <h5 class="h6 g-font-weight-600 g-color-black">Notification 5</h5>
+                        <span class="small text-nowrap g-color-blue">2 min ago</span>
+                      </div>
+                      <p class="text-left">Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet,
+                        consectetur eleifend.</p>
+                    </div>
+                  </li>
+
+
+                  <!-- <div class=""> -->
+                  <!-- <div class="d-flex g-mt-2 g-mr-15"> -->
+
+                  <!-- </div> -->
+                  <!-- <div class="media-body"> -->
+                  <!-- <div class="d-flex justify-content-between"> -->
+                  <!-- <h5 class="h6 g-font-weight-600 g-color-black">Notification 6</h5> -->
+                  <!-- <span class="small text-nowrap g-color-blue">2 min ago</span> -->
+                  <!-- </div> -->
+                  <!-- <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p> -->
+
+                  <!-- </div> -->
+                  <!-- </div> -->
+                  <!-- <div class=""> -->
+                  <!-- <div class="d-flex g-mt-2 g-mr-15">                           -->
+                  <!-- </div> -->
+                  <!-- <div class="media-body"> -->
+                  <!-- <div class="d-flex justify-content-between"> -->
+                  <!-- <h5 class="h6 g-font-weight-600 g-color-black">Notification 7</h5> -->
+                  <!-- <span class="small text-nowrap g-color-blue">2 min ago</span> -->
+                  <!-- </div> -->
+                  <!-- <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>                           -->
+                  <!-- </div> -->
+                  <!-- </div> -->
+
+
+
+                </div>
+                <div id="less" class="text-center" style="display:none;">
+                  <a class="less btn btn-primary text-white">less</a>
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical"
+            style="display: block;">
+            <div class="mCSB_draggerContainer">
+              <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 289px; max-height: 366px; top: 87px;">
+                <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+              </div>
+              <div class="mCSB_draggerRail"></div>
+            </div>
+          </div>
+        </div>
+        <!-- End Panel Body -->
+      </div>
+      <!-- End Latest Projects Panel -->
+    </div>
+
+    <div class="col-lg-6">
+      <!-- Activities Panel -->
+      <div class="card border-0">
+        <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0">
+          <h3 class="h6 mb-0 text-white">
+            <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i>{{ 'DashboardModule.Activities' | translate }}
+          </h3>
+          <div class="dropdown g-mb-10 g-mb-0--md hide">
+            <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <i class="icon-options-vertical g-pos-rel g-top-1"></i>
+            </span>
+            <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="js-scrollbar card-block  u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0 mCustomScrollbar _mCS_2 mCS-autoHide"
+          style="overflow: visible;">
+          <div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0" style="max-height: none;">
+            <div id="mCSB_2_container" class="mCSB_container" style="position: relative; left: 0px;" dir="ltr">
+              <ul class="list-unstyled">
+                <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10" *ngFor="let activity of activities">
+                  <div class="g-mt-2">
+
+                  </div>
+                  <div class="align-self-center g-px-10">
+                    <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                      <span class="g-mr-5">{{activity.ActionType}}</span>
+                    </h5>
+                    <p class="m-0">{{activity.ApplicationAction}}</p>
+                  </div>
+                  <div class="align-self-center ml-auto">
+
+                  </div>
+                </li>
+
+
+                <div id="actlnkmore" class="text-center text-center media g-brd-around rounded gg-mb-10" style="display:block;">
+                  <a class="actmore btn btn-primary text-white">More</a>
+                </div>
+                <div id="actmore" style="display:none;" class="text-center text-center media g-brd-around rounded gg-mb-10">
+                  <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10 col-lg-12">
+                    <div class="g-mt-2">
+
+                    </div>
+                    <div class="align-self-center g-px-10 text-left">
+                      <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                        <span class="g-mr-5">Activity 6</span>
+
+                      </h5>
+                      <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
+                    </div>
+                    <div class="align-self-center ml-auto">
+
+                    </div>
+                  </li>
+                </div>
+                <div id="actless" class="text-center" style="display:none;">
+                  <a class="actless btn btn-primary text-white">less</a>
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical"
+            style="display: block;">
+            <div class="mCSB_draggerContainer">
+              <div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 301px; max-height: 366px; top: 75px;">
+                <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+              </div>
+              <div class="mCSB_draggerRail"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Activities Panel -->
+    </div>
+  </div>
+  <div class="row text-center g-color-white">
+    <div class="col-md-3 col-6 d-flex justify-content-center g-mb-60">
+      <div class="d-flex justify-content-center u-counter-v3 g-brd-primary g-bg-primary g-width-150 g-height-150 rounded-circle g-pa-20">
+        <div class="align-self-center">
+          <div class="js-counter g-font-size-30 g-font-weight-300">5867</div>
+          <h4 class="h5">IMAGES</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-6 d-flex justify-content-center g-mb-60">
+      <div class="d-flex justify-content-center u-counter-v3 g-brd-primary g-bg-primary g-width-150 g-height-150 rounded-circle g-pa-20">
+        <div class="align-self-center">
+          <div class="js-counter g-font-size-30 g-font-weight-300">7169</div>
+          <h4 class="h5">EMR</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-6 d-flex justify-content-center g-mb-60">
+      <div class="d-flex justify-content-center u-counter-v3 g-brd-primary g-bg-primary g-width-150 g-height-150 rounded-circle g-pa-20">
+        <div class="align-self-center">
+          <div class="js-counter g-font-size-30 g-font-weight-300 count">{{caseDshboard}}</div>
+          <h4 class="h5">CASES</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-6 d-flex justify-content-center g-mb-60">
+      <div class="d-flex justify-content-center u-counter-v3 g-brd-primary g-bg-primary g-width-150 g-height-150 rounded-circle g-pa-20">
+        <div class="align-self-center">
+          <div class="js-counter g-font-size-30 g-font-weight-300">9450</div>
+          <h4 class="h5">VIEWS</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="SuperAdmin" *ngIf="permission==1" class="col-lg-12 no-padd pull-right m-t10 brd-t-grey">
+  <main class="main-content">
+    <div class="">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9 mb30 pt20 btn-list">
+            <ul class="nav nav-tabs mb20">
+              <li><a data-toggle="tab" href="#User" class="btn btn-sm btn-outline active" role="button" (click)="getuserDashboard()">User</a></li>
+              <li><a data-toggle="tab" href="#Dicom" class="btn btn-sm btn-outline" role="button" (click)="getDicomDashboard()">Dicom</a></li>
+              <li><a data-toggle="tab" href="#EMR" class="btn btn-sm btn-outline" role="button" (click)="getEmrDashboard()">EMR</a></li>
+              <li><a data-toggle="tab" href="#Case" class="btn btn-sm btn-outline" role="button" (click)="getCaseDashboardDetails()">Case</a></li>
+              <li><a data-toggle="tab" href="#File" class="btn btn-sm btn-outline" role="button" (click)="getFileDashboard()">File</a></li>
+            </ul>
+            <div class="tab-content">
+              <!-- <div id="UserLogin" class="tab-pane in active">
+                <div id="UserLogin_Chart"></div>
+              </div> -->
+
+              <div id="User" class="tab-pane in active">
+                <div class="pull-right file_icon">
+                  <a title="Print" (click)="onPrint('userPrint')"><i class="fa fa-print"></i></a>
+                  <a title="Download as PDF" (click)="generatePdf(cchart, userLine)"><i class="fas fa-file-pdf"></i></a>
+                </div>
+
+                <div id="userPrint">
+                  <div class="form-group">
+                    <p><b>1. User Status</b></p>
+                    <!-- <div id="TopPieMileage"></div> -->
+                    <!-- <button>Export to PDF</button> -->
+                    <google-chart [data]="usersPieChartData" #cchart></google-chart>
+
+                    <!-- <google-chart [data]="lineChartData"></google-chart> -->
+                  </div>
+                  <div class="form-group">
+                    <p><b>2. User Creation</b></p>
+                    <!-- <div id="TopPieMileage"></div> -->
+                    <!-- <button (click)="generatePdf(userLine)">Export to PDF</button> -->
+                    <google-chart [data]="usersCreationLineChart" #userLine></google-chart>
+                    <!-- <google-chart [data]="lineChartData"></google-chart> -->
+                  </div>
+                </div>
+                <!-- <div class="form-group">
+                  <p><b>2. Most Active Users</b></p>
+                  <table class="table table-bordered table-striped table-admin">
+                    <thead>
+                      <tr>
+                        <th>Storage Unit</th>
+                        <th>Activity</th>
+                        <th>Case Created</th>
+                        <th>Online Time</th>
+                        <th>No. of Logins</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                      <tr>
+                        <td>User A</td>
+                        <td>User D</td>
+                        <td>User F</td>
+                        <td>User I</td>
+                        <td>User K</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> -->
+                <!-- <div id="User_Chart"></div> -->
+              </div>
+              <div id="Dicom" class="tab-pane fade">
+                <div class="pull-right file_icon">
+                  <a title="Print" (click)="onPrint('dicomDash')"><i class="fa fa-print 2x"></i></a>
+                  <a title="Download as PDF" (click)="generatePdf(dicomLine)"><i class="fas fa-file-pdf"></i></a>
+                </div>
+                <!-- <div id="Dicom_Chart"></div> -->
+                <div id="dicomDash">
+                  <!-- <button (click)="generatePdf(dicomLine)">Export to PDF</button> -->
+                  <div class="form-group">
+                    <p><b>1. Dicom</b></p>
+                    <google-chart [data]="dicomLineChart" #dicomLine></google-chart>
+                  </div>
+                </div>
+              </div>
+              <div id="EMR" class="tab-pane fade">
+                <div class="pull-right file_icon">
+                  <a title="Print" (click)="onPrint('emrDash')"><i class="fa fa-print"></i></a>
+                  <a title="Download as PDF" (click)="generatePdf(emrLine)"><i class="fas fa-file-pdf"></i></a>
+                </div>
+                <div id="emrDash">
+                  <div class="form-group">
+                    <p><b>1. EMR</b></p>
+                    <google-chart [data]="emrLineChart" #emrLine></google-chart>
+                  </div>
+                </div>
+              </div>
+              <div id="Case" class="tab-pane fade">
+                <div class="pull-right file_icon">
+                  <a title="Print" (click)="onPrint('caseDash')"><i class="fa fa-print"></i></a>
+                  <a title="Download as PDF" (click)="generatePdf(caseLine, casePie)"><i class="fas fa-file-pdf"></i></a>
+                </div>
+                <div id="caseDash">
+                  <div class="form-group">
+                    <p><b>1. Case Management</b></p>
+                    <google-chart [data]="caseLineChart" #caseLine></google-chart>
+                    <google-chart [data]="casePieChartData" #casePie></google-chart>
+                  </div>
+                </div>
+              </div>
+              <div id="File" class="tab-pane fade">
+                <div class="pull-right file_icon">
+                  <a title="Print" (click)="onPrint('fileDash')"><i class="fa fa-print"></i></a>
+                  <a title="Download as PDF" (click)="generatePdf(fileLine)"><i class="fas fa-file-pdf"></i></a>
+                </div>
+                <div id="fileDash">
+                  <div class="form-group">
+                    <p><b>1. File upload</b></p>
+                    <google-chart [data]="fileLineChart" #fileLine></google-chart>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-3 pt20 brd-lft-gry no-padd">
+            <div class="card">
+              <div>
+                <h4 class="card-title col-sm-12">Notifications</h4>
+                <div class="card-options">
+                </div>
+              </div>
+              <div class="">
+                <ul class="list-group activity-widget">
+                  <li class="list-group-item">
+                    <div class="widget-icon-left">
+                      <div class="pull-left mr-3">
+                        <i class="fa fa-bell"></i>
+                      </div>
+                      <div class="widget-icon-left-body clearfix">
+                        <small class="text-muted pull-right ml p-t5">15m</small>
+                        <div class="media-box-heading"><a href="#" class="text-primary m0">15 Notifications</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!--/item-->
+                  <li class="list-group-item">
+                    <div class="widget-icon-left">
+                      <div class="pull-left mr-3">
+                        <i class="fa fa-comment"></i>
+                      </div>
+                      <div class="widget-icon-left-body clearfix">
+                        <small class="text-muted pull-right ml p-t5">20m</small>
+                        <div class="media-box-heading"><a href="#" class="text-danger m0">3 Comments to your posts</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!--/item-->
+                  <li class="list-group-item">
+                    <div class="widget-icon-left">
+                      <div class="pull-left mr-3">
+                        <i class="fa fa-users"></i>
+                      </div>
+                      <div class="widget-icon-left-body clearfix">
+                        <small class="text-muted pull-right ml p-t5">25m</small>
+                        <div class="media-box-heading"><a href="#" class="text-info m0">2 Invitees</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!--/item-->
+                  <li class="list-group-item">
+                    <div class="widget-icon-left">
+                      <div class="pull-left mr-3">
+                        <i class="fa fa-file"></i>
+                      </div>
+                      <div class="widget-icon-left-body clearfix">
+                        <small class="text-muted pull-right ml p-t5">35m</small>
+                        <div class="media-box-heading"><a href="#" class="text-success m0">3 Files Upload</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!--content-->
+
+
+
+              <div class="card-top">
+                <h4 class="card-title">Latest Activities</h4>
+                <div class="card-options">
+                </div>
+              </div>
+              <div class="">
+                <ul class="list-group activity-widget">
+                  <li class="list-group-item">
+                    <div class="widget-icon-left">
+                      <div class="pull-left mr-3">
+                        <i class="fa fa-cloud-upload btn-icon-rounded btn-sm bg-primary"></i>
+                      </div>
+                      <div class="widget-icon-left-body clearfix ">
+                        <small class="text-muted pull-right ml p-t5">15m</small>
+                        <div class="media-box-heading"><a href="#" class="text-primary m0">New File Upload</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!--/item-->
+                  <li class="list-group-item">
+                    <div class="widget-icon-left">
+                      <div class="pull-left mr-3">
+                        <i class="fa fa-window-close btn-icon-rounded btn-sm bg-danger"></i>
+                      </div>
+                      <div class="widget-icon-left-body clearfix">
+                        <small class="text-muted pull-right ml p-t5">20m</small>
+                        <div class="media-box-heading"><a href="#" class="text-danger m0">Project Deadline</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!--/item-->
+                  <li class="list-group-item">
+                    <div class="widget-icon-left">
+                      <div class="pull-left mr-3">
+                        <i class="fa fa-lock btn-icon-rounded btn-sm bg-info"></i>
+                      </div>
+                      <div class="widget-icon-left-body clearfix">
+                        <small class="text-muted pull-right ml p-t5">25m</small>
+                        <div class="media-box-heading"><a href="#" class="text-info m0">Password Reset</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!--/item-->
+                  <li class="list-group-item">
+                    <div class="widget-icon-left">
+                      <div class="pull-left mr-3">
+                        <i class="fa fa-question btn-icon-rounded btn-sm bg-success"></i>
+                      </div>
+                      <div class="widget-icon-left-body clearfix">
+                        <small class="text-muted pull-right ml p-t5">35m</small>
+                        <div class="media-box-heading"><a href="#" class="text-success m0">New Support Ticket</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!--content-->
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--container-->
+    </div>
+    <!--content-->
+  </main>
+  <!--main content-->
+</div>
+
+
+<div id="Admin" *ngIf="permission==2" class="col-lg-12 pull-right">
+
+  <div class="row g-mb-40">
+    <div class="col-lg-6 g-mb-40 g-mb-0--lg">
+      <!-- Latest Projects Panel -->
+      <div class="card border-0">
+        <!-- Panel Header -->
+        <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
+          <h3 class="h6 mb-0">
+            <i class="icon-layers g-pos-rel g-top-1 g-mr-5"></i> Notifications
+          </h3>
+          <div class="dropdown g-mb-10 g-mb-0--md hide">
+            <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <i class="icon-options-vertical g-pos-rel g-top-1"></i>
+            </span>
+            <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- End Panel Header -->
+
+        <!-- Panel Body -->
+        <div class="js-scrollbar card-block u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0 mCustomScrollbar _mCS_1 mCS-autoHide"
+          style="overflow: visible;">
+          <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0">
+            <div id="mCSB_1_container" class="mCSB_container" style="position: relative; left: 0px;" dir="ltr">
+              <ul class="list-unstyled">
+                <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left g-pa-20 g-mb-10">
+                  <div class="d-flex g-mt-2 g-mr-15">
+
+                  </div>
+                  <div class="media-body">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="h6 g-font-weight-600 g-color-black">Notification 1</h5>
+                      <span class="small text-nowrap g-color-blue">2 min ago</span>
+                    </div>
+                    <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
+
+                  </div>
+                </li>
+
+                <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left g-pa-20 g-mb-10">
+                  <div class="d-flex g-mt-2 g-mr-15">
+
+                  </div>
+                  <div class="media-body">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="h6 g-font-weight-600 g-color-black">Notification 2</h5>
+                      <span class="small text-nowrap g-color-blue">2 min ago</span>
+                    </div>
+                    <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
+
+                  </div>
+                </li>
+
+                <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-pink-left g-pa-20 g-mb-10">
+                  <div class="d-flex g-mt-2 g-mr-15">
+
+                  </div>
+                  <div class="media-body">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="h6 g-font-weight-600 g-color-black">Notification 3</h5>
+                      <span class="small text-nowrap g-color-pink">16 min ago</span>
+                    </div>
+                    <p>Hac consectetur habitasse platea dictumst, adipiscing elitut leosit amet, consectetur eleifend.</p>
+
+                  </div>
+                </li>
+
+                <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-black-left g-pa-20 g-mb-10">
+                  <div class="d-flex g-mt-2 g-mr-15">
+
+                  </div>
+                  <div class="media-body">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="h6 g-font-weight-600 g-color-black">Notification 4</h5>
+                      <span class="small text-nowrap g-color-blue">2 min ago</span>
+                    </div>
+                    <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>
+
+                  </div>
+                </li>
+
+                <div id="lnkmore" class="text-center text-center media g-brd-around rounded gg-mb-10" style="display:block;">
+                  <a class="more btn btn-primary text-white">More</a>
+                </div>
+                <div id="more" style="display:none;" class="text-center text-center media g-brd-around  gg-mb-10 col-lg-12 no-padd">
+                  <li class="media g-brd-around g-brd-gray-light-v4 g-brd-left-3 g-brd-blue-left rounded g-pa-20 g-mb-10 col-lg-12">
+                    <div class="d-flex g-mt-2 g-mr-15">
+
+                    </div>
+                    <div class="media-body">
+                      <div class="d-flex justify-content-between">
+                        <h5 class="h6 g-font-weight-600 g-color-black">Notification 5</h5>
+                        <span class="small text-nowrap g-color-blue">2 min ago</span>
+                      </div>
+                      <p class="text-left">Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet,
+                        consectetur eleifend.</p>
+                    </div>
+                  </li>
+
+
+                  <!-- <div class=""> -->
+                  <!-- <div class="d-flex g-mt-2 g-mr-15"> -->
+
+                  <!-- </div> -->
+                  <!-- <div class="media-body"> -->
+                  <!-- <div class="d-flex justify-content-between"> -->
+                  <!-- <h5 class="h6 g-font-weight-600 g-color-black">Notification 6</h5> -->
+                  <!-- <span class="small text-nowrap g-color-blue">2 min ago</span> -->
+                  <!-- </div> -->
+                  <!-- <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p> -->
+
+                  <!-- </div> -->
+                  <!-- </div> -->
+                  <!-- <div class=""> -->
+                  <!-- <div class="d-flex g-mt-2 g-mr-15">                           -->
+                  <!-- </div> -->
+                  <!-- <div class="media-body"> -->
+                  <!-- <div class="d-flex justify-content-between"> -->
+                  <!-- <h5 class="h6 g-font-weight-600 g-color-black">Notification 7</h5> -->
+                  <!-- <span class="small text-nowrap g-color-blue">2 min ago</span> -->
+                  <!-- </div> -->
+                  <!-- <p>Curabitur hendrerit dolor sit amet consectetur. Adipiscing elitut leosit amet, consectetur eleifend.</p>                           -->
+                  <!-- </div> -->
+                  <!-- </div> -->
+
+
+
+                </div>
+                <div id="less" class="text-center" style="display:none;">
+                  <a class="less btn btn-primary text-white">less</a>
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical"
+            style="display: block;">
+            <div class="mCSB_draggerContainer">
+              <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 289px; max-height: 366px; top: 87px;">
+                <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+              </div>
+              <div class="mCSB_draggerRail"></div>
+            </div>
+          </div>
+        </div>
+        <!-- End Panel Body -->
+      </div>
+      <!-- End Latest Projects Panel -->
+    </div>
+
+    <div class="col-lg-6">
+      <!-- Activities Panel -->
+      <div class="card border-0">
+        <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
+          <h3 class="h6 mb-0">
+            <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> Activities
+          </h3>
+          <div class="dropdown g-mb-10 g-mb-0--md hide">
+            <span class="d-block g-color-primary--hover g-cursor-pointer g-mr-minus-5 g-pa-5" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <i class="icon-options-vertical g-pos-rel g-top-1"></i>
+            </span>
+            <div class="dropdown-menu dropdown-menu-right rounded-0 g-mt-10">
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-layers g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Projects
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-wallet g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Wallets
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-fire g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Reports
+              </a>
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-settings g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> Users Setting
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <a class="dropdown-item g-px-10" href="#!">
+                <i class="icon-plus g-font-size-12 g-color-gray-dark-v5 g-mr-5"></i> View More
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="js-scrollbar card-block  u-info-v1-1 g-bg-white-gradient-v1--after g-height-400 g-pa-0 mCustomScrollbar _mCS_2 mCS-autoHide"
+          style="overflow: visible;">
+          <div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0" style="max-height: none;">
+            <div id="mCSB_2_container" class="mCSB_container" style="position: relative; left: 0px;" dir="ltr">
+              <ul class="list-unstyled">
+                <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
+                  <div class="g-mt-2">
+
+                  </div>
+                  <div class="align-self-center g-px-10">
+                    <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                      <span class="g-mr-5">Activity 1</span>
+
+                    </h5>
+                    <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
+                  </div>
+                  <div class="align-self-center ml-auto">
+
+                  </div>
+                </li>
+
+                <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
+                  <div class="g-mt-2">
+
+                  </div>
+                  <div class="align-self-center g-px-10">
+                    <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                      <span class="g-mr-5">Activity 2</span>
+
+                    </h5>
+                    <p class="m-0">Hac consectetur habitasse platea dictumst</p>
+                  </div>
+                  <div class="align-self-center ml-auto">
+
+                  </div>
+                </li>
+
+                <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
+                  <div class="g-mt-2">
+
+                  </div>
+                  <div class="align-self-center g-px-10">
+                    <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                      <span class="g-mr-5">Activity 3</span>
+
+                    </h5>
+                    <p class="m-0">Curabitur hendrerit dolor sit amet consectetur</p>
+                  </div>
+                  <div class="align-self-center ml-auto">
+
+                  </div>
+                </li>
+
+                <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
+                  <div class="g-mt-2">
+
+                  </div>
+                  <div class="align-self-center g-px-10">
+                    <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                      <span class="g-mr-5">Activity 4</span>
+
+                    </h5>
+                    <p class="m-0">Adipiscing elitut leosit amet, consectetur eleifend</p>
+                  </div>
+                  <div class="align-self-center ml-auto">
+
+                  </div>
+                </li>
+
+                <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10">
+                  <div class="g-mt-2">
+
+                  </div>
+                  <div class="align-self-center g-px-10">
+                    <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                      <span class="g-mr-5">Activity 5</span>
+
+                    </h5>
+                    <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
+                  </div>
+                  <div class="align-self-center ml-auto">
+
+                  </div>
+                </li>
+
+                <div id="actlnkmore" class="text-center text-center media g-brd-around rounded gg-mb-10" style="display:block;">
+                  <a class="actmore btn btn-primary text-white">More</a>
+                </div>
+                <div id="actmore" style="display:none;" class="text-center text-center media g-brd-around rounded gg-mb-10">
+                  <li class="d-flex justify-content-start g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-10 col-lg-12">
+                    <div class="g-mt-2">
+
+                    </div>
+                    <div class="align-self-center g-px-10 text-left">
+                      <h5 class="h6 g-font-weight-600 g-color-black g-mb-3">
+                        <span class="g-mr-5">Activity 6</span>
+
+                      </h5>
+                      <p class="m-0">Nulla ipsum dolor sit amet adipiscing</p>
+                    </div>
+                    <div class="align-self-center ml-auto">
+
+                    </div>
+                  </li>
+                </div>
+                <div id="actless" class="text-center" style="display:none;">
+                  <a class="actless btn btn-primary text-white">less</a>
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical"
+            style="display: block;">
+            <div class="mCSB_draggerContainer">
+              <div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 301px; max-height: 366px; top: 75px;">
+                <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+              </div>
+              <div class="mCSB_draggerRail"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Activities Panel -->
+
+    </div>
+  </div>
+</div>

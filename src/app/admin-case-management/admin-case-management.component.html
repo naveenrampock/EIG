@@ -1,0 +1,592 @@
+<!-- <p-growl [(value)]="msgs" life="3000"></p-growl> -->
+<div id="" class="container case_manage admin m-t20">
+  <div class="row">
+    <div class="main-container contain ace-save-state col-md-12 col-sm-12 col-12 no-padd" id="wrapper">
+      <div id="sidebar" class="sidebar responsive ace-save-state col-lg-3 col-md-3 col-sm-3 col-12 pull-left">
+        <!-- /.sidebar-shortcuts -->
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse" style="display:none;">
+          <i id=" sidebar-toggle-icon "=" " data-icon1="ace-icon fa fa-angle-double-left " data-icon2="ace-icon
+          fa fa-angle-double-right ">
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper " class="col-lg-12 col-md-12 col-sm-12 col-12 nopadd navbar-collapse sidebar-wrapper">
+
+          <div id="menu-container " class="case">
+            <div class="vertical-menu ">
+              <a class="active ">{{'CASEModule.AdvancesSearch' | translate }}</a>
+              <div class="sidenav">
+                <div class=" ">
+                  <a class="col-5 pull-left " data-toggle="dropdown ">{{'CASEModule.CreatedBy' | translate }}</a>
+                  <!-- <input type="text " class="col-7 h-32" [(ngModel)]="filterData.createdBy"> -->
+
+                  <p-autoComplete class="col-6 nopadd auto" [suggestions]="createdBy" (completeMethod)="filter($event,1)" (onSelect)="handleDropdown($event,1)"
+                    field="FirstName" [(ngModel)]="createByName"></p-autoComplete>
+                </div>
+                <div class=" ">
+                  <a class="col-5 pull-left " data-toggle="dropdown ">{{'CASEModule.Invited' | translate }} </a>
+                  <!-- <input type="text" class="col-7 h-32 nopadd auto" [(ngModel)]="filterData.invtedId" OnlyNumber="true"> -->
+                  <p-autoComplete class="col-6 nopadd auto" [suggestions]="createdBy" (completeMethod)="filter($event,1)" (onSelect)="handleDropdownInv($event,1)"
+                    field="FirstName" [(ngModel)]="inviteeName"></p-autoComplete>
+                </div>
+
+                <button class="dropdown-btn" data-toggle="collapse" data-target="#Status">{{'CASEModule.Status' | translate }} 
+                  <i class="fa fa-caret-down "></i>
+                </button>
+                <div id="Status" class="collapse h-30 status">
+                  <input type="checkbox" class="check" [(ngModel)]="filterData.statusOpen" value="1">{{'CASEModule.Open' | translate }}
+                  <input type="checkbox" class="check" [(ngModel)]="filterData.statusClosed" value="2">{{'CASEModule.Closed' | translate }} 
+                </div>
+                <div class=" ">
+                  <a class="col-5 pull-left " data-toggle="dropdown ">{{'CASEModule.CaseId' | translate }}  </a>
+                  <input type="text " class="col-7 h-32" [(ngModel)]="filterData.caseId" OnlyNumber="true" OnlyNumber="true">
+                </div>
+                <button class="dropdown-btn" data-toggle="collapse" data-target="#AppointmentNumber">{{'CASEModule.AppointmentNumber' | translate }}  
+                  <i class="fa fa-caret-down "></i>
+                </button>
+                <div id="AppointmentNumber" class="collapse">
+                  <select class="col-lg-3 f-20 m-t5 m-l15" [(ngModel)]='filterData.appointmentQuantity'>
+                    <option value="gt">&gt;</option>
+                    <option value="lt">&lt;</option>
+                    <option value="eq">==</option>
+                  </select>
+                  <input type="text " class="app_number pos-b5 col-lg-8 " [(ngModel)]='filterData.appointmentId' OnlyNumber="true">
+                </div>
+                <button class="dropdown-btn" data-toggle="collapse" data-target="#createTime">{{'CASEModule.CreateDate' | translate }} 
+                  <i class="fa fa-caret-down "></i>
+                </button>
+                <div class="collapse" id="createTime">
+                  <label class="col-5 pull-left before_date line-height12 pos-t10 m-t10">{{'CASEModule.StartDate' | translate }} </label>
+                  <!-- <input type="time " class="col-7 p-r0 " [(ngModel)]='filterData.caseFromDate'> -->
+                  <p-calendar [(ngModel)]="filterData.caseFromDate" [showIcon]="true" (onSelect)="selectFromDate()" [monthNavigator]="true"
+                    [yearNavigator]="true" yearRange="2000:2030" class="col-7 no-padd pull-left bdate m-b10 m-t5" showButtonBar="true"
+                    (onClearClick)="selectFromDate()"></p-calendar>
+                  <label class="col-5 pull-left pos-t10 " data-toggle="dropdown ">{{'CASEModule.EndDate' | translate }} </label>
+                  <!-- <input type="time " class="col-7 p-r0 " [(ngModel)]='filterData.caseEndDate'> -->
+                  <p-calendar [(ngModel)]="filterData.caseEndDate" [showIcon]="true" (onSelect)="selectEndDate()" [monthNavigator]="true" [yearNavigator]="true"
+                    yearRange="2000:2030" class="col-7 no-padd pull-left bdate m-b10" showButtonBar="true" (onClearClick)="selectEndDate()"></p-calendar>
+                </div>
+                <button class="dropdown-btn" data-toggle="collapse" data-target="#appointmentTime"> {{'CASEModule.AppointmentTime' | translate }}
+                  <i class="fa fa-caret-down "></i>
+                </button>
+                <div class="collapse p-t5 p-b5" id="appointmentTime">
+                  <label class="col-5 pull-left before_date line-height12 pos-t8 ">{{'CASEModule.StartTime' | translate }} </label>
+                  <p-calendar [(ngModel)]="filterData.appointmentStartDateTime" [timeOnly]="true" class="col-12 nopadd auto" hourFormat="12"
+                    [attr.hideOnDateTimeSelect]="true"></p-calendar>
+                  <!-- <input type="time " class="col-7 p-r0 m-b5" [(ngModel)]='filterData.appointmentStartDateTime'> -->
+                  <label class="col-5 pull-left before_date line-height12 pos-t10 m-t10" data-toggle="dropdown ">{{'CASEModule.EndTime' | translate }}
+                  </label>
+                  <!-- <input type="time " class="col-7 p-r0 m-b5" [(ngModel)]='filterData.appointmentEndDateTime'> -->
+                  <p-calendar [(ngModel)]="filterData.appointmentEndDateTime" [timeOnly]="true" class="col-12 nopadd auto endtime" hourFormat="12"
+                    [disabled]="!filterData.appointmentStartDateTime"></p-calendar>
+                </div>
+              </div>
+
+              <button (click)="applyFilter()" class="go">{{'CASEModule.Go' | translate }}</button>
+              <button (click)="reset()" class="go">{{'CASEModule.Reset' | translate }}</button>
+            </div>
+          </div>
+        </div>
+        <div id="sidebar-mobile ">
+          <a data-toggle="modal " data-target="#Filter ">
+            <i class="fa fa-sliders pull-left text-black
+          f-20 "></i>
+          </a>
+        </div>
+      </div>
+      <div id="page-content-wrapper " class="col-md-9 col-sm-9 col-9 mob-overflow pull-left no-padd">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 pull-left no-padd " id=" ">
+          <div id="ViewCase " class="viewcase" scrollable (scrollPosition)="scrollDown($event)">
+
+            <div class="row ">
+              <div class="col-lg-6 ">
+                <h6 class="pt-3 pl-3 m-b0 pos-t4">
+                  <b class="view-case ">{{'CASEModule.CaseList' | translate }}</b>
+                </h6>
+              </div>
+              <div class="col-lg-6 text-right sortby ">
+                <label>{{'CASEModule.SortBy' | translate }}</label>
+                <select (change)="getCaselist(null, 0, null, vals.value, null, null, null, null, null, null, null, 1, 1000, null)" #vals>
+                  <option disabled>{{'CASEModule.Default' | translate }}</option>
+                  <option value="DESC">{{'CASEModule.NewesttoOldest' | translate }}</option>
+                  <option value="ASC">{{'CASEModule.OldesttoNewest' | translate }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-12 mt-1 m-b15" *ngIf="caseLists && caseLists.length == 0">
+              <div class="v-case col-lg-12 ">{{'CASEModule.NoRecordsFound' | translate }}</div>
+            </div>
+            <div class="col-lg-12 mt-1 m-b15" *ngFor="let caseList of caseLists">
+              <div class="v-case col-lg-12 " *ngIf="caseList.CaseCreatedByName">
+                <div class="row ">
+                  <div class="col-lg-9 col-md-9 col-sm-9 col-9 " *ngIf="caseList.CaseStatus != 0">
+                    <div class="pull-left ">
+                      <a>
+                        <img [src]="caseList.CaseCreatedBy==userId ? profilePic : configUrl+caseList.CaseCreatedByProfilePic" class="u-pht
+          " />
+                      </a>
+                    </div>
+                    <div class="p-l10 pull-left ">
+                      <label class="c-name">
+                        {{ caseList.CaseCreatedBy==userId ? (accountId | titlecase): (caseList.CaseCreatedByName | titlecase) }}
+                      </label>
+                      <p class="date ">{{caseList.CaseCreatedDate | date:medium}}</p>
+                    </div>
+                    <div class="p-l10 pull-left col-7 text-right ">
+                      <label>{{'CASEModule.Status' | translate }}:</label>
+                      <label class="clr p-l5 " [ngSwitch]='caseList.CaseStatus'>
+                        <b *ngSwitchCase='0'>{{'CASEModule.Draft' | translate }}</b>
+                        <b *ngSwitchCase='2'>{{'CASEModule.Closed' | translate }}</b>
+                        <b *ngSwitchDefault>{{'CASEModule.Open' | translate }}</b>
+                      </label>
+                      <div>
+                        <label>{{'CASEModule.CaseId' | translate }}:</label>
+                        <label class="clr p-l5 "><b>{{caseList.Id}}</b></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-3 ">
+                    <a class="swicth-icon " (click)="toggleCaseStatus(caseList) ">
+                      <i class="fa fa-ellipsis-h "></i>
+                    </a>
+                    <div id="switch-list " class="switch-list " *ngIf="caseList.isOpen ">
+                      <a data-toggle="modal " data-target="#CaseHistoryPopup " *ngIf="caseList.CaseStatus==1 ">{{'CASEModule.History' | translate }}</a>
+                      <a value="Edit " class="edit " (click)="openEditCasePopup(caseList, profilePic, accountId) ">{{'CASEModule.Edit' | translate }}</a>
+                      <a (click)="updateCase(caseList, 2) " *ngIf="caseList.CaseStatus==1">{{'CASEModule.Close' | translate }}</a>
+                      <a *ngIf="caseList.CaseStatus==2 " (click)="updateCase(caseList, 1)">{{'CASEModule.Reopen' | translate }}</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div id="testID " class="col-lg-12 col-md-12 col-sm-12 col-12 ">
+                    <h6 class="col-12 ">{{caseList.CaseName}}</h6>
+                    <div class="comment col-12 pull-left " [class.more]="!caseList.isCaseDesc ">
+                      {{caseList.CaseDescription}}
+                    </div>
+                    <a (click)="toggleDesc(caseList) " class="morelink " *ngIf="caseList.CaseDescription.length>50">
+                      <b>{{!caseList.isCaseDesc ? 'more':'less'}}</b>
+                    </a>
+                    <div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-10 desk">
+                    <a class="att" (click)="getInvitees(caseList)">{{'CASEModule.Invitees' | translate }}
+                      <span class="badge">{{caseList.InviteeId?caseList.InviteeId.length:0}}</span>
+                    </a>
+                    <a class="att" (click)="getDicomsBy(caseList, 'Attachments')">{{'CASEModule.DICOM' | translate }}
+                      <span class="badge">{{caseList.CaseDICOMDocuments ?caseList.CaseDICOMDocuments.length : 0}}</span>
+                    </a>
+                    <a class="att">{{'CASEModule.EMRs' | translate }}
+                      <span class="badge">{{'CASEModule.NA' | translate }}</span>
+                    </a>
+                    <!-- data-toggle="modal" data-target="#Attach-Popup" -->
+                    <a class="att" (click)="getDocumentsBy(caseList, 'Attachments')">{{'CASEModule.Attachment' | translate }}
+                      <span class="badge">{{caseList.CaseDocuments?caseList.CaseDocuments:0}}</span>
+                    </a>
+                    <a class="vid" (click)="caseList.AppointmentCount > 0 ? getAppointments(caseList): null">{{'CASEModule.Appointment' | translate }}
+                      <span class="badge">{{caseList.AppointmentCount}}</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="main_div col-lg-12">
+                    <div class="inner_div">
+                      <div id="Div1" *ngIf="caseList.isInviteeHide && caseList.Id == inviteeCaseId" class="p-l15">
+
+                        <!-- <a id="Posted" (click)="openPostedModal(caseList.Id, 'Posted')">Posted</a> -->
+                        <!-- <a data-toggle="modal" (click)="openPostedModal(caseList.Id, 'Unpost')">Unpost</a> -->
+                        <div>
+                          <!-- <a (click)="openPostedModal(caseList.Id, 'Posted')">
+                            <i class="fa fa-plus pull-left" aria-hidden="true"></i>
+                          </a> -->
+                          <a>
+                            <i class="fa fa-caret-up caret-1"></i>
+                          </a>
+                          <a (click)="closeInvitees(caseList)">
+                            <i class="fa fa-times pull-right"></i>
+                          </a>
+                        </div>
+
+                        <div *ngFor="let iList of inviteesList">
+                          <img [src]="configUrl+iList.imagePath" class="invit" />
+                          <a class="uname">{{iList.name}}</a>
+
+                        </div>
+                      </div>
+                      <div id="Div2" *ngIf="caseList.isDicomShow && caseList.Id == DicomCaseId">
+                        <div>
+                          <!-- <a data-toggle="modal" data-target="#Attach-Popup" (click)="openDicom(caseList)" class="">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                          </a> -->
+                          <a>
+                            <i class="fa fa-caret-up caret-2"></i>
+                          </a>
+                          <a (click)="hideDicomAttach(caseList)">
+                            <i class="fa fa-times f-20 pull-right"></i>
+                          </a>
+                        </div>
+
+
+                        <table border="1" style="width:100%" class="case-popover">
+                          <tbody>
+                            <tr>
+                              <!-- <th width="20%">Attachment</th>
+                                                            <th width="20%">Linked BY</th> -->
+
+                              <th width="10%">{{'CASEModule.StudyID' | translate }}</th>
+                              <th width="10%">{{'CASEModule.Modality' | translate }}</th>
+                              <th width="10%">{{'CASEModule.BodyPart' | translate }}</th>
+                              <th width="20%">{{'CASEModule.PatientName' | translate }}</th>
+                              <th width="20%">{{'CASEModule.StudyDate' | translate }}</th>
+                              <th width="20%">{{'CASEModule.Action' | translate }}</th>
+                            </tr>
+                            <tr *ngFor="let dicom of caseDicomLists">
+                              <td>
+                                <a>{{dicom.StudyPk}}</a>
+                              </td>
+                              <td>
+                                <a>{{dicom.Modality}}</a>
+                              </td>
+                              <td>
+                                <a>{{dicom.BodyParts}}</a>
+                              </td>
+                              <td>
+                                <a>{{dicom.Patient_Name}}</a>
+                              </td>
+                              <td>
+                                <a>{{dicom.StudyDate | date: short}}</a>
+                              </td>
+                              <td>
+                                <!-- <a>
+                                      <i class="fa fa-plus"></i>
+                                    </a> -->
+                                <a (click)="viewDicom(caseList)" title="View Image">
+                                  <i class="fa fa-eye"></i>
+                                </a>
+                                <a (click)="dicomDetails(dicom)" title="View Image Detail">
+                                  <i class="fa fa-info-circle"></i>
+                                </a>
+                                <!-- <a (click)="deleteDicom(caseList, dicom)">
+                                  <i class="fa fa-trash"></i>
+                                </a> -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div id="Div4" *ngIf="caseList.isDoc && caseList.Id == docCaseId">
+                        <div>
+                          <!-- <div class="commentImg">
+                            <label for="file-input">
+                              <a (click)="getMyCaseList(caseList)">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                              </a>
+                            </label>
+       
+                          </div> -->
+
+                          <a>
+                            <i class="fa fa-caret-up caret-4"></i>
+                          </a>
+                        </div>
+                        <a (click)="hideAttachments(caseList)">
+                          <i class="fa fa-times f-20 pull-right p-t10"></i>
+                        </a>
+                        <table border="1" style="width:100%" class="case-popover">
+                          <tbody>
+                            <tr>
+                              <th width="20%">{{'CASEModule.FileName' | translate }}</th>
+                              <th width="20%">{{'CASEModule.Comments' | translate }}</th>
+                              <th width="20%">{{'CASEModule.LinkedBy' | translate }}</th>
+                              <th width="20%">{{'CASEModule.Date' | translate }}</th>
+                              <th width="20%">{{'CASEModule.Action' | translate }}</th>
+                            </tr>
+                            <tr *ngFor="let doc of caseDocs">
+                              <td>
+                                <a *ngIf="doc.Doctype === ('image/jpeg' || 'image/png')" (click)="showAttachmentPopup(configUrl+doc.DocumentPath, 'image', doc)">
+                                  <img [src]="doc.DocumentPath ? configUrl+doc.DocumentPath : defaultImg" class="hw-70" />
+                                </a>
+                                <a *ngIf="doc.Doctype !== ('image/jpeg' || 'image/png')" (click)="showAttachmentPopup(configUrl+doc.DocumentPath, 'other', doc)"
+                                  class="hw-70">
+                                  {{doc.FileName}}
+                                </a>
+                              </td>
+                              <td>
+                                <p>{{doc.Comments=="undefined" ? '' :doc.Comments }}</p>
+                              </td>
+                              <td>
+                                <a>{{doc.CreatedBy == userId ? (accountId | titlecase) : doc.InviteeName}}</a>
+                              </td>
+                              <td>
+                                <p>{{doc.CreatedDate | date:short}}</p>
+                              </td>
+                              <td>
+                                <!-- <a>
+                                  <i class="fa fa-plus"></i>
+                                </a> -->
+                                <a title="View Attachment">
+                                  <i class="fa fa-eye"></i>
+                                </a>
+                                <!-- <a (click)="deleteDocBy(caseList, doc.Id)" *ngIf="doc.CreatedBy == userId">
+                                  <i class="fa fa-trash"></i>
+                                </a> -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div id="Div5" *ngIf="caseList.isAppointment && caseList.Id == appCaseId">
+                        <div>
+                          <label class="f12 col-12 col-sm-3 col-md-3 col-lg-3">
+                            <b>{{'CASEModule.Appointment' | translate }}</b>
+                          </label>
+                          <a>
+                            <i class="fa fa-caret-up caret-5"></i>
+                          </a>
+                          <a (click)="closeAppointment(caseList)">
+                            <i class="fa fa-times pull-right"></i>
+                          </a>
+                        </div>
+
+                        <div id="Appointment_table">
+                          <table class="table table-bordered m-t20 app_table">
+                            <thead>
+                              <th>{{'CASEModule.ID' | translate }}</th>
+                              <th>{{'CASEModule.AppointmentName' | translate }}</th>
+                              <th>{{'CASEModule.StartDate' | translate }}</th>
+                              <th>{{'CASEModule.EndDate' | translate }}</th>
+                              <th>{{'CASEModule.Duration' | translate }}</th>
+                              <th>{{'CASEModule.Status' | translate }}</th>
+                              <!-- <th class="app_action">Action</th> -->
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let appointment of appointments; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{appointment.AppointmentTitle}}</td>
+                                <td>{{appointment.StartTime}}</td>
+                                <td>{{appointment.EndTime}}</td>
+                                <td>{{appointment.AppointmentDuration}} mins</td>
+                                <td [ngSwitch]="appointment.status">
+                                  <span *ngSwitchCase="0">{{'CASEModule.Tobestarted' | translate }}</span>
+                                  <span *ngSwitchCase="1">{{'CASEModule.InProgress' | translate }}</span>
+                                  <span *ngSwitchCase="2">{{'CASEModule.Completed' | translate }}</span>
+                                </td>
+                                <!-- <td>
+                                  <a id="lnk_view" class="lnk_view" title="View Details" (click)="viewApptDetails(appointment.Id)">
+                                    <i class="fa fa-eye"></i>
+                                  </a>
+                  
+                                  <a title="Start" (click)="startVidyoCall(appointment)" *ngIf="appointment.status !== 2">
+                                    <i class="fa fa-play-circle"></i>
+                                  </a>
+                       
+                                  <a title="Delete Appointment" (click)="deleteAppointment(appointment)" *ngIf="userId == AppointmentCreatedBy">
+                                    <i class="fa fa-trash"></i>
+                                  </a>
+                                </td> -->
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div id="ViewDetais" *ngIf="isShowApptDetails" class="w-50">
+                          <a class="viewdet_close pull-right" (click)="closeViewApptDetails()">
+                            <i class="fa fa-times"></i>
+                          </a>
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th colspan="">{{'CASEModule.ViewDetails' | translate }}</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{'CASEModule.AppointName' | translate }}</td>
+                                <td>{{appointmentDetails.AppointmentTitle}}</td>
+                              </tr>
+                              <tr>
+                                <td>{{'CASEModule.Duration' | translate }}</td>
+                                <td>{{appointmentDetails.AppointmentDuration}}</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <b>{{'CASEModule.Invitees' | translate }}</b>
+                                </td>
+                                <td>
+                                  <b>{{'CASEModule.Status' | translate }}</b>
+                                </td>
+                              </tr>
+                              <tr *ngFor="let inviteeDetail of appointmentDetails.AppointmentInvitees">
+                                <td>{{inviteeDetail.InviteeId}}</td>
+                                <td [ngSwitch]="inviteeDetail.ConfirmStatus">
+                                  <span *ngSwitchCase="0">{{'CASEModule.Pending' | translate }}</span>
+                                  <span *ngSwitchCase="1">{{'CASEModule.Accepted' | translate }}</span>
+                                  <span *ngSwitchCase="2">{{'CASEModule.Rejected' | translate }}</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-10 mobile">
+                    <a class="cmt col-4" title="comment">
+                      <i class="fa fa-comment"></i>
+                    </a>
+                    <a class="att col-4" data-toggle="modal" data-target="#Attach-Popup">
+                      <i class="fa fa-paperclip"></i>
+                    </a>
+                    <a class="vid col-4" data-toggle="modal" data-target="#VideoC-Popup">
+                      <i class="fa fa-file-video-o"></i>
+                    </a>
+                  </div>
+
+
+                </div>
+                <div class="row p-t10" id="comment" *ngIf="caseList.STATUS !== 0">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd m-10">
+                    <div *ngIf="!caseList.isMore">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12" *ngFor="let comment of caseList.Comments | slice:0:5">
+                        <div *ngIf="comment.CommentId" [class.commentedby]="comment.CommentCreatedBy == userId">
+                          <div class="col-lg-1 col-md-2 col-sm-2 col-3 pull-left mt-2">
+                            <img [src]="comment.CommentCreatedBy == userId ? profilePic : configUrl+comment.CommentCreatedByProfile" class="nav-user-photo brd-grey cmt-pht"
+                            />
+                          </div>
+                          <div class="col-lg-11 col-md-10 col-sm-10 col-9 pull-left m-b10">
+                            <div class="cmts">
+                              <a class="a-lnk">{{comment.CommentCreatedBy == userId ? accountId : comment.CommentCreatedByName}}</a>
+                              <p class="p-l5">
+                                <span [class.edit-comment]="comment.isEdit">{{comment.Comment}}
+                                </span>
+                                <!-- <span *ngIf="(comment.CommentCreatedBy == userId) && comment.Comment">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit comment" (click)="editComment(comment)"></i>
+                                  <i class="fa fa-trash" aria-hidden="true" title="Delete comment" (click)="deleteComment(comment, caseList.Id)"></i>
+                                </span> -->
+                              </p>
+                            </div>
+
+                            <p>{{comment.CommentCreatedDate | date: medium}}{{comment.CreatedDate | date: medium}}</p>
+                            <p *ngIf="comment.isEdit">
+                              <input type="text" placeholder="Add a comment..." class="col-lg-12 col-md-12 col-sm-12 col-12 h-32" [(ngModel)]="comment.Comment"
+                                (keyup.enter)="sendEditedComment(comment, caseList.Id)" />
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12 pull-left text-right clr cursor-p pos-b20" *ngIf="!isMoreComments">
+                      <a id="more_comts" (click)="getComments(caseList.Id)" *ng>more...</a>
+                    </div> -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 pull-left" id="MoreComments" *ngIf="caseList.isMore">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd p-l65" *ngFor="let commentDetail of commentsDetails">
+                        <div class="col-lg-1 col-md-2 col-sm-2 col-3 pull-left mt-2">
+                          <img src="assets/images/1.jpg" class="nav-user-photo brd-grey cmt-pht" />
+                        </div>
+                        <div *ngIf="caseList.Id == commentDetail.CaseId">
+                          <div class="col-lg-11 col-md-10 col-sm-10 col-9 pull-left">
+                            <div class="cmts">
+                              <a class="a-lnk">{{commentDetail.CommentCreatedBy}}</a>
+
+                              <p>
+                                <span [class.edit-comment]="commentDetail.isEdit">{{commentDetail.Comment}}</span>
+                                <!-- <span *ngIf="(commentDetail.CommentCreatedBy == userId) && commentDetail.Comment">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit comment" (click)="editComment(commentDetail)"></i>
+                                  <i class="fa fa-trash" aria-hidden="true" title="Delete comment" (click)="deleteComment(commentDetail)"></i>
+                                </span> -->
+                              </p>
+                            </div>
+                            <p>{{commentDetail.CommentCreatedDate | date:short}}</p>
+                            <!-- <p *ngIf="commentDetail.isEdit">
+                              <input type="text" placeholder="Add a comment..." class="col-lg-12 col-md-12 col-sm-12 col-12 h-32" [(ngModel)]="commentDetail.Comment"
+                                (keyup.enter)="sendEditedComment(commentDetail)" />
+                            </p> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 pull-left m-t6 text-right clr cursor-p">
+                      <a id="more_comts" (click)="getComments(caseList)" *ngIf="(!caseList.isMore) && (caseList.Comments > 5)">
+
+                        <b>more...</b>
+                      </a>
+                      <a id="more_comts" (click)="hideComments(caseList)" *ngIf="caseList.isMore  && caseList.Id == caseHideId">
+                        <b>hide...</b>
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Posted Popup Start -->
+  <!-- <div class="modal fade postedpopup" id="PostedCase" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{{postTypeMsgs.postTypename}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div *ngFor="let contact of contacts">
+              <input type="checkbox" (click)="selectInvitee($event, contact.Id)" [checked]="contact.isChecked" [disabled]="contact.isDisabled"
+              />
+              <img [src]="contact.imagepath ? configUrl+contact.imagepath : defaultImg" [alt]="contact.FirstName" [title]="contact.FirstName"
+                class="u-pht" />
+              <a>{{contact.FirstName}}</a>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right">
+              <button type="button" class="btn u-btn-primary g-mr-10" (click)="postTypeMsgs.postTypename == 'Posted' ? addInvitees('add', postTypeMsgs.caseId) : deleteInvitees('delete', postTypeMsgs.caseId)"
+                [disabled]="!inviteeIDs.length>0">Submit</button>
+              <input type="button" name="" value="Cancel" data-dismiss="modal" class="btn u-btn-darkgray g-mr-10" />
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div> -->
+  <!-- Posted Popup End -->
+  <!-- <app-edit-case [editedCase]="editedCase"></app-edit-case> -->
+  <!-- <div class="modal fade editcase" id="EditCase" role="dialog">
+        <app-edit-case [editedCase]="editedCase" *ngIf="editedCase"></app-edit-case>
+    </div> -->
+
+  <!-- Dicom Image Start -->
+  <div class="modal fade dicom-image" id="DicomImage-Popup" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <!-- <img src="assets/images/dicom.jpg" /> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div *ngIf="editedCase && editedCase.isEditWindowOpen">
+  <app-admin-edit-case [editedCase]="editedCase" (closeEditWndw)="closedEdit($event)"></app-admin-edit-case>
+</div>
+<p-dialog header="More Information" *ngIf="isDicomMore" [(visible)]="isDicomMore" [modal]="true" class="moreinfo" [responsive]="true"
+  [height]="auto" [minWidth]="200">
+  <app-dicom-more-info [moreInfo]="dicomMoreInfo"></app-dicom-more-info>
+</p-dialog>
+<!-- <div *ngIf="isAddDicom">
+  <app-add-dicom (closeDicom)="getDicomIds($event)" [caseType]="caseType" [caseDicom]='caseToAddDciom'></app-add-dicom>
+</div> -->

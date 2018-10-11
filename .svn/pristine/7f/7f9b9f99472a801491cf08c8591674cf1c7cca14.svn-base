@@ -1,0 +1,250 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="main-container contain ace-save-state active col-md-12 col-sm-12 col-12 no-padd dicom_img" id="wrapper">
+    <div id="sidebar" class="sidebar responsive ace-save-state col-md-12 col-sm-12 col-12"> 
+      <!-- /.sidebar-shortcuts -->
+      <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse" style="display:none;">
+                      <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right">
+      </i> </div>
+    
+    <!-- Sidebar -->
+  <div id="sidebar-wrapper" class="col-lg-12 col-md-12 col-sm-12 col-12 nopadd navbar-collapse">                   		
+  <div id="menu-container">
+  
+  <div class="vertical-menu">
+   
+    <a class="active">{{ 'DICOMModule.QuickLinks' | translate }} </a>
+   
+   <nav class="navbar navbar-default sidebar no-padd" role="navigation">
+      <div class="navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+        <div class="nav navbar-nav">
+        <!-- <div class="dropdown"><a class="dropdown" data-toggle="dropdown">1. My images <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
+        </div>		
+          <div><a routerLink="sharedToMe">2. Shared to me<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></div>        
+          <div class="dropdown"><a class="dropdown" data-toggle="dropdown">3. My Sharing <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
+          </div>	 -->
+          <div><a routerLink="../">1. {{ 'DICOMModule.MyImages' | translate }}</a></div>  
+
+          <div><a routerLink="../sharedToMe">2.{{ 'DICOMModule.Sharedtome' | translate }}</a></div>
+          <div><a class="dicom-sidenav">3.{{ 'DICOMModule.Mysharing' | translate }}</a></div>
+      <div class="sidenav">
+        <button class="dropdown-btn" data-toggle="collapse" data-target="#MyUploads"> 4.{{ 'DICOMModule.MyUploads' | translate }}
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div id="MyUploads" class="collapse show">
+          <a>
+            <input type="radio" name="list" (click)="getAssigned($event.target.checked)">{{ 'DICOMModule.Assigned' | translate }}</a>
+          <a>
+            <input type="radio" name="list" (click)="getNotAssigned($event.target.checked)">{{ 'DICOMModule.NotAssigned' | translate }}</a>
+        </div>
+      </div>
+    </div>
+      </div>
+  </nav>
+  
+  </div>
+  <form  [formGroup]="advanceSearch">
+    <div class="vertical-menu">
+      <nav class="navbar navbar-default sidebar no-padd" role="navigation">
+        <a class="active w-100"> {{ 'DICOMModule.AdvancedSearch' | translate }}</a>
+        <div class="navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+          <ul id="dicom-list" class="nav navbar-nav dicom-list">
+            <div class="sidenav">
+              <button class="dropdown-btn" data-toggle="collapse" data-target="#ownership">{{ 'DICOMModule.Ownership' | translate }} 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="ownership" class="collapse">
+                <a>
+                  <input type="radio" [(ngModel)]="radioReset" name="myuploadImage"  value='mImage' formControlName='myuploadImage'>{{ 'DICOMModule.MyImages' | translate }}</a>
+                <a>
+                  <input type="radio" [(ngModel)]="radioReset" name="myuploadImage"  value='share'  formControlName='myuploadImage'>{{ 'DICOMModule.SharedByOthers' | translate }}   </a>
+                <a>
+                  <input type="radio" [(ngModel)]="radioReset" name="myuploadImage"  value='mUload'  formControlName='myuploadImage'>{{ 'DICOMModule.MyUploads' | translate }} </a>
+              </div>
+            </div>
+            <li class="">
+              <a class="col-5 pull-left" data-toggle="dropdown">{{ 'DICOMModule.StudyID' | translate }}  </a>
+              <input type="text" class="col-7" OnlyNumber="true" formControlName='studyId'/>
+            </li>
+            <li class="dropdown">
+              <a class="col-5 pull-left" data-toggle="dropdown" >{{ 'DICOMModule.PatientID' | translate }}  </a>
+              <input type="text" class="col-7" formControlName='patientId'/>
+            </li>
+
+            <li class="dropdown">
+              <a class="col-5 pull-left line-hgt12" data-toggle="dropdown" >{{ 'DICOMModule.PatientName' | translate }}  </a>
+              <input type="text" class="col-7" formControlName='patientName'/>
+            </li>
+            <li class="dropdown p-b10">
+              <a class="col-12 text-center" data-toggle="dropdown" >{{ 'DICOMModule.ExamineDate' | translate }}   </a>
+              <label class="col-5 pull-left before_date pos-t5 line-hgt12">{{ 'DICOMModule.StartDate' | translate }}   </label>
+              <p-calendar formControlName='cStartDate' [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" class="col-7 no-padd pull-left bdate m-b10" [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true"
+               ></p-calendar>
+              
+              <label class="col-5 pull-left pos-t5" data-toggle="dropdown" >{{ 'DICOMModule.EndDate' | translate }}   </label>
+              <p-calendar formControlName='cEndDate' [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" class="col-7 no-padd pull-left bdate" [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" [minDate]="EminDate"
+              ></p-calendar>
+           
+            </li>
+            <li class="dropdown p-b10">
+              <label class="col-12 text-center">{{ 'DICOMModule.UploadDate' | translate }}  </label>
+              <label class="col-5 pull-left before_date pos-t5 line-hgt12" >{{ 'DICOMModule.StartDate' | translate }}  </label>
+              <p-calendar formControlName='uStartDate' [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" class="col-7 no-padd pull-left bdate m-b10" [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true"
+              ></p-calendar>
+              
+              <label class="col-5 pull-left pos-t5" data-toggle="dropdown" >{{ 'DICOMModule.EndDate' | translate }} </label>
+              <p-calendar formControlName='uEndDate' [readonlyInput]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" class="col-7 no-padd pull-left bdate m-b10" [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" [minDate]="UminDate"
+              ></p-calendar>
+             
+            </li>
+            <li class="dropdown">
+              <a class="col-12 pull-left" data-toggle="dropdown">{{ 'DICOMModule.Imagemodalities' | translate }}</a>
+
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left" *ngFor="let mod of modality">
+                <input type="checkbox" name="" value="" id="dr" (click)="modalityValue($event.target.checked,mod.name)" [checked]="mod.isChecked">{{mod.name}}
+              </div>
+            </li>
+          </ul>
+         
+          <button class="pull-right btn m-t10 m-r10" (click)=" reset()">{{ 'DICOMModule.Reset' | translate }}</button>
+          <button class="pull-right btn m-t10 m-r10" (click)="getDicomList()">{{ 'DICOMModule.GO' | translate }}</button>
+        </div>
+      </nav>
+    </div>
+  </form>
+     
+   <!-- End Profile Sidebar -->   
+  </div>   
+  </div>
+  <div id="sidebar-mobile"><a data-toggle="modal" data-target="#Filter"><i class="fa fa-sliders pull-left text-black f-20"></i></a></div>
+  </div>
+  <div id="page-content-wrapper" class="col-md-12 col-sm-12 col-12 no-padd">
+  <div id="slmenu" class="navbar-brand w-4p col-lg-1 pull-left">
+        <a id="menu-toggle"><i class="fa fa-caret-right f-30"></i></a>
+        <a id="menu-toggle-after" class="hide"><i class="fa fa-caret-left f-30"></i></a>
+      </div>
+  <div id="slmenu1" class="navbar-brand w-4p col-lg-1 pull-left">
+        <a id="menu-toggle1"><i class="fa fa-caret-left f-30"></i></a>
+        <a id="menu-toggle-after1" class="hide"><i class="fa fa-caret-right f-30"></i></a>
+      </div>
+    </div>
+
+
+
+<p-dataTable [value]="dicomList" [rows]="10" [paginator]="true" [lazy]="lazy" [totalRecords]="totalCount" (onLazyLoad)="loadLazy($event)" class="dicom-table dicom-uptable" >
+    <p-column field="StudyPk" header="StudyId">
+        <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <span>{{list.StudyPk}}</span>
+        </ng-template>
+    </p-column>
+    
+    <p-column field="Patient_Name" header="Patient Name">
+      <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+        <span>{{list.Patient_Name}}</span>
+    </ng-template>
+    </p-column>
+    <p-column field="StudyDescription" header="Description">
+      <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+        <span>{{list.StudyDescription}}</span>
+    </ng-template>
+    </p-column>
+    <p-column field="InviteesNames" header="Invitees">
+      <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+        <span>{{list.InviteesNames}}</span>
+    </ng-template>
+    </p-column>
+    <p-column field="CreatedDate" header="Image Date">
+       <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+      <span>{{list.CreatedDate  | date :short}}</span>
+  </ng-template></p-column>
+  <!-- <p-column field="AccountID" header="Name">
+      <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+     <span>{{list.AccountID}}</span>
+ </ng-template></p-column> -->
+    <p-column header="Action">
+        <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+            <a (click)="deleteDicom(list.StudyPk)"><i title="Delete" class="fa fa-trash f-20"></i></a>
+            <a (click)="getUserList(list.Invitees,list.StudyPk)" data-toggle="modal" data-target="#dicomUser" ><i title="UnShare" class="fa fa-retweet f-20"></i>   </a>  
+            <a class="" data-toggle="modal" (click)="getStudyId(list.StudyPk,list.Invitees)" data-target="#dicomallUser"><i title="Share" class="fa fa-share-square f-20"></i>   
+            </a>    
+        </ng-template>
+     
+    </p-column>
+
+</p-dataTable>
+
+
+<div class="modal fade postedpopup" id="dicomUser" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+         <div> <h4 class="modal-title">Unshare</h4></div>
+       
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body caseLazy" (appScrollEnd)="scrollDown()">
+          <div class="row">
+            <div *ngFor="let contact of userList">
+              
+           
+              <input type="checkbox" name="checkbox" (click)="unShareCheckboxInvitee($event.target.checked, contact.UserId)" [checked]="true" [disabled]="contact.isDisabled"
+              />
+             
+              <!-- <img [src]="contact.imagepath ? configUrl+contact.imagepath : defaultImg" [alt]="contact.FirstName" [title]="contact.FirstName"
+                class="u-pht" /> -->
+              <a>{{contact.AccountId}}</a>
+            </div>
+         
+
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right p-b20">
+            <button  type="button" class="btn u-btn-primary g-mr-10" (click)="unshareDicom()">Submit</button>
+           
+            <input type="button" name="" value="Cancel" data-dismiss="modal" class="btn u-btn-darkgray g-mr-10" />
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade postedpopup" id="dicomallUser" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title"></h4>
+           <div> <h4 class="modal-title">share</h4></div>
+         
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+  
+          </div>
+          <div class="modal-body caseLazy" (appScrollEnd)="scrollDown()">
+            <div class="row">
+              <div *ngFor="let contact of userList">
+                
+             
+                <input type="checkbox" name="checkbox" (click)="selectCheckboxInvitee($event.target.checked, contact.UserId)" [checked]="contact.isChecked" [disabled]="contact.isDisabled"
+                />
+               
+                <!-- <img [src]="contact.imagepath ? configUrl+contact.imagepath : defaultImg" [alt]="contact.FirstName" [title]="contact.FirstName"
+                  class="u-pht" /> -->
+                <a>{{contact.AccountID}}</a>
+              </div>
+             
+  
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right p-b20">
+              <button  type="button" class="btn u-btn-primary g-mr-10" (click)="shareDicom()">Submit</button>
+             
+              <input type="button" name="" value="Cancel" data-dismiss="modal" class="btn u-btn-darkgray g-mr-10" />
+            </div>
+  
+        </div>
+      </div>
+    </div>
+
+    

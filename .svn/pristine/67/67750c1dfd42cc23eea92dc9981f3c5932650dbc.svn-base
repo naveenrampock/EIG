@@ -1,0 +1,163 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+
+<div class="tabcontent hide emr_records" id="EMR_RecordsList" style="display: block;">
+  <h6 class="col-12 emr_header">Allergy
+    <input class="pull-right top-4" type="checkbox" #allergyViewChild>
+  </h6>
+  <div class="row bg-white m-0 p-t10 brd-blu" id="record_allergy" *ngFor="let data of allergy">
+    <div class="col-sm-6">
+      <label class="col-sm-4">Criticality :</label>
+      <label class="col-sm-7">{{data.Criticality}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Patient :</label>
+      <label class="col-sm-7">{{data.Patient}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Substance :</label>
+      <label class="col-sm-7">{{data.Substance}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Reaction :</label>
+      <label class="col-sm-7">{{data.Reaction}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Onset :</label>
+      <label class="col-sm-7">{{data.Onset}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Recorder :</label>
+      <label class="col-sm-7">{{data.Recorder}}</label>
+    </div>
+  </div>
+
+  <!-- Care Plan -->
+  <h6 class="col-12 emr_header m-t10">CarePlan
+    <input class="pull-right top-4" type="checkbox" #CarePlanViewChild>
+  </h6>
+  <div class="row bg-white m-0 p-t10 brd-blu" id="record_CarePlan" *ngFor="let data of CarePlan">
+    <div class="col-sm-6">
+      <label class="col-sm-4">Addresses :</label>
+      <label class="col-sm-7">{{data.Addresses}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Status :</label>
+      <label class="col-sm-7">{{data.Status}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Category :</label>
+      <label class="col-sm-7">{{data.Category}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Prohibited :</label>
+      <label class="col-sm-7">{{data.Prohibited}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Goal :</label>
+      <label class="col-sm-7">{{data.Goal}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">code :</label>
+      <label class="col-sm-7">{{data.code}}</label>
+    </div>
+  </div>
+  <!-- Condition -->
+  <h6 class="col-12 emr_header m-t10">Condition
+    <input class="pull-right top-4" type="checkbox" #ConditionViewChild>
+  </h6>
+  <div class="row bg-white m-0 p-t10 brd-blu" id="record_Condition" *ngFor = "let data of Condition">
+    <div class="col-sm-6">
+      <label class="col-sm-4">ClinicalStatus :</label>
+      <label class="col-sm-7">{{data.ClinicalStatus}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-5">VerificationStatus :</label>
+      <label class="col-sm-6">{{data.VerificationStatus}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Asserter :</label>
+      <label class="col-sm-7">{{data.Asserter}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Code :</label>
+      <label class="col-sm-7">{{data.Code}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">category :</label>
+      <label class="col-sm-7">{{data.category}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-5">Severity :</label>
+      <label class="col-sm-6">{{data.Severity}}</label>
+    </div>
+  </div>
+  <!-- Device -->
+  <h6 class="col-12 emr_header m-t10">Device
+    <input class="pull-right top-4" type="checkbox" #deviceViewChild>
+  </h6>
+  <div class="row bg-white m-0 p-t10 brd-blu" id="record_Device" *ngFor = "let data of device">
+    <div class="col-sm-6">
+      <label class="col-sm-4">Udi :</label>
+      <label class="col-sm-7">{{data.Udi}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-5">Status :</label>
+      <label class="col-sm-6">{{data.Status}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Model :</label>
+      <label class="col-sm-7">{{data.Model}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-5">ExpirationDate :</label>
+      <label class="col-sm-6">{{data.ExpirationDate}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Patient :</label>
+      <label class="col-sm-7">{{data.Patient}}</label>
+    </div>
+  </div>
+  <!-- Immunization -->
+  <h6 class="col-12 emr_header m-t10">Immunization
+    <input class="pull-right top-4" type="checkbox" #immunizationViewChild>
+  </h6>
+  <div class="row bg-white m-0 p-t10 brd-blu" id="record_Immunization" *ngFor = "let data of immunization">
+    <div class="col-sm-6">
+      <label class="col-sm-5">Status :</label>
+      <label class="col-sm-6">{{data.Status}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">WasNotGiven :</label>
+      <label class="col-sm-7">{{data.WasNotGiven}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-5">VaccineCode :</label>
+      <label class="col-sm-6">{{data.VaccineCode}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">&nbsp;LotNumber :</label>
+      <label class="col-sm-7">{{data.LotNumber}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-5">&nbsp;Date :</label>
+      <label class="col-sm-6">{{data.Date}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Patient :</label>
+      <label class="col-sm-7">{{data.Patient}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-5">Route :</label>
+      <label class="col-sm-6">{{data.Route}}</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="col-sm-4">Site :</label>
+      <label class="col-sm-7">{{data.Site}}</label>
+    </div>
+  </div>
+  <!-- Save and Cancel Button -->
+  <div class="col-12 m-t20 m-b20 text-right">
+    <a class="share" (click)="exportEmr()">Export to EMR</a>
+    <a class="reset">Cancel</a>
+  </div>
+</div>

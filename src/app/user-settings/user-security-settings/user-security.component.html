@@ -1,0 +1,153 @@
+<p-confirmDialog></p-confirmDialog>
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="tab-pane fade show pt-4 col-sm-9 pull-right bg-w" id="nav-1-1-default-hor-left-underline--2" role="tabpanel" aria-expanded="true">
+        <div class="">
+          <h2 class="h4 g-font-weight-300">{{ 'UserSecuritySettingsModule.SecuritySettings' | translate }} </h2>
+          <p class="g-mb-25">{{ 'UserSecuritySettingsModule.Resetyourpasswordchangeverificationsandsoon' | translate }} </p>
+          <form [formGroup]="privacyForm">
+          <!-- <form [formGroup]="privacyForm"> -->
+            <!-- Current Password -->
+            <div class="form-group row g-mb-25">
+              <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{ 'UserSecuritySettingsModule.CurrentPassword' | translate }}
+                <span class="required">*</span>
+              </label>
+              <div class="col-sm-9">
+                <div class="input-group g-brd-primary--focus">
+                  <input formControlName="CurrentPassword" class="form-control form-control-md border-right-0 rounded-0 pr-0" type="password" placeholder="{{ 'UserSecuritySettingsModule.CurrentPassword' | translate }}"
+                    >
+                  <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+                    <!-- <i class="icon-lock"></i> -->
+                  </div>
+
+                </div>
+                <control-messages [control]="privacyForm.controls.CurrentPassword" class="errorMessage"></control-messages>
+                <div class='required' *ngIf="validationError">{{validationError}}</div>
+              </div>
+            </div>
+            <!-- End Current Password -->
+
+            <!-- New Password -->
+            <div class="form-group row g-mb-25">
+              <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{ 'UserSecuritySettingsModule.NewPassword' | translate }}
+                <span class="required">*</span>
+              </label>
+              <div class="col-sm-9">
+                <div class="input-group g-brd-primary--focus">
+                  <input class="form-control form-control-md border-right-0 rounded-0 pr-0" type="password" placeholder="{{ 'UserSecuritySettingsModule.NewPassword' | translate }}" formControlName="NewPassword">
+                  <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+                    <!-- <i class="icon-lock"></i> -->
+                  </div>
+                </div>
+                <control-messages [control]="privacyForm.controls.NewPassword" class="errorMessage row pl-3"></control-messages>
+              </div>
+            </div>
+            <!-- End New Password -->
+
+            <!-- Verify Password -->
+            <div class="form-group row g-mb-25">
+              <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{ 'UserSecuritySettingsModule.VerifyPassword' | translate }}
+                <span class="required">*</span>
+              </label>
+              <div class="col-sm-9">
+                <div class="input-group `">
+                  <input class="form-control form-control-md border-right-0 rounded-0 pr-0" type="password" placeholder="{{ 'UserSecuritySettingsModule.VerifyPassword' | translate }}" formControlName="ConfirmPassword">
+                  <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
+                    <!-- <i class="icon-lock"></i> -->
+                  </div>
+                </div>
+                <control-messages [control]="privacyForm.controls.ConfirmPassword" class="errorMessage row pl-3"></control-messages>
+              </div>
+            </div>
+            <!-- End Verify Password -->
+
+            <!-- Login Verification -->
+            <!-- <div class="form-group row g-mb-25">
+              <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Login verification</label> -->
+              <!-- <div class="col-sm-9 clear-fix">
+                <label class="form-check-inline u-check g-pl-25">
+                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" formControlName="LoginVerification">
+                  <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                    <i class="fa" data-check-icon=""></i>
+                  </div>
+                  Verify login requests
+                </label>
+                <small class="d-block text-muted">You need to add a phone to your profile account to enable this feature.</small>
+                <div class="col-lg-12 row g-mb-10">
+                  <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left g-mb-10 nopadd">Email:</label>
+                  <button (click)="generateEmailOtp()" class="btn ml-2 h-28" *ngIf="!isConfirmEmailOtp">Send OTP via Email</button>
+                  <div *ngIf="isConfirmEmailOtp" class="row">
+                    <input class="form-control col-lg-4" type="text" #emailOTP>
+                    <button (click)="confirmEmailOtp(emailOTP.value)" class="btn ml-2 h-28">Confirm OTP</button>
+                    <span>OTP has been sent to your email, please check</span>
+                  </div>
+                </div>
+                <div class="col-lg-12 row g-mb-10">
+                  <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left g-mb-10 nopadd"> Phone Number:</label> -->
+                  <!-- <input class="form-control col-lg-4" type="text"> -->
+                  <!-- <button class="btn ml-2 h-28" [disabled]="!profileDetails.PhoneNumber" (click)="generateSmsOtp()" *ngIf="!isSmsOtp">Send OTP via SMS</button>
+                  <div *ngIf="isSmsOtp" class="row">
+                    <input class="form-control col-lg-4" type="text" #SmsOTP>
+                    <button (click)="confirmSmsOtp(SmsOTP.value)" class="btn ml-2 h-28">Confirm OTP</button>
+                    <span>OTP has been sent to your Phone number, please check</span>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- End Login Verification -->
+
+            <!-- Password Reset -->
+            <!-- <div class="form-group row g-mb-25">
+              <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">Password reset</label>
+              <div class="col-sm-9">
+                <label class="form-check-inline u-check g-pl-25">
+                  <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox" formControlName="ResetPassword">
+                  <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                    <i class="fa" data-check-icon=""></i>
+                  </div>
+                  Require personal information to reset my password
+                </label>
+                <small class="d-block text-muted">When you check this box, you will be required to verify additional information before you can request a password
+                  reset with just your email address.</small>
+              </div>
+            </div> -->
+
+          </form>
+          <!-- Deactivate account -->
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{ 'UserSecuritySettingsModule.DeactivateAccount' | translate }}</label>
+            <div class="col-sm-9">
+              <label class="form-check-inline u-check mx-0">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="deactivate" type="checkbox" (change)="deactivateStatus(deactivate)"
+                  [(ngModel)]="deactivate">
+                <div class="u-check-icon-radio-v7">
+                  <i class="d-inline-block"></i>
+                </div>
+              </label>
+              <small class="d-block text-muted">{{ 'UserSecuritySettingsModule.DeactivatedAlertMsg' | translate }}</small>
+            </div>
+          </div>
+          <!-- {{privacyForm.value | json}} -->
+          <!-- End Deactivate account -->
+          <!-- Delete account -->
+          <div class="form-group row g-mb-25">
+            <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-right g-mb-10">{{ 'UserSecuritySettingsModule.DeleteAccount' | translate }}</label>
+            <div class="col-sm-9">
+              <label class="form-check-inline u-check mx-0">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="deleteaccount" type="checkbox" (change)="DeleteStatus(deleteAccount)"
+                  [(ngModel)]="deleteAccount">
+                <div class="u-check-icon-radio-v7">
+                  <i class="d-inline-block"></i>
+                </div>
+              </label>
+              <small class="d-block text-muted">{{ 'UserSecuritySettingsModule.DeletedAlertMsg' | translate }}</small>
+            </div>
+          </div>
+          <!-- End Delete account -->
+          <hr class="g-brd-gray-light-v4 g-my-25">
+          <div class="text-sm-right p-b20">
+            <a class="btn u-btn-darkgray g-py-12 g-px-25 g-mr-10">{{ 'UserSecuritySettingsModule.Cancel' | translate }}</a>
+            <button class="btn u-btn-primary g-py-12 g-px-25" [disabled]="!privacyForm.valid" (click)="saveSecuritySettings()">{{ 'UserSecuritySettingsModule.SaveChanges' | translate }}</button>
+          </div>
+
+        </div>
+      </div>

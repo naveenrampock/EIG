@@ -1,0 +1,181 @@
+<div class="col-lg-12" id="PatientInfo">
+  <ul class="nav nav-tabs menu">
+    <li class="active" aria-expanded="false">
+      <a data-toggle="tab" href="#Patient">Patient Information</a>
+    </li>
+    <li>
+      <a data-toggle="tab" href="#Guarantor" (click)="getGuarantorInfo()">Guarantor Information</a>
+    </li>
+    <li>
+      <a data-toggle="tab" href="#Insurance" (click)="getSharedInsuranceInfo()">Insurance Information</a>
+    </li>
+    <li>
+      <a data-toggle="tab" href="#Emergency" (click)="getEmergencyContact()">Emergency Contact</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div id="Patient" class="tab-pane in active">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-4" *ngIf="patientInfo">
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Patient's Name</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.FirstName}} {{patientInfo.LastName}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Gender</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.Sex}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Birthdate</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.Birthdate | date: 'shortDate'}}</div>
+          <!-- <input type="date" class="col-lg-8 col-md-8 col-sm-8 col-xs-6" formControlName="Birthdate" /> -->
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Place Of Birth</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.PlaceofBirth}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Age</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.Age}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Martial Status</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.MaritalStatus}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Street Address</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.Street}} {{patientInfo.City}} {{patientInfo.State}} {{patientInfo.ZipCode}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Phone</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.HomePhone}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Employer</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.Employer}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Occupation</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.Occupation}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Work Address</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.WAStreet}} {{patientInfo.WACity}} {{patientInfo.WAState}} {{patientInfo.WAZipCode}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Preferred Language</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.PreferredLanguage}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Ethnic Origin</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.EthnicOrigin}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Race</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.Race}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Social Security Number</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.SSN}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Email Address</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{patientInfo.EmailAddress}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="Guarantor" class="tab-pane fade">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-4" *ngIf="guarantorInfo">
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Guarantor's Name </label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{guarantorInfo.FirstName}} {{guarantorInfo.LastName}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Relationship</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{guarantorInfo.Relationship}} </div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Gender</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{guarantorInfo.Sex}} </div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Birthdate</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{guarantorInfo.Birthdate | date: 'shortDate'}} </div>
+        </div>
+
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Age</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{guarantorInfo.Age}} </div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Martial Status</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{guarantorInfo.MaritalStatus}} </div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Street Address</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{guarantorInfo.Street}} {{guarantorInfo.City}} {{guarantorInfo.State}} {{guarantorInfo.ZipCode}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="Insurance" class="tab-pane fade">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-4" *ngIf="insuranceInfo">
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Subscriber's Name </label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{insuranceInfo.FirstName}} {{insuranceInfo.LastName}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Relationship</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{insuranceInfo.Relationship}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Birthdate</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{insuranceInfo.Birthdate | date:'shortDate'}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Gender</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{insuranceInfo.Sex}}</div>
+        </div>
+
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Social Security Number</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{insuranceInfo.SSN}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Street Address</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{insuranceInfo.Street}} {{insuranceInfo.City}} {{insuranceInfo.State}} {{insuranceInfo.ZipCode}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Employer</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{insuranceInfo.Employer}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Work Phone</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{insuranceInfo.WorkPhone}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Work Address</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{insuranceInfo.WAStreet}} {{insuranceInfo.WACity}} {{insuranceInfo.WAState}} {{insuranceInfo.WAZipCode}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="Emergency" class="tab-pane fade">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-4" *ngIf="emergencyContactInfo">
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Contact's Name</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{emergencyContactInfo.ContactName}}</div>
+
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Phone</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{emergencyContactInfo.Phone}}</div>
+        </div>
+        <div class="row">
+          <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">Relationship</label>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">{{emergencyContactInfo.Relationship}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

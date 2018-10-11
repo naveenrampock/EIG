@@ -1,0 +1,259 @@
+<div class="modal fade mymodal vidyoconference" id="VidyoConference" role="dialog" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding:5px 10px;">
+        <h4 class="modal-title">Video Conference</h4>
+        <a title="Minimize">
+          <button class="close modalMinimize" (click)="minimize()">
+            <i class='fa fa-minus'></i>
+          </button>
+        </a>
+        <a title="Close">
+          <button type="button" class="close vidyoclose" (click)="disable()">
+            <i class='fa fa-times'></i>
+          </button>
+        </a>
+      </div>
+      <div class="modal-body">
+        <div id="vidyoConnector">
+          <button id="optionsVisibilityButton" title="Toggle Options" class="optionsVisibiliyButtonElements  hidden" (click)="toggleOptions()"
+            [ngClass]="{'hideOptions' : !hideOptions, 'showOptions': hideOptions}"></button>
+          <div id="options" class="options hidden">
+            <form class="token-scroll">
+              <div class="optionsParameters parameters">
+                <!-- <p>
+                  <label>Host</label>
+                  <input type="text" id="host" class="host" value="prod.vidyo.io">
+                </p>
+                <p>
+                  <label>Token</label>
+                  <input type="text" id="token" class="token" placeholder="ACCESS-TOKEN" value="">
+                </p> -->
+                <p>
+                  <label for="displayName">Display Name</label>
+                  <input id="displayName" class="displayName" type="text" placeholder="Display Name" [value]="firstName" readonly>
+                </p>
+                <p>
+                  <label for="resourceId">Resource ID</label>
+                  <input id="resourceId" class="resourceId" type="text" placeholder="Conference Reference" [value]="vidyoAppoint.AppointmentTitle"
+                    readonly>
+                </p>
+                <p>
+                  <label for="cameras">Camera</label>
+                  <select id="cameras">
+                    <option value='0'>None</option>
+                  </select>
+                </p>
+                <p>
+                  <!-- On page load, this input is filled with a list of all the available microphones on the user's system. -->
+                  <label for="microphones">Microphone</label>
+                  <select id="microphones">
+                    <option value='0'>None</option>
+                  </select>
+                </p>
+                <p>
+                  <label for="speakers">Speaker</label>
+                  <select id="speakers">
+                    <option value='0'>None</option>
+                  </select>
+                </p>
+                <p id="monitorShareParagraph">
+                  <label for="monitorShares">Monitor Share</label>
+                  <select id="monitorShares">
+                    <option value='0'>None</option>
+                  </select>
+                </p>
+                <p>
+                  <label for="windowShares">Window Share</label>
+                  <select id="windowShares">
+                    <option value='0'>None</option>
+                  </select>
+                </p>
+                <!-- <div>
+                  <div *ngFor="let message of messages">
+                    <div class="card" [ngClass]="{'text-left': message.id, 'text-right': !message.id}">
+                      <h5 *ngIf="message.name">
+                        {{message.name}}
+                      </h5>
+                      <p>{{message.content}}</p>
+                    </div>
+                  </div>
+                  <input type="text" [(ngModel)]="messageInput.value" [ngModelOptions]="{standalone: true}">
+                  <button (click)="sendChat()" [disabled]="!messageInput.value">Send</button>
+                </div> -->
+
+                <!-- <p> -->
+                <!-- <label for="displayName">Display Name</label> -->
+                <!-- <input id="displayName" class="displayName" type="text" placeholder="Display Name" value="Guest"> -->
+                <!-- </p> -->
+                <!-- <p> -->
+
+                <!-- <label for="resourceId">Resource ID</label> -->
+                <!-- <input type="text" id="mediaBridged_resourceId" class="resourceId" placeholder="Conference Reference" value="demoRoom"> -->
+
+                <!-- </p> -->
+              </div>
+            </form>
+            <div id="messages">
+              <!-- All Vidyo-related messages will be inserted into these spans. -->
+              <span id="error"></span>
+              <span id="message"></span>
+            </div>
+
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a id="chat" data-toggle="collapse" href="#collapse1" class="txt-white">Chat</a>
+                  </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse no-padd">
+                  <div class="panel-body">
+                    <div class="chat_scroll">
+                      <div *ngFor="let message of messages">
+                        <div class="m-b10 p-l10 p-r10" [ngClass]="{'pull-left': message.userId, 'pull-right': !message.userId}">
+                          <div class="chatbrd text-left">
+                            <div class="flow-root">
+                              <p class="text-left pull-left" *ngIf="message">
+                                <a class="text-left txt-blu">{{message?.id ? message.name: 'me'}}</a>
+                              </p>
+                              <p class="pull-right"><label class="p-r0 grey f-10">{{message.time | date: 'shortTime'}}</label></p>
+                            </div>
+                            <p class="text-left">{{message.content}}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="pull-left m-b10 p-l10 p-r10">
+                        <div class="chatbrd text-left">
+                          <div class="flow-root">
+                            <p class="text-left pull-left">
+                              <a class="text-left txt-blu pos-t3">John</a>
+                            </p>
+                            <p class="pull-right"><label class="p-r0 grey f-10">11:35 AM
+                              </label></p>
+                          </div>
+                          <p class="text-left">Hi Eric, will the agenda be posted to our workspace?</p>
+                        </div>
+                      </div> -->
+                    </div>
+
+                    <div class="col-sm-12 no-padd">
+                      <input id="txt-msg" type="text" name="" class="form-control txt-msg" placeholder="Enter Your Message...." [(ngModel)]="messageInput.value"
+                        [ngModelOptions]="{standalone: true}" />
+                    </div>
+                    <div class="pull-left col-sm-12 no-padd m-t5">
+                      <label class="pos-t3">To :</label>
+                      <select class="pos-t3 w-230"><option>Everyone</option>
+                        <option>Organizer(s) Only</option>
+                        <option>David Williams(Web)</option>
+                        <option>James Moore</option></select>
+                      <button class="send pos-t3" (click)="sendChat()" [disabled]="!messageInput.value">Send</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div id="renderer" class="pluginOverlay hidden" [ngClass]="{'rendererWithOptions' : !hideOptions, 'rendererFullScreen': hideOptions}">
+          </div>
+          <div id="toolbarLeft" class="toolbar hidden">
+            <span id="participantStatus"></span>
+            <div *ngIf="joinedUser" id="participantStatus">{{joinedUser?.name}} joined</div>
+            <div *ngIf="leftUser" id="participantStatus">{{leftUser?.name}} left</div>
+          </div>
+          <div id="toolbarRight" class="toolbar hidden">
+            <!-- <span id="connectionStatus">{{notifications}}</span> -->
+            <span class="connectionStatus">{{notifications}}</span>
+            <span id="clientVersion"></span>
+          </div>
+          <div id="toolbarCenter" class="toolbar hidden">
+            <!-- This button toggles the camera privacy on or off. -->
+            <button id="cameraButton" title="Camera Privacy" class="toolbarButton cameraOn"></button>
+            <!-- This button joins and leaves the conference. -->
+            <!-- <button id="joinLeaveButton" title="Join Conference" class="toolbarButton callStart" (click)="!isCallConnected ? startCall() : disconnectCall()"
+              [ngClass]="{'callStart' : !isCallConnected, 'callEnd': isCallConnected}">
+            </button> -->
+            <!-- This button mutes and unmutes the users' microphone. -->
+            <button id="microphoneButton" title="Microphone Privacy" class="toolbarButton microphoneOn"></button>
+          </div>
+          <!-- <div id="helper">
+            <table>
+              <tr id="helperPicker">
+                <td>
+                  <table>
+                    <tr>
+                      <td id="joinViaBrowser" class="">
+                        <div class="helperFooter">
+                          <a href="javascript:joinViaBrowser()">Connect</a>
+                        </div>
+                      </td>
+                      <td id="joinViaPlugIn" class="hidden">
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div> -->
+          <!-- <div id="failed" class="hidden">
+            <table>
+              <tr>
+                <td><img class="logo" src="assets/images/VidyoIcon.png" /></td>
+              </tr>
+              <tr>
+                <td id="failedText">Error</td>
+              </tr>
+            </table>
+          </div> -->
+          <!-- <div class="container">
+            <div class="row">
+              <div class="participatents-status col-sm-4 text-left">
+                <div *ngIf="joinedUser">{{joinedUser?.name}} joined</div>
+                <div *ngIf="leftUser">{{leftUser?.name}} left</div>
+              </div>
+              <div class="col-sm-6 text-center">
+                <button (click)="!isCallConnected ? startCall() : disconnectCall()" class="connect-btn" [ngClass]="{'connect' : !isCallConnected, 'disconnect': isCallConnected}">
+                  {{!isCallConnected ? 'Connecta' : 'Disconnecta'}} </button>
+                <div *ngFor="let message of messages">
+                  <div class="card" [ngClass]="{'text-left': message.id, 'text-right': !message.id}">
+                    <h5 *ngIf="message.name">
+                      {{message.name}}
+                    </h5>
+                    <p>{{message.content}}</p>
+                  </div>
+                </div>
+                <input type="text" [(ngModel)]="messageInput.value">
+                <button (click)="sendChat()" [disabled]="!messageInput.value">Send</button>
+              </div>
+              <div class="connectionStatus text-right col-sm-2 p-10">
+                <b>{{notifications}}</b>
+              </div>
+
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="minmaxCon"></div>
+
+<div id="minimize" class="minimize" style="display:none">
+  <div class="floating" style="position:fixed;">
+    <a title="Video Conference">
+      <i class="fa fa-dot-circle red"></i>
+    </a>
+    <a title="Close">
+      <button type="button" class="close dismissminimize" (click)="disable()">
+        <i class='fa fa-times'></i>
+      </button>
+    </a>
+    <a title="Maximize" (click)="maximize()">
+      <button class="close maximize">
+        <i class='fa fa-window-maximize'></i>
+      </button>
+    </a>
+  </div>
+</div>

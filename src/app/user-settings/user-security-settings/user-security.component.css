@@ -1,0 +1,13 @@
+
+
+input[type="password"] {height: 40px;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar{padding: 0.5em 1.5em;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-close{padding: .45em .125em;}
+
+:host /deep/ .ui-widget-content{border: 0px solid #d5d5d5; border-top: 1px solid #D5D5D5;}
+
+:host /deep/ .ui-corner-top{border-radius:0px;}
+
+.g-bg-white{background-color:#fff !important;}

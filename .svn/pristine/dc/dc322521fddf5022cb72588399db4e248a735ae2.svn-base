@@ -1,0 +1,147 @@
+<div id="Authorization" class="tab-pane col-sm-9 pull-right bg-w" role="tabpanel">
+<!-- <div class="tab-pane fade" id="UserConfig" role="tabpanel"> -->
+    <h2 class="h4 g-font-weight-300 pt-4">{{ 'UserAuthorizationModule.ManageyourConfigurations' | translate }}</h2>
+    <form [formGroup]="userConfigForm">
+      <div class="form-group row g-mb-25 pt-3">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10"> {{ 'UserAuthorizationModule.HasImagemanagement' | translate }} </label>
+        <div class="col-sm-3">
+          <label class="form-check-inline u-check mx-0">
+            <input disabled class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasImagemanagement" type="checkbox" formControlName="HasImagemanagement">
+            <div class="u-check-icon-radio-v7">
+              <i class="d-inline-block"></i>
+            </div>
+          </label>
+        </div>
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10"> {{ 'UserAuthorizationModule.HasCasemanagement' | translate }} </label>
+        <div class="col-sm-3">
+          <label class="form-check-inline u-check mx-0">
+            <input disabled class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasCasemanagement" type="checkbox" formControlName="HasCasemanagement">
+            <div class="u-check-icon-radio-v7">
+              <i class="d-inline-block"></i>
+            </div>
+          </label>
+        </div>
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.HasEMR' | translate }} </label>
+        <div class="col-sm-3">
+          <label class="form-check-inline u-check mx-0">
+            <input disabled class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasEMR"  type="checkbox" formControlName="HasEMR">
+            <div class="u-check-icon-radio-v7">
+              <i class="d-inline-block"></i>
+            </div>
+          </label>
+        </div>
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.HasVideoconference' | translate }}</label>
+        <div class="col-sm-3">
+          <label class="form-check-inline u-check mx-0">
+            <input disabled class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasVideoconference" type="checkbox" formControlName="HasVideoconference">
+            <div class="u-check-icon-radio-v7">
+              <i class="d-inline-block"></i>
+            </div>
+          </label>
+        </div>
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.HasGenomicFilesManagement' | translate }} </label>
+        <div class="col-sm-3">
+          <label class="form-check-inline u-check mx-0">
+            <input disabled class="g-hidden-xs-up g-pos-abs g-top-0 g-right-0" name="HasGenomicFilesManagement"  type="checkbox" formControlName="HasGenomicFilesManagement">
+            <div class="u-check-icon-radio-v7">
+              <i class="d-inline-block"></i>
+            </div>
+          </label>
+        </div>
+        <div class="col-sm-6">
+          <small class="d-block text-muted border-box">**{{ 'UserAuthorizationModule.loggedinallourservicesMsg' | translate }}</small>
+        </div>
+      </div>
+
+      <div class="form-group row g-mb-25">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.MaxDICOMstudiesnumber' | translate }} </label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Max DICOMstudies number" formControlName="MaxDICOMstudiesnumber"
+              [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.MaxDICOMstudiestotalsizes' | translate }}</label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Max DICOMstudies totalsizes" formControlName="MaxDICOMstudiestotalsizes"
+              [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row g-mb-25">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.MaxEMRrecordsnumber' | translate }}</label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Max EMRrecordsnumber" formControlName="MaxEMRrecordsnumber"
+              [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.MaxTotalstoragesize' | translate }} </label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Maxtotal storagesize" formControlName="Maxtotalstoragesize"
+              [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row g-mb-25">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.MaxCasesweek' | translate }}</label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Maxcases perweek" formControlName="Maxcasesperweek"
+              [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.MaxCasesday' | translate }}</label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Maxcasesper day" formControlName="Maxcasesperday"
+              [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row g-mb-25">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.MaxInviteesallowed' | translate }} </label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Maxinvitees allowed" formControlName="Maxinviteesallowed"
+              [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.MaxConferencelength' | translate }}  </label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Maxconference length" formControlName="Maxconferencelength"
+              [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row g-mb-25">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.Maxtotalnumberofcasesallowed' | translate }}</label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Max totalnumber of casesallowed"
+              formControlName="Maxtotalnumberofcasesallowed" [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">{{ 'UserAuthorizationModule.Maximageviewingtimesday' | translate }} </label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Max totalnumber of casesallowed"
+              formControlName="Maximageviewingtimesperday" [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row g-mb-25">
+        <label class="col-sm-3 col-form-label g-color-gray-dark-v2 g-font-weight-700  g-mb-10">Data Stored Id</label>
+        <div class="col-sm-3">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 g-py-5 pr-0" type="text" ReadOnly placeholder="Data Stored Id"
+              formControlName="DataStoredId" [OnlyNumber]='true' maxlength="3">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>

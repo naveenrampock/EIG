@@ -1,0 +1,10 @@
+.attach-popup .modal-dialog {
+    max-width: 900px;
+}
+
+.nav-link{padding: .2rem 1rem;}
+
+
+:host /deep/ table thead{background-color: #0847a1;color: #fff;}
+
+:host /deep/ table thead th{padding: .45rem .75rem;}

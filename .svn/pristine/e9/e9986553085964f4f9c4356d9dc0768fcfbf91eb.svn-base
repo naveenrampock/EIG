@@ -1,0 +1,68 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<app-emr-navigation></app-emr-navigation>
+<div class="m-t10p emr-content-list">
+  <div class="emr-tabcontent">
+      <!-- List Page -->
+      <div *ngIf="!isShowMedicationDetails">
+        <a class="addlist" id="lnk_Medication" (click)="showMedicationDetails()">
+          <i class="fa fa-plus"></i>
+        </a>
+        <p-table #dt [columns]="tableHeaders" [value]="listEmrMedicationStatement" [paginator]="true" [rows]="10" (onLazyLoad)="loadLazy($event)" [totalRecords]="totalcount" [lazy]="!press" #tt >
+          <ng-template pTemplate="caption">
+            <div style="text-align: right">
+              <label>Search:</label>
+              <input type="text" pInputText size="25" (keypress)="press=true" [ngModel]="alpha" (ngModelChange)="searchCheck($event)" class="filter"
+              style="width:auto" (input)="tt.filterGlobal($event.target.value, 'contains')" autocomplete='off'>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header" let-columns>
+            <tr role="row">
+              <th [pSortableColumn]="'Source Type'" width="120">Source Type
+                <p-sortIcon [field]="'Source Type'"></p-sortIcon>
+              </th>
+              <th [pSortableColumn]="'Source ID'">Source ID
+                <p-sortIcon [field]="'Source ID'"></p-sortIcon>
+              </th>
+              <th [pSortableColumn]="'Creater'">Creater
+                <p-sortIcon [field]="'Creater'"></p-sortIcon>
+              </th>
+              <th [pSortableColumn]="'Category'">Category
+                <p-sortIcon [field]="'Category'"></p-sortIcon>
+              </th>
+              <th [pSortableColumn]="'Status'">Status
+                <p-sortIcon [field]="'Status'"></p-sortIcon>
+              </th>
+              <th>Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+              <td>{{rowData.SourceTypeDesc}}</td>
+              <td>{{rowData.SourceId}}</td>
+              <td>{{rowData.CreatedBy}}</td>
+              <td>{{rowData.CategoryDesc}}</td>
+              <td>{{rowData.StatusDesc}}</td>
+              <td>
+                <a (click)="editMedication(rowData, 'Edit')">
+                  <i class="fa fa-pencil-square-o edit"></i>
+                </a>
+                <a title="View" (click)="editMedication(rowData, 'readOnly')">
+                  <i class="fa fa-eye"></i>
+                </a>
+                <a (click)="deleteMedication(rowData)">
+                  <i class="fa fa-trash trash"></i>
+                </a>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+         <!-- List Page ends here-->
+
+    <!-- Page details -->
+    <div *ngIf="isShowMedicationDetails">
+      <app-medication-statement-details (goListingPage)="showMedicationListingPage()" [medicationDetails]="selectedMedication" ></app-medication-statement-details>
+    </div>
+    <!-- Page details ends here-->
+  </div>
+</div>

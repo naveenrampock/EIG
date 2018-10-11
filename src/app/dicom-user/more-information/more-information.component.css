@@ -1,0 +1,11 @@
+
+
+:host /deep/ .moreinfo .ui-widget-header{background: linear-gradient(to bottom, #0847A1 0%, #0847A1 100%);color:#fff;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon {color: #fff;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {padding: 0.5em 1.5em !important;}
+
+label{vertical-align: top;}
+
+.form-group label:nth-child(1){font-weight:bold;font-size:13px;}

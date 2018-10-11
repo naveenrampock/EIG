@@ -1,0 +1,38 @@
+
+
+.date,.value{
+    position: relative;
+    top: 10px;
+    height: 28px !important; width: 40.8%;left:40%;
+}
+input[type="text"]{
+    height:30px;
+}
+
+input[type="button"]{border-radius:3px;}
+
+textarea{float: right;margin-top: 20px;position: relative;right: 7%;margin-left:50%;}
+
+.errorMessage{width:40%;float:right;}
+
+.calendar{position: absolute;top: 20px;}
+
+:host /deep/ .calendar .ui-inputtext{position: relative;top: 10px;width: 100px;}
+
+:host /deep/ .calendar + .errorMessage{position: absolute;top: 60px;line-height: 14px;}
+
+:host /deep/ .value + .errorMessage{position: relative;top: 40px;line-height: 14px;right:60px;}
+
+
+
+@media only screen and (min-width:320px) and (max-width:580px){
+    textarea{right:0%;}  
+}
+    
+@media only screen and (min-width:581px) and (max-width:767px){
+    textarea{right:7%;}  
+}
+    
+@media only screen and (min-width:768px) and (max-width:1024px){
+    textarea{right:7%;}  
+}

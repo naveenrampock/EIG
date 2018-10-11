@@ -1,0 +1,248 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<app-emr-navigation></app-emr-navigation>
+<div class="m-t10p emr-content-list">
+  <div class="emr-tabcontent">
+    <div>
+      <a class="sharerecords" (click)="shareRecord()">Share</a>
+      <p-table #dt [columns]="tableHeaders" [value]="listEmrShare" (onLazyLoad)="loadLazy($event)" [lazy]="true" class="m-t10">
+        <ng-template pTemplate="header" let-columns>
+          <tr role="row">
+            <th>Share Name</th>
+            <th>Share Details</th>
+            <th>Invitees</th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td>{{rowData.Name}}</td>
+            <td>{{rowData.Details}}</td>
+            <td>{{rowData.Invitees}}</td>
+            <td>
+              <a (click)="editAllergy(rowData)">
+                <i class="fa fa-pencil-square-o edit"></i>
+              </a>
+              <a (click)="deleteAllergy(rowData)">
+                <i class="fa fa-trash trash"></i>
+              </a>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Frank Sharing" [(visible)]="isShowSharingRecords" [responsive]="true" showEffect="fade" [modal]="true"
+  [width]="800">
+  <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+    <div class="modal-body row">
+      <div class="sharepop">
+        <p class="allshare text-left">
+          <label class="p-l10">Invitees</label>
+        </p>
+        <div class="emr_sharing">
+          <div>
+            <input type="checkbox">
+            <img title="Nathan" class="invit" src="assets/images/3.jpg">
+            <a>Nathan</a>
+          </div>
+          <div>
+            <input type="checkbox">
+            <img title="Shane" class="invit" src="assets/images/4.jpg">
+            <a>Shane</a>
+          </div>
+          <div>
+            <input type="checkbox">
+            <img title="Frank" class="invit" src="assets/images/1.jpg">
+            <a>Frank</a>
+          </div>
+          <div>
+            <input type="checkbox">
+            <img title="Henry Levin" class="invit" src="assets/images/3.jpg">
+            <a>Henry Levin</a>
+          </div>
+          <div>
+            <input type="checkbox">
+            <img title="Bradshaw" class="invit" src="assets/images/4.jpg">
+            <a>Bradshaw</a>
+          </div>
+          <div>
+            <input type="checkbox">
+            <img title="Frank" class="invit" src="assets/images/1.jpg">
+            <a>Frank</a>
+          </div>
+        </div>
+      </div>
+      <!-- Allergy -->
+      <h6 class="col-12 emr_header m-t10">Allergy</h6>
+      <div class="row bg-white m-0 p-t10 brd-blu" id="record_allergy">
+        <p-table #dt1 [columns]="tableHeaders5" class="cap" [value]="Allergy">
+          <ng-template pTemplate="header" let-columns>
+            <tr role="row">
+              <th width="80">Criticality</th>
+              <th>Patient</th>
+              <th width="120">Substance</th>
+              <th width="100">Reaction</th>
+              <th width="160">Onset</th>
+              <th>Recorder</th>
+              <th width="30">
+                <input type="checkbox" class="check">
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+              <td>{{rowData.Criticality}}</td>
+              <td>{{rowData.Patient}}</td>
+              <td>{{rowData.Substance}}</td>
+              <td>{{rowData.Reaction}}</td>
+              <td>{{rowData.Onset}}</td>
+              <td>{{rowData.Recorder}}</td>
+              <td>
+                <input type="checkbox" class="check">
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <!-- Care Plan -->
+      <h6 class="col-12 emr_header m-t10">Care Plan</h6>
+      <div class="row bg-white m-0 p-t10 brd-blu" id="record_care">
+        <p-table #dt1 [columns]="tableHeaders5" class="cap" [value]="carePlan">
+          <ng-template pTemplate="header" let-columns>
+            <tr role="row">
+              <th>Addresses</th>
+              <th>Status</th>
+              <th>Category</th>
+              <th>Prohibited</th>
+              <th >Goal</th>
+              <th>Code</th>
+              <th width="30">
+                <input type="checkbox" class="check">
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+              <td>{{rowData.Addresses}}</td>
+              <td>{{rowData.Status}}</td>
+              <td>{{rowData.Category}}</td>
+              <td>{{rowData.Prohibited}}</td>
+              <td>{{rowData.Goal}}</td>
+              <td>{{rowData.code}}</td>
+              <td>
+                <input type="checkbox" class="check">
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <!-- Condition -->
+      <h6 class="col-12 emr_header m-t10">Condition</h6>
+      <div class="row bg-white m-0 p-t10 brd-blu" id="record_condition">
+        <p-table #dt1 [columns]="tableHeaders5" class="cap" [value]="Condition">
+          <ng-template pTemplate="header" let-columns>
+            <tr role="row">
+              <th width="130">ClinicalStatus</th>
+              <th width="130">VerificationStatus</th>
+              <th>Asserter</th>
+              <th >Code</th>
+              <th>category</th>
+              <th>Severity </th>
+              <th width="30">
+                <input type="checkbox" class="check">
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+              <td>{{rowData.ClinicalStatus}}</td>
+              <td>{{rowData.VerificationStatus}}</td>
+              <td>{{rowData.Asserter}}</td>
+              <td>{{rowData.Code}}</td>
+              <td>{{rowData.category}}</td>
+              <td>{{rowData.Severity}}</td>
+              <td>
+                <input type="checkbox" class="check">
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <!-- Device -->
+      <h6 class="col-12 emr_header m-t10">Device</h6>
+      <div class="row bg-white m-0 p-t10 brd-blu" id="record_device">
+        <p-table #dt1 [columns]="tableHeaders5" class="cap" [value]="Device">
+          <ng-template pTemplate="header" let-columns>
+            <tr role="row">
+              <th width="130">Udi</th>
+              <th width="130">Patient</th>
+              <th>Status</th>
+              <th >Model</th>
+              <th>ExpirationDate</th>
+              <th width="30">
+                <input type="checkbox" class="check">
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+              <td>{{rowData.Udi}}</td>
+              <td>{{rowData.Patient}}</td>
+              <td>{{rowData.Status}}</td>
+              <td>{{rowData.Model}}</td>
+              <td>{{rowData.ExpirationDate}}</td>
+              <td>
+                <input type="checkbox" class="check">
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <!-- Immunization -->
+      <h6 class="col-12 emr_header m-t10">Immunization</h6>
+      <div class="row bg-white m-0 p-t10 brd-blu" id="record_immunization">
+        <p-table #dt1 [columns]="tableHeaders5" class="cap" [value]="Immunization">
+          <ng-template pTemplate="header" let-columns>
+            <tr role="row">
+              <th>Patient</th>
+              <th>Status</th>
+              <th width="120">WasNotGiven </th>
+              <th width="120">VaccineCode</th>
+              <th width="120">LotNumber</th>
+              <th>Date</th>
+              <th>Site</th>
+              <th>  <input type="checkbox" class="check">
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+              <td>{{rowData.Patient}}</td>
+              <td>{{rowData.Status}}</td>
+              <td>{{rowData.WasNotGiven}}</td>
+              <td>{{rowData.VaccineCode}}</td>
+              <td>{{rowData.LotNumber}}</td>
+              <td>{{rowData.Date}}</td>
+              <td>{{rowData.Site}}</td>
+              <td>
+                <input type="checkbox" class="check">
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="col-12 m-t20 m-b20 text-right">
+      <a class="share">Share</a>
+      <a class="reset" (click)="cancelShare()">Cancel</a>
+    </div>
+  </p-footer>
+</p-dialog>

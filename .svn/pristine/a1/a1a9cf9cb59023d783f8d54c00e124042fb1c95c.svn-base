@@ -1,0 +1,103 @@
+<div class="col-lg-12 nopadd lookupmaster p-t20" id="LookupMaster">
+    <!-- Nav tabs -->
+    <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary col-lg-12 p-r0" role="tablist"
+      data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20"
+      style="padding:0">
+      <li class="nav-item col-lg-2 nopadd" style="padding:0">
+        <a class="nav-link g-py-5 active" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--1" role="tab">Viewers Listing</a>
+      </li>
+      <li class="col-lg-10 pull-right text-right nopadd" style="padding:0">
+        <!-- <input type="search" name="" value="" placeholder="Search..."/> -->
+        <a id="Add_CacheServer" class="add_lookup" data-toggle="modal" (click)="showDialogToAdd()">
+          <i class="fa fa-plus"></i>
+          <!-- <img src="../../../assets/images/Plus.png" class="w-16"> -->
+        </a>
+      </li>
+
+    </ul>
+    <div class="pull-right g-py-10 search-top-cache">
+      <input autocomplete='off' type="text" #gb pInputText size="25" placeholder="Find..." class="mrgbtm15 b-radius20">
+    </div>
+    <div id="blist_Table" class="content-section implementation col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadd">
+      <p-dataTable [value]="viewerLists" 
+        [paginator]="true" [rows]="10" [pageLinks]="3" [globalFilter]="gb" [responsive]="true">
+        <p-column field="Type" header="Viewer Type" [sortable]="true" [editable]="true">
+          <ng-template let-col let-viewerList="rowData" pTemplate="body">
+            <span>
+              <a>{{viewerList.Type}}</a>
+            </span>
+          </ng-template>
+        </p-column>
+        <p-column field="Discription" header="Viewer Discription" [sortable]="true" [editable]="true">
+          <ng-template let-col let-viewerList="rowData" pTemplate="body">
+            <span>{{viewerList.Discription}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="Url" header="Viewer Url" [sortable]="true" [editable]="true">
+          <ng-template let-col let-viewerList="rowData" pTemplate="body">
+            <span>{{viewerList.Url}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="UrlCredential" header="Viewer UrlCredential" [sortable]="true" [editable]="true">
+          <ng-template let-col let-viewerList="rowData" pTemplate="body">
+            <span>{{viewerList.UrlCredential}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="UrlEncryptionType" header="Viewer UrlEncryptionType" [sortable]="true" [editable]="true">
+            <ng-template let-col let-viewerList="rowData" pTemplate="body">
+              <span>{{viewerList.UrlEncryptionType}}</span>
+            </ng-template>
+          </p-column>
+        <p-column field="Actions" header="Actions" [sortable]="true" [editable]="true">
+          <ng-template let-col let-viewerList="rowData" pTemplate="body" class="popup">
+              <button (click)="editSelectedCacheServer(viewerList)" class="greenBtn">Edit</button>
+            <button (click)="deleteSelectedServer(viewerList)" class="redBtn">Delete</button>   
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+
+
+    </div>
+
+  </div>
+ 
+  <p-dialog header="Viewers" [(visible)]="displayDialog" [responsive]="true"  class="admin_lookup" showEffect="fade" [modal]="true" [width]="500">
+    <!-- *ngIf="car" -->
+    <div class="ui-grid ui-grid-responsive ui-fluid" id="LookUp_popup">
+      <form [formGroup]="viewerFormBuilder">
+        <div class="modal-body row">
+  
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <label class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Viewer Type</label>
+            <input type="text" formControlName="type" name="type" class="col-lg-7 col-md-6 col-sm-6 col-xs-6" maxlength="20"/>
+            
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <label class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Viewer Url</label>
+            <input type="text" formControlName="url" name="url" class="col-lg-7 col-md-6 col-sm-6 col-xs-6" maxlength="20"/>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <label class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Viewer Description</label>
+            <input type="text" formControlName="description" name="description" class="col-lg-7 col-md-6 col-sm-6 col-xs-6" maxlength="50"/>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <label class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Viewer Encryptiontype</label>
+            <input type="text" formControlName="encryptiontype" name="encryptiontype" class="col-lg-7 col-md-6 col-sm-6 col-xs-6" maxlength="50"/>
+            
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <label class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Viewer Credential</label>
+            <input type="text" formControlName="credential" name="credential" class="col-lg-7 col-md-6 col-sm-6 col-xs-6" maxlength="50"/>
+            
+          </div>
+        </div>
+      </form>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+        <button type="button" pButton icon="fa-check" (click)="addNewCacheServer()"><label>Save</label></button>
+        <button type="button" pButton icon="fa-close" (click)="cancel()"><label>Cancel</label></button>
+      </div>
+    </p-footer>
+  </p-dialog>
+  

@@ -1,0 +1,169 @@
+.toast-container {
+    /*-webkit-transition-property: opacity, bottom, left, right, width, margin, border-radius;
+    transition-property: opacity, bottom, left, right, width, margin, border-radius;
+    -webkit-transition-duration: 1.0s;
+            transition-duration: 1.0s;
+    -webkit-transition-timing-function: ease;
+            transition-timing-function: ease;*/
+    position: relative !important;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    /*background: rgba(0, 0, 0, 0.4);*/
+    z-index: 99 !important;
+    opacity: 0;
+    display: none;
+    border: none;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+  }
+  
+  .toast-container > * {
+    text-align: center;
+  }
+  
+  .toast-card {
+    width: 50%;
+    z-index: 1;
+    padding: 2px;
+    position: relative;
+    background-color: #000;
+    text-align: center;
+    color: #fff;
+        margin: 0 auto;
+  }
+  
+  .toast-card .toast-message {
+    margin: 1em 2em 1em 2em;
+  }
+  
+  .toast-card .toast-title {
+    text-transform: uppercase;
+    margin: 2px;
+    font-size: 18px;
+  }
+
+  #renderer{
+    display: block;
+    clear: both;
+    width: 100%;
+    height:200px;
+}
+.toast-container .modal-dialog {max-width: 1180px;}
+
+.toast-container p label{text-align:left !important;}
+
+.toast-container .modal-body{height:150px;padding:0px;}
+.toast-container .modal-header{padding: 10px;background-color: #2060aa;}
+
+.toast-container .modal-title{color:#fff;}
+
+.toast-container button > .fa{color:#fff !important;}
+
+.toast-container button > .fa-minus{color:#fff !important;position:relative;top:-7px;font-size:13px;}
+.connect-btn {
+    padding: 5px 15px;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 0px;
+    margin: 10px 0px 10px 10px;
+}
+.connect {
+    background-color: #2060aa;
+}
+.disconnect {
+    background-color: red;
+}
+.toast-container button > .fa-minus {
+    color: #fff !important;
+    position: relative;
+    top: -7px;
+    font-size: 13px;
+}
+.modalMinimize {
+    position: absolute;
+    right: 40px;
+} 
+
+.floating {
+    position: fixed;
+    padding: 5px 20px;
+    background-color: #2060aa;
+    border-radius: 3px;
+}
+.minimize {
+    width: 8%;
+    position: absolute;
+    top: 0%;
+    right: -13%;
+}
+.minmaxCon {
+    height: 35px;
+    bottom: 1px;
+    left: 1px;
+    position: fixed;
+    right: 1px;
+    z-index: 9999;
+}
+.red {
+    color: red;
+}
+.minimize button > .fa-window-maximize {
+    color: #fff !important;
+    position: relative;
+    top: 3px;
+    font-size: 13px;
+}
+button .fa {
+    font-size: 16px;
+    margin-left: 10px;
+}
+.close {
+    font-size: 1rem;
+    text-shadow: 0px 0px 0px;
+    color: #fff;
+}
+.progress{
+height: 40px;
+}
+
+.progress-bar{
+    min-height:30px !important;
+}
+
+.toast-container .modal-dialog{ max-width: 50%;position: fixed;top:55%;right: 3%;width: 350px;}
+
+
+.conf-upload ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    position: relative;
+  }
+  .conf-upload li {
+    list-style-type: none;
+    border-left: 2px solid #000;
+    margin-left: 1em;
+  }
+  .conf-upload li div {
+    padding-left: 1em;
+    position: relative;
+  }
+  .conf-upload li div::before {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: -2px;
+    bottom: 50%;
+    width: 0.75em;
+    border: 2px solid #000;
+    border-top: 0 none transparent;
+    border-right: 0 none transparent;
+  }
+  .conf-upload ul > li:last-child {
+    border-left: 2px solid transparent;
+  } 
+
+  .btn-cancel{background-color: #828282 !important;border: 1px solid #fff !important; border-radius: 3px !important;color:#fff;}

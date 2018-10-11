@@ -1,0 +1,39 @@
+:host /deep/ p-calendar{
+    width: 100%;
+    padding: 0;
+}
+:host /deep/ p-calendar span input{
+    width: 100%;
+}
+
+a{
+    color: #084FA1;
+}
+
+a.active {
+    color: #fff;
+    background-color: #084FA1;
+    padding: 5px 15px;border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.zip{
+    min-width:130px;
+}
+
+a.btnNew {
+    margin-bottom: -16px;
+}
+
+.lastForm{
+    border: 1px solid #d9d9d9;
+    margin-top:20px;    background-color: #fff;
+}
+
+#PatientInfo ul li {
+    padding: 4px 1%;
+    width: 25%;
+    text-align: center;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}

@@ -1,0 +1,20 @@
+.g-color-primary { color: #32c5d2 !important; }
+#PatientInfo ul li.active {background-color: #32c5d2 !important;}
+a.active {
+    color: #fff;
+    background-color: #32c5d2 ;
+    padding: 5px 14px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.u-btn-primary {
+    color: #fff !important;
+    background-color:#32c5d2;
+}
+.lastForm{
+    border: 1px solid #d9d9d9;
+    margin-top:20px;
+}
+.colorBlack {
+    color: black !important;
+}

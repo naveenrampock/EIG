@@ -1,0 +1,109 @@
+<p>DATA STORAGE</p>
+
+<button (click)="sendparent()">Send</button>
+<form  [formGroup]="advanceSearch">
+    <div class="vertical-menu">
+      <nav class="navbar navbar-default sidebar no-padd" role="navigation">
+        <a class="active w-100"> Advanced Search</a>
+        <div class="navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+          <ul id="dicom-list" class="nav navbar-nav dicom-list">
+            <div class="sidenav">
+              <button class="dropdown-btn" data-toggle="collapse" data-target="#ownership"> Ownership
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div id="ownership" class="collapse">
+                <a>
+                  <input type="radio"  value="1" formControlName='myImage'>My images</a>
+                <a>
+                  <input type="radio"  value="3"  formControlName='shareByothers'>Shared by others</a>
+                <a>
+                  <input type="radio"  value="2"  formControlName='myUpload'>My uploads</a>
+              </div>
+            </div>
+
+
+            <li class="">
+              <a class="col-5 pull-left" data-toggle="dropdown">Study ID </a>
+              <input type="text" class="col-7" formControlName='studyId'/>
+            </li>
+            <li class="dropdown">
+              <a class="col-5 pull-left" data-toggle="dropdown" >Patient ID </a>
+              <input type="text" class="col-7" formControlName='patientId'/>
+            </li>
+
+            <li class="dropdown">
+              <a class="col-5 pull-left" data-toggle="dropdown" >Patient Name</a>
+              <input type="text" class="col-7" formControlName='patientName'/>
+            </li>
+            <li class="dropdown p-b10">
+              <a class="col-12 text-center" data-toggle="dropdown" >Examine Date </a>
+              <label class="col-5 pull-left before_date pos-t5">Before Date </label>
+              <p-calendar formControlName='cStartDate' [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" [minDate]="minDate"
+               ></p-calendar>
+              <!-- <input type="date" class="col-7 p-r0" formControlName='cStartDate'/> -->
+              <label class="col-5 pull-left pos-t5" data-toggle="dropdown" >End Date </label>
+              <p-calendar formControlName='cEndDate' [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" [minDate]="minDate"
+              ></p-calendar>
+              <!-- <input type="date" class="col-7 p-r0" formControlName='cEndDate'/> -->
+            </li>
+            <li class="dropdown p-b10">
+              <label class="col-12 text-center">Upload Date </label>
+              <label class="col-5 pull-left before_date pos-t5" >Before Date </label>
+              <p-calendar formControlName='uStartDate' [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" [minDate]="minDate"
+              ></p-calendar>
+              <!-- <input type="date" class="col-7 p-r0" formControlName='uStartDate'/> -->
+              <label class="col-5 pull-left pos-t5" data-toggle="dropdown" >End Date </label>
+              <p-calendar formControlName='uEndDate' [locale]="lang" dateFormat="{{fm}}"  (onBlur)="focus($event);" (keyup)="cal($event.target.value)"   defaultDate [showIcon]="true" [minDate]="minDate"
+              ></p-calendar>
+              <!-- <input type="date" class="col-7 p-r0" formControlName='uEndDate' /> -->
+            </li>
+            <li class="dropdown">
+              <a class="col-12 pull-left" data-toggle="dropdown">Image modalities</a>
+
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left" *ngFor="let mod of modality">
+                <input type="checkbox" name="" value="" id="dr" (click)="modalityValue($event.target.checked,mod.name)">{{mod.name}}
+              </div>
+              <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="" id="us">US
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="" id="nm">NM
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="" id="rf">RF
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="">SC
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="">MR
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="">PT
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="">SR
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="">CT
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="">MG
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="">XA
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 pull-left">
+                <input type="checkbox" name="" value="">OT
+              </div> -->
+            </li>
+            <!-- <li> -->
+            <!-- <a class="col-5 pull-left" data-toggle="dropdown">Share </a>           -->
+            <!-- <input type="checkbox" class="col-7 share"/> -->
+            <!-- </li> -->
+          </ul>
+          <button class="pull-right btn go">Go</button>
+        </div>
+      </nav>
+    </div>
+  </form>

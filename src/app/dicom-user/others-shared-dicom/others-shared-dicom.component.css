@@ -1,0 +1,150 @@
+
+
+
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {
+    padding: 0.5em 1.5em;
+}
+
+:host /deep/ .ui-dialog-footer {
+    padding: 0.5em 1em;}
+
+:host /deep/ .ui-datatable-scrollable-body{min-height:400px;max-height:400px !important;overflow:auto;}
+
+:host /deep/ .ui-datatable-scrollable-table-wrapper{height:auto !important;}
+
+.sidenav {
+  width: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;background-color: #eee;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 5px 8px 5px 12px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #444;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.dropdown-btn{
+border-bottom: 1px solid #ccc;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+ background-color: #ccc !important;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; 
+  font-size: 20px; 
+  padding: 0px 10px;
+}
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;border-bottom: 1px solid #ccc;
+}
+.dropdown-btn.active{
+background-color:#ccc;outline:none;color: #000;
+}
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+#sidebar-wrapper {margin-left: -180px;}
+
+#wrapper.active #sidebar-wrapper {
+  left: 175px;
+}
+.vertical-menu li {
+  border-bottom: 1px solid #d9d9d9;
+  width: 100%;
+  background-color: #eee;
+}
+.dicom_img #sidebar-wrapper {
+  margin-left: -400px;
+  background-color: #f5f5f5;
+  left: 0px;
+  top: 0px;
+  width: 250px;
+  position: absolute;
+  overflow-y: auto;
+  z-index: 10;
+  transition: all 0.4s ease 0s;
+  border-right: 0px solid #B5B5B5;
+  padding-right: 0px;
+  height: 997px !important;
+  border: 1px solid #d9d9d9;
+  overflow-x: hidden;
+  margin-top: 11px;
+  padding-left: 0px;
+}
+.dicom_img #page-content-wrapper {
+  width: 100%;
+  padding-top: 10px;
+  transition: all 0.4s ease 0s;
+  padding-left: 15px;
+}
+.dicom_img #slmenu {
+  height: 997px;
+  border: 1px solid #d9d9d9;
+  left: 10px;
+  margin-right: 10px;
+}
+.w-94 {
+  width: 93%;
+}
+
+select, input[type="text"], input[type="date"]{height:28px;position: relative;top: 3px;}
+
+.dropdown label{margin-bottom:0px;}
+
+.pos-t5{position: relative;top:5px;}
+
+input[type="checkbox"]{position: relative;right: 3px;top: 2px;}
+
+:host /deep/ .moreinfo > .ui-dialog{left:20px !important;width:96% !important;}
+#menu-toggle{text-decoration: none;float: left;color: #046E9D !important;padding-right: 15px;
+    font-size: 22px;top: 30%;position: relative;padding: 40px 5px;background-color: #d9d9d9;cursor: pointer;}
+
+
+.fa-trash,.fa-info-circle{font-size: 18px;color: #084FA1;padding: 2px 4px;}
+
+:host /deep/ .ui-datatable-virtual-table tbody tr td:last-child(){text-align: center;}
+
+
+:host /deep/ .ui-widget-header .ui-datatable-thead th:nth-child(1){width:100px;}
+
+:host /deep/ .ui-widget-header .ui-datatable-thead th:nth-child(2){width:130px;}
+
+:host /deep/ .ui-widget-header .ui-datatable-thead th:nth-child(3){width:130px;}
+
+:host /deep/ .ui-widget-header .ui-datatable-thead th:nth-child(5){width:100px;}
+
+:host /deep/ .ui-widget-header .ui-datatable-thead th:nth-child(6){width:100px;}
+
+:host /deep/ .ui-datatable-scrollable-body .ui-datatable-virtual-table tbody td{text-align: center;}
+
+:host /deep/ .ui-datatable-scrollable-body .ui-datatable-virtual-table tbody td:nth-child(1){width:100px;}
+
+:host /deep/ .ui-datatable-scrollable-body .ui-datatable-virtual-table tbody td:nth-child(2){width:130px;}
+
+:host /deep/ .ui-datatable-scrollable-body .ui-datatable-virtual-table tbody td:nth-child(3){width:130px;}
+
+:host /deep/ .ui-datatable-scrollable-body .ui-datatable-virtual-table tbody td:nth-child(5){width:100px;}
+
+:host /deep/ .ui-datatable-scrollable-body .ui-datatable-virtual-table tbody td:nth-child(6){width:100px;}
+
+.dicom-table{ width: 93%;display: inline-block;}

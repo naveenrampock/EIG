@@ -1,0 +1,233 @@
+
+.dropdown-btn{
+border-bottom: 1px solid #ccc;
+}
+
+/* Main content */
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+    display: none;border-bottom: 1px solid #ccc;
+}
+.dropdown-btn.active{
+background-color:#ccc;outline:none;color: #000;
+}
+
+.swicth-icon,.swicth-icon1,.swicth-icon2{float: right;padding-right: 0px;cursor:pointer;}
+
+.switch-list,.switch-list1,.switch-list2{border: 1px solid #d9d9d9;margin-top: 20px;position: absolute;width: 85%;background-color: #d9d9d9;z-index: 5; box-shadow: 5px 5px 10px #d9d9d9;}
+
+.switch-list a,.switch-list1 a,.switch-list2 a{width: 100%;display: block;padding-left: 15px;padding: 5px 15px;background-color: #fff;}
+
+.switch-list a:hover,.switch-list1 a:hover,.switch-list2 a:hover{background-color:#e5e5e5;cursor:pointer;}
+
+#name_text1{width:100%;}
+
+.save_button,.edit_button{position: absolute;right: 95px;}
+
+.dicom-image .modal-body{margin: 0 auto;display: table;}
+
+.case-popover .fa-plus, .case-popover .fa-trash, .case-popover .fa-eye, .case-popover .fa-info-circle{padding:7px;background-color:#084FA1;color:#fff;margin-left: 10px;border-radius: 0px;}
+
+.case-popover th,.case-popover td{text-align:center;}
+
+.line-height12{line-height:12px;}
+
+.panel-title>a {color: #000 !important;}
+
+.invit{max-width: 30px;border-radius: 50px;max-height: 30px;min-width: 30px;margin-bottom: 10px;}
+
+.panel-history h6{color:#084FA1;}
+
+.casehistory_down{position: absolute;right: 20px;top: 20px;}
+
+.casehistory_popup .panel-heading{background-color:#084FA1;}
+
+.casehistory_popup .panel-heading a{color:#fff !important;}
+
+.casehistory_popup .panel-heading a:before{display:none;}
+
+.videoconference-popup .modal-dialog {
+    max-width: 1100px;
+}
+.nav-user-photo{top:0px !important;max-width:32px;max-height:32px;}
+
+.h-32{height:32px;}
+
+.brd-radius3{border-radius:0px !important;}
+
+/* Adhi End */
+
+@media only screen and (min-width : 768px) and (max-width:1024px){
+
+.radio-btn li{width: 50%;height: 20px;}
+
+.panel-body > .col-12{padding-left:0px; padding-right:0px;}
+
+select{height: 60px;}
+
+.g-pos-rel > .navbar-toggler .hamburger{display:none;}
+
+.hs-menu-initialized{bottom:25px;}
+
+}
+@media only screen and (min-width:1349px){
+
+.modal-dialog{max-width:800px;}
+
+}
+
+.navbar-nav .dropdown-menu {
+    position: absolute !important;
+}
+
+.v-case-hdr div:nth-child(1){width: 7%;float: left;}
+
+.v-case-hdr div:nth-child(2){width: 85%;float: left;}
+
+.v-case-hdr > a{width: 7%;float: left;}
+
+select{height:28px;}
+
+/* Pradeep Css */
+.more{ height: 35px; overflow: hidden;}
+.edit-comment{ border: 1px solid #084FA1;}
+
+#more_comts{color:#084FA1;cursor:pointer;}
+
+.caret-4 {
+    left: 385px;
+}
+.caret-1{
+    left: 82px;
+}
+.invitedCase .caret-4{
+    left: 70px;
+}
+.fa-caret-up {
+    position: absolute;
+    top: -18px;
+    font-size: 26px;
+    color: #084FA1;
+}
+.inner_div > div {
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    display:grid;
+}
+.hw-70 {
+    height: 70px;
+    width: 70px;
+}
+.caret-2{
+    left: 174px;
+}
+ 
+.inner_div > div .fa-plus{
+    padding: 5px;
+    background-color: #084FA1;
+    color: #fff;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    cursor: pointer
+}
+
+.inner_div > div >div:nth-child(1){
+    display: block;
+    clear: both;
+}
+.inner_div > div >div:nth-child(1) > a:nth-child(1){
+    display: block;
+    float: left;
+} 
+.inner_div > div >div:nth-child(1) > a:nth-child(3){
+    float: right;
+} 
+.inner_div > div >div:nth-child(2){
+    clear: both;
+}
+
+.uname{position: relative;left: 5px;bottom: 5px;}
+
+.word-break{word-wrap:break-word;}
+
+.grid .nav-tabs a.active {
+    padding: 7px 20px;
+    background-color: #084FA1;
+    color: #fff !important;
+}
+
+.grid .nav-tabs li.active {
+    padding: 7px 20px;
+    background-color: #084FA1;
+    color: #fff !important;
+}
+.grid .nav-tabs li.active > a{
+    color: #fff !important;}
+
+.btn-fileup{    background-color: #2060aa;
+    border: 1px solid #2060aa;
+    padding: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    border-radius: 0px;}
+
+.m-b0{margin-bottom: 0px;}
+
+:host /deep/ .tab-content .ui-datatable .ui-datatable-tablewrapper tbody td{word-break: break-all;}
+
+#AttachmentList .modal-header{padding:5px 15px;background-color: #2060aa; color: #fff;}
+
+.comments{height: 60px;width: 100%;margin-top: 10px;}
+
+:host /deep/ table th{background-color: #0847a1 !important;color: #fff;}
+
+.fa-trash{color: red;font-size: 14px;padding-left: 2px;position: relative; bottom: 1px;}
+
+.fa-pencil-square-o{color:#0847A1;font-size: 14px;padding-left: 5px;}
+
+.caseLazy::-webkit-scrollbar, .moreComments::-webkit-scrollbar {
+    width: 4px;
+}
+
+.caseLazy::-webkit-scrollbar-track, .moreComments::-webkit-scrollbar {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 30px;
+}
+ 
+.caseLazy::-webkit-scrollbar-thumb, .moreComments::-webkit-scrollbar {
+    background: #084FA1; 
+    border-radius: 20px;
+}
+
+.caseLazy::-webkit-scrollbar-thumb:hover {
+    background: #084FA1; 
+}
+.caseLazy{
+    overflow-y: auto;height: 510px;overflow-x: hidden;
+}
+.moreComments{
+    overflow-y: auto;height: 300px;overflow-x: hidden;
+}
+
+:host /deep/ .ui-datepicker.ui-widget{width:100%;}
+
+:host /deep/ .ui-datepicker.ui-widget{width:100%;}
+
+.w-94{width:94.9%;max-width:94.9%;}
+
+.cmt-pht{height:32px;}
+
+.case_manage .panel-default{margin-bottom:0px;}
+
+.nav-tabs .nav-link{border-radius:0px;}
+
+.modal-header{background-color: #2060aa; color: #fff;}
+
+.modal-title{color: #fff;}
+.caseCreate{background-color: #084FA1;color: #fff; padding: 2px 6px; letter-spacing: 2px;}

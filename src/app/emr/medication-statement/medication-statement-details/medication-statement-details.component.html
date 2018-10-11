@@ -1,0 +1,190 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="emr-details">
+  <div class="m-b10 ebg-white">
+    <div class="head-text">
+      <p class="col-sm-12 text-center w-85 pull-left m-0">Medication Statement</p>
+      <a class="pull-right" id="back_Medication" (click)="backToListing()">
+        <button class="addbutton">
+          <i class="fa fa-arrow-circle-left"></i>
+        </button>
+      </a>
+    </div>
+    <div class="legend-like-labels" [formGroup]="emrMedicationdetailsForm">
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">SourceType
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 pull-left no-padd" [class.disabled]="isReadOnly">
+          <select formControlName="SourceType" class="emr-dropdown">
+            <option [value]="">Select Source Type</option>
+            <option *ngFor="let sType of medicationDropdown?.sourceTypes" [value]='sType.Id'>{{sType.Description}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">SourceID</label>
+        <div class="col-sm-7 pull-left no-padd">
+          <input type="text" formControlName="SourceID" OnlyNumber="true" maxlength="3" placeholder="Source ID">
+        </div>
+      </div>
+      <!-- Basic Information -->
+      <div class="head-text  subhead inline-block">
+        <p class="normal pull-left m-0">Basic Information</p>
+      </div>
+      <div class="col-sm-12 no-padd">
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd"> Date Asserted</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <p-calendar formControlName="DateAsserted" [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" showButtonBar="true"
+              dateFormat="mm-dd-yy" placeholder="mm-dd-yyyy" [showIcon]="true" [maxDate]="dateTime"></p-calendar>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Catergory
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <select formControlName="Category" class="emr-dropdown">
+              <option value=''>Select Category</option>
+              <option *ngFor="let categoryType of medicationDropdown?.category" [value]='categoryType.Id'>{{categoryType.Description}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Status
+            <span class="required">*</span>
+          </label>
+          <div class="col-sm-7 pull-left no-padd">
+            <select formControlName="Status" class="emr-dropdown">
+              <option value=''>Select Status</option>
+              <option *ngFor="let statusType of medicationDropdown?.status" [value]='statusType.Id'>{{statusType.Description}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Medication Details -->
+      <div class="head-text  subhead inline-block">
+        <p class="normal pull-left m-0">Medication Details</p>
+      </div>
+      <div class="col-sm-12 no-padd">
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd h-30">Medication Reference</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="Medicationx" maxlength="50" style="display:none">
+            <a class="emr_link" (click)="medicationPage()">Link to Medication</a>
+          </div>
+        </div>
+
+        <div class="col-sm-4 pull-left m-b10 m-t10">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Taken</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <select formControlName="Taken" class="emr-dropdown">
+              <option value=''>Select Taken</option>
+              <option *ngFor="let takenType of medicationDropdown?.taken" [value]='takenType.Id'>{{takenType.Description}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-sm-4 pull-left m-b10 m-t10" *ngIf="selectedReasonNotTaken">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Reason Not Taken</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <select formControlName="ReasonNotTaken" class="emr-dropdown">
+              <option value=''>Select Reason Not Taken</option>
+              <option *ngFor="let nottakenType of medicationDropdown?.nottaken" [value]='nottakenType.Id'>{{nottakenType.Description}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-4 pull-left m-b10 m-t10 h-30" *ngIf="selectedTaken">
+          <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Reason Code</label>
+          <div class="col-sm-7 pull-left no-padd">
+            <input type="text" formControlName="ReasonCode" maxlength="5" placeholder="Reason Code" OnlyNumber="true">
+          </div>
+        </div>
+        <div class="col-sm-12 no-padd">
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Dosage</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="Dosage" maxlength="2" OnlyNumber="true" placeholder="Dosage in Number">
+            </div>
+          </div>
+          <div class="col-sm-4 pull-left m-b10 m-t10">
+            <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Note</label>
+            <div class="col-sm-7 pull-left no-padd">
+              <input type="text" formControlName="Note" maxlength="50" placeholder="Note">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Medication Schedule Details -->
+      <div class="head-text subhead inline-block">
+        <p class="normal pull-left m-0 col-sm-6 no-padd pull-left">Medication Schedule Details </p>
+        <div class="col-sm-6 no-padd pull-left" [class.disabled]="emrMedicationdetailsForm.get('InformationSource').controls.length > 4">
+          <button class="text-right pull-right add_effective" (click)="addDatePeriod()" [disabled]="!medicationlink">
+            <i id="add" class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div formArrayName="InformationSource" class="col-sm-12 no-padd">
+        <div class="col-sm-12 no-padd inline-block" *ngFor="let itemrow of emrMedicationdetailsForm.get('InformationSource').controls;let i = index;"
+          [formGroupName]="i">
+          <div class="col-sm-12 no-padd inline-block">
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Date Time</label>
+              <div class="col-sm-7 pull-left no-padd">
+                <p-calendar formControlName="Date" [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" showButtonBar="true"
+                  dateFormat="mm-dd-yy" placeholder="mm-dd-yyyy" [showIcon]="true" [minDate]="yesterday"></p-calendar>
+              </div>
+            </div>
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Period</label>
+              <div class="col-sm-7 pull-left no-padd">
+                <input type="text" formControlName="Note1" maxlength="2" placeholder="Period in Number" OnlyNumber="true">
+              </div>
+            </div>
+            <div class="col-sm-4 pull-left m-b10 m-t10">
+              <a class="col-sm-2 pull-left m-b10 m-t10 delbtn" *ngIf="emrMedicationdetailsForm.get('InformationSource').controls.length >1"
+                (click)="deleteDetails(i)">
+                <i class="fa fa-trash trash"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medication Screen -->
+      <p-dialog header="Link to Medications" [(visible)]="medicationScreen" [responsive]="true" showEffect="fade" [modal]="true"
+        [width]="800">
+        <p-table #dt [columns]="tableHeaders" [value]="medList">
+          <ng-template pTemplate="header" let-columns>
+            <tr role="row">
+              <th>
+                <input type="checkbox" [(ngModel)]="selectedAll" (change)="selectAll()" [disabled]="!medicationlink" [ngModelOptions]="{standalone: true}">
+              </th>
+              <th>Medication</th>
+              <th>Instruction</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+              <td>
+                <input type="checkbox" [(ngModel)]="rowData.selected" (change)="checkIfAllSelected()" [disabled]="!medicationlink" [ngModelOptions]="{standalone: true}"> </td>
+              <td>{{rowData.Medication}}</td>
+              <td>{{rowData.Instructions}}</td>
+              <td>{{rowData.StartDate | date:'dd-MM-yyyy'}}</td>              
+              <td>{{rowData.Status}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <p-footer>
+          <div class="ui-dialog-buttonpane ui-helper-clearfix popup" *ngIf="medicationDetails?.mode !== 'readOnly'">
+            <button class="btn btn-primary clr-white m-b10" type="button" (click)="saveMedicationScreen()" [disabled]="!medicationlink">Save</button>
+          </div>
+        </p-footer>
+      </p-dialog>
+      <div class="col-sm-12 text-right m-b40 p-b50" *ngIf="medicationDetails?.mode !== 'readOnly'">
+        <button class="btn btn-primary clr-white m-b10" [disabled]="!emrMedicationdetailsForm.valid" (click)="!medicationDetails ? saveEmrMedication() : updateEmrMedication()">{{!medicationDetails ? 'Save' : 'Update'}}</button>
+      </div>
+    </div>
+  </div>

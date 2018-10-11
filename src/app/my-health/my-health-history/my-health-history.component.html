@@ -1,0 +1,306 @@
+<div class="">
+  <p-growl [(value)]="msgs" life="3000"></p-growl>
+  <form action="">
+    <div class="col-sm-9 pull-right p-t15 no-padd">
+      <div class="panel panel-default col-lg-6 pull-left no-padd">
+        <div class="trigger-panel-heading">
+          <h5 class="panel-title">
+            <a data-toggle="collapse" class="accordion-toggle" data-parent="#accordion" href="#Health_Cond">{{
+              'myHealthModule.femaleOnlySection' | translate }}</a>
+          </h5>
+        </div>
+        <div id="Health_Cond" class="panel-collapse collapse in patient_info show">
+          <div class="panel-body">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+              <!-- <form action="">
+          <input type="radio" [(ngModel)]="model.sex"  name="sex" value="male">Male<br>
+          <input type="radio" [(ngModel)]="model.sex"  name="sex" value="female">Female
+      </form> -->
+              <label class="col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left">{{
+                'myHealthModule.question1' | translate }}</label>
+              <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-left">
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsPregnant" [value]=1 id="option" name="isPregnant">
+                  <label for="option">{{
+                    'myLifeStyle.yes' | translate }}</label>
+
+                  <div class="check"></div>
+                </li>
+
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsPregnant" [value]=0 id="option1" name="isPregnant">
+                  <label for="option1">{{
+                    'myLifeStyle.no' | translate }}</label>
+
+                  <div class="check check-rgt">
+                    <div class="inside"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+              <label class="col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left">{{
+                'myHealthModule.question2' | translate }}</label>
+              <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-left">
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsBreastFeeding" [value]=1 id="option2" name="selector1">
+                  <label for="option2">{{
+                    'myLifeStyle.yes' | translate }}</label>
+
+                  <div class="check"></div>
+                </li>
+
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsBreastFeeding" [value]=0 id="option3" name="selector1">
+                  <label for="option3">{{
+                    'myLifeStyle.no' | translate }}</label>
+
+                  <div class="check check-rgt">
+                    <div class="inside"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+              <label class="col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left">{{
+                'myHealthModule.question3' | translate }}</label>
+              <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-left">
+                <!-- <li>
+                <input type="radio" [(ngModel)]="model.LastMenstrualCycleDt" [value]=1 id="option2" id="option4" name="menstrual">
+                <label for="option4">Yes</label>
+
+                <div class="check"></div>
+              </li> -->
+                <!-- <input type="date" [(ngModel)]="LastMenstrualCycleDt" [ngModelOptions]="{standalone: true}" class="w-100"> -->
+                <p-calendar [(ngModel)]="LastMenstrualCycleDt" [locale]="lang" dateFormat="{{fm}}" (onBlur)="focus($event);" [maxDate]="maxDateValue" 
+                  (keyup)="cal($event.target.value)" defaultDate [showIcon]="true" [ngModelOptions]="{standalone: true}"></p-calendar>
+
+                <!-- <li>
+                <input type="radio" [(ngModel)]="model.LastMenstrualCycleDt" [value]=0 id="option2" id="option5" name="menstrual">
+                <label for="option5">No</label>
+
+                <div class="check check-rgt">
+                  <div class="inside"></div>
+                </div>
+              </li> -->
+              </ul>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+              <label class="col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left">{{
+                'myHealthModule.question4' | translate }}</label>
+              <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-left">
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsUsingBirthControl" [value]=1 id="option6" name="health">
+                  <label for="option6">{{
+                    'myLifeStyle.yes' | translate }}</label>
+
+                  <div class="check"></div>
+                </li>
+
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsUsingBirthControl" [value]=0 id="option7" name="health">
+                  <label for="option7">{{
+                    'myLifeStyle.no' | translate }}</label>
+
+                  <div class="check check-rgt">
+                    <div class="inside"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div *ngIf="model.IsUsingBirthControl==1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+              <label>{{
+                'myHealthModule.comment' | translate }}:</label>
+              <textarea class="col-sm-12" [(ngModel)]="BirthControlDetails" [maxlength]="98" [ngModelOptions]="{standalone: true}"
+                placeholder="Comments..."></textarea>
+
+              <!-- <control-messages [control]="BirthControlDetails" class="errorMessage"></control-messages> -->
+
+              <div class="errorMessage" *ngIf="this.birthControlType==1">{{birthControlErrorMessage}}</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default col-lg-6 pull-left p-r0">
+        <div class="trigger-panel-heading">
+          <h5 class="panel-title">
+            <a data-toggle="collapse" class="accordion-toggle" data-parent="#accordion" href="#Surgeries">{{
+              'myHealthModule.mySurgeriesAndProcedures' | translate }}</a>
+          </h5>
+        </div>
+        <div id="Surgeries" class="panel-collapse collapse in patient_info show">
+          <div class="panel-body">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+              <label class="col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left">{{
+                'myHealthModule.question6' | translate }}</label>
+              <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-left">
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsAnyProcedures" [value]=1 id="option18" name="medical procedures">
+                  <label for="option18">{{
+                    'myLifeStyle.yes' | translate }}</label>
+
+                  <div class="check"></div>
+                </li>
+
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsAnyProcedures" [value]=0 id="option19" name="medical procedures">
+                  <label for="option19">{{
+                    'myLifeStyle.no' | translate }}</label>
+
+                  <div class="check check-rgt">
+                    <div class="inside"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div *ngIf="model.IsAnyProcedures==1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+              <div class="form-group">
+                <label class="col-sm-4">{{
+                  'myHealthModule.specifyDate' | translate }}:</label>
+                <!-- <input type="date" [(ngModel)]="ProcedureDate" [ngModelOptions]="{standalone: true}" class="col-sm-7 pos-r5"> -->
+
+                <p-calendar [(ngModel)]="ProcedureDate" [locale]="lang" dateFormat="{{fm}}" (onBlur)="focus($event);" [maxDate]="maxDateValue" 
+                  (keyup)="cal($event.target.value)" defaultDate [showIcon]="true" [ngModelOptions]="{standalone: true}"></p-calendar>
+                <!-- <control-messages [control]="ProcedureDate" class="errorMessage"></control-messages>
+                <div  class="errorMessage" *ngIf="model.IsAnyProcedures==1">{{errorMessageBlankPass}}</div> -->
+                <!-- <control-messages [control]="ProcedureDate" class="errorMessage"></control-messages> -->
+                <div class="errorMessage" *ngIf="this.procedureDateType ==1">{{procedureDateErrorMessage}}</div>
+              </div>
+              <div class=" surg-scroll">
+                <div class="form-group">
+                  <label class="col-sm-4 pos-b20"> {{
+                    'myHealthModule.surgeryType' | translate }}:</label>
+                  <textarea class="col-sm-7" [(ngModel)]="ProcedureType" [maxlength]="40" [ngModelOptions]="{standalone: true}"
+                    placeholder="Comments..."></textarea>
+                  <!-- <control-messages [control]="ProcedureType" class="errorMessage"></control-messages> -->
+                  <div class="errorMessage" *ngIf="this.procedureSurgeryType == 1">{{procedureTypeErrorMessage}}</div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 pos-b20">{{
+                    'myHealthModule.hospital' | translate }} :</label>
+                  <textarea class="col-sm-7" [(ngModel)]="ProcedureHospital" [maxlength]="40" [ngModelOptions]="{standalone: true}"
+                    placeholder="Comments..."></textarea>
+                  <!-- <control-messages [control]="ProcedureHospital" class="errorMessage"></control-messages>
+                <div class="errorMessage" *ngIf="model.IsAnyProcedures==1">{{errorMessageBlankPass}}</div> -->
+                  <!-- <control-messages [control]="ProcedureHospital" class="errorMessage"></control-messages> -->
+                  <div class="errorMessage" *ngIf=" this.procedureHospitalType == 1">{{procedureHospitalErrorMessage}}</div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 pos-b20">{{
+                    'myHealthModule.doctorPerformed' | translate }}:</label>
+                  <textarea class="col-sm-7" [(ngModel)]="ProcedureDoctor" [maxlength]="40" [ngModelOptions]="{standalone: true}"
+                    placeholder="Comments..."></textarea>
+                  <!-- <control-messages [control]="ProcedureDoctor" class="errorMessage"></control-messages>
+                <div class="errorMessage" *ngIf="model.IsAnyProcedures==1">{{errorMessageBlankPass}}</div> -->
+
+                  <!-- <control-messages [control]="ProcedureDoctor" class="errorMessage"></control-messages> -->
+                  <div class="errorMessage" *ngIf=" this.procedureDoctorType==1">{{procedureDoctorErrorMessage}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default col-lg-6 pull-left no-padd">
+        <div class="trigger-panel-heading">
+          <h5 class="panel-title">
+            <a data-toggle="collapse" class="accordion-toggle" data-parent="#accordion" href="#Medications">{{
+              'myHealthModule.myAllergies' | translate }}</a>
+          </h5>
+        </div>
+        <div id="Medications" class="panel-collapse collapse in patient_info show">
+          <div class="panel-body">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+              <label class="col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left">{{
+                'myHealthModule.question5' | translate }}: </label>
+              <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-left">
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsAnyMedication" [value]=1 id="option10" name="medication">
+                  <label for="option10">{{
+                    'myLifeStyle.yes' | translate }}</label>
+
+                  <div class="check"></div>
+                </li>
+
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsAnyMedication" [value]=0 id="option11" name="medication">
+                  <label for="option11">{{
+                    'myLifeStyle.no' | translate }}</label>
+
+                  <div class="check check-rgt">
+                    <div class="inside"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div *ngIf="model.IsAnyMedication==1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+              <label>{{
+                'myHealthModule.comment' | translate }}:</label>
+              <textarea class="col-sm-12" [(ngModel)]="MedicationDetails" [maxlength]="90" [ngModelOptions]="{standalone: true}"
+                placeholder="Comments..."></textarea>
+
+              <!-- <control-messages [control]="MedicationDetails" class="errorMessage"></control-messages> -->
+
+              <div class="errorMessage" *ngIf="this.medicineType==1">{{medicineErrorMessage}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default col-lg-6 pull-left p-r0">
+        <div class="trigger-panel-heading">
+          <h5 class="panel-title">
+            <a data-toggle="collapse" class="accordion-toggle" data-parent="#accordion" href="#Allergies">{{
+              'myHealthModule.myAllergies' | translate }}</a>
+          </h5>
+        </div>
+        <div id="Allergies" class="panel-collapse collapse in patient_info show">
+          <div class="panel-body">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padd form-group">
+              <label class="col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left">{{
+                'myHealthModule.question8' | translate }} </label>
+              <ul class="radio-btn col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-left">
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsAnyAllergies" [value]=1 id="option14" name="Drug Sensitivities">
+                  <label for="option14">{{
+                    'myLifeStyle.yes' | translate }}</label>
+
+                  <div class="check"></div>
+                </li>
+
+                <li>
+                  <input type="radio" [(ngModel)]="model.IsAnyAllergies" [value]=0 id="option15" name="Drug Sensitivities">
+                  <label for="option15">{{
+                    'myLifeStyle.no' | translate }}</label>
+
+                  <div class="check check-rgt">
+                    <div class="inside"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div *ngIf="model.IsAnyAllergies==1" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+              <label>{{
+                'myHealthModule.comment' | translate }}:</label>
+              <textarea class="col-sm-12" [(ngModel)]="AllergyDetails" [maxlength]="90" [ngModelOptions]="{standalone: true}"
+                placeholder="Comments..."></textarea>
+
+              <!-- <control-messages [control]="AllergyDetails" class="errorMessage"></control-messages> -->
+
+              <div class="errorMessage" *ngIf="this.allergiesType ==1">{{allergiesErrorMessage}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="physican text-right p-b15 form-group">
+        <input type="button" name="" (click)="save()" value="{{
+          'patientInfo.save' | translate }}" class="btn u-btn-primary g-mr-10" />
+        <input type="button" name="" (click)="cancel()" value="{{
+          'patientInfo.cancel' | translate }}" class="btn u-btn-darkgray g-mr-10" />
+      </div>
+    </div>
+  </form>
+</div>

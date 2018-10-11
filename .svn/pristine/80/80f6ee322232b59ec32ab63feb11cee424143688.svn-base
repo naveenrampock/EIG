@@ -1,0 +1,19 @@
+#ParientInfopopup .modal-dialog{max-width: 750px;}
+
+#PatientInfo ul{padding: 0px 0px;background-color: #f5f5f5;}
+
+#PatientInfo ul li{ padding: 0px 15px;height: 29px;position: relative;top: 5px;}
+
+#PatientInfo{ padding: 0px 0px 20px 0px;}
+
+#PatientInfo .tab-content .tab-pane div div{margin-bottom:10px;}
+
+#PatientInfo div > div{margin-bottom:10px;}
+
+#PatientInfo ul li.active{background-color: #084FA1;color: #fff;padding: 4px 10px;top:0px;}
+
+#PatientInfo ul li.active a{color:#fff;}
+
+#PatientInfo ul li a.active{background-color: #084FA1;color: #fff;padding: 4px 10px;}
+
+#PatientInfo .tab-pane{max-height: 450px;overflow: auto;}

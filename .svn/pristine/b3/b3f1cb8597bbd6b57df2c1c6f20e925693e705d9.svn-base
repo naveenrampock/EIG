@@ -1,0 +1,367 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="tab-pane fade active in show col-sm-9 pull-right" id="nav-1-1-default-hor-left-underline--1" role="tabpanel"
+  aria-expanded="true">
+  <h2 class="h4 g-font-weight-300">
+    {{ 'UserProfileModule.ManageyourNameIDandEmailAddresses' |
+    translate }}</h2>
+  <p> {{ 'UserProfileModule.Belowarenameemailaddressecontactsandmoreonfileforyouraccount' |
+    translate }}</p>
+  <form [formGroup]="profileForm" [class.disbaledInput]="!isEdit" class="userprofile">
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.FirstName' |
+        translate }}
+        <span class="required">*</span>
+      </label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="90" placeholder="{{
+            'UserProfileModule.FirstName' |
+            translate }}"
+            formControlName="FirstName">
+        </div>
+        <control-messages [control]="profileForm.controls.FirstName" class="errorMessage"></control-messages>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.LastName' |
+        translate }}
+        <span class="required">*</span>
+      </label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="90" placeholder="{{
+            'UserProfileModule.LastName' |
+            translate }}"
+            formControlName="LastName">
+        </div>
+        <control-messages [control]="profileForm.controls.LastName" class="errorMessage"></control-messages>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.AccountID' |
+        translate }}
+        <span class="required">*</span>
+      </label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="140" [readonly]="true"
+            placeholder="{{
+              'UserProfileModule.AccountID' |
+              translate }} " formControlName="AccountID">
+        </div>
+        <!-- <control-messages [control]="profileForm.controls.AccountID" class="errorMessage"></control-messages> -->
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.Gender' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="col-lg-3 pull-left">
+          <input type="radio" formControlName="Gender" value="M">
+          <label class="gender-lbl">{{
+            'UserProfileModule.male' |
+            translate }}</label>
+        </div>
+        <div class="col-lg-3 pull-left">
+          <input type="radio" formControlName="Gender" value="F">
+          <label class="gender-lbl">{{
+            'UserProfileModule.female' |
+            translate }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.CompanyName' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="100" placeholder="{{
+            'UserProfileModule.CompanyName' |
+            translate }}"
+            formControlName="CompanyName">
+        </div>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.Position' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="100" placeholder="{{
+            'UserProfileModule.CompanyName' |
+            translate }}"
+            formControlName="Position">
+        </div>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.Email' |
+        translate }}
+        <span class="required">*</span>
+      </label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}"
+            [maxlength]="100" placeholder="{{
+              'UserProfileModule.Email' |
+              translate }}"
+            formControlName="PrimaryEmailId">
+        </div>
+        <control-messages [control]="profileForm.controls.PrimaryEmailId" class="errorMessage"></control-messages>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.Website' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
+            [maxlength]="100" placeholder="{{
+              'UserProfileModule.Website' |
+              translate }}"
+            formControlName="Website">
+        </div>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.PhoneNumber' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <!-- <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text"
+            placeholder="Phone Number" formControlName="PhoneNumber" OnlyNumber="true" maxlength="15"> -->
+          <p-inputMask mask="+9-999-999-9999" formControlName="PhoneNumber" class="phone_number form-control g-color-black g-bg-white g-bg-white--focus g-px-15"
+            placeholder="{{
+              'UserProfileModule.PhoneNumber' |
+              translate }}"></p-inputMask>
+
+        </div>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.OfficeNumber' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" [maxlength]="14" (keypress)="numberOnly($event)"
+            type="text" placeholder="{{
+              'UserProfileModule.OfficeNumber' |
+              translate }}"
+            formControlName="OfficePhoneNumber" OnlyNumber="true">
+        </div>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.Address' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" [maxlength]="130" type="text" placeholder="{{
+            'UserProfileModule.Address' |
+            translate }}"
+            formControlName="Address1">
+        </div>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.Address2' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="130" placeholder="{{
+            'UserProfileModule.Address2' |
+            translate }}"
+            formControlName="Address2">
+        </div>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.City' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" type="text" [maxlength]="60" placeholder="{{
+            'UserProfileModule.City' |
+            translate }}"
+            formControlName="City">
+        </div>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.State' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" [maxlength]="2" type="text" placeholder="{{
+            'UserProfileModule.State' |
+            translate }}"
+            formControlName="State" minlength="2">
+        </div>
+      </div>
+    </div>
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-10">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.Zipcode' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <div class="input-group g-brd-primary--focus">
+          <input class="form-control form-control-md g-py-13 rounded-0 pr-0" (keypress)="numberOnly($event)"
+            [maxlength]="8" type="text" placeholder="{{
+              'UserProfileModule.Zipcode' |
+              translate }}"
+            formControlName="Zipcode" OnlyNumber="true">
+        </div>
+      </div>
+    </div>
+    <!-- Linked account -->
+    <div class="row g-brd-bottom g-brd-gray-light-v4 g-py-30">
+      <label class="col-sm-2 col-form-label g-color-gray-dark-v2 g-font-weight-700 text-sm-left ">{{
+        'UserProfileModule.linkedToSocial' |
+        translate }}</label>
+      <div class="col-sm-9">
+        <button class="socialBtn" (click)="socialMediaPopup()">
+          <b>{{
+            'UserProfileModule.linkeWithSocialMedia' |
+            translate }}</b>
+        </button>
+        <div class="social">
+          <div *ngIf="isFacebook">
+            <button class="loginBtn loginBtn--facebook">
+              <i class="fa fa-facebook"></i>
+              <b>{{
+                'UserProfileModule.linkedWithFacebook' |
+                translate }}</b>
+              <a (click)="deleteUserProfileLinkedAccount('facebook',facebookEmail)"><i class="fa fa-close close"></i></a>
+            </button>
+          </div>
+          <!-- Login with Google button -->
+          <div *ngIf="isGoogle">
+            <button class="loginBtn loginBtn--google mb-2">
+              <i class="fa fa-google"></i>
+              <b>{{
+                'UserProfileModule.linkedWithFacebook' |
+                translate }}</b>
+              <a (click)="deleteUserProfileLinkedAccount('google',googleEmail)"><i class="fa fa-close close"></i></a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Linked Account -->
+    <li class="col-sm-12 no-padd d-flex align-items-center justify-content-between g-brd-bottom g-brd-gray-light-v4 g-py-15 pull-left m-b20">
+      <div class="g-pr-10 contents col-sm-12 no-padd">
+        <strong class="pull-left d-block d-md-inline-block g-color-gray-dark-v2 col-sm-2 g-pr-10 no-padd">{{
+          'UserProfileModule.Photo' |
+          translate }}</strong>
+        <div class="u-block-hover g-pos-rel col-lg-9">
+          <!-- Figure Caption -->
+          <img *ngIf="checkImage==0" src="{{imgUrl}}" class="responsive-profile-image">
+
+          <img *ngIf="checkImage==1" src="assets/images/user.jpg" class="responsive-profile-image">
+
+          <!-- End Figure Caption -->
+          <!-- User Info -->
+          <span class="g-pos-abs g-top-20 g-left-15">
+            <!-- <a class="btn btn-sm u-btn-primary rounded-0" href="#">Johne Doe</a>
+    <small class="d-block g-bg-black g-color-white g-pa-5">Project Manager</small> -->
+          </span>
+          <div class="image-upload">
+            <!-- <label for="file-input">
+        Image Upload
+      </label>
+      <input id="file-input" type="file"> -->
+            <label for="upload-photo">{{
+              'UserProfileModule.Imageupload' |
+              translate }}</label>
+            <input type="file" name="photo" id="upload-photo" (change)="validateUpload($event)" />
+          </div>
+          <!-- End User Info -->
+        </div>
+      </div>
+      <span>
+        <i class="icon-pencil g-color-gray-dark-v5 g-color-primary--hover g-cursor-pointer g-pos-rel g-top-1"></i>
+      </span>
+    </li>
+
+  </form>
+
+  <div class="text-sm-right m-r50 m-b20 m-t20">
+    <a class="btn u-btn-darkgray g-py-12 g-px-25 g-mr-10" (click)="cancel()">{{
+      'UserProfileModule.Cancel' |
+      translate }}</a>
+    <button class="btn u-btn-primary g-py-12 g-px-25" (click)="saveProfileTab()" [disabled]="!profileForm.valid">{{
+      'UserProfileModule.SaveChanges' |
+      translate }}</button>
+    <!-- <a class="btn u-btn-primary g-py-12 g-px-25" (click)="editProfile()" *ngIf="!isEdit">Edit Profile</a> -->
+  </div>
+</div>
+<!-- Social Media Popup -->
+<p-dialog header="Socail Media" [(visible)]="isMedia" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+  <div class="text-center">
+    <button class="loginBtn loginBtn--facebook" [ngClass]="{'md-btn md-btn-success': !facebookButton,
+    'md-btn disabled': facebookButton }"
+      (click)="singleSignOn('facebook',0)">
+      <i class="fa fa-facebook"></i>
+      <b>{{
+        'UserProfileModule.linkedWithFacebook' |
+        translate }}</b>
+    </button>
+    <!-- Login with Google button -->
+    <button class="loginBtn loginBtn--google mb-2" [ngClass]="{'md-btn md-btn-success': !googleButton,
+    'md-btn disabled': googleButton }"
+      (click)="singleSignOn('google',0)">
+      <i class="fa fa-google"></i>
+      <b>{{
+        'UserProfileModule.linkedWithGoogle' |
+        translate }}</b>
+    </button>
+  </div>
+</p-dialog>
+<!-- Existing Linked Account confirmation -->
+<p-dialog header="Linked existing account" [(visible)]="isLinkedExistingAccountPopup" [responsive]="true" showEffect="fade"
+  [modal]="true" [width]="400">
+  <div class="form-group row g-mb-25">
+    <div class="col-sm-12 clear-fix pull-left no-padd">
+      <p class="delete">{{
+        'UserProfileModule.warningMsg' |
+        translate }} </p>
+    </div>
+  </div>
+  <div class="text-sm-right mt-3">
+    <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" (click)="cancelLinkedExistingAccountPopup()">{{
+      'UserProfileModule.no' |
+      translate }} </a>
+    <a class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" (click)="linkedExistingAccount()">{{
+      'UserProfileModule.yes' |
+      translate }}</a>
+  </div>
+</p-dialog>
+
+<p-dialog header="Token expiration" [(visible)]="isTokenExpired" [responsive]="true" showEffect="fade" [closable]="false" [modal]="true" [width]="500">
+  <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+    <div class="modal-body row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <p>Your Token is expired.</p>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+        <button type="button" routerLink="/login" pButton icon="fa-close" label="Okay" class="cancel"></button>
+    </div>
+  </p-footer>
+</p-dialog>

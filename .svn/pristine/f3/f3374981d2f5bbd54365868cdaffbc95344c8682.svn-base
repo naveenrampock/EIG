@@ -1,0 +1,26 @@
+<a (click)="inviteScreen()" class="list-group-item justify-content-between clr-blk d-grid">
+    <span>
+      <i class="fa fa-user-plus g-pos-rel g-top-1 g-mr-8"></i>{{ 'SendInvitationModule.Inviteafriend' | translate }}</span>
+  </a>
+
+  <p-growl [(value)]="msgs" life="3000"></p-growl>
+<p-dialog header="{{ 'SendInvitationModule.InviteaUser' | translate }} " [(visible)]="isShowInvite" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+    <div class="ui-grid ui-grid-responsive ui-fluid" id="Invite_Popup">
+      <div class="modal-body row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <label class="col-lg-3 col-md-4 col-sm-6 col-xs-6">{{ 'SendInvitationModule.Email' | translate }} 
+            <span class="required">*</span>
+          </label>
+          <input type="text" placeholder="{{ 'SendInvitationModule.Email' | translate }} " class="col-lg-8 col-md-8 col-sm-6 col-xs-6" [(ngModel)]="inviteEmail.emailId" />
+          <div *ngIf="inviteEmail.errorMsg" class="col-lg-8 col-md-8 col-sm-6 col-xs-6 required pull-right">{{inviteEmail.errorMsg}}</div>
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+        <button type="button" pButton icon="fa-check" label="{{ 'SendInvitationModule.Invite' | translate }} " class="save btn btn-primarty" (click)="sendInvitation(inviteEmail.emailId)"
+          [disabled]="!inviteEmail.emailId"></button>
+        <button type="button" pButton icon="fa-close" label="{{ 'SendInvitationModule.Cancel' | translate }}" class="cancel btn" (click)="disable()"></button>
+      </div>
+    </p-footer>
+  </p-dialog>

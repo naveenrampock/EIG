@@ -1,0 +1,50 @@
+
+#blist_Table{ word-wrap: break-word;clear:both; padding:0}
+
+.add_lookup{background-color: #32c5d2;padding: 7px 9px 8px 9px;position: relative;top: 5px;left:0px;cursor:pointer;}
+
+.popup button, .greenBtn, .redBtn{background-color: #32c5d2;color: #fff !important;border: 1px solid #32c5d2;cursor: pointer;}
+
+.redBtn{background: red !important; border: 1px solid red;}
+
+.ui-datatable tbody > tr.ui-widget-content.ui-state-highlight {background-color: #32c5d2;}
+
+.ui-paginator .ui-paginator-page.ui-state-active {background: #32c5d2;color: #ffffff;border-color: #32c5d2;}
+
+:host /deep/ .ui-datatable .ui-datatable-thead>tr>th{padding: .5em .5em;}
+
+.g-brd-primary {border-color: #32c5d2 !important;}
+
+.u-nav-v1-1.u-nav-primary .nav-link.active {color: #fff;background-color: #32c5d2;}
+
+.g-color-primary {color: #32c5d2 !important;}
+
+.fa-plus{color:#fff;position: relative;top: 2px;}
+
+:host /deep/ .ui-paginator .ui-paginator-page.ui-state-active {background: #32c5d2;color: #ffffff;border-color: #32c5d2;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar{background: linear-gradient(to bottom, #32c5d2 0%, #32c5d2 100%);}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar .ui-dialog-title{color:#fff;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon {color: #fff;position: relative;left: 10px;top: 2px;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {padding: 0.5em 1.5em;}
+
+#LookUp_popup .modal-body > div{margin-bottom:10px;}
+
+:host /deep/ .ui-dialog-buttonpane button {width:85px;height: 30px;}
+
+:host /deep/ .ui-dialog-buttonpane button span:last-child(){display:none;}
+
+:host /deep/ .ui-dialog-buttonpane button:nth-child(2){background-color: #979797;border: 1px solid #979797;}
+
+:host /deep/ .ui-clickable{position: absolute;top: 13px;left: 10px;}
+
+:host /deep/ .ui-dialog-footer{padding: 0.5em 1em;}
+
+:host /deep/ .ui-dialog-footer.ui-widget-content{border: 0px solid #D5D5D5; border-top: 1px solid #D5D5D5;}
+
+select, input[type="text"], input[type="date"] {height: 30px;border-radius: 0px;}
+
+:host /deep/ .ui-tooltip .ui-tooltip-text {display:inline-block;}

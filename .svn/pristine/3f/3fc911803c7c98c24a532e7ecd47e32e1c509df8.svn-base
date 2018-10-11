@@ -1,0 +1,18 @@
+.panel-title>p{color: #fff !important;}
+div#headingOne {margin-bottom: -1px;}
+.flow {overflow: hidden;
+    border-bottom: 0px;
+    padding: 0px;
+    border-radius: 0px;
+    border-color: white;}
+.emr-tabcontent {min-height: auto;margin-bottom: 10px;}
+.ebg-white > div {max-height: max-content;}
+.u-btn-darkgray {background-color: #d9d9d9;}
+.check{float: right;margin-bottom: 15px;}
+.emr-tabcontent tr th {text-align: left;line-height: 2.2;}
+.emr-tabcontent tr td {line-height: 2.2;}
+input[type="checkbox"]{position: relative;top: 5px;}
+.drop{float: right;top: 2px;position: relative;right: -20px;}
+:host /deep/ .ui-widget-header{background: #d9d9d9 !important;border:0px;}
+.u-btn-darkgray:hover, .u-btn-darkgray.active {border-color: #4d4d4d;background-color: #4d4d4d;}
+.u-btn-primary:hover {background-color: #042f60;border-color: #042f60;}

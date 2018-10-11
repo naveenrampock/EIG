@@ -1,0 +1,266 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div id="" class="case_manage">
+  <div class="row">
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12 pull-left no-padd" id="">
+      <div id="ViewCase" style="display:block;" class="viewcase display-view">
+        <div class="container-fluid col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadd">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title p-r15">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsible collapsed">
+                    <label> {{ 'CASEModule.NEWCASE' | translate }}</label>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse in collapse brd-btm0" role="tabpanel" aria-labelledby="headingOne" style="">
+                <div class="n-case col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadd">
+                  <div class="case-name col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadd">
+                    <input type="text" [(ngModel)]="newCase.CaseName" placeholder="{{ 'CASEModule.EnterCaseName' | translate }}...">
+                  </div>
+                  <div class="case-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <textarea rows="5" [(ngModel)]="newCase.CaseDescription" placeholder="{{ 'CASEModule.Writeamessageorattachafile' | translate }}"></textarea>
+                  </div>
+                  <div class="case-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <span class="required" *ngIf="newCase.errorMsg">{{newCase.errorMsg}}</span>
+                  </div>
+                  <div class="case-save">
+                    <div class="">
+
+                      <div class="pull-left col-sm-8">
+                        <a id="lnk_invitees" class="att pos-b8" (click)="openContacts()">{{ 'CASEModule.Invitee' | translate
+                          }}
+                          <span class="badge">{{selectedIds.length}}</span>
+                        </a>
+                        <a data-toggle="modal" data-target="#Attach-Popup" class="att pos-b8" (click)="openDicom()">{{ 'CASEModule.DICOM'
+                          | translate }}
+                          <span class="badge">{{studyPkIds?.length}}</span>
+                        </a>
+                        <div class="upload-btn-wrapper att">
+                          <a data-toggle="modal" data-target="#AttachmentList">{{ 'CASEModule.Attachments' | translate }}</a>
+                          <!-- <label for="upload-photo"> -->
+                          <span class="badge">{{insertAttachmentList?.length}}</span>
+                          <!-- </label> -->
+                          <!-- <input type="file" (change)="onUploadFile($event)" placeholder="Upload a file..." multiple accept=".png,.jpg,.jpeg" name="file"> -->
+                        </div>
+                        <a class="att pos-b8" (click)="getAppointments()">{{ 'CASEModule.Appointments' | translate }}
+                          <span class="badge">{{appointments?.length}}</span>
+                        </a>
+                      </div>
+                      <button class="pull-right save-post" (click)="postCase(newCase, 1)" [disabled]="!(userConfig && userConfig.HasCasemanagement)">{{
+                        'CASEModule.Post' | translate }}</button>
+                      <button class="pull-right save-post" (click)="postCase(newCase, 0)" [disabled]="!(userConfig && userConfig.HasCasemanagement)">{{
+                        'CASEModule.Save' | translate }}</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="Div5" *ngIf="isNewAppointment">
+                  <div>
+                    <label class="f12 col-12 col-sm-3 col-md-3 col-lg-3 no-padd">
+                      <b>Appointment</b>
+                    </label>
+                    <!-- <a>
+                      <i class="fa fa-caret-up caret-5"></i>
+                    </a> -->
+                    <a (click)="closeAppoint()">
+                      <i class="fa fa-times pull-right"></i>
+                    </a>
+                  </div>
+
+                  <div class="row col-12">
+                    <a id="Create" class="createnew" (click)="createNewAppointment()">Create New</a>
+                  </div>
+                  <div id="Create_List" class="row col-12 create_list m-t10" *ngIf="isCreateApp">
+                    <div class="col-12">
+                      <label class="col-3">Discussion Name</label>
+                      <input class="col-5" type="text" [(ngModel)]="newAppointment.discussionName" maxlength="40" />
+                    </div>
+                    <div class="col-12">
+                      <label class="col-3">Discussion Date</label>
+                      <p-calendar [(ngModel)]="newAppointment.appStartDate" class="col-12 no-padd calendar" hourFormat="12" (onSelect)="selectStartDate()"
+                        [minDate]="minSDate" [showIcon]="true"></p-calendar>
+                    </div>
+                    <div class="col-12">
+                      <label class="col-3">Start Time</label>
+
+                      <p-calendar [(ngModel)]="newAppointment.startTime" [timeOnly]="true" class="col-12 no-padd" hourFormat="12" [attr.hideOnDateTimeSelect]="true" [minDate]="minSDate"></p-calendar>
+                    </div>
+                    <div class="col-12">
+                      <label class="col-3">End Time</label>
+                      <p-calendar [(ngModel)]="newAppointment.endTime" [timeOnly]="true" class="col-12 no-padd" hourFormat="12" [disabled]="!newAppointment.startTime" [minDate]="minSDate"></p-calendar>
+                    </div>
+                    <div class="col-12 required" *ngIf="newAppointment.appError">{{newAppointment.appError}}</div>
+                    <div class="col-8 text-right m-t10">
+                      <a id="btn-create" class="btn-create" (click)="createAppointment()">Create</a>
+                      <a id="app_cancel" class="btn-cancel" (click)="cancelApp()">Cancel</a>
+                    </div>
+                  </div>
+                  <div id="Appointment_table">
+                    <table class="table table-bordered m-t10 app_table">
+                      <thead>
+                        <th>ID</th>
+                        <th>Appointment Name</th>
+                        <th>Appointment Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Duration</th>
+                        <th class="app_action">Action</th>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let appointment of appointments; let i = index">
+                          <td>{{i+1}}</td>
+                          <td>{{appointment.appointmentTitle}}</td>
+                          <td>{{appointment.appointmentDate}}</td>
+                          <td>{{appointment.appointmentStartTime}}</td>
+                          <td>{{appointment.appointmentEndTime}}</td>
+                          <td>{{appointment.AppointmentDuration}}</td>
+                          <td>
+                            <a title="Delete Appointment" class="lnk_view" (click)="deleteAppointment(appointment)">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+  </div>
+  <!-- Posted Popup Start -->
+  <div class="modal fade postedpopup" id="PostedPopup" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Invitees</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div *ngFor="let contact of contacts">
+              <input type="checkbox" (click)="selectInvitee($event.target.checked, contact.Id)" [checked]="contact.isChecked" />
+              <img [src]="contact.imagepath ? configUrl+contact.imagepath : defaultImg" [alt]="contact.FirstName" [title]="contact.FirstName"
+                class="u-pht" />
+              <a>{{contact.FirstName}}</a>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right">
+              <input type="button" value="Done" class="btn u-btn-primary g-mr-10" (click)="selectedInviteeIds()" />
+              <!-- <input type="button" value="Cancel" class="btn u-btn-darkgray g-mr-10" (click)="cancelInvitees()"/> -->
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Posted Popup End -->
+</div>
+<div class="modal fade filter" id="AttachmentList">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Attachment List</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="grid">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a data-toggle="tab" href="#Att_history" (click)="check=true">Attachment History</a>
+            </li>
+            <li class="p-l15">
+              <a data-toggle="tab" (click)="check=false" href="#upload_new">Upload new attachment</a>
+            </li>
+          </ul>
+          <div class="tab-content m-t10">
+
+            <div *ngIf="check">
+              <p-dataTable [value]="attachmentList" [rows]="10" [paginator]="true">
+                <p-column field="" header="">
+                  <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+                    <!-- <span>{{list.fileName}}</span> -->
+                    <input type="checkbox" (change)="insertCase($event.target.checked,list.Id)">
+                  </ng-template>
+                </p-column>
+                <p-column field="FileName" header="File Name">
+                  <!-- <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+                  <span>{{list.FileName}}</span>
+                </ng-template> -->
+                </p-column>
+                <p-column field="comments" header="Comments">
+                  <!-- <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+                  <span>{{list.comments}}</span>
+                </ng-template> -->
+                </p-column>
+                <p-column field="linkedBy" header="LinkedBy">
+                  <!-- <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+                  <span>{{list.linkedBy}}</span>
+                </ng-template> -->
+                </p-column>
+                <p-column field="CreatedDate" header="Date">
+                  <!-- <ng-template let-col let-list="rowData" let-ri="rowIndex" pTemplate="body">
+                  <span>{{list.CreatedDate}}</span>
+                </ng-template> -->
+                </p-column>
+
+              </p-dataTable>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right mt-4">
+                <input type="button" name="" value="Submit" data-dismiss="modal" class="btn u-btn-primary g-mr-10" />
+                <!--  (click)="insertaddList()" -->
+                <input type="button" name="" value="Cancel" data-dismiss="modal" class="btn u-btn-darkgray g-mr-10" />
+              </div>
+
+            </div>
+
+            <div *ngIf="!check" id="upload_new" class="tab-pane fade">
+
+              <div id="DicomBody" class="panel-collapse collapse show">
+                <div class="panel-body">
+                  <div class="row di-img col-lg-12">
+                    <div class="col-lg-12 col-md-2 col-sm-12 col-12">
+                      <div id="form1" method="post">
+                        <input #folderInput type="file" (change)="onUploadFile(folderInput.files)" name="photo[]" id="files" class="col-sm-12 m-b20 m-t20 no-padd">
+                        <!-- <button id="FileChoose" class="pull-left btn-fileup">
+                          <i class="fa fa-plus"></i>
+                          <label class="pl-1 text-white m-b0">File Upload</label>
+                        </button> -->
+                        <textarea type="text" [(ngModel)]="comments" rows="4" cols="50" class="comments col-sm-12" placeholder="Enter Comments"></textarea>
+                        <div id="r" class="col-lg-12 pull-left nopadd"></div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 physican text-right mt-4">
+                <input type="button" name="" value="Submit" (click)="callFileUpload()" data-dismiss="modal" class="btn u-btn-primary g-mr-10"
+                />
+                <input type="button" name="" value="Cancel" data-dismiss="modal" class="btn u-btn-darkgray g-mr-10" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isAddDicom">
+  <app-add-dicom (closeDicom)="getDicomIds($event)" [caseType]="caseType"></app-add-dicom>
+</div>

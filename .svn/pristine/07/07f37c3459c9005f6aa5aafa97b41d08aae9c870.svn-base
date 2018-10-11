@@ -1,0 +1,19 @@
+.addItem {
+    border: 1px solid #0847a1;
+    padding: 5px;
+}
+
+.addItem:hover {
+    background-color:#0847a1;
+    color:white !important;
+}
+
+.switch-list {
+    position: absolute;
+    border: 1px solid #444;
+    padding: 4px 5px;
+    width: 20%;
+    background-color: #fff;
+    right: 2%;
+    margin-top: -10px;
+}

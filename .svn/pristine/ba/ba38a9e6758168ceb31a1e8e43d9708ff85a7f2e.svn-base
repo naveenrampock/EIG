@@ -1,0 +1,45 @@
+.optionGiven {
+float: left;
+margin-top: 18%;
+margin-left: 13%;
+}
+
+:host /deep/ span.ui-autocomplete.ui-widget{
+    position: absolute !important;
+    min-height: 200px !important;
+    overflow: auto !important;
+}
+
+:host /deep/ .ui-inputtext{width:100% !important;}
+
+:host /deep/ .ui-datepicker .ui-datepicker-prev{top: 0.4em;}
+
+:host /deep/.ui-datepicker .ui-datepicker-next{top: 0.4em;}
+
+:host /deep/ .ui-datepicker{top:-50px;}
+
+:host /deep/ .ui-corner-all {border-radius: 0px;}
+
+:host /deep/ .ui-widget.ui-button, .ui-button {border: 1px solid #084FA1;color: #FFFFFF;background: #084FA1;}
+
+:host /deep/ .ui-datepicker .ui-datepicker-prev{top: 0.5em;}
+
+.emr-details input[type=text]{padding: 0px 20px 0px 8px;}
+
+input[type="text" i]:disabled,select:disabled{background-color:#f5f5f5;}
+
+:host /deep/ .ui-widget:disabled{opacity:1;background-color: #f5f5f5;}
+
+:host /deep/ .ui-datepicker-trigger.ui-widget:disabled{background: #0847a1;}
+
+:host /deep/ .ui-dialog-footer{ padding: 0.5em 1em;}
+
+:host /deep/ .ui-dialog-footer.ui-widget-content {border:0px;border-top: 1px solid #D5D5D5;}
+
+:host /deep/ .ui-widget.ui-button, .ui-button {border: 1px solid #0847a1;color: #FFFFFF;background: #0847a1;}
+
+:host /deep/ .ui-datepicker-trigger.ui-widget:disabled{background: #0847a1;}
+
+:host /deep/ .ui-widget-content {border: 0px solid #D5D5D5;}
+
+:host /deep/ .ui-dialog .ui-dialog-titlebar-icon:hover{color:#000;}

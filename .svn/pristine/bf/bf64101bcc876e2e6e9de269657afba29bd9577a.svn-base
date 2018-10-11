@@ -1,0 +1,98 @@
+.sharerecords {
+    padding: 0px 15px;
+    position: relative;
+    color: #fff !important;
+    background-color: #0847a1;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.invit {
+    max-width:30px;
+    border-radius:50px;
+    max-height:30px;
+    min-width:30px;
+    margin-bottom:10px;
+    position:relative;
+    top:5px;
+    left:3px;
+}
+
+.emr_sharing > div {
+    margin-bottom: 5px;
+    margin-top:5px;
+    padding:0 15px 0 15px;
+    border-bottom: 1px solid #ececec;
+    width:25%;
+    float:left;
+}
+
+.allshare {
+    padding:5px 17px;
+    background-color:#0847a1;
+    color:#fff;
+}
+
+.sharepop > div {
+    margin-bottom:5px;
+    margin-top:5px;
+    padding:0 15px 0 15px;
+}
+
+.sharepop {
+    background-color: #fff;
+}
+
+.emr_sharing {
+    border-top: 1px solid #d9d9d9;
+    padding:5px 0 15px 0px;
+    background-color: #fff; 
+    display:flow-root;
+}
+
+.emr_header {
+    background-color: #0847a1;
+    margin-bottom:0;
+    padding:5px 15px;
+    color:#fff;
+    display:inline-block;
+}
+
+.brd-blu {
+    border:1px solid #0847a1;
+}
+
+:host /deep/ .ui-table .ui-table-thead > tr > th, .ui-table .ui-table-tfoot > tr > td {
+    background: #f6f7f9;
+    border: 1px solid #d9d9d9;
+    color: #fff;
+    background-color: #0847a1 !important;
+}
+
+
+.share:hover {
+    background-color:#042f60;
+}
+
+.share {
+    padding: 5px 15px;
+    background-color: #0847a1;
+    color:#fff !important;
+    border-radius:3px;
+    position:relative;
+    top:5px !important;
+    right:10px !important;
+}
+
+.reset {
+    padding: 5px 15px;
+    background-color: grey;
+    color:#fff !important;
+    border-radius:3px;
+    position:relative;
+    top:5px !important;
+}
+
+.reset:hover {
+    background-color:#4c4c4c;
+}

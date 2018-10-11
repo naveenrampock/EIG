@@ -1,0 +1,6 @@
+.bg-wht {border:1px solid #0847A1;background-color:#fff;}
+.txtclr {color:#084fa1 !important}
+.tabcontent {padding:0 10px;width:100%; min-height:500px;max-height:5000px}
+.lbl_patient{width:100%;background-color:#084fa1;color:#fff;padding:5px 15px}
+:host /deep/ .ui-table .ui-table-thead > tr > th, .ui-table .ui-table-tfoot > tr > td {text-align:left;line-height:2.2}
+:host /deep/ .ui-table .ui-table-tbody > tr > td {line-height:2.2}

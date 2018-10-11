@@ -1,0 +1,153 @@
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="emr-details">
+  <div class=" m-b10 ebg-white">
+    <div class="head-text">
+      <p class="col-sm-12 text-center w-85 pull-left m-0">Immunization</p>
+      <a class="pull-right" id="back_Immunization" (click)="backToListing()">
+        <button class="addbutton">
+          <i class="fa fa-arrow-circle-left"></i>
+        </button>
+      </a>
+    </div>
+    <div class="col-sm-12 col-xs-12 no-padd" [formGroup]="emrImmunizationdetailsForm">
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Source Type
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 pull-left no-padd" [class.disabled]="isReadOnly">
+          <select formControlName="SourceType" class="emr-dropdown">
+              <option value=''>Select Source Type</option>
+              <option *ngFor="let sType of immunizationDropdown?.sourceTypes" [value]='sType.Id'>{{sType.Description}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Source ID</label>
+        <div class="col-sm-7 pull-left no-padd">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 pr-0" type="text" OnlyNumber="true" maxlength="3" placeholder="Source ID"
+              formControlName="SourceId">
+          </div>
+        </div>
+      </div>
+      <!-- Basic Information -->
+      <div class="head-text subhead inline-block">
+        <p class="normal pull-left m-0">Basic Information</p>
+      </div>
+
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Encounter</label>
+        <div class="col-sm-7 pull-left no-padd">
+          <div class="input-group g-brd-primary--focus">
+            <input class="form-control form-control-md rounded-0 pr-0" type="text" OnlyNumber="true" maxlength="3" placeholder="Encounter"
+              formControlName="Encounter">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Date</label>
+        <div class="col-sm-7 pull-left no-padd">
+          <div class="input-group g-brd-primary--focus" style="width: 122px;">
+            <p-calendar id="date1" [maxDate]="dateTime" formControlName="Date" [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" showButtonBar="true"
+              [showIcon]="true" dateFormat="mm-dd-yy" placeholder="mm-dd-yyyy" class="w-100"></p-calendar>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Status
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 pull-left no-padd">
+          <select formControlName="Status" class="emr-dropdown">
+              <option value=''>Select Status</option>
+              <option *ngFor="let stType of immunizationDropdown?.statusDrp" [value]='stType.Id'>{{stType.Description}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Vaccine Code
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 pull-left no-padd z-index999">
+          <input type='text' (keyup)="searchDropDown(111, src3.value)" #src3 formControlName="VaccineCode" [(ngModel)]="selectedVaccineCode"
+          placeholder="Please Key in (eg:i)"/>
+          <i class="fa fa-caret-down"></i>
+          <div *ngIf="immunizationDropdown && immunizationSelectDropdown?.vaccineCode && IsHidden" class="emr-dropdown">
+            <ul *ngFor="let vType of immunizationSelectDropdown?.vaccineCode" (click)="getValue(vType)" class="p-l10 m-b0 brd-b">
+              <li>
+                {{vType.Description}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Not Given
+          <span class="required">*</span>
+        </label>
+        <div class="col-sm-7 pull-left no-padd">
+          <select formControlName="NotGiven" class="emr-dropdown">
+              <option value=''>Select Not Given</option>
+              <option *ngFor="let ntgType of immunizationDropdown?.notGivenDrp" [value]='ntgType.Id'>{{ntgType.Description}}</option>
+            </select>
+        </div>
+      </div>
+
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Report Origin</label>
+        <div class="col-sm-7 pull-left no-padd">
+          <select formControlName="ReportOrigin" class="emr-dropdown">
+              <option value=''>Select Report Origin</option>
+              <option *ngFor="let rtType of immunizationDropdown?.reportOrigin" [value]='rtType.Id'>{{rtType.Description}}</option>
+            </select>
+        </div>
+      </div>
+
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Route</label>
+        <div class="col-sm-7 pull-left no-padd">
+          <select formControlName="Route" class="emr-dropdown">
+              <option value=''>Select Route</option>
+              <option *ngFor="let routeType of immunizationDropdown?.routeDrp" [value]='routeType.Id'>{{routeType.Description}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="col-sm-4 pull-left m-b10 m-t10">
+        <label class="col-sm-5 pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Dose Quantity</label>
+        <div class="col-sm-7 pull-left no-padd">
+          <div class="input-group g-brd-primary--focus">
+            <input type="text" formControlName="DoseQuantity" OnlyNumber="true" maxlength="3" placeholder="Dose in Number">
+          </div>
+        </div>
+      </div>
+
+      <!-- Description and Vaccination Notes -->
+      <div class="head-text subhead inline-block">
+        <p class="normal pull-left m-0">Description and Vaccination Notes</p>
+      </div>
+
+      <div class="col-sm-12 pull-left m-b10 m-t10" formGroupName="ExplanationE">
+        <label class="lbl_note pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Reason</label>
+        <div class="txt_note pull-left no-padd">
+          <select formControlName="Reason" class="emr-dropdown" style="width: 84%;">
+              <option value=''>Select Reason</option>
+              <option *ngFor="let reasonType of immunizationDropdown?.reason" [value]='reasonType.Id'>{{reasonType.Description}}</option>
+            </select>
+        </div>
+      </div>
+
+      <div class="col-sm-12 pull-left m-b10 m-t10">
+        <label class="lbl_note pull-left col-form-label g-color-gray-dark-v2 text-sm-left no-padd">Note</label>
+        <div class="txt_note pull-left no-padd">
+          <div class="input-group g-brd-primary--focus">
+            <input type="text" formControlName="Note" maxlength="100" class="w-100" placeholder="Note">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 text-right m-b10 inline-block mt-5 m-b100" *ngIf="immunizationDetails?.mode !== 'readOnly'">
+      <button class="btn btn-primary clr-white m-b10" [disabled]="!emrImmunizationdetailsForm.valid" (click)="!immunizationDetails ? saveEmrImmunization() : updateEmrImmunization()">{{!immunizationDetails ? 'Save' : 'Update'}}</button>
+    </div>
+  </div>
+</div>

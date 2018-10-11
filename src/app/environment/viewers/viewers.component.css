@@ -1,0 +1,72 @@
+
+.searchs{
+    position: absolute;
+    text-align: right;
+    width: 100%;
+}
+
+.implement{
+    margin-top: 55px;
+}
+
+.admin_lookup{}
+
+:host /deep/ .admin_lookup > .ui-dialog{width:700px !important;left:430px !important;}
+
+:host /deep/ .admin_lookup .modal-body > div{margin-bottom:10px;}
+
+/* :host /deep/ .ui-clickable{display:none;} */
+
+:host /deep/ .ui-button-icon-only {width: 6em;}
+
+:host /deep/ .ui-button-icon-only .ui-button-text{padding: 0px;}
+
+:host /deep/ .ui-dialog .ui-dialog-buttonpane button{    height: 35px;}
+
+:host /deep/ .ui-dialog .ui-dialog-buttonpane button > label{    position: relative;top: 5px;left: 5px;}
+
+:host /deep/ .admin_lookup .ui-button-icon-only .fa{left:15%;}
+
+.lookupmaster {height: 80vh;}
+
+:host /deep/ .ui-cell-data .ng-star-inserted{word-wrap: break-word;}
+
+:host /deep/ .ui-dialog-footer { padding: 0.5em 1em;}
+
+.greenBtn{ background-color: #32c5d2;color: #fff !important;border: 1px solid #32c5d2;cursor: pointer;}
+
+.redBtn{background: red !important;border: 1px solid red;color: #fff !important;cursor: pointer;}
+
+.add_lookup {background-color: #32c5d2;padding: 7px 9px 8px 9px; position: relative; top: 5px;
+    left: 0px;cursor: pointer;
+}
+
+.fa-plus {color: #fff; position: relative; top: 2px;}
+
+.u-nav-v1-1.u-nav-primary .nav-link.active{    color: #fff;background-color: #32c5d2;}
+
+.g-brd-primary {border-color: #32c5d2 !important;}
+
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar {padding: 0.5em 1.5em;}
+
+:host /deep/ .ui-dialog.ui-widget .ui-dialog-titlebar { background: linear-gradient(to bottom, #32c5d2 0%, #32c5d2 100%);}
+
+:host /deep/ .ui-dialog-buttonpane button {width: 85px;height: 35px;}
+
+:host /deep/ .ui-dialog-buttonpane button:nth-child(2) {background-color: #979797; border: 1px solid #979797;}
+
+:host /deep/ .ui-dialog-titlebar .ui-dialog-title{color:#fff; }
+
+:host /deep/ .ui-dialog-titlebar-close{color:#fff;padding-top: 8px; }
+
+:host /deep/ .popup button {
+    background-color: #32c5d2;
+    color: #fff !important;
+    border: 1px solid #32c5d2;
+    cursor: pointer;
+}
+
+select, input[type="text"], input[type="date"]{height:30px;}
+
+:host /deep/ .ui-paginator .ui-paginator-page.ui-state-active {background: #32c5d2;color: #ffffff;border-color: #32c5d2;}

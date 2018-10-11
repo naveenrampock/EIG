@@ -1,0 +1,162 @@
+<section class="g-my-10 col-lg-12 nopadd">
+  <div class="container">
+    <ul class="u-list-inline">
+      <li class="list-inline-item g-mr-7">
+        <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">{{'MultiLingualMaster.Home' | translate}}</a>
+        <i class="fa fa-angle-right g-ml-7"></i>
+      </li>
+      <!-- <li class="list-inline-item g-mr-7">
+        <a class="u-link-v5 g-color-main g-color-primary--hover" href="#">Pages</a>
+        <i class="fa fa-angle-right g-ml-7"></i>
+      </li> -->
+      <li class="list-inline-item g-color-primary">
+        <span>{{'MultiLingualMaster.Multilingual' | translate}}</span>
+      </li>
+    </ul>
+  </div>
+</section>
+<div class="row nopadd m-t20">
+  <!-- <app-sidebar-nav class="col-lg-3 lookupmaster"></app-sidebar-nav> -->
+  <div id="blist_Table" class="content-section implementation col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                 <ul class="nav nav-justified u-nav-v1-1 u-nav-primary g-brd-bottom--md g-brd-bottom-2 g-brd-primary col-lg-12 p-r0" role="tablist"
+      data-target="nav-1-1-default-hor-left-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary g-mb-20"
+      style="padding:0">
+      <li class="nav-item col-lg-3 nopadd" style="padding:0">
+        <a class="nav-link g-py-5 active" data-toggle="tab" href="#nav-1-1-default-hor-left-underline--1" role="tab">{{'MultiLingualMaster.MultilingualListing' | translate}}</a>
+      </li>
+      <li class="col-lg-9 pull-right text-right nopadd" style="padding:0">
+        <!-- <input type="search" name="" value="" placeholder="Search..."/> -->
+        <!-- <a class="add_lookup" (click)="showDialog()">
+          <i class="fa fa-plus text-white"></i>
+          
+          
+        </a> -->
+        <a id="Add_Lookup" class="add_lookup" data-toggle="modal" (click)="showDialogToAdd()">
+          <i class="fa fa-plus"></i>
+        </a>
+      </li>
+
+    </ul>
+
+    <div class="page-title pt10 pb10">
+      <div class="container">
+          <div class="col-sm-12">
+              <ol class="breadcrumb float-right">
+            
+              </ol>
+              <h4 class="mb0">Welcome {{firstName}} {{lastName}}</h4>
+          </div>                             
+      </div>
+  </div>
+  
+    <div class="pull-right g-py-5 search-top">
+      <!-- <label>Search:</label> -->
+      <input autocomplete='off' type="text" #gb pInputText size="25" placeholder="Find..." class="mrgbtm15 b-radius20">
+    </div>
+    <div class="clearFix">
+              <p-dataTable [value]="multiLangData " [paginator]="true"
+                sortMode="multiple" [rows]="10"  [pageLinks]="3" [globalFilter]="gb" [tableStyleClass]="'table table-bordered mrgtop15'">
+
+                <!-- <p-column field="Id" header="ListId" [sortable]="true">
+                  <ng-template let-col let-languageData="rowData" pTemplate="body">
+                    <span><a >{{languageData.Id}}</a></span>
+                  </ng-template>
+                </p-column> -->
+                <p-column field="Translate" header="{{'MultiLingualMaster.EnglishDescription' | translate}} " [sortable]="true">
+                  <ng-template let-col let-languageData="rowData" pTemplate="body">
+                    <span> {{languageData.Name}}</span>
+                  </ng-template>
+                </p-column>
+                <p-column field="Language" header="{{'MultiLingualMaster.Language' | translate}}" [sortable]="true">
+                  <ng-template let-col let-languageData="rowData" pTemplate="body">
+                    <span>{{languageData.Description}}</span>
+                  </ng-template>
+                </p-column>
+                <p-column field="Englishdescription" header="{{'MultiLingualMaster.LanguageDescription' | translate}} " [sortable]="true">
+                  <ng-template let-col let-languageData="rowData" pTemplate="body">
+                    <span>{{languageData.Path}}</span>
+                  </ng-template>
+                </p-column>    
+                
+                <p-column field="Actions" header="{{'MultiLingualMaster.Actions' | translate}}" [sortable]="true" [editable]="true">
+                  <ng-template let-col let-lkupMasterList="rowData" pTemplate="body" class="popup">
+                      <button (click)="edit(lkupMasterList)" class="greenBtn">{{'MultiLingualMaster.Edit' | translate}}</button>
+                    <button (click)="delete(lkupMasterList)" class="redBtn">{{'MultiLingualMaster.Delete' | translate}}</button>   
+                  </ng-template>
+                </p-column>
+                
+              </p-dataTable>
+
+    </div>
+
+            </div>
+
+</div>
+
+<p-dialog header="Multilingual Editor"  [(visible)]="display" (onHide)="close()" modal="modal" width="800"  [responsive]="false">
+    <div class="wordbreak">
+       <form [formGroup]="languageFrom">
+     <select formControlName="languageDrp" class="mb-2 col-lg-2">
+       <option value="">Select</option>
+       <option *ngFor="let language of languageDrp" [value]="language.Id">{{language.Description}}</option>
+     </select>
+       </form>
+              <!-- <form [formGroup]=""> -->
+              <p-dataTable [value]="addBoilerData " [paginator]="true"
+                sortMode="multiple" [rows]="10"  [pageLinks]="3" [globalFilter]="gb" [tableStyleClass]="'table table-bordered mrgtop15'">
+
+
+                   
+                <p-column field="Englishdescription" header="{{'MultiLingualMaster.BoilerPlates' | translate}}" [sortable]="true">
+                  <ng-template let-col let-addBoiler="rowData" pTemplate="body">
+                    <span><a >{{addBoiler.EnglishDescription}}</a></span>
+                  </ng-template>
+                </p-column>
+                <p-column field="Description" header="{{'MultiLingualMaster.Translators' | translate}}" [sortable]="true">
+                  <ng-template let-col let-addBoiler="rowData" pTemplate="body">
+                    <!-- <span>{{addBoiler.Translate}}</span> -->
+                    <input  [(ngModel)]="addBoiler.Description " maxlength="20">
+                  </ng-template>
+                </p-column>
+                <p-column field="" header="{{'MultiLingualMaster.Actions' | translate}}" [sortable]="true">
+                  <ng-template let-col let-addBoiler="rowData" pTemplate="body">
+                    <i class="fa fa-save mainColor mainFontSize"  aria-hidden="true" (click)="saveOneRec(addBoiler)"></i>
+                  </ng-template>
+                </p-column>
+               
+              </p-dataTable> 
+              <!-- </form> -->
+            </div>
+            <button (click)="save(addBoilerData)" class="mt-2 pull-right btn btn-primary">{{'MultiLingualMaster.Save' | translate}}</button>
+    
+</p-dialog>
+
+<p-dialog header="{{'MultiLingualMaster.Multilingual' | translate}}" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+  <!-- *ngIf="car" -->
+  <div class="ui-grid ui-grid-responsive ui-fluid" id="LookUp_popup">
+    <form [formGroup]="lookUpMaster">
+      <div class="modal-body row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+          <label class="col-lg-3 col-md-4 col-sm-6 col-xs-6">{{'MultiLingualMaster.Name' | translate}}</label>
+          <input type="text" name="Name" formControlName="Name" class="col-lg-7 col-md-6 col-sm-6 col-xs-6" maxlength="20"/>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <label class="col-lg-3 col-md-4 col-sm-6 col-xs-6">{{'MultiLingualMaster.Description' | translate}}</label>
+          <input type="text" name="Description" formControlName="Description" class="col-lg-7 col-md-6 col-sm-6 col-xs-6" maxlength="50"/>
+        </div>
+       
+      </div>
+    </form>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix popup">
+      <!-- <button type="button" pButton icon="fa-check" (click)="saveLookUp()">Save</button>
+      <button type="button" pButton icon="fa-close" (click)="cancel()">Cancel</button> -->
+    
+      <!-- <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." /> -->
+      <button type="button" class="greenBtn" (click)="upload(this.lookUpMaster)">{{'MultiLingualMaster.Save' | translate}}</button>
+
+    </div>
+  </p-footer>
+</p-dialog>

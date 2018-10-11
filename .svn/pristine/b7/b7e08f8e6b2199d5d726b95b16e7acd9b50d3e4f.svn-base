@@ -1,0 +1,44 @@
+.contains {
+    min-height: 680px;
+    display: table;
+}
+.tab {
+    float: left;
+    border: 1px solid #084FA1;
+    background-color: #f1f1f1;
+    width: 22%;
+    /* min-height: 300px; */
+}
+.active-link {
+    background-color: #084FA1 !important;
+    color: #fff !important;
+    font-weight: bold;
+    font-size: 15px !important;
+}
+.tab ul li a{
+    display: block;
+    background-color: #fff;
+    color: #084FA1;
+    padding: 6px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+    font-family: calibri;
+    border-bottom: 1px solid #084FA1;
+}
+.tab ul li:last-child{ border-bottom: 0;}
+.emrSideBar li a> span {
+    padding: 1px 7px;
+    border-radius: 3px;
+    color: #084FA1;
+    font-size: 13px;
+    background-color: #d9d9d9;
+    float: right;
+}
+.tab ul{ padding: 0px; margin-bottom: 0; }
+
+.iconDrop {font-size: 18px;float:right;}

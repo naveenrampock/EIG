@@ -1,0 +1,480 @@
+<p-confirmDialog></p-confirmDialog>
+<p-growl [(value)]="msgs" life="3000"></p-growl>
+<div class="row mt-140">
+  <!-- <app-user-sidebar class="col-lg-3"></app-user-sidebar> -->
+  <div class="col-lg-12" id="PatientInfo">
+    <ul class="nav nav-tabs menu">
+      <li class="active" aria-expanded="false">
+        <a data-toggle="tab" href="#Patient">{{ 'patientInfo.patientInformation' |
+          translate }}</a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#Guarantor">{{ 'patientGuranterInformation.guarantorInformation' |
+          translate }}</a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#Insurance">{{ 'patientInsuranceInformation.insuranceInformation' |
+          translate }}</a>
+      </li>
+      <li>
+        <a data-toggle="tab" href="#Emergency">{{ 'patientEmergencyContact.emergencyContact' |
+          translate }}</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="Patient" class="tab-pane in active">
+
+        <form [formGroup]="patientInfoForm">
+          <div [hidden] = "true">
+            <label class="isshared">Is Shared</label>
+          <label class="container_check text-right check">
+            <input [(ngModel)]="shareData" [ngModelOptions]="{standalone: true}" (change)="onChangePatientBasicInfo($event)"
+              type="checkbox">
+            <span class="checkmark"></span>
+          </label>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd pt-4 bg-w">
+
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.FnameLname' |
+                translate }}
+                <span class="required">*</span>
+              </label>
+              <input type="text" name="FirstName" value="" placeholder="{{ 'UserProfileModule.FirstName' |
+              translate }}"
+                class="col-lg-3 col-md-3 col-sm-3 col-xs-6" formControlName="FirstName" required maxlength="40" />
+              <input type="text" placeholder="{{ 'UserProfileModule.LastName' |
+              translate }}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6"
+                formControlName="LastName" maxlength="40" required />
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.gender' |
+                translate }}</label>
+              <span *ngFor="let gender of gender">
+                <input type="radio" formControlName="Sex" [value]="gender.StatusId" /> {{gender.Description}}</span>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.birthdate' |
+                translate }}
+                <span class="required">*</span>
+              </label>
+              <p-calendar formControlName="Birthdate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" [maxDate]="maxDateValue" 
+                class="col-lg-6 col-md-6 col-sm-6 col-xs-6" dateFormat="dd/mm/yy" required></p-calendar>
+              <!-- <input type="date" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="Birthdate" /> -->
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.placeOfBirth' |
+                translate }}</label>
+              <input type="text" maxlength="40" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="PlaceofBirth" />
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.age' |
+                translate }}</label>
+              <input type="text" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="Age" maxlength="3"
+                OnlyNumber="true" />
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.martialStatus' |
+                translate }}</label>
+              <select class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="MaritalStatus">
+                <option *ngFor="let mStatus of mStatus" [value]="mStatus.StatusId">{{mStatus.Description}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.streetAddress' |
+                translate }}</label>
+              <input type="text" placeholder="{{ 'patientInfo.street' |
+              translate }}" maxlength="40"
+                class="col-lg-2 col-md-2 col-sm-2 col-xs-6" formControlName="Street" />
+              <input type="text" placeholder="{{ 'patientInfo.City' |
+              translate }}" maxlength="40" class="col-lg-1 col-md-2 col-sm-2 col-xs-6"
+                formControlName="City" />
+              <input type="text" placeholder="{{ 'patientInfo.state' |
+              translate }}" maxlength="40" class="col-lg-1 col-md-2 col-sm-2 col-xs-6"
+                formControlName="State" maxlength="2" (keypress)="onlyString(event)" />
+              <input type="text" placeholder="{{ 'UserProfileModule.Zipcode' |
+              translate }}" class="col-lg-1 col-md-2 col-sm-2 col-xs-6 zip"
+                formControlName="ZipCode" OnlyNumber="true" maxlength="10" />
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.phone' |
+                translate }}</label>
+              <input type="text" placeholder="{{ 'patientInfo.phone' |
+              translate }}" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+                formControlName="HomePhone" OnlyNumber="true" maxlength="15" />
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.employer' |
+                translate }}</label>
+              <input type="text" placeholder="{{ 'patientInfo.employer' |
+              translate }}" maxlength="40"
+                class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="Employer" />
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.occupation' |
+                translate }}</label>
+              <input type="text" placeholder="{{ 'patientInfo.occupation' |
+              translate }}" maxlength="40"
+                class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="Occupation" />
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.workAddress' |
+                translate }}</label>
+              <input type="text" placeholder="{{ 'patientInfo.street' |
+              translate }}" maxlength="40"
+                class="col-lg-2 col-md-2 col-sm-2 col-xs-6" formControlName="WAStreet" />
+              <input type="text" placeholder="{{ 'patientInfo.City' |
+                translate }}" maxlength="40"
+                class="col-lg-1 col-md-2 col-sm-2 col-xs-6" formControlName="WACity" />
+              <input type="text" placeholder="{{ 'patientInfo.state' |
+              translate }}" maxlength="40" class="col-lg-1 col-md-2 col-sm-2 col-xs-6"
+                formControlName="WAState" maxlength="2" (keypress)="onlyString(event)" />
+              <input type="text" placeholder="{{ 'patientInfo.zip' |
+              translate }}" class="col-lg-1 col-md-2 col-sm-2 col-xs-6 zip"
+                formControlName="WAZipCode" OnlyNumber="true" maxlength="10" />
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.preferredLanguage' |
+                translate }}</label>
+              <select class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="PreferredLanguage">
+                <option [value]="1">English</option>
+                <option [value]="2">Spanish</option>
+                <option [value]="3">Russian</option>
+                <option [value]="4">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.ethnicOrigin' |
+                translate }}</label>
+              <select class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="EthnicOrigin">
+                <option *ngFor="let eOrgin of ethnicOrgin" [value]="eOrgin.StatusId">{{eOrgin.Description}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.race' |
+                translate }}</label>
+              <select class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="Race">
+                <option *ngFor="let race of race" [value]="race.StatusId">{{race.Description}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.socialSecurityNumber' |
+                translate }}</label>
+              <input type="text" [maxlength]="11" placeholder="{{ 'patientInfo.socialSecurityNumber' |
+              translate }}"
+                class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="SSN" OnlyNumber="true" />
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 col-md-4 col-sm-4 col-xs-6">{{ 'patientInfo.emailAddress' |
+                translate }}
+                <span class="required">*</span>
+              </label>
+              <input type="text" placeholder="{{ 'patientInfo.emailAddress' |
+              translate }}" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+                formControlName="EmailAddress" maxlength="40" />
+              <control-messages [control]="patientInfoForm.controls.EmailAddress" class="errorMessage col-lg-6 col-md-6 col-sm-6"></control-messages>
+            </div>
+            <div class="text-sm-right col-sm-9 mt-3 form-group">
+              <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10">{{ 'patientInfo.cancel' |
+                translate }}</a>
+              <button class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" (click)="savePatientInfo()" [disabled]="!patientInfoForm.valid">{{
+                'patientInfo.save' |
+                translate }}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="Guarantor" class="tab-pane fade p-b150">
+        <div class="col-sm-12 col-xs-12 nopadd col-lg-12 col-md-12 mrgtop15">
+          <a class="btn u-btn-primary g-py-6 g-px-15 g-mr-10 btnNew" aria-hidden="true" (click)="addGuarantorInformation()">{{
+            'patientGuranterInformation.new' |
+            translate }}</a>
+        </div>
+        <form [formGroup]="GuarantorForm">
+          <div [hidden] = "true" >
+            <label class="isshared_gua">Is Shared</label>
+            <label class="container_check text-right check">
+              <input [(ngModel)]="sharedGuranterData" [ngModelOptions]="{standalone: true}" (change)="onChangeGuranterInfo($event)"
+                type="checkbox">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div formArrayName="itemGuarantor">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd pt-4 lastForm" *ngFor="let itemguarantor of GuarantorForm.get('itemGuarantor').controls;let i = index;"
+              [formGroupName]="i">
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientGuranterInformation.guarantorName' |
+                  translate }}
+                  <span class="required">*</span>
+                </label>
+                <input type="text" placeholder="{{ 'UserProfileModule.FirstName' |
+                translate }}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6"
+                  formControlName="FirstName" maxlength="45" required />
+                <input type="text" placeholder="{{ 'UserProfileModule.LastName' |
+                translate }}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6"
+                  formControlName="LastName" maxlength="45" required />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientGuranterInformation.relationship' |
+                  translate }}</label>
+                <select class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="Relationship">
+                  <option *ngFor="let relation of relations" [value]="relation.StatusId">{{relation.Description}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientGuranterInformation.gender' |
+                  translate }}</label>
+                <span *ngFor="let gender of gender">
+                  <input type="radio" formControlName="Sex" [value]="gender.StatusId" /> {{gender.Description}}</span>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientGuranterInformation.birthdate' |
+                  translate }}</label>
+                <p-calendar formControlName="Birthdate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" [maxDate]="maxDateValue" 
+                  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" dateFormat="dd/mm/yy" [style]="{'width':'410px'}"></p-calendar>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientGuranterInformation.age' |
+                  translate }}</label>
+                <input type="text" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="Age" maxlength="3"
+                  OnlyNumber="true" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientGuranterInformation.martialStatus' |
+                  translate }}</label>
+                <select class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="MaritalStatus">
+                  <option *ngFor="let mStatus of mStatus" [value]="mStatus.StatusId">{{mStatus.Description}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientGuranterInformation.streetAddress' |
+                  translate }}</label>
+                <input type="text" placeholder="{{
+                  'patientInfo.street' |
+                  translate }}"
+                  class="col-lg-2 col-md-2 col-sm-2 col-xs-6" formControlName="Street" maxlength="45" />
+                <input type="text" placeholder="{{
+                  'patientInfo.City' |
+                  translate }}"
+                  class="col-lg-1 col-md-2 col-sm-2 col-xs-6" formControlName="City" maxlength="45" />
+                <input type="text" placeholder="{{
+                  'patientInfo.state' |
+                  translate }}"
+                  class="col-lg-1 col-md-2 col-sm-2 col-xs-6" formControlName="State" maxlength="2" (keypress)="onlyString(event)" />
+                <input type="text" placeholder="{{
+                  'patientInfo.zip' |
+                  translate }}"
+                  class="col-lg-1 col-md-2 col-sm-2 col-xs-6 zip" formControlName="ZipCode" OnlyNumber="true" maxlength="10" />
+              </div>
+              <div class="text-sm-right col-sm-9 mt-3 form-group">
+                <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" (click)="deletePatientGuarantorInfo(itemguarantor.value)">{{
+                  'patientGuranterInformation.remove' |
+                  translate }}</a>
+                <button class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" (click)="savePatientGuarantorInfo(itemguarantor.value)"
+                  [disabled]="!GuarantorForm.valid">{{
+                  'patientGuranterInformation.save' |
+                  translate }}</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="Insurance" class="tab-pane fade p-b150">
+        <div class="col-sm-12 col-xs-12 nopadd col-lg-12 col-md-12 mrgtop15">
+          <a class="btn u-btn-primary g-py-6 g-px-15 g-mr-10 btnNew" aria-hidden="true" (click)="addInsuranceInfo()">{{
+            'patientInsuranceInformation.new' |
+            translate }}</a> 
+        </div>
+        <form [formGroup]="insuranceInfoForm">
+          <div [hidden] = "true"><label class="isshared_gua">Is Shared</label>
+            <label class="container_check text-right check">
+              <input [(ngModel)]="sharedInsuranceInformation" [ngModelOptions]="{standalone: true}" (change)="onChangeInsuranceInfo($event)"
+                type="checkbox">
+              <span class="checkmark"></span>
+            </label></div>
+          <div formArrayName="itemInsurance">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd pt-4 lastForm" *ngFor="let iteminsurance of insuranceInfoForm.get('itemInsurance').controls;let i = index;"
+              [formGroupName]="i">
+
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientInsuranceInformation.subscriberName' |
+                  translate }}
+                  <span class="required">*</span>
+                </label>
+                <input type="text" placeholder="{{ 'UserProfileModule.FirstName' |
+                translate }}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6"
+                  formControlName="FirstName" maxlength="45" required />
+                <input type="text" placeholder="{{ 'UserProfileModule.LastName' |
+                translate }}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6"
+                  formControlName="LastName" maxlength="45" required />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientInsuranceInformation.relationship' |
+                  translate }}</label>
+                <select class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="Relationship">
+                  <option *ngFor="let relation of relations" [value]="relation.StatusId">{{relation.Description}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientInsuranceInformation.birthdate' |
+                  translate }}</label>
+                <p-calendar formControlName="Birthdate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1910:2020" [maxDate]="maxDateValue" 
+                  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" dateFormat="dd/mm/yy"></p-calendar>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientInsuranceInformation.gender' |
+                  translate }}</label>
+                <span *ngFor="let gender of gender">
+                  <input type="radio" formControlName="Sex" [value]="gender.StatusId" /> {{gender.Description}}</span>
+                <!-- <input type="radio" formControlName="Sex" [value]="0" /> FeMale -->
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientInsuranceInformation.socialSecurityNumber' |
+                  translate }}</label>
+                <input type="text" placeholder="{{ 'patientInfo.socialSecurityNumber' |
+                translate }}"
+                  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="SSN" OnlyNumber="true" maxlength="11" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientInsuranceInformation.streetAddress' |
+                  translate }}</label>
+                <input type="text" placeholder="{{ 'patientInfo.street' |
+                translate }}" class="col-lg-2 col-md-2 col-sm-2 col-xs-6"
+                  formControlName="Street" maxlength="45" />
+                <input type="text" placeholder="{{ 'patientInfo.City' |
+                translate }}" class="col-lg-1 col-md-2 col-sm-2 col-xs-6"
+                  formControlName="City" maxlength="45" />
+                <input type="text" placeholder="{{ 'patientInfo.state' |
+                translate }}" class="col-lg-1 col-md-2 col-sm-2 col-xs-6"
+                  formControlName="State" maxlength="2" (keypress)="onlyString(event)" />
+                <input type="text" placeholder="{{ 'patientInfo.zip' |
+                translate }}" class="col-lg-1 col-md-2 col-sm-2 col-xs-6 zip"
+                  formControlName="ZipCode" OnlyNumber="true" maxlength="10" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientInsuranceInformation.employer' |
+                  translate }}</label>
+                <input type="text" placeholder="{{ 'patientInfo.employer' |
+                translate }}" class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+                  formControlName="Employer" maxlength="45" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientInsuranceInformation.workPhone' |
+                  translate }}</label>
+                <input type="text" placeholder="{{
+                  'patientInsuranceInformation.workPhone' |
+                  translate }}"
+                  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="WorkPhone" OnlyNumber="true" maxlength="15" />
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientInsuranceInformation.workAddress' |
+                  translate }}</label>
+                <input type="text" placeholder="{{ 'patientInfo.street' |
+                translate }}" class="col-lg-2 col-md-2 col-sm-2 col-xs-6"
+                  formControlName="WAStreet" maxlength="45" />
+                <input type="text" placeholder="{{ 'patientInfo.City' |
+                translate }}" class="col-lg-1 col-md-2 col-sm-2 col-xs-6"
+                  formControlName="WACity" maxlength="45" />
+                <input type="text" placeholder="{{ 'patientInfo.state' |
+                translate }}" class="col-lg-1 col-md-2 col-sm-2 col-xs-6"
+                  formControlName="WAState" maxlength="2" (keypress)="onlyString(event)" />
+                <input type="text" placeholder="{{ 'patientInfo.zip' |
+                translate }}" class="col-lg-1 col-md-2 col-sm-2 col-xs-6 zip"
+                  formControlName="WAZipCode" OnlyNumber="true" maxlength="10" />
+              </div>
+              <div class="text-sm-right mr-15 mt-3 form-group">
+                <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" (click)="deletePatientInsuranceInfo(iteminsurance.value)">{{
+                  'patientInsuranceInformation.remove' |
+                  translate }}</a>
+                <button class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" (click)="savePatientInsuranceInfo(iteminsurance.value)"
+                  [disabled]="!insuranceInfoForm.valid">{{
+                  'patientInsuranceInformation.save' |
+                  translate }}</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="Emergency" class="tab-pane fade p-b150">
+        <div class="col-sm-12 col-xs-12 nopadd col-lg-12 col-md-12 mrgtop15">
+          <a class="btn u-btn-primary g-py-6 g-px-15 g-mr-10 btnNew" aria-hidden="true" (click)="addEmergencyContact()">{{
+            'patientInsuranceInformation.new' |
+            translate }}</a>
+        </div>
+        <form [formGroup]="emergencyContactForm">          
+          <div [hidden] = "true">
+              <label class="isshared_gua">Is Shared</label>
+              <label class="container_check text-right check">
+                <input [(ngModel)]="shareEmergencyContact" [ngModelOptions]="{standalone: true}" (change)="onChangeEmergencyInfo($event)"
+                  type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+          </div>
+          <div formArrayName="itemRows">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padd pt-4 lastForm" *ngFor="let itemrow of emergencyContactForm.get('itemRows').controls;let i = index;"
+              [formGroupName]="i">
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientEmergencyContact.contactName' |
+                  translate }}
+                  <span class="required">*</span>
+                </label>
+                <input type="text" [maxlength]="40" placeholder="{{
+                  'patientEmergencyContact.contactName' |
+                  translate }}"
+                  class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="ContactName" required />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientEmergencyContact.phone' |
+                  translate }}</label>
+                <input type="text" placeholder="{{
+                  'patientEmergencyContact.phone' |
+                  translate }}" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" OnlyNumber="true"
+                  formControlName="Phone" maxlength="15" />
+              </div>
+              <div class="form-group">
+                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-6">{{
+                  'patientEmergencyContact.relationship' |
+                  translate }}</label>
+                <select class="col-lg-6 col-md-6 col-sm-6 col-xs-6" formControlName="Relationship">
+                  <option *ngFor="let relation of relations" [value]="relation.StatusId">{{relation.Description}}</option>
+                </select>
+              </div>
+              <div class="text-sm-right mr-15 mt-3 form-group">
+                <a class="btn u-btn-darkgray g-py-6 g-px-15 g-mr-10" (click)="deletePatientEmergencyContact(itemrow.value)">{{
+                  'patientInsuranceInformation.remove' |
+                  translate }}</a>
+                <button class="btn u-btn-primary g-py-6 g-px-15 g-mr-10" (click)="savePatientEmergencyContact(itemrow.value)"
+                  [disabled]="!emergencyContactForm.valid">{{
+                  'patientInsuranceInformation.save' |
+                  translate }}</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
